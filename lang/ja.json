@@ -1,0 +1,14 @@
+{
+  "state_living": "住んでいる",
+  "state_broadcasting": "放送中",
+  "state_sleeping": "眠っている",
+  "state_silence": "静寂",
+
+  "title": "RADIO SECTA",
+
+  "subtitle": "音楽が宿る場所。",
+
+  "enter": "入る",
+
+  "listening": "聴いています"
+}

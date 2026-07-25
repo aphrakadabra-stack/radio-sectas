@@ -1,0 +1,14 @@
+{
+  "state_living": "HABITADA",
+  "state_broadcasting": "TRANSMITIENDO",
+  "state_sleeping": "DURMIENDO",
+  "state_silence": "SILENCIO",
+
+  "title": "RADIO SECTA",
+
+  "subtitle": "Un lugar donde la música habita.",
+
+  "enter": "ENTRAR",
+
+  "listening": "ESCUCHANDO"
+}

@@ -1,4 +1,4 @@
-# RADIO SECTA
+# RADIO SECTAS
 
 Una señal habitada por sonidos.
 

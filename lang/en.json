@@ -1,0 +1,14 @@
+{
+  "state_living": "INHABITED",
+  "state_broadcasting": "BROADCASTING",
+  "state_sleeping": "SLEEPING",
+  "state_silence": "SILENCE",
+
+  "title": "RADIO SECTA",
+
+  "subtitle": "A place where music lives.",
+
+  "enter": "ENTER",
+
+  "listening": "LISTENING"
+}

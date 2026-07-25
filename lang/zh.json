@@ -1,0 +1,14 @@
+{
+  "state_living": "有人居住",
+  "state_broadcasting": "正在广播",
+  "state_sleeping": "沉睡中",
+  "state_silence": "寂静",
+
+  "title": "RADIO SECTAS",
+
+  "subtitle": "一个音乐栖息的地方。",
+
+  "enter": "进入",
+
+  "listening": "正在聆听"
+}

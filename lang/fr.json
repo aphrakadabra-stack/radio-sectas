@@ -1,0 +1,14 @@
+{
+  "state_living": "HABITÉE",
+  "state_broadcasting": "TRANSMISSION",
+  "state_sleeping": "ENDORMIE",
+  "state_silence": "SILENCE",
+
+  "title": "RADIO SECTA",
+
+  "subtitle": "Un lieu où la musique habite.",
+
+  "enter": "ENTRER",
+
+  "listening": "ÉCOUTE"
+}

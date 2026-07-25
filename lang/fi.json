@@ -1,0 +1,14 @@
+{
+  "state_living": "ASUTTU",
+  "state_broadcasting": "LÄHETYS",
+  "state_sleeping": "NUKKUU",
+  "state_silence": "HILJAISUUS",
+
+  "title": "RADIO SECTA",
+
+  "subtitle": "Paikka jossa musiikki elää.",
+
+  "enter": "ASTU SISÄÄN",
+
+  "listening": "KUUNTELET"
+}

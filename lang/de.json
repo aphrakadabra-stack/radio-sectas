@@ -1,0 +1,14 @@
+{
+  "state_living": "BEWOHNT",
+  "state_broadcasting": "SENDUNG",
+  "state_sleeping": "SCHLAFEND",
+  "state_silence": "STILLE",
+
+  "title": "RADIO SECTAS",
+
+  "subtitle": "Ein Ort, an dem Musik lebt.",
+
+  "enter": "EINTRETEN",
+
+  "listening": "ZUHÖREN"
+}
