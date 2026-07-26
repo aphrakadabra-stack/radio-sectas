@@ -1,5 +1,3 @@
-const radio = document.getElementById("radio");
-const boton = document.getElementById("playButton");
 const estado = document.getElementById("state");
 
 
@@ -17,9 +15,7 @@ const idiomasDisponibles = [
 
 
 if (idiomasDisponibles.includes(idiomaNavegador)) {
-
     idioma = idiomaNavegador;
-
 }
 
 
@@ -30,47 +26,75 @@ fetch(`lang/${idioma}.json`)
 .then(textos => {
 
 
-    estado.textContent = "● " + textos.state_living;
-
     document.querySelector("h1").textContent = textos.title;
 
     document.querySelector(".subtitle").textContent = textos.subtitle;
 
-    boton.textContent = textos.enter;
+
+
+    function comprobarRadio() {
+
+
+        fetch("https://sapircast.caster.fm:15920/admin/publicstats.json")
+
+
+        .then(respuesta => respuesta.json())
+
+
+        .then(datos => {
+
+
+            const fuente = datos[1]?.source?.["/Ez2oz"];
 
 
 
-    boton.addEventListener("click", () => {
+            if (fuente) {
 
 
-        if (radio.paused) {
+                // Radio transmitiendo
+
+                estado.textContent = "● " + textos.state_living;
 
 
-            radio.play();
+            } else {
 
 
-            boton.textContent = textos.listening;
+                // Radio en reposo
+
+                estado.textContent = "◌ " + textos.state_sleeping;
 
 
-            estado.textContent = "● " + textos.state_broadcasting;
+            }
 
 
-        } else {
+        })
 
 
-            radio.pause();
+        .catch(() => {
 
 
-            boton.textContent = textos.enter;
+            // Si no se puede consultar, asumimos dormida
+
+            estado.textContent = "◌ " + textos.state_sleeping;
 
 
-            estado.textContent = "● " + textos.state_living;
+        });
 
 
-        }
+    }
 
 
-    });
+
+    // Primera comprobación al cargar
+
+    comprobarRadio();
+
+
+
+    // Comprobar cada minuto
+
+    setInterval(comprobarRadio, 60000);
+
 
 
 });
