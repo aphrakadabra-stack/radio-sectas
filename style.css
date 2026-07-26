@@ -1,47 +1,40 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
 }
+
 
 
 body{
 
-    background:#EA52F3;
-    color:#1a1a1a;
+background:#EA52F3;
 
-    font-family:"Cormorant Garamond",serif;
+color:#1a1a1a;
 
-    min-height:100vh;
+font-family:"Cormorant Garamond",serif;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 }
+
 
 
 main{
 
-    width:min(90vw,1000px);
+width:min(90vw,1000px);
 
-    text-align:center;
+text-align:center;
 
-    padding:40px 20px;
-
-}
-
-
-
-#state{
-
-    font-size:clamp(.8rem,2vw,1.2rem);
-
-    letter-spacing:clamp(4px,1vw,10px);
-
-    margin-bottom:clamp(40px,8vh,80px);
-
-    text-transform:uppercase;
+padding:40px 20px;
 
 }
 
@@ -49,15 +42,15 @@ main{
 
 h1{
 
-    font-size:clamp(4rem,15vw,11rem);
+font-size:clamp(4rem,15vw,11rem);
 
-    font-weight:400;
+font-weight:400;
 
-    letter-spacing:clamp(5px,1.5vw,18px);
+letter-spacing:clamp(5px,1.5vw,18px);
 
-    line-height:.8;
+line-height:.8;
 
-    margin-bottom:clamp(30px,5vh,60px);
+margin-bottom:40px;
 
 }
 
@@ -65,45 +58,39 @@ h1{
 
 .subtitle{
 
-    font-size:clamp(1.4rem,4vw,3rem);
+font-size:clamp(1.4rem,4vw,3rem);
 
-    line-height:1.2;
+line-height:1.2;
 
-    margin-bottom:clamp(50px,10vh,120px);
-
-}
-
-
-
-.listen-button{
-
-    display:inline-block;
-
-    padding:16px 36px;
-
-    border:1px solid #000;
-
-    color:#000;
-
-    text-decoration:none;
-
-    letter-spacing:.3em;
-
-    text-transform:uppercase;
-
-    font-size:1rem;
-
-    transition:.3s;
+margin-bottom:70px;
 
 }
 
 
 
-.listen-button:hover{
+#state{
 
-    background:#000;
+font-size:clamp(.8rem,2vw,1.2rem);
 
-    color:#EA52F3;
+letter-spacing:clamp(4px,1vw,10px);
+
+text-transform:uppercase;
+
+margin-bottom:50px;
+
+}
+
+
+
+.radio-image{
+
+width:min(80vw,700px);
+
+height:auto;
+
+display:block;
+
+margin:0 auto 70px auto;
 
 }
 
@@ -111,7 +98,15 @@ h1{
 
 .player{
 
-    width:100%;
+width:100%;
+
+}
+
+
+
+.listen-button{
+
+display:inline-block;
 
 }
 
@@ -120,46 +115,29 @@ h1{
 @media(max-width:600px){
 
 
-    body{
+body{
 
-        align-items:flex-start;
-
-    }
-
-
-    main{
-
-        padding-top:15vh;
-
-    }
-
-
-    h1{
-
-        letter-spacing:8px;
-
-    }
-
-
-}.radio-image{
-
-    width:min(60vw,450px);
-
-    height:auto;
-
-    margin-bottom:50px;
+align-items:flex-start;
 
 }
 
 
-@media(max-width:600px){
 
-    .radio-image{
+main{
 
-        width:75vw;
+padding-top:12vh;
 
-        margin-bottom:35px;
+}
 
-    }
+
+
+.radio-image{
+
+width:90vw;
+
+margin-bottom:50px;
+
+}
+
 
 }
