@@ -1,14 +1,14 @@
 {
   "state_living": "BEWOHNT",
-  "state_broadcasting": "SENDUNG",
-  "state_sleeping": "SCHLAFEND",
-  "state_silence": "STILLE",
+  "state_broadcasting": "BEWOHNT",
+  "state_sleeping": "SCHLÄFT",
+  "state_silence": "IN STILLE",
 
-  "title": "RADIO SECTAS",
+  "title": "ÚGJÜ RADIO",
 
-  "subtitle": "Ein Ort, an dem Musik lebt.",
+  "subtitle": "Das Ohr, das dem Haus zuhört...",
 
   "enter": "EINTRETEN",
 
-  "listening": "ZUHÖREN"
+  "listening": "HÖRT ZU"
 }
