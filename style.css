@@ -141,4 +141,25 @@ h1{
     }
 
 
+}.radio-image{
+
+    width:min(60vw,450px);
+
+    height:auto;
+
+    margin-bottom:50px;
+
+}
+
+
+@media(max-width:600px){
+
+    .radio-image{
+
+        width:75vw;
+
+        margin-bottom:35px;
+
+    }
+
 }
