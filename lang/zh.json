@@ -1,14 +1,14 @@
 {
-  "state_living": "有人居住",
-  "state_broadcasting": "正在广播",
-  "state_sleeping": "沉睡中",
+  "state_living": "被居住",
+  "state_broadcasting": "正在播放",
+  "state_sleeping": "沉睡",
   "state_silence": "寂静",
 
-  "title": "RADIO SECTAS",
+  "title": "ÚGJÜ RADIO",
 
-  "subtitle": "一个音乐栖息的地方。",
+  "subtitle": "音乐栖息之所。",
 
   "enter": "进入",
 
-  "listening": "正在聆听"
+  "listening": "正在收听"
 }
