@@ -3,12 +3,6 @@
   "state_broadcasting": "HABITADA",
   "state_sleeping": "DURMIENDO",
   "state_silence": "EN SILENCIO",
-
   "title": "ÚGJÜ RADIO",
-
-  "subtitle": "La oreja que escucha la casa.",
-
-  "enter": "ENTRAR",
-
-  "listening": "ESCUCHANDO"
+  "subtitle": "La oreja que escucha la casa..."
 }
