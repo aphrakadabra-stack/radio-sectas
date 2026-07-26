@@ -1,12 +1,12 @@
 {
   "state_living": "INHABITED",
-  "state_broadcasting": "BROADCASTING",
+  "state_broadcasting": "INHABITED",
   "state_sleeping": "SLEEPING",
-  "state_silence": "SILENCE",
+  "state_silence": "IN SILENCE",
 
   "title": "ÚGJÜ RADIO",
 
-  "subtitle": "A place where music inhabits.",
+  "subtitle": "The ear that listens to the house.",
 
   "enter": "ENTER",
 

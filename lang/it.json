@@ -1,12 +1,12 @@
 {
   "state_living": "ABITATA",
-  "state_broadcasting": "TRASMISSIONE",
+  "state_broadcasting": "ABITATA",
   "state_sleeping": "DORMIENTE",
-  "state_silence": "SILENZIO",
+  "state_silence": "IN SILENZIO",
 
   "title": "ÚGJÜ RADIO",
 
-  "subtitle": "Un luogo dove la musica abita.",
+  "subtitle": "L'orecchio che ascolta la casa.",
 
   "enter": "ENTRA",
 

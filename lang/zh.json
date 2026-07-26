@@ -1,12 +1,12 @@
 {
-  "state_living": "被居住",
-  "state_broadcasting": "正在播放",
+  "state_living": "有人居住",
+  "state_broadcasting": "有人居住",
   "state_sleeping": "沉睡",
-  "state_silence": "寂静",
+  "state_silence": "寂静之中",
 
   "title": "ÚGJÜ RADIO",
 
-  "subtitle": "音乐栖息之所。",
+  "subtitle": "倾听房屋的耳朵。",
 
   "enter": "进入",
 
