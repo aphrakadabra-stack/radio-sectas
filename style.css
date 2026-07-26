@@ -5,7 +5,7 @@
 }
 
 
-html, body{
+html,body{
 
     width:100%;
     height:100%;
@@ -26,24 +26,24 @@ body{
 }
 
 
+
 #radio{
 
     width:100vw;
+
     height:100vh;
 
     display:flex;
+
     flex-direction:column;
 
     justify-content:center;
+
     align-items:center;
 
     text-align:center;
 
-    gap:0;
-
-    padding:2vh 5vw;
-
-    overflow:hidden;
+    padding:20px;
 
 }
 
@@ -51,13 +51,15 @@ body{
 
 h1{
 
-    font-size:clamp(2.8rem,8vw,7rem);
+    width:min(90vw,500px);
+
+    font-size:clamp(3rem,8vw,5.5rem);
 
     font-weight:400;
 
-    letter-spacing:clamp(3px,1vw,12px);
+    letter-spacing:clamp(3px,1vw,10px);
 
-    line-height:.8;
+    line-height:.85;
 
 }
 
@@ -65,9 +67,11 @@ h1{
 
 .subtitle{
 
-    font-size:clamp(1rem,2.2vw,2rem);
+    width:min(90vw,500px);
 
-    margin-top:1.5vh;
+    font-size:clamp(1.2rem,3vw,2rem);
+
+    margin-top:15px;
 
 }
 
@@ -75,13 +79,15 @@ h1{
 
 #state{
 
-    font-size:clamp(.7rem,1.3vw,1rem);
+    width:min(90vw,500px);
 
-    letter-spacing:clamp(3px,1vw,8px);
+    font-size:clamp(.7rem,1.5vw,1rem);
+
+    letter-spacing:6px;
 
     text-transform:uppercase;
 
-    margin-top:2vh;
+    margin-top:20px;
 
 }
 
@@ -89,13 +95,13 @@ h1{
 
 .radio-image{
 
-    width:clamp(150px,20vw,330px);
+    width:min(90vw,500px);
 
-    height:auto;
+    max-height:160px;
 
-    margin-top:2vh;
+    object-fit:contain;
 
-    margin-bottom:2vh;
+    margin-top:20px;
 
 }
 
@@ -103,11 +109,9 @@ h1{
 
 .player{
 
-    width:min(90vw,450px);
+    width:min(90vw,500px);
 
-    max-height:100px;
-
-    overflow:hidden;
+    margin-top:20px;
 
 }
 
@@ -115,7 +119,7 @@ h1{
 
 .cstrEmbed{
 
-    max-height:100px;
+    width:100%;
 
 }
 
@@ -124,46 +128,25 @@ h1{
 @media(max-width:600px){
 
 
-#radio{
+    #radio{
 
-    padding:2vh 15px;
+        padding:15px;
 
-}
-
-
-
-h1{
-
-    font-size:13vw;
-
-}
+    }
 
 
+    h1{
 
-.subtitle{
+        font-size:12vw;
 
-    font-size:1.2rem;
-
-}
-
+    }
 
 
-.radio-image{
+    .radio-image{
 
-    width:65vw;
+        max-height:130px;
 
-    max-width:260px;
-
-}
-
-
-
-.player{
-
-    width:95vw;
-
-}
-
+    }
 
 
 }
