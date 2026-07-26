@@ -8,6 +8,17 @@ box-sizing:border-box;
 
 
 
+html,body{
+
+width:100%;
+height:100%;
+
+overflow:hidden;
+
+}
+
+
+
 body{
 
 background:#EA52F3;
@@ -15,8 +26,6 @@ background:#EA52F3;
 color:#1a1a1a;
 
 font-family:"Cormorant Garamond",serif;
-
-min-height:100vh;
 
 display:flex;
 
@@ -30,11 +39,21 @@ align-items:center;
 
 main{
 
-width:min(90vw,1000px);
+width:100vw;
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
 
 text-align:center;
 
-padding:40px 20px;
+padding:20px;
 
 }
 
@@ -42,15 +61,13 @@ padding:40px 20px;
 
 h1{
 
-font-size:clamp(4rem,15vw,11rem);
+font-size:clamp(3rem,9vw,8rem);
 
 font-weight:400;
 
-letter-spacing:clamp(5px,1.5vw,18px);
+letter-spacing:clamp(4px,1vw,14px);
 
-line-height:.8;
-
-margin-bottom:40px;
+line-height:.85;
 
 }
 
@@ -58,11 +75,9 @@ margin-bottom:40px;
 
 .subtitle{
 
-font-size:clamp(1.4rem,4vw,3rem);
+font-size:clamp(1rem,2.5vw,2rem);
 
-line-height:1.2;
-
-margin-bottom:70px;
+margin-top:2vh;
 
 }
 
@@ -70,13 +85,13 @@ margin-bottom:70px;
 
 #state{
 
-font-size:clamp(.8rem,2vw,1.2rem);
+font-size:clamp(.7rem,1.5vw,1rem);
 
-letter-spacing:clamp(4px,1vw,10px);
+letter-spacing:clamp(3px,1vw,8px);
 
 text-transform:uppercase;
 
-margin-bottom:50px;
+margin-top:3vh;
 
 }
 
@@ -84,13 +99,11 @@ margin-bottom:50px;
 
 .radio-image{
 
-width:min(80vw,700px);
+width:clamp(180px,25vw,420px);
 
 height:auto;
 
-display:block;
-
-margin:0 auto 70px auto;
+margin-top:3vh;
 
 }
 
@@ -98,15 +111,9 @@ margin:0 auto 70px auto;
 
 .player{
 
-width:100%;
+width:min(90vw,500px);
 
-}
-
-
-
-.listen-button{
-
-display:inline-block;
+margin-top:3vh;
 
 }
 
@@ -115,17 +122,33 @@ display:inline-block;
 @media(max-width:600px){
 
 
-body{
+main{
 
-align-items:flex-start;
+padding:15px;
 
 }
 
 
 
-main{
+h1{
 
-padding-top:12vh;
+font-size:clamp(2.5rem,13vw,5rem);
+
+}
+
+
+
+.subtitle{
+
+font-size:1.3rem;
+
+}
+
+
+
+#state{
+
+margin-top:2vh;
 
 }
 
@@ -133,11 +156,24 @@ padding-top:12vh;
 
 .radio-image{
 
-width:90vw;
+width:65vw;
 
-margin-bottom:50px;
+max-width:280px;
+
+margin-top:2vh;
 
 }
+
+
+
+.player{
+
+width:95vw;
+
+margin-top:2vh;
+
+}
+
 
 
 }
