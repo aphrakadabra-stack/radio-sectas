@@ -10,7 +10,12 @@ let idioma = "es";
 const idiomasDisponibles = [
     "es",
     "en",
-    "fi"
+    "de",
+    "fi",
+    "fr",
+    "it",
+    "ja",
+    "zh"
 ];
 
 
@@ -51,15 +56,11 @@ fetch(`lang/${idioma}.json`)
             if (fuente) {
 
 
-                // Radio transmitiendo
-
                 estado.textContent = "● " + textos.state_living;
 
 
             } else {
 
-
-                // Radio en reposo
 
                 estado.textContent = "◌ " + textos.state_sleeping;
 
@@ -73,8 +74,6 @@ fetch(`lang/${idioma}.json`)
         .catch(() => {
 
 
-            // Si no se puede consultar, asumimos dormida
-
             estado.textContent = "◌ " + textos.state_sleeping;
 
 
@@ -85,15 +84,11 @@ fetch(`lang/${idioma}.json`)
 
 
 
-    // Primera comprobación al cargar
-
     comprobarRadio();
 
 
 
-    // Comprobar cada minuto
-
-    setInterval(comprobarRadio, 60000);
+    setInterval(comprobarRadio,60000);
 
 
 

@@ -5,148 +5,136 @@
 }
 
 
-html,body{
-
+html,
+body{
     width:100%;
     height:100%;
-
     overflow:hidden;
-
 }
 
 
 body{
-
     background:#EA52F3;
-
     color:#1a1a1a;
-
-    font-family:"Cormorant Garamond",serif;
-
+    font-family:"Cormorant Garamond", serif;
 }
 
 
-
 #radio{
-
     width:100vw;
-
     height:100vh;
 
     display:flex;
-
     flex-direction:column;
-
     justify-content:center;
-
     align-items:center;
 
     text-align:center;
 
-    padding:20px;
-
+    padding:18px;
 }
-
 
 
 h1{
-
     width:min(90vw,500px);
 
     font-size:clamp(3rem,8vw,5.5rem);
-
     font-weight:400;
-
     letter-spacing:clamp(3px,1vw,10px);
-
     line-height:.85;
-
 }
-
 
 
 .subtitle{
-
     width:min(90vw,500px);
 
-    font-size:clamp(1.2rem,3vw,2rem);
+    font-size:clamp(1.8rem,4vw,3rem);
+    font-style:italic;
+    font-weight:400;
+    line-height:1.05;
 
-    margin-top:15px;
-
+    margin-top:28px;
+    margin-bottom:10px;
 }
-
 
 
 #state{
-
     width:min(90vw,500px);
 
-    font-size:clamp(.7rem,1.5vw,1rem);
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-    letter-spacing:6px;
-
+    font-size:clamp(.72rem,1.5vw,.95rem);
+    font-weight:500;
+    letter-spacing:7px;
     text-transform:uppercase;
 
-    margin-top:20px;
+    margin-top:24px;
+    padding:10px 0;
 
+    border-top:1px solid rgba(26,26,26,.45);
+    border-bottom:1px solid rgba(26,26,26,.45);
 }
 
 
-
 .radio-image{
-
     width:min(90vw,500px);
-
     max-height:160px;
 
     object-fit:contain;
 
-    margin-top:20px;
-
+    margin-top:24px;
 }
-
 
 
 .player{
-
     width:min(90vw,500px);
 
     margin-top:20px;
-
 }
-
 
 
 .cstrEmbed{
-
     width:100%;
-
 }
-
 
 
 @media(max-width:600px){
 
-
     #radio{
-
-        padding:15px;
-
+        padding:14px;
     }
 
 
     h1{
-
         font-size:12vw;
+    }
 
+
+    .subtitle{
+        font-size:clamp(1.45rem,7vw,2.2rem);
+        margin-top:22px;
+    }
+
+
+    #state{
+        margin-top:18px;
+        padding:8px 0;
+
+        font-size:.7rem;
+        letter-spacing:5px;
     }
 
 
     .radio-image{
-
-        max-height:130px;
-
+        max-height:125px;
+        margin-top:18px;
     }
 
+
+    .player{
+        margin-top:16px;
+    }
 
 }
