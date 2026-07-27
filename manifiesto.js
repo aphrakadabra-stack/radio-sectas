@@ -25,6 +25,23 @@ const idioma =
 document.documentElement.lang = idioma;
 
 
+const enlaceEmail =
+    document.getElementById("email-link");
+
+
+enlaceEmail.addEventListener("click", () => {
+
+    const direccion = String.fromCharCode(
+        117,103,106,117,115,101,99,116,97,115,
+        64,
+        103,109,97,105,108,46,99,111,109
+    );
+
+    window.location.href = `mailto:${direccion}`;
+
+});
+
+
 function cargarTextos(codigo) {
 
     return fetch(`manifiestos/${codigo}.json`)
