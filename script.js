@@ -1,4 +1,6 @@
 const estado = document.getElementById("state");
+const titulo = document.querySelector("h1");
+const lema = document.querySelector(".subtitle");
 
 
 // Detectar idioma del visitante
@@ -24,22 +26,90 @@ if (idiomasDisponibles.includes(idiomaNavegador)) {
 }
 
 
+document.documentElement.lang = idioma;
+
+
+// Medir solamente el ancho visible de un texto
+
+function medirTexto(elemento) {
+
+    const rango = document.createRange();
+
+    rango.selectNodeContents(elemento);
+
+    return rango.getBoundingClientRect().width;
+
+}
+
+
+// Igualar ópticamente el ancho del estado con el lema
+
+function ajustarEstado() {
+
+    estado.style.fontSize = "";
+
+    requestAnimationFrame(() => {
+
+        const anchoLema = medirTexto(lema);
+        const anchoEstado = medirTexto(estado);
+
+        if (!anchoLema || !anchoEstado) {
+            return;
+        }
+
+        const tamañoBase = parseFloat(
+            window.getComputedStyle(estado).fontSize
+        );
+
+        /*
+        Reduce estados largos y amplía los cortos.
+        Los límites evitan tamaños exagerados.
+        */
+
+        const proporcion = Math.min(
+            1.55,
+            Math.max(.58, anchoLema / anchoEstado)
+        );
+
+        estado.style.fontSize =
+            `${tamañoBase * proporcion}px`;
+
+    });
+
+}
+
+
+// Mostrar un estado y ajustar su anchura
+
+function mostrarEstado(texto) {
+
+    estado.textContent = texto;
+
+    ajustarEstado();
+
+}
+
+
 // Cargar idioma
 
 fetch(`lang/${idioma}.json`)
+
 .then(respuesta => respuesta.json())
+
 .then(textos => {
 
 
-    document.querySelector("h1").textContent = textos.title;
+    titulo.textContent = textos.title;
 
-    document.querySelector(".subtitle").textContent = textos.subtitle;
+    lema.textContent = textos.subtitle;
 
 
     function comprobarRadio() {
 
 
-        fetch("https://sapircast.caster.fm:15920/admin/publicstats.json")
+        fetch(
+            "https://sapircast.caster.fm:15920/admin/publicstats.json"
+        )
 
 
         .then(respuesta => respuesta.json())
@@ -48,16 +118,17 @@ fetch(`lang/${idioma}.json`)
         .then(datos => {
 
 
-            const fuente = datos[1]?.source?.["/Ez2oz"];
+            const fuente =
+                datos[1]?.source?.["/Ez2oz"];
 
 
             if (fuente) {
 
-                estado.textContent = textos.state_living;
+                mostrarEstado(textos.state_living);
 
             } else {
 
-                estado.textContent = textos.state_sleeping;
+                mostrarEstado(textos.state_sleeping);
 
             }
 
@@ -67,7 +138,7 @@ fetch(`lang/${idioma}.json`)
 
         .catch(() => {
 
-            estado.textContent = textos.state_sleeping;
+            mostrarEstado(textos.state_sleeping);
 
         });
 
@@ -79,6 +150,17 @@ fetch(`lang/${idioma}.json`)
 
 
     setInterval(comprobarRadio,60000);
+
+
+    window.addEventListener(
+        "resize",
+        ajustarEstado
+    );
+
+
+    document.fonts.ready.then(
+        ajustarEstado
+    );
 
 
 });
