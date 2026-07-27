@@ -223,7 +223,7 @@ function dibujarManifiesto(parrafos) {
     const contexto =
         lienzo.getContext("2d");
 
-    const separador = "   ✦   ";
+    const separador = "   /   ";
 
     const caracteres = Array.from(
         parrafos.join(separador)
@@ -259,21 +259,71 @@ function dibujarManifiesto(parrafos) {
     caracteres.forEach((caracter,indice) => {
 
         const pulso =
-            20 +
-            Math.sin(indice * .071) * 6 +
-            Math.sin(indice * .019) * 4;
+            21 +
+            Math.sin(indice * .071) * 9 +
+            Math.sin(indice * .019) * 6 +
+            (
+                indice % 23 < 3
+                    ? 12
+                    : 0
+            );
 
         const marcador =
-            caracter === "✦";
+            caracter === "/";
 
         const tamaño =
-            marcador ? 35 : Math.max(12,pulso);
+            marcador ? 42 : Math.max(10,pulso);
 
         const cursiva =
-            indice % 29 < 11;
+            indice % 19 < 8;
 
         const peso =
-            indice % 47 < 8 ? "500" : "400";
+            indice % 31 < 10 ? "500" : "400";
+
+        const esLetra =
+            caracter.toLocaleLowerCase(idioma) !==
+            caracter.toLocaleUpperCase(idioma);
+
+        const mayuscula =
+            esLetra &&
+            (
+                indice % 7 === 0 ||
+                indice % 13 < 2 ||
+                Math.sin(indice * .83) > .82
+            );
+
+        const caracterVisual =
+            mayuscula
+                ? caracter.toLocaleUpperCase(idioma)
+                : caracter.toLocaleLowerCase(idioma);
+
+        const escalaHorizontal =
+            .72 +
+            (
+                Math.sin(indice * .113) + 1
+            ) * .32;
+
+        const escalaVertical =
+            .84 +
+            (
+                Math.cos(indice * .079) + 1
+            ) * .23;
+
+        const salto =
+            Math.sin(indice * .167) * 9 +
+            (
+                indice % 17 === 0
+                    ? -12
+                    : 0
+            );
+
+        const giroExtra =
+            Math.sin(indice * .229) * 11 +
+            (
+                indice % 29 === 0
+                    ? 18
+                    : 0
+            );
 
 
         contexto.font =
@@ -283,16 +333,22 @@ function dibujarManifiesto(parrafos) {
         const avance =
             caracter === " "
                 ? tamaño * .28
-                : contexto.measureText(caracter).width * .92;
+                : contexto.measureText(caracterVisual).width *
+                    escalaHorizontal *
+                    .9;
 
 
         medidas.push({
-            caracter,
+            caracter:caracterVisual,
             tamaño,
             cursiva,
             peso,
             avance,
-            marcador
+            marcador,
+            escalaHorizontal,
+            escalaVertical,
+            salto,
+            giroExtra
         });
 
         avanceTotal += avance;
@@ -342,14 +398,24 @@ function dibujarManifiesto(parrafos) {
             medida.tamaño *
             (
                 1 +
-                Math.sin(indice * .037) * .18
+                Math.sin(indice * .037) * .28
             );
 
 
         contexto.save();
 
         contexto.translate(punto.x,punto.y);
-        contexto.rotate(inclinacion);
+        contexto.rotate(
+            inclinacion +
+            medida.giroExtra * Math.PI / 180
+        );
+
+        contexto.translate(0,medida.salto);
+
+        contexto.scale(
+            medida.escalaHorizontal,
+            medida.escalaVertical
+        );
 
         contexto.font =
             `${medida.cursiva ? "italic " : ""}${medida.peso} ${tamañoVivo}px "Cormorant Garamond", serif`;
