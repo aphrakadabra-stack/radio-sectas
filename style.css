@@ -9,14 +9,7 @@
 
 
 :root{
-    /*
-    Un único ancho para:
-    título, lema, estado, casa y reproductor.
-
-    En pantallas bajas se reduce TODO el conjunto,
-    no solamente la casa.
-    */
-    --content-width:min(92vw,500px,51vh);
+    --content-width:min(94vw,500px,53vh);
 }
 
 
@@ -45,20 +38,20 @@ body{
     justify-content:center;
     align-items:center;
 
-    padding:6px;
+    padding:4px;
     text-align:center;
 }
 
 
-/* TÍTULO: mismo ancho visual general */
+/* TÍTULO */
 
 h1{
     width:var(--content-width);
 
-    font-size:clamp(2.35rem,calc(var(--content-width) * .155),5rem);
+    font-size:clamp(2.7rem,calc(var(--content-width) * .18),5.3rem);
     font-weight:400;
-    letter-spacing:.035em;
-    line-height:.92;
+    letter-spacing:.025em;
+    line-height:.9;
 
     white-space:nowrap;
 }
@@ -69,41 +62,43 @@ h1{
 .subtitle{
     width:var(--content-width);
 
-    margin-top:10px;
+    margin-top:7px;
 
     font-size:clamp(1.05rem,calc(var(--content-width) * .054),1.85rem);
     font-style:italic;
     font-weight:400;
-    line-height:1.05;
+    line-height:1;
 
-    letter-spacing:.075em;
+    letter-spacing:.12em;
     text-transform:lowercase;
     white-space:nowrap;
 }
 
 
-/* ESTADO: amplio, pero sin competir con el título */
+/* ESTADO */
 
 #state{
     width:var(--content-width);
 
-    margin-top:8px;
+    margin-top:5px;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    font-size:clamp(1.55rem,calc(var(--content-width) * .082),2.65rem);
+    font-size:clamp(1.9rem,calc(var(--content-width) * .105),3.25rem);
     font-weight:400;
-    line-height:1;
+    line-height:.95;
 
-    letter-spacing:.16em;
+    letter-spacing:.3em;
+    text-indent:.3em;
+
     text-transform:uppercase;
     white-space:nowrap;
 }
 
 
-/* CASA: proporción original, sin compresión */
+/* CASA */
 
 .radio-image{
     display:block;
@@ -112,14 +107,10 @@ h1{
     max-width:var(--content-width);
     height:auto;
 
-    margin-top:10px;
+    margin-top:7px;
 
     object-fit:contain;
 
-    /*
-    Impide que Flexbox vuelva a aplastar
-    verticalmente la ilustración.
-    */
     flex:none;
 }
 
@@ -130,7 +121,7 @@ h1{
     width:var(--content-width);
     max-width:var(--content-width);
 
-    margin-top:8px;
+    margin-top:6px;
 
     flex:none;
 }
@@ -163,78 +154,74 @@ h1{
 @media(max-width:600px){
 
     :root{
-        --content-width:min(94vw,51vh);
-    }
-
-
-    #radio{
-        padding:4px;
+        --content-width:min(94vw,53vh);
     }
 
 
     h1{
-        font-size:clamp(2.25rem,calc(var(--content-width) * .15),3.8rem);
+        font-size:clamp(2.4rem,calc(var(--content-width) * .17),4rem);
     }
 
 
     .subtitle{
-        margin-top:7px;
+        margin-top:6px;
 
         font-size:clamp(.95rem,calc(var(--content-width) * .052),1.45rem);
-        letter-spacing:.06em;
-    }
-
-
-    #state{
-        margin-top:6px;
-
-        font-size:clamp(1.4rem,calc(var(--content-width) * .078),2.2rem);
-        letter-spacing:.14em;
-    }
-
-
-    .radio-image{
-        margin-top:7px;
-    }
-
-
-    .player{
-        margin-top:6px;
-    }
-
-}
-
-
-/* TELÉFONOS O VENTANAS MUY BAJAS */
-
-@media(max-height:600px){
-
-    :root{
-        --content-width:min(90vw,47vh);
-    }
-
-
-    h1{
-        font-size:clamp(2rem,calc(var(--content-width) * .145),3.2rem);
-    }
-
-
-    .subtitle{
-        margin-top:5px;
-
-        font-size:clamp(.85rem,calc(var(--content-width) * .05),1.25rem);
+        letter-spacing:.1em;
     }
 
 
     #state{
         margin-top:4px;
 
-        font-size:clamp(1.25rem,calc(var(--content-width) * .074),1.9rem);
+        font-size:clamp(1.7rem,calc(var(--content-width) * .1),2.65rem);
+        letter-spacing:.27em;
+        text-indent:.27em;
     }
 
 
     .radio-image{
+        margin-top:6px;
+    }
+
+
+    .player{
         margin-top:5px;
+    }
+
+}
+
+
+/* PANTALLAS MUY BAJAS */
+
+@media(max-height:600px){
+
+    :root{
+        --content-width:min(90vw,48vh);
+    }
+
+
+    h1{
+        font-size:clamp(2rem,calc(var(--content-width) * .165),3.4rem);
+    }
+
+
+    .subtitle{
+        margin-top:4px;
+
+        font-size:clamp(.85rem,calc(var(--content-width) * .05),1.25rem);
+    }
+
+
+    #state{
+        margin-top:3px;
+
+        font-size:clamp(1.5rem,calc(var(--content-width) * .095),2.2rem);
+    }
+
+
+    .radio-image{
+        margin-top:4px;
     }
 
 

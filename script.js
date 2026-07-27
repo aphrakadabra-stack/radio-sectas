@@ -36,7 +36,6 @@ fetch(`lang/${idioma}.json`)
     document.querySelector(".subtitle").textContent = textos.subtitle;
 
 
-
     function comprobarRadio() {
 
 
@@ -52,18 +51,13 @@ fetch(`lang/${idioma}.json`)
             const fuente = datos[1]?.source?.["/Ez2oz"];
 
 
-
             if (fuente) {
 
-
-                estado.textContent = "● " + textos.state_living;
-
+                estado.textContent = textos.state_living;
 
             } else {
 
-
-                estado.textContent = "◌ " + textos.state_sleeping;
-
+                estado.textContent = textos.state_sleeping;
 
             }
 
@@ -73,9 +67,7 @@ fetch(`lang/${idioma}.json`)
 
         .catch(() => {
 
-
-            estado.textContent = "◌ " + textos.state_sleeping;
-
+            estado.textContent = textos.state_sleeping;
 
         });
 
@@ -83,13 +75,10 @@ fetch(`lang/${idioma}.json`)
     }
 
 
-
     comprobarRadio();
 
 
-
     setInterval(comprobarRadio,60000);
-
 
 
 });
