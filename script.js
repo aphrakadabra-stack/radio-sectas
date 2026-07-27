@@ -113,7 +113,7 @@ function mostrarEstado(texto) {
 }
 
 
-fetch(`lang/${idioma}.json?v=20260727-7`)
+fetch(`lang/${idioma}.json?v=20260727-8`)
 
 .then(respuesta => respuesta.json())
 
