@@ -13,7 +13,7 @@
     El conjunto se reduce apenas para incorporar
     el acceso al manifiesto sin producir scroll.
     */
-    --content-width:min(94vw,500px,48vh);
+    --content-width:min(95vw,530px,50vh);
 
     /*
     Caster deja aproximadamente 8 px internos a cada lado.
@@ -181,32 +181,22 @@ h1{
 .house-note{
     width:100%;
 
-    font-size:clamp(.72rem,calc(var(--content-width) * .026),.88rem);
+    font-size:clamp(.9rem,calc(var(--content-width) * .033),1.1rem);
     font-style:italic;
-    letter-spacing:.012em;
-    line-height:1.1;
+    letter-spacing:.025em;
+    line-height:1.12;
     text-align:center;
     text-transform:lowercase;
-    white-space:nowrap;
 }
 
 
 .house-note-line{
-    display:inline;
-}
-
-
-.house-note-line-one::after{
-    content:" ";
+    display:block;
+    width:100%;
 }
 
 
 /* PUERTAS */
-
-.house-links{
-    display:contents;
-}
-
 
 .manifesto-link{
     position:fixed;
@@ -308,7 +298,7 @@ h1{
 @media(max-width:700px){
 
     :root{
-        --content-width:min(94vw,48vh);
+        --content-width:min(94vw,49vh);
         --visual-width:calc(var(--content-width) - 16px);
     }
 
@@ -327,15 +317,9 @@ h1{
     .house-note{
         width:100%;
 
-        font-size:clamp(.53rem,2.15vw,.7rem);
-        line-height:1.08;
+        font-size:clamp(.78rem,3vw,.95rem);
+        line-height:1.12;
         text-align:center;
-        white-space:nowrap;
-    }
-
-
-    .house-links{
-        display:contents;
     }
 
 
