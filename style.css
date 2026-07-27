@@ -181,10 +181,11 @@ h1{
 .house-note{
     width:100%;
 
-    font-size:clamp(.76rem,calc(var(--content-width) * .029),.98rem);
+    font-size:clamp(.7rem,calc(var(--content-width) * .026),.9rem);
     font-style:italic;
-    letter-spacing:.035em;
-    line-height:1.18;
+    font-weight:500;
+    letter-spacing:.018em;
+    line-height:1.22;
     text-transform:lowercase;
 }
 
@@ -323,8 +324,8 @@ h1{
     .house-note{
         width:100%;
 
-        font-size:clamp(.61rem,calc(var(--content-width) * .029),.82rem);
-        line-height:1.18;
+        font-size:clamp(.57rem,calc(var(--content-width) * .026),.76rem);
+        line-height:1.22;
     }
 
 
