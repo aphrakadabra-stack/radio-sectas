@@ -305,13 +305,16 @@ h1{
 @media(max-width:700px){
 
     :root{
-        --content-width:min(94vw,49vh);
+        --content-width:min(92vw,45vh);
         --visual-width:calc(var(--content-width) - 16px);
     }
 
 
     #radio{
-        padding:4px;
+        padding:
+            max(34px,env(safe-area-inset-top))
+            4px
+            max(34px,env(safe-area-inset-bottom));
     }
 
 
@@ -332,7 +335,7 @@ h1{
     .manifesto-link{
         position:fixed;
 
-        top:8px;
+        top:max(8px,env(safe-area-inset-top));
         right:auto;
         bottom:auto;
         left:10px;
@@ -346,7 +349,7 @@ h1{
 
         top:auto;
         right:10px;
-        bottom:8px;
+        bottom:max(8px,env(safe-area-inset-bottom));
         left:auto;
 
         transform:none;
