@@ -3,12 +3,6 @@ const titulo = document.querySelector("h1");
 const lema = document.querySelector(".subtitle");
 
 
-// Detectar idioma del visitante
-
-const idiomaNavegador = navigator.language.substring(0,2);
-
-let idioma = "es";
-
 const idiomasDisponibles = [
     "es",
     "en",
@@ -21,9 +15,21 @@ const idiomasDisponibles = [
 ];
 
 
-if (idiomasDisponibles.includes(idiomaNavegador)) {
-    idioma = idiomaNavegador;
-}
+// Obtener los idiomas preferidos del navegador
+
+const idiomasNavegador = (
+    navigator.languages || [navigator.language]
+)
+.map(codigo => codigo.substring(0,2));
+
+
+// Usar el primer idioma compatible.
+// Si ninguno está disponible, usar inglés.
+
+const idioma =
+    idiomasNavegador.find(
+        codigo => idiomasDisponibles.includes(codigo)
+    ) || "en";
 
 
 document.documentElement.lang = idioma;
@@ -60,11 +66,6 @@ function ajustarEstado() {
         const tamañoBase = parseFloat(
             window.getComputedStyle(estado).fontSize
         );
-
-        /*
-        Reduce estados largos y amplía los cortos.
-        Los límites evitan tamaños exagerados.
-        */
 
         const proporcion = Math.min(
             1.55,
