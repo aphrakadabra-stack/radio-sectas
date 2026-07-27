@@ -13,7 +13,7 @@
     El conjunto se reduce apenas para incorporar
     el acceso al manifiesto sin producir scroll.
     */
-    --content-width:min(94vw,500px,45.5vh);
+    --content-width:min(94vw,500px,48vh);
 
     /*
     Caster deja aproximadamente 8 px internos a cada lado.
@@ -168,7 +168,7 @@ h1{
 
     margin-top:8px;
 
-    font-size:clamp(.74rem,calc(var(--content-width) * .031),1.02rem);
+    font-size:clamp(.72rem,calc(var(--content-width) * .028),.98rem);
     font-style:italic;
     line-height:1.38;
     text-transform:lowercase;
@@ -250,9 +250,21 @@ h1{
     border-radius:50%;
     background:#43E660;
 
+    opacity:1 !important;
+    visibility:visible !important;
+
     text-decoration:none;
 
     transform:translateY(-50%);
+}
+
+
+.linktree-link:link,
+.linktree-link:visited{
+    border-color:#1a1a1a;
+    background:#43E660;
+    opacity:1 !important;
+    visibility:visible !important;
 }
 
 
@@ -343,7 +355,7 @@ h1{
 @media(max-width:600px){
 
     :root{
-        --content-width:min(94vw,45.5vh);
+        --content-width:min(94vw,48vh);
         --visual-width:calc(var(--content-width) - 16px);
     }
 
@@ -394,7 +406,7 @@ h1{
 @media(max-height:600px){
 
     :root{
-        --content-width:min(90vw,40.5vh);
+        --content-width:min(90vw,43vh);
         --visual-width:calc(var(--content-width) - 16px);
     }
 
