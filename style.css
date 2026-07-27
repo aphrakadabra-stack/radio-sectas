@@ -13,7 +13,12 @@
     El conjunto se reduce apenas para incorporar
     el acceso al manifiesto sin producir scroll.
     */
-    --content-width:min(95vw,530px,50vh);
+    --content-width:
+        min(
+            90vw,
+            900px,
+            calc(87.7dvh - 263px)
+        );
 
     /*
     Caster deja aproximadamente 8 px internos a cada lado.
