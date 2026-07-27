@@ -7,6 +7,7 @@ const notaCasaLineaUno = document.querySelector(
 const notaCasaLineaDos = document.querySelector(
     ".house-note-line-two"
 );
+const notaCasa = document.querySelector(".house-note");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
 
@@ -51,7 +52,7 @@ const idiomasDisponibles = [
 const idiomasNavegador = (
     navigator.languages || [navigator.language]
 )
-.map(codigo => codigo.substring(0,2));
+.map(codigo => codigo.substring(0,2).toLowerCase());
 
 
 const idioma =
@@ -104,18 +105,104 @@ function ajustarEstado() {
 }
 
 
-function mostrarEstado(texto) {
+function ajustarTextoAlAncho(elemento) {
 
-    estado.textContent = texto;
+    elemento.style.fontSize = "";
 
+
+    const anchoDisponible = elemento.clientWidth;
+    const anchoReal = elemento.scrollWidth;
+
+
+    if (!anchoDisponible || anchoReal <= anchoDisponible) {
+        return;
+    }
+
+
+    const tamañoBase = parseFloat(
+        window.getComputedStyle(elemento).fontSize
+    );
+
+
+    elemento.style.fontSize =
+        `${tamañoBase * anchoDisponible / anchoReal}px`;
+
+}
+
+
+function ajustarNotaCasa() {
+
+    notaCasa.style.fontSize = "";
+
+
+    const anchoDisponible = notaCasa.clientWidth;
+
+    const anchoReal = Math.max(
+        notaCasaLineaUno.scrollWidth,
+        notaCasaLineaDos.scrollWidth
+    );
+
+
+    if (!anchoDisponible || anchoReal <= anchoDisponible) {
+        return;
+    }
+
+
+    const tamañoBase = parseFloat(
+        window.getComputedStyle(notaCasa).fontSize
+    );
+
+
+    notaCasa.style.fontSize =
+        `${tamañoBase * anchoDisponible / anchoReal}px`;
+
+}
+
+
+function ajustarInterfaz() {
+
+    ajustarTextoAlAncho(lema);
+    ajustarNotaCasa();
     ajustarEstado();
 
 }
 
 
-fetch(`lang/${idioma}.json?v=20260727-8`)
+function mostrarEstado(texto) {
 
-.then(respuesta => respuesta.json())
+    estado.textContent = texto;
+
+    ajustarInterfaz();
+
+}
+
+
+function cargarIdioma(codigo) {
+
+    return fetch(`lang/${codigo}.json?v=20260727-10`)
+
+    .then(respuesta => {
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudo cargar el idioma");
+        }
+
+        return respuesta.json();
+
+    });
+
+}
+
+
+cargarIdioma(idioma)
+
+.catch(() => {
+
+    document.documentElement.lang = "en";
+
+    return cargarIdioma("en");
+
+})
 
 .then(textos => {
 
@@ -179,11 +266,11 @@ fetch(`lang/${idioma}.json?v=20260727-8`)
 
     window.addEventListener(
         "resize",
-        ajustarEstado
+        ajustarInterfaz
     );
 
     document.fonts.ready.then(
-        ajustarEstado
+        ajustarInterfaz
     );
 
 });

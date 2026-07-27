@@ -13,7 +13,7 @@ const idiomasDisponibles = [
 const idiomasNavegador = (
     navigator.languages || [navigator.language]
 )
-.map(codigo => codigo.substring(0,2));
+.map(codigo => codigo.substring(0,2).toLowerCase());
 
 
 const idioma =
@@ -45,7 +45,7 @@ enlaceEmail.addEventListener("click", () => {
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260727-5`
+        `manifiestos/${codigo}.json?v=20260727-8`
     )
 
     .then(respuesta => {
@@ -63,7 +63,13 @@ function cargarTextos(codigo) {
 
 cargarTextos(idioma)
 
-.catch(() => cargarTextos("en"))
+.catch(() => {
+
+    document.documentElement.lang = "en";
+
+    return cargarTextos("en");
+
+})
 
 .then(textos => {
 
@@ -136,6 +142,58 @@ cargarTextos(idioma)
             )
         ];
 
+        const columnas = [
+            ...document.querySelectorAll(
+                ".manifesto-column"
+            )
+        ];
+
+
+        contenido.style.fontSize = "";
+
+
+        const alturaDisponible = Math.min(
+            ...columnas.map(
+                columna => columna.clientHeight
+            )
+        );
+
+        let tamaño = parseFloat(
+            window.getComputedStyle(contenido).fontSize
+        );
+
+
+        for (let intento = 0; intento < 8; intento += 1) {
+
+            interiores.forEach(interior => {
+                interior.style.height = "auto";
+            });
+
+
+            const alturaNecesaria = Math.max(
+                ...interiores.map(
+                    interior => interior.scrollHeight
+                )
+            );
+
+
+            if (
+                !alturaDisponible ||
+                alturaNecesaria <= alturaDisponible
+            ) {
+                break;
+            }
+
+
+            tamaño *= Math.max(
+                .82,
+                alturaDisponible / alturaNecesaria
+            );
+
+            contenido.style.fontSize = `${tamaño}px`;
+
+        }
+
 
         interiores.forEach(interior => {
             interior.style.height = "auto";
@@ -148,9 +206,15 @@ cargarTextos(idioma)
             )
         );
 
+        const alturaFinal = Math.min(
+            altura,
+            alturaDisponible || altura
+        );
+
 
         interiores.forEach(interior => {
-            interior.style.height = `${Math.ceil(altura)}px`;
+            interior.style.height =
+                `${Math.ceil(alturaFinal)}px`;
         });
 
     }
