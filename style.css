@@ -9,7 +9,14 @@
 
 
 :root{
-    --content-width:min(92vw,500px);
+    /*
+    Un único ancho para:
+    título, lema, estado, casa y reproductor.
+
+    En pantallas bajas se reduce TODO el conjunto,
+    no solamente la casa.
+    */
+    --content-width:min(92vw,500px,51vh);
 }
 
 
@@ -38,69 +45,65 @@ body{
     justify-content:center;
     align-items:center;
 
-    padding:8px;
+    padding:6px;
     text-align:center;
 }
 
 
-/* TÍTULO */
+/* TÍTULO: mismo ancho visual general */
 
 h1{
     width:var(--content-width);
 
-    font-size:clamp(2.75rem,12vw,5.25rem);
+    font-size:clamp(2.35rem,calc(var(--content-width) * .155),5rem);
     font-weight:400;
-    letter-spacing:.025em;
+    letter-spacing:.035em;
     line-height:.92;
 
     white-space:nowrap;
 }
 
 
-/* LEMA: menor que el estado, pero con aire tipográfico */
+/* LEMA */
 
 .subtitle{
     width:var(--content-width);
 
-    margin-top:15px;
+    margin-top:10px;
 
-    font-size:clamp(1.3rem,3.4vw,2rem);
+    font-size:clamp(1.05rem,calc(var(--content-width) * .054),1.85rem);
     font-style:italic;
     font-weight:400;
-    line-height:1.1;
+    line-height:1.05;
 
-    letter-spacing:.065em;
+    letter-spacing:.075em;
     text-transform:lowercase;
     white-space:nowrap;
 }
 
 
-/*
-ESTADO:
-mucho más grande que el lema para que “HABITADA”
-ocupe aproximadamente el mismo ancho visual que la frase completa.
-*/
+/* ESTADO: amplio, pero sin competir con el título */
 
 #state{
     width:var(--content-width);
 
-    margin-top:13px;
+    margin-top:8px;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    font-size:clamp(2.35rem,7vw,3.65rem);
+    font-size:clamp(1.55rem,calc(var(--content-width) * .082),2.65rem);
     font-weight:400;
-    line-height:.95;
+    line-height:1;
 
-    letter-spacing:.19em;
+    letter-spacing:.16em;
     text-transform:uppercase;
     white-space:nowrap;
 }
 
 
-/* CASA */
+/* CASA: proporción original, sin compresión */
 
 .radio-image{
     display:block;
@@ -109,12 +112,15 @@ ocupe aproximadamente el mismo ancho visual que la frase completa.
     max-width:var(--content-width);
     height:auto;
 
-    margin-top:16px;
+    margin-top:10px;
 
     object-fit:contain;
 
-    flex:0 1 auto;
-    min-height:0;
+    /*
+    Impide que Flexbox vuelva a aplastar
+    verticalmente la ilustración.
+    */
+    flex:none;
 }
 
 
@@ -124,9 +130,9 @@ ocupe aproximadamente el mismo ancho visual que la frase completa.
     width:var(--content-width);
     max-width:var(--content-width);
 
-    margin-top:10px;
+    margin-top:8px;
 
-    flex:0 0 auto;
+    flex:none;
 }
 
 
@@ -157,96 +163,7 @@ ocupe aproximadamente el mismo ancho visual que la frase completa.
 @media(max-width:600px){
 
     :root{
-        --content-width:min(94vw,500px);
-    }
-
-
-    #radio{
-        padding:6px;
-    }
-
-
-    h1{
-        font-size:clamp(2.45rem,13vw,4rem);
-    }
-
-
-    .subtitle{
-        margin-top:9px;
-
-        font-size:clamp(1.05rem,4.5vw,1.45rem);
-        letter-spacing:.055em;
-    }
-
-
-    #state{
-        margin-top:8px;
-
-        font-size:clamp(2rem,9vw,2.85rem);
-        letter-spacing:.16em;
-    }
-
-
-    .radio-image{
-        margin-top:10px;
-    }
-
-
-    .player{
-        margin-top:7px;
-    }
-
-}
-
-
-/* PANTALLAS BAJAS */
-
-@media(max-height:700px){
-
-    :root{
-        --content-width:min(88vw,450px);
-    }
-
-
-    h1{
-        font-size:clamp(2.15rem,10vw,4.25rem);
-    }
-
-
-    .subtitle{
-        margin-top:6px;
-
-        font-size:clamp(.95rem,2.6vw,1.35rem);
-        letter-spacing:.05em;
-    }
-
-
-    #state{
-        margin-top:5px;
-
-        font-size:clamp(1.85rem,6vw,3rem);
-        letter-spacing:.15em;
-    }
-
-
-    .radio-image{
-        margin-top:6px;
-    }
-
-
-    .player{
-        margin-top:5px;
-    }
-
-}
-
-
-/* TELÉFONOS DE POCA ALTURA */
-
-@media(max-width:600px) and (max-height:700px){
-
-    :root{
-        --content-width:min(88vw,390px);
+        --content-width:min(94vw,51vh);
     }
 
 
@@ -256,18 +173,73 @@ ocupe aproximadamente el mismo ancho visual que la frase completa.
 
 
     h1{
-        font-size:clamp(2rem,11vw,3.3rem);
+        font-size:clamp(2.25rem,calc(var(--content-width) * .15),3.8rem);
     }
 
 
     .subtitle{
-        font-size:clamp(.9rem,4vw,1.25rem);
+        margin-top:7px;
+
+        font-size:clamp(.95rem,calc(var(--content-width) * .052),1.45rem);
+        letter-spacing:.06em;
     }
 
 
     #state{
-        font-size:clamp(1.7rem,8vw,2.45rem);
+        margin-top:6px;
+
+        font-size:clamp(1.4rem,calc(var(--content-width) * .078),2.2rem);
         letter-spacing:.14em;
+    }
+
+
+    .radio-image{
+        margin-top:7px;
+    }
+
+
+    .player{
+        margin-top:6px;
+    }
+
+}
+
+
+/* TELÉFONOS O VENTANAS MUY BAJAS */
+
+@media(max-height:600px){
+
+    :root{
+        --content-width:min(90vw,47vh);
+    }
+
+
+    h1{
+        font-size:clamp(2rem,calc(var(--content-width) * .145),3.2rem);
+    }
+
+
+    .subtitle{
+        margin-top:5px;
+
+        font-size:clamp(.85rem,calc(var(--content-width) * .05),1.25rem);
+    }
+
+
+    #state{
+        margin-top:4px;
+
+        font-size:clamp(1.25rem,calc(var(--content-width) * .074),1.9rem);
+    }
+
+
+    .radio-image{
+        margin-top:5px;
+    }
+
+
+    .player{
+        margin-top:4px;
     }
 
 }
