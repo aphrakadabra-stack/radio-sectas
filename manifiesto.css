@@ -60,12 +60,24 @@ body{
     grid-column:1;
     grid-row:1 / span 2;
 
-    max-width:9ch;
+    width:clamp(78px,10vw,112px);
 
     font-size:clamp(.85rem,1.7vw,1.05rem);
     font-weight:700;
-    letter-spacing:.08em;
-    line-height:.95;
+    line-height:.88;
+}
+
+
+.radio-name-line{
+    display:flex;
+    justify-content:space-between;
+
+    width:100%;
+}
+
+
+.radio-name-line + .radio-name-line{
+    margin-top:.22em;
 }
 
 
@@ -192,7 +204,7 @@ h1{
 
 
     .radio-name{
-        max-width:none;
+        width:clamp(78px,24vw,104px);
     }
 
 
