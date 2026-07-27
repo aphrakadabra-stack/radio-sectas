@@ -9,7 +9,16 @@
 
 
 :root{
+    /*
+    Ancho técnico del widget de Caster.
+    */
     --content-width:min(94vw,500px,53vh);
+
+    /*
+    Caster deja aproximadamente 8 px internos a cada lado.
+    Este es el verdadero ancho óptico visible.
+    */
+    --visual-width:calc(var(--content-width) - 16px);
 }
 
 
@@ -46,13 +55,18 @@ body{
 /* TÍTULO */
 
 h1{
-    width:var(--content-width);
+    width:var(--visual-width);
 
-    font-size:clamp(2.7rem,calc(var(--content-width) * .18),5.3rem);
+    /*
+    Calculado para que las letras ocupen aproximadamente
+    todo el mismo ancho visible que el reproductor.
+    */
+    font-size:clamp(2.4rem,calc(var(--content-width) * .158),5rem);
     font-weight:400;
     letter-spacing:.025em;
-    line-height:.9;
+    line-height:.92;
 
+    text-align:center;
     white-space:nowrap;
 }
 
@@ -60,7 +74,7 @@ h1{
 /* LEMA */
 
 .subtitle{
-    width:var(--content-width);
+    width:var(--visual-width);
 
     margin-top:7px;
 
@@ -69,7 +83,12 @@ h1{
     font-weight:400;
     line-height:1;
 
-    letter-spacing:.12em;
+    /*
+    Tracking más abierto y perceptible.
+    */
+    letter-spacing:.14em;
+
+    text-align:center;
     text-transform:lowercase;
     white-space:nowrap;
 }
@@ -78,7 +97,7 @@ h1{
 /* ESTADO */
 
 #state{
-    width:var(--content-width);
+    width:var(--visual-width);
 
     margin-top:5px;
 
@@ -90,9 +109,14 @@ h1{
     font-weight:400;
     line-height:.95;
 
-    letter-spacing:.3em;
-    text-indent:.3em;
+    /*
+    Ajustado para que HABITADA tenga prácticamente
+    el mismo ancho tipográfico que el lema.
+    */
+    letter-spacing:.325em;
+    text-indent:.325em;
 
+    text-align:center;
     text-transform:uppercase;
     white-space:nowrap;
 }
@@ -103,8 +127,12 @@ h1{
 .radio-image{
     display:block;
 
-    width:var(--content-width);
-    max-width:var(--content-width);
+    /*
+    Usa el ancho negro visible del reproductor,
+    no el ancho técnico completo del iframe.
+    */
+    width:var(--visual-width);
+    max-width:var(--visual-width);
     height:auto;
 
     margin-top:7px;
@@ -155,28 +183,34 @@ h1{
 
     :root{
         --content-width:min(94vw,53vh);
+        --visual-width:calc(var(--content-width) - 16px);
+    }
+
+
+    #radio{
+        padding:4px;
     }
 
 
     h1{
-        font-size:clamp(2.4rem,calc(var(--content-width) * .17),4rem);
+        font-size:clamp(2.2rem,calc(var(--content-width) * .158),4rem);
     }
 
 
     .subtitle{
         margin-top:6px;
 
-        font-size:clamp(.95rem,calc(var(--content-width) * .052),1.45rem);
-        letter-spacing:.1em;
+        font-size:clamp(.95rem,calc(var(--content-width) * .054),1.45rem);
+        letter-spacing:.14em;
     }
 
 
     #state{
         margin-top:4px;
 
-        font-size:clamp(1.7rem,calc(var(--content-width) * .1),2.65rem);
-        letter-spacing:.27em;
-        text-indent:.27em;
+        font-size:clamp(1.7rem,calc(var(--content-width) * .105),2.65rem);
+        letter-spacing:.325em;
+        text-indent:.325em;
     }
 
 
@@ -198,25 +232,26 @@ h1{
 
     :root{
         --content-width:min(90vw,48vh);
+        --visual-width:calc(var(--content-width) - 16px);
     }
 
 
     h1{
-        font-size:clamp(2rem,calc(var(--content-width) * .165),3.4rem);
+        font-size:clamp(1.9rem,calc(var(--content-width) * .158),3.3rem);
     }
 
 
     .subtitle{
         margin-top:4px;
 
-        font-size:clamp(.85rem,calc(var(--content-width) * .05),1.25rem);
+        font-size:clamp(.82rem,calc(var(--content-width) * .054),1.2rem);
     }
 
 
     #state{
         margin-top:3px;
 
-        font-size:clamp(1.5rem,calc(var(--content-width) * .095),2.2rem);
+        font-size:clamp(1.45rem,calc(var(--content-width) * .105),2.15rem);
     }
 
 
