@@ -156,17 +156,14 @@ body{
 h1{
     grid-column:2;
 
-    width:max-content;
-    max-width:100%;
+    width:100%;
 
     font-size:clamp(1.8rem,5vw,4.8rem);
     font-weight:700;
     letter-spacing:-.06em;
     line-height:.78;
-    text-align:left;
+    text-align:right;
     text-transform:uppercase;
-
-    justify-self:center;
 }
 
 
@@ -179,7 +176,7 @@ h1{
     font-style:italic;
     letter-spacing:.025em;
     line-height:1.1;
-    text-align:center;
+    text-align:right;
     text-transform:lowercase;
 }
 
