@@ -173,19 +173,14 @@ h1{
 
     width:var(--visual-width);
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:1.15em;
-
-    padding-right:1.8em;
+    display:block;
 
     transform:translateX(-50%);
 }
 
 
 .house-note{
-    width:auto;
+    width:100%;
 
     font-size:clamp(.72rem,1.35vw,.88rem);
     font-style:italic;
@@ -209,18 +204,19 @@ h1{
 /* PUERTAS */
 
 .house-links{
-    position:static;
+    position:fixed;
+    z-index:8;
+    inset:0;
 
-    width:auto;
-    min-height:1.35em;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    pointer-events:none;
 }
 
 
 .manifesto-link{
+    position:absolute;
+    top:50%;
+    left:clamp(18px,4vw,64px);
+
     color:#1a1a1a !important;
 
     font-size:clamp(.68rem,calc(var(--content-width) * .024),.88rem);
@@ -229,6 +225,12 @@ h1{
     line-height:1;
     text-decoration:none;
     text-transform:uppercase;
+
+    pointer-events:auto;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(-90deg);
 }
 
 
@@ -246,9 +248,9 @@ h1{
 
 .linktree-link{
     position:absolute;
-    top:auto;
-    right:0;
-    bottom:0;
+    top:50%;
+    right:clamp(18px,4vw,64px);
+    bottom:auto;
 
     display:grid;
     place-items:center;
@@ -258,149 +260,52 @@ h1{
 
     border:0;
     background:transparent;
-    color:#43E660 !important;
 
     opacity:1 !important;
     visibility:visible !important;
 
     text-decoration:none;
 
-    transform:none;
+    pointer-events:auto;
+
+    transform:translate(50%,-50%);
 }
 
 
 .linktree-link:link,
 .linktree-link:visited{
     background:transparent;
-    color:#43E660 !important;
     opacity:1 !important;
     visibility:visible !important;
 }
 
 
-.linktree-link span{
-    position:relative;
-
+.linktree-link img{
     display:block;
-
     width:100%;
     height:100%;
-}
+    object-fit:contain;
 
-
-.linktree-link span::before{
-    content:"✱";
-
-    position:absolute;
-    top:-.13em;
-    left:50%;
-
-    color:currentColor;
-
-    font-family:Arial,sans-serif;
-    font-size:clamp(1rem,calc(var(--content-width) * .038),1.3rem);
-    font-weight:700;
-    line-height:1;
-
-    transform:translateX(-50%);
-}
-
-
-.linktree-link span::after{
-    content:"";
-
-    position:absolute;
-    left:50%;
-    bottom:0;
-
-    width:2px;
-    height:31%;
-
-    background:currentColor;
-
-    transform:translateX(-50%);
+    filter:
+        invert(81%)
+        sepia(57%)
+        saturate(760%)
+        hue-rotate(72deg)
+        brightness(96%)
+        contrast(90%);
 }
 
 
 .linktree-link:hover,
 .linktree-link:focus-visible{
-    color:#1a1a1a !important;
     outline:1px solid #1a1a1a;
     outline-offset:3px;
 }
 
 
-/* MANIFIESTO SUPERPUESTO */
-
-.manifesto-layer{
-    position:fixed;
-    z-index:1000;
-    inset:0;
-
-    display:block;
-
-    background:#EA52F3;
-
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-
-    transition:
-        opacity .35s ease,
-        visibility 0s linear .35s;
-}
-
-
-.manifesto-layer.is-open{
-    opacity:1;
-    visibility:visible;
-    pointer-events:auto;
-
-    transition:
-        opacity .35s ease,
-        visibility 0s linear 0s;
-}
-
-
-.manifesto-frame{
-    display:block;
-
-    width:100%;
-    height:100%;
-
-    border:0;
-    background:#EA52F3;
-}
-
-
-.manifesto-close{
-    position:absolute;
-    z-index:2;
-    top:clamp(10px,2vw,24px);
-    right:clamp(12px,2.2vw,28px);
-
-    width:clamp(34px,5vw,48px);
-    height:clamp(34px,5vw,48px);
-
-    border:1px solid #1a1a1a;
-    border-radius:50%;
-    background:#EA52F3;
-    color:#1a1a1a;
-
-    font-family:"Cormorant Garamond",serif;
-    font-size:clamp(1.7rem,4vw,2.5rem);
-    font-weight:400;
-    line-height:.8;
-
-    cursor:pointer;
-}
-
-
-.manifesto-close:hover,
-.manifesto-close:focus-visible{
-    background:#1a1a1a;
-    color:#EA52F3;
-    outline:none;
+.linktree-link:hover img,
+.linktree-link:focus-visible img{
+    filter:none;
 }
 
 
@@ -423,9 +328,6 @@ h1{
         bottom:4px;
 
         width:var(--visual-width);
-        flex-direction:column;
-        gap:.22em;
-        padding-right:0;
     }
 
 
@@ -440,7 +342,30 @@ h1{
 
 
     .house-links{
+        position:absolute;
+        inset:auto 0 -1.55em 0;
+
         width:100%;
+        min-height:1.25em;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+
+    .manifesto-link{
+        position:static;
+
+        transform:none;
+    }
+
+
+    .linktree-link{
+        top:50%;
+        right:0;
+
+        transform:translateY(-50%);
     }
 
 
