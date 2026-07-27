@@ -204,16 +204,14 @@ h1{
 /* PUERTAS */
 
 .house-links{
-    position:fixed;
-    z-index:8;
-    inset:0;
-
-    pointer-events:none;
+    display:contents;
 }
 
 
 .manifesto-link{
-    position:absolute;
+    position:fixed;
+    z-index:8;
+
     top:50%;
     left:max(
         30px,
@@ -226,7 +224,9 @@ h1{
     font-weight:500;
     letter-spacing:.22em;
     line-height:1;
-    text-decoration:none;
+    text-decoration:underline;
+    text-decoration-thickness:1px;
+    text-underline-offset:4px;
     text-transform:uppercase;
 
     pointer-events:auto;
@@ -235,26 +235,19 @@ h1{
 }
 
 
-.manifesto-link::after{
-    content:" →";
-}
-
-
 .manifesto-link:hover,
 .manifesto-link:focus-visible{
-    text-decoration:underline;
-    text-underline-offset:4px;
+    opacity:.62;
 }
 
 
 .linktree-link{
-    position:absolute;
-    top:50%;
-    right:max(
-        30px,
-        calc((100vw - var(--content-width)) / 4)
-    );
-    bottom:auto;
+    position:fixed;
+    z-index:8;
+
+    top:auto;
+    right:clamp(14px,2vw,28px);
+    bottom:clamp(14px,2vh,24px);
 
     display:grid;
     place-items:center;
@@ -272,7 +265,7 @@ h1{
 
     pointer-events:auto;
 
-    transform:translate(50%,-50%);
+    transform:none;
 }
 
 
@@ -346,32 +339,29 @@ h1{
 
 
     .house-links{
-        position:fixed;
-        top:auto;
-        right:auto;
-        bottom:5px;
-        left:50%;
-
-        width:var(--visual-width);
-        min-height:20px;
-
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-
-        transform:translateX(-50%);
+        display:contents;
     }
 
 
     .manifesto-link{
-        position:static;
+        position:fixed;
+
+        top:auto;
+        right:auto;
+        bottom:8px;
+        left:10px;
 
         transform:none;
     }
 
 
     .linktree-link{
-        position:static;
+        position:fixed;
+
+        top:auto;
+        right:10px;
+        bottom:8px;
+        left:auto;
 
         transform:none;
     }
