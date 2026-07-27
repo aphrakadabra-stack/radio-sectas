@@ -45,7 +45,7 @@ enlaceEmail.addEventListener("click", () => {
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260727-2`
+        `manifiestos/${codigo}.json?v=20260727-3`
     )
 
     .then(respuesta => {
