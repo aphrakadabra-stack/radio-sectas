@@ -45,7 +45,7 @@ enlaceEmail.addEventListener("click", () => {
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260727-1`
+        `manifiestos/${codigo}.json?v=20260727-2`
     )
 
     .then(respuesta => {
@@ -104,6 +104,11 @@ cargarTextos(idioma)
 
         columna.className = "manifesto-column";
 
+        const interior =
+            document.createElement("div");
+
+        interior.className = "manifesto-column-inner";
+
 
         parrafos.forEach(parrafo => {
 
@@ -111,13 +116,57 @@ cargarTextos(idioma)
 
             elemento.textContent = parrafo;
 
-            columna.appendChild(elemento);
+            interior.appendChild(elemento);
 
         });
 
 
+        columna.appendChild(interior);
+
         contenido.appendChild(columna);
 
     });
+
+
+    function igualarAlturaColumnas() {
+
+        const interiores = [
+            ...document.querySelectorAll(
+                ".manifesto-column-inner"
+            )
+        ];
+
+
+        interiores.forEach(interior => {
+            interior.style.height = "auto";
+        });
+
+
+        const altura = Math.max(
+            ...interiores.map(
+                interior => interior.scrollHeight
+            )
+        );
+
+
+        interiores.forEach(interior => {
+            interior.style.height = `${Math.ceil(altura)}px`;
+        });
+
+    }
+
+
+    requestAnimationFrame(igualarAlturaColumnas);
+
+
+    if (document.fonts) {
+        document.fonts.ready.then(igualarAlturaColumnas);
+    }
+
+
+    window.addEventListener(
+        "resize",
+        igualarAlturaColumnas
+    );
 
 });
