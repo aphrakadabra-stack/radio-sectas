@@ -42,13 +42,18 @@ body{
 
 
 .manifesto-sheet{
+    --sheet-padding-inline:clamp(12px,2vw,26px);
+    --sheet-padding-block:clamp(12px,2vw,26px);
+
     width:min(94vw,900px);
     height:min(calc(100dvh - 20px),780px);
 
     display:grid;
     grid-template-rows:auto minmax(0,1fr) auto;
 
-    padding:clamp(12px,2vw,26px);
+    padding:
+        var(--sheet-padding-block)
+        var(--sheet-padding-inline);
 
     border:1px solid #111;
 
@@ -244,12 +249,16 @@ h1{
 
 .manifesto-footer{
     margin-top:clamp(7px,1vh,12px);
+    margin-bottom:calc(5px - var(--sheet-padding-block));
+
     padding-top:clamp(6px,.9vh,10px);
 
     display:flex;
     justify-content:space-between;
-    align-items:center;
+    align-items:flex-end;
     gap:12px;
+
+    min-height:clamp(36px,5.5vh,46px);
 
     border-top:1px solid #111;
 }
@@ -319,10 +328,15 @@ h1{
 
 
     .manifesto-sheet{
+        --sheet-padding-inline:8px;
+        --sheet-padding-block:9px;
+
         width:calc(100vw - 8px);
         height:calc(100dvh - 8px);
 
-        padding:9px 8px;
+        padding:
+            var(--sheet-padding-block)
+            var(--sheet-padding-inline);
     }
 
 
@@ -397,8 +411,7 @@ h1{
 @media(max-height:600px){
 
     .manifesto-sheet{
-        padding-top:6px;
-        padding-bottom:6px;
+        --sheet-padding-block:6px;
     }
 
 
