@@ -10,8 +10,6 @@
 
 :root{
     --content-width:min(92vw,500px);
-    --text-width:min(78vw,390px);
-    --secondary-text-size:clamp(1.2rem,3.2vw,1.85rem);
 }
 
 
@@ -59,46 +57,45 @@ h1{
 }
 
 
-/* LEMA */
+/* LEMA: menor que el estado, pero con aire tipográfico */
 
 .subtitle{
-    width:var(--text-width);
+    width:var(--content-width);
 
-    margin-top:16px;
+    margin-top:15px;
 
-    font-size:var(--secondary-text-size);
+    font-size:clamp(1.3rem,3.4vw,2rem);
     font-style:italic;
     font-weight:400;
     line-height:1.1;
 
-    letter-spacing:.095em;
+    letter-spacing:.065em;
     text-transform:lowercase;
     white-space:nowrap;
 }
 
 
-/* ESTADO */
+/*
+ESTADO:
+mucho más grande que el lema para que “HABITADA”
+ocupe aproximadamente el mismo ancho visual que la frase completa.
+*/
 
 #state{
-    width:var(--text-width);
+    width:var(--content-width);
 
-    margin-top:14px;
+    margin-top:13px;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    font-size:var(--secondary-text-size);
+    font-size:clamp(2.35rem,7vw,3.65rem);
     font-weight:400;
-    line-height:1.1;
+    line-height:.95;
 
-    /*
-    Expande visualmente el estado hasta aproximarlo
-    al ancho completo del lema.
-    */
-    letter-spacing:.32em;
-
-    text-transform:none;
+    letter-spacing:.19em;
+    text-transform:uppercase;
     white-space:nowrap;
 }
 
@@ -112,7 +109,7 @@ h1{
     max-width:var(--content-width);
     height:auto;
 
-    margin-top:13px;
+    margin-top:16px;
 
     object-fit:contain;
 
@@ -161,8 +158,6 @@ h1{
 
     :root{
         --content-width:min(94vw,500px);
-        --text-width:min(84vw,390px);
-        --secondary-text-size:clamp(1.05rem,4.5vw,1.45rem);
     }
 
 
@@ -177,19 +172,23 @@ h1{
 
 
     .subtitle{
-        margin-top:10px;
-        letter-spacing:.07em;
+        margin-top:9px;
+
+        font-size:clamp(1.05rem,4.5vw,1.45rem);
+        letter-spacing:.055em;
     }
 
 
     #state{
-        margin-top:9px;
-        letter-spacing:.26em;
+        margin-top:8px;
+
+        font-size:clamp(2rem,9vw,2.85rem);
+        letter-spacing:.16em;
     }
 
 
     .radio-image{
-        margin-top:9px;
+        margin-top:10px;
     }
 
 
@@ -206,8 +205,6 @@ h1{
 
     :root{
         --content-width:min(88vw,450px);
-        --text-width:min(74vw,350px);
-        --secondary-text-size:clamp(.95rem,2.6vw,1.35rem);
     }
 
 
@@ -217,12 +214,18 @@ h1{
 
 
     .subtitle{
-        margin-top:7px;
+        margin-top:6px;
+
+        font-size:clamp(.95rem,2.6vw,1.35rem);
+        letter-spacing:.05em;
     }
 
 
     #state{
-        margin-top:6px;
+        margin-top:5px;
+
+        font-size:clamp(1.85rem,6vw,3rem);
+        letter-spacing:.15em;
     }
 
 
@@ -244,8 +247,6 @@ h1{
 
     :root{
         --content-width:min(88vw,390px);
-        --text-width:min(80vw,330px);
-        --secondary-text-size:clamp(.9rem,4vw,1.25rem);
     }
 
 
@@ -260,12 +261,13 @@ h1{
 
 
     .subtitle{
-        letter-spacing:.055em;
+        font-size:clamp(.9rem,4vw,1.25rem);
     }
 
 
     #state{
-        letter-spacing:.22em;
+        font-size:clamp(1.7rem,8vw,2.45rem);
+        letter-spacing:.14em;
     }
 
 }
