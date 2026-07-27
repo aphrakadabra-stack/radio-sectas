@@ -1,6 +1,8 @@
 const estado = document.getElementById("state");
 const titulo = document.querySelector("h1");
 const lema = document.querySelector(".subtitle");
+const notaCasa = document.querySelector(".house-note");
+const enlaceManifiesto = document.querySelector(".manifesto-link");
 
 
 const idiomasDisponibles = [
@@ -103,6 +105,10 @@ fetch(`lang/${idioma}.json`)
     titulo.textContent = textos.title;
 
     lema.textContent = textos.subtitle;
+
+    notaCasa.textContent = textos.house_note;
+
+    enlaceManifiesto.textContent = textos.manifesto;
 
 
     function comprobarRadio() {

@@ -10,9 +10,10 @@
 
 :root{
     /*
-    Ancho técnico del widget de Caster.
+    El conjunto se reduce apenas para incorporar
+    el acceso al manifiesto sin producir scroll.
     */
-    --content-width:min(94vw,500px,53vh);
+    --content-width:min(94vw,500px,48vh);
 
     /*
     Caster deja aproximadamente 8 px internos a cada lado.
@@ -57,10 +58,6 @@ body{
 h1{
     width:var(--visual-width);
 
-    /*
-    Calculado para que las letras ocupen aproximadamente
-    todo el mismo ancho visible que el reproductor.
-    */
     font-size:clamp(2.4rem,calc(var(--content-width) * .158),5rem);
     font-weight:400;
     letter-spacing:.025em;
@@ -82,10 +79,6 @@ h1{
     font-style:italic;
     font-weight:400;
     line-height:1;
-
-    /*
-    Tracking más abierto y perceptible.
-    */
     letter-spacing:.14em;
 
     text-align:center;
@@ -108,11 +101,6 @@ h1{
     font-size:clamp(1.9rem,calc(var(--content-width) * .105),3.25rem);
     font-weight:400;
     line-height:.95;
-
-    /*
-    Ajustado para que HABITADA tenga prácticamente
-    el mismo ancho tipográfico que el lema.
-    */
     letter-spacing:.325em;
     text-indent:.325em;
 
@@ -127,10 +115,6 @@ h1{
 .radio-image{
     display:block;
 
-    /*
-    Usa el ancho negro visible del reproductor,
-    no el ancho técnico completo del iframe.
-    */
     width:var(--visual-width);
     max-width:var(--visual-width);
     height:auto;
@@ -177,12 +161,54 @@ h1{
 }
 
 
+/* INVITACIÓN */
+
+.house-note{
+    width:var(--visual-width);
+
+    margin-top:6px;
+
+    font-size:clamp(.72rem,calc(var(--content-width) * .027),.95rem);
+    font-style:italic;
+    letter-spacing:.04em;
+    line-height:1.15;
+}
+
+
+/* ACCESO AL MANIFIESTO */
+
+.manifesto-link{
+    margin-top:5px;
+
+    color:#1a1a1a;
+
+    font-size:clamp(.68rem,calc(var(--content-width) * .024),.88rem);
+    font-weight:500;
+    letter-spacing:.22em;
+    line-height:1;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+
+
+.manifesto-link::after{
+    content:" →";
+}
+
+
+.manifesto-link:hover,
+.manifesto-link:focus-visible{
+    text-decoration:underline;
+    text-underline-offset:4px;
+}
+
+
 /* TELÉFONOS */
 
 @media(max-width:600px){
 
     :root{
-        --content-width:min(94vw,53vh);
+        --content-width:min(94vw,48vh);
         --visual-width:calc(var(--content-width) - 16px);
     }
 
@@ -201,7 +227,6 @@ h1{
         margin-top:6px;
 
         font-size:clamp(.95rem,calc(var(--content-width) * .054),1.45rem);
-        letter-spacing:.14em;
     }
 
 
@@ -209,8 +234,6 @@ h1{
         margin-top:4px;
 
         font-size:clamp(1.7rem,calc(var(--content-width) * .105),2.65rem);
-        letter-spacing:.325em;
-        text-indent:.325em;
     }
 
 
@@ -223,6 +246,11 @@ h1{
         margin-top:5px;
     }
 
+
+    .manifesto-link{
+        margin-top:4px;
+    }
+
 }
 
 
@@ -231,7 +259,7 @@ h1{
 @media(max-height:600px){
 
     :root{
-        --content-width:min(90vw,48vh);
+        --content-width:min(90vw,43vh);
         --visual-width:calc(var(--content-width) - 16px);
     }
 
@@ -262,6 +290,11 @@ h1{
 
     .player{
         margin-top:4px;
+    }
+
+
+    .manifesto-link{
+        margin-top:3px;
     }
 
 }

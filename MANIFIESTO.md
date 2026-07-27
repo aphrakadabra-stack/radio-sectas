@@ -4,45 +4,53 @@
 
 *La oreja que escucha la casa...*
 
-ÚGJÜ RADIO es un estudio abierto.
+ÚGJÜ RADIO es una casa sonora con la puerta entreabierta.
 
-Una transmisión sin horario.
+No tiene horarios.
 
-Un lugar donde la música puede aparecer sin pedir permiso.
+A veces está habitada.
 
-No es un servicio de música.
+A veces duerme.
 
-No es una plataforma.
+A veces el silencio también forma parte de la transmisión.
 
-No es un algoritmo.
+Aquí la radio no transmite programas.
 
-Creemos en los ensayos, las conversaciones, las cintas olvidadas, las grabaciones imperfectas y las obras que todavía están naciendo.
+Transmite actividad.
 
-Creemos en la música que no encuentra un lugar estable.
+Puede aparecer un disco olvidado, una cinta sin fecha, una improvisación, una conversación, una lluvia, alguien afinando un instrumento o una obra que todavía no sabe qué quiere ser.
 
-En los archivos que vuelven a respirar.
+No queremos adivinar qué deseás escuchar.
 
-En los discos que todavía tienen algo para decir.
+No queremos convertir la música en recomendaciones.
 
-En las improvisaciones, los accidentes, los silencios y los sonidos de una casa habitada.
+No somos un servicio, una plataforma ni un algoritmo.
+
+Somos un estudio abierto.
+
+Un archivo vivo.
+
+Un lugar para las músicas que no encuentran un lugar estable.
+
+Creemos en los ensayos, los accidentes, las grabaciones imperfectas y las ideas que todavía están naciendo.
 
 No queremos que las grabaciones mueran dentro de un disco rígido.
 
-Queremos que circulen, se encuentren con otras músicas y vuelvan a formar parte del presente.
+Queremos que circulen.
 
-Aquí puede sonar una obra terminada.
+Que respiren nuevamente.
 
-O alguien afinando un instrumento.
+Que se encuentren con otras músicas y vuelvan a formar parte del presente.
 
-Una cinta sin fecha.
+Quizá hoy entres y esté ocurriendo algo.
 
-Una conversación.
+Quizá mañana no.
 
-Una jam.
+Podés irte.
 
-Una lluvia.
+Podés volver.
 
-Todo forma parte de la transmisión.
+La puerta seguirá ahí.
 
 No perseguimos la perfección.
 

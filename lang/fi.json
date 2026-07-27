@@ -6,5 +6,7 @@
   "title": "ÚGJÜ RADIO",
   "subtitle": "Korva, joka kuuntelee taloa...",
   "enter": "ASTU SISÄÄN",
-  "listening": "KUUNTELEE"
+  "listening": "KUUNTELEE",
+  "house_note": "Tällä talolla ei ole aikataulua. Palaa kurkistamaan.",
+  "manifesto": "MANIFESTI"
 }

@@ -3,12 +3,10 @@
   "state_broadcasting": "BEWOHNT",
   "state_sleeping": "SCHLÄFT",
   "state_silence": "IN STILLE",
-
   "title": "ÚGJÜ RADIO",
-
   "subtitle": "Das Ohr, das dem Haus zuhört...",
-
   "enter": "EINTRETEN",
-
-  "listening": "HÖRT ZU"
+  "listening": "HÖRT ZU",
+  "house_note": "Dieses Haus hat keinen Zeitplan. Schau wieder herein.",
+  "manifesto": "MANIFEST"
 }
