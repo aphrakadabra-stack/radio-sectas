@@ -23,28 +23,46 @@
 
 <body>
 
-    <main class="manifesto">
+    <main class="score-shell">
 
-        <header class="manifesto-header">
-
-            <p class="radio-name">ÚGJÜ RADIO</p>
-
-            <h1 id="manifesto-title">MANIFESTO</h1>
-
-            <p id="manifesto-subtitle">
-                The ear that listens to the house...
-            </p>
-
-        </header>
-
-        <article id="manifesto-content"></article>
-
-        <a
-            id="back-link"
-            href="index.html"
+        <section
+            class="score"
+            aria-labelledby="manifesto-title"
         >
-            RETURN TO THE HOUSE
-        </a>
+
+            <div class="score-rings" aria-hidden="true"></div>
+            <div class="score-spokes" aria-hidden="true"></div>
+
+            <header class="score-header">
+
+                <p class="radio-name">ÚGJÜ RADIO</p>
+
+                <h1 id="manifesto-title">MANIFESTO</h1>
+
+                <p id="manifesto-subtitle">
+                    The ear that listens to the house...
+                </p>
+
+            </header>
+
+            <div
+                id="score-content"
+                aria-hidden="true"
+            ></div>
+
+            <a
+                id="back-link"
+                href="index.html"
+            >
+                RETURN TO THE HOUSE
+            </a>
+
+        </section>
+
+        <article
+            id="accessible-manifesto"
+            class="screen-reader-only"
+        ></article>
 
     </main>
 

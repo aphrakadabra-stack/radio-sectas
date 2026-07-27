@@ -7,6 +7,9 @@
   "subtitle": "Das Ohr, das dem Haus zuhört...",
   "enter": "EINTRETEN",
   "listening": "HÖRT ZU",
-  "house_note": "Dieses Haus hat keinen Zeitplan. Schau wieder herein.",
-  "manifesto": "MANIFEST"
+  "house_note_1": "dieses haus hat keinen zeitplan...",
+  "house_note_2": "wenn du nichts hörst, schau später wieder herein",
+  "manifesto": "MANIFEST",
+  "close_manifesto": "Manifest schließen",
+  "linktree_label": "ÚGJÜ SECTAS auf Linktree öffnen"
 }

@@ -1,8 +1,17 @@
 const estado = document.getElementById("state");
 const titulo = document.querySelector("h1");
 const lema = document.querySelector(".subtitle");
-const notaCasa = document.querySelector(".house-note");
+const notaCasaLineaUno = document.querySelector(
+    ".house-note-line-one"
+);
+const notaCasaLineaDos = document.querySelector(
+    ".house-note-line-two"
+);
 const enlaceManifiesto = document.querySelector(".manifesto-link");
+const enlaceLinktree = document.querySelector(".linktree-link");
+const capaManifiesto = document.getElementById("manifesto-layer");
+const marcoManifiesto = document.getElementById("manifesto-frame");
+const cerrarManifiesto = document.getElementById("manifesto-close");
 
 
 const idiomasDisponibles = [
@@ -93,6 +102,68 @@ function mostrarEstado(texto) {
 }
 
 
+function abrirManifiesto(evento) {
+
+    evento.preventDefault();
+
+    if (!marcoManifiesto.getAttribute("src")) {
+        marcoManifiesto.src = marcoManifiesto.dataset.src;
+    }
+
+    capaManifiesto.classList.add("is-open");
+    capaManifiesto.setAttribute("aria-hidden","false");
+
+    cerrarManifiesto.focus();
+
+}
+
+
+function ocultarManifiesto() {
+
+    capaManifiesto.classList.remove("is-open");
+    capaManifiesto.setAttribute("aria-hidden","true");
+
+    enlaceManifiesto.focus();
+
+}
+
+
+enlaceManifiesto.addEventListener(
+    "click",
+    abrirManifiesto
+);
+
+
+cerrarManifiesto.addEventListener(
+    "click",
+    ocultarManifiesto
+);
+
+
+document.addEventListener("keydown",evento => {
+
+    if (
+        evento.key === "Escape" &&
+        capaManifiesto.classList.contains("is-open")
+    ) {
+        ocultarManifiesto();
+    }
+
+});
+
+
+window.addEventListener("message",evento => {
+
+    if (
+        evento.origin === window.location.origin &&
+        evento.data === "UGJU_CLOSE_MANIFESTO"
+    ) {
+        ocultarManifiesto();
+    }
+
+});
+
+
 // Cargar idioma
 
 fetch(`lang/${idioma}.json`)
@@ -106,9 +177,21 @@ fetch(`lang/${idioma}.json`)
 
     lema.textContent = textos.subtitle;
 
-    notaCasa.textContent = textos.house_note;
+    notaCasaLineaUno.textContent = textos.house_note_1;
+
+    notaCasaLineaDos.textContent = textos.house_note_2;
 
     enlaceManifiesto.textContent = textos.manifesto;
+
+    enlaceLinktree.setAttribute(
+        "aria-label",
+        textos.linktree_label
+    );
+
+    cerrarManifiesto.setAttribute(
+        "aria-label",
+        textos.close_manifesto
+    );
 
 
     function comprobarRadio() {

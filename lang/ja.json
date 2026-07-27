@@ -7,6 +7,9 @@
   "subtitle": "家を聴く耳...",
   "enter": "入る",
   "listening": "聴取中",
-  "house_note": "この家に決まった時間はありません。また覗きに来てください。",
-  "manifesto": "宣言"
+  "house_note_1": "この家に決まった時間はありません…",
+  "house_note_2": "何も聞こえなければ、あとでまた覗きに来てください",
+  "manifesto": "宣言",
+  "close_manifesto": "宣言を閉じる",
+  "linktree_label": "LinktreeでÚGJÜ SECTASを開く"
 }

@@ -7,6 +7,9 @@
   "subtitle": "The ear that listens to the house...",
   "enter": "ENTER",
   "listening": "LISTENING",
-  "house_note": "This house has no schedule. Come back and peek in.",
-  "manifesto": "MANIFESTO"
+  "house_note_1": "this house has no schedule...",
+  "house_note_2": "if you hear nothing, come back and peek in later",
+  "manifesto": "MANIFESTO",
+  "close_manifesto": "Close manifesto",
+  "linktree_label": "Open ÚGJÜ SECTAS on Linktree"
 }

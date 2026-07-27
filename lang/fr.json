@@ -7,6 +7,9 @@
   "subtitle": "L'oreille qui écoute la maison...",
   "enter": "ENTRER",
   "listening": "ÉCOUTE",
-  "house_note": "Cette maison n'a pas d'horaires. Revenez jeter un œil.",
-  "manifesto": "MANIFESTE"
+  "house_note_1": "cette maison n'a pas d'horaires...",
+  "house_note_2": "si vous n'entendez rien, revenez jeter un œil plus tard",
+  "manifesto": "MANIFESTE",
+  "close_manifesto": "Fermer le manifeste",
+  "linktree_label": "Ouvrir ÚGJÜ SECTAS sur Linktree"
 }

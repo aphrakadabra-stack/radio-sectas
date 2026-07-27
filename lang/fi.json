@@ -7,6 +7,9 @@
   "subtitle": "Korva, joka kuuntelee taloa...",
   "enter": "ASTU SISÄÄN",
   "listening": "KUUNTELEE",
-  "house_note": "Tällä talolla ei ole aikataulua. Palaa kurkistamaan.",
-  "manifesto": "MANIFESTI"
+  "house_note_1": "tällä talolla ei ole aikataulua...",
+  "house_note_2": "jos et kuule mitään, palaa kurkistamaan myöhemmin",
+  "manifesto": "MANIFESTI",
+  "close_manifesto": "Sulje manifesti",
+  "linktree_label": "Avaa ÚGJÜ SECTAS Linktreessä"
 }
