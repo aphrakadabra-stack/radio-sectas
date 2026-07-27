@@ -85,13 +85,36 @@ cargarTextos(idioma)
         document.getElementById("manifesto-content");
 
 
-    textos.paragraphs.forEach(parrafo => {
+    const puntoMedio =
+        Math.ceil(textos.paragraphs.length / 2);
 
-        const elemento = document.createElement("p");
 
-        elemento.textContent = parrafo;
+    const columnas = [
+        textos.paragraphs.slice(0,puntoMedio),
+        textos.paragraphs.slice(puntoMedio)
+    ];
 
-        contenido.appendChild(elemento);
+
+    columnas.forEach(parrafos => {
+
+        const columna =
+            document.createElement("div");
+
+        columna.className = "manifesto-column";
+
+
+        parrafos.forEach(parrafo => {
+
+            const elemento = document.createElement("p");
+
+            elemento.textContent = parrafo;
+
+            columna.appendChild(elemento);
+
+        });
+
+
+        contenido.appendChild(columna);
 
     });
 

@@ -156,12 +156,17 @@ body{
 h1{
     grid-column:2;
 
+    width:max-content;
+    max-width:100%;
+
     font-size:clamp(1.8rem,5vw,4.8rem);
     font-weight:700;
     letter-spacing:-.06em;
     line-height:.78;
-    text-align:center;
+    text-align:left;
     text-transform:uppercase;
+
+    justify-self:center;
 }
 
 
@@ -184,27 +189,44 @@ h1{
 
     margin-top:clamp(9px,1.4vh,15px);
 
-    columns:2;
-    column-fill:balance;
-    column-gap:clamp(16px,2.5vw,30px);
-    column-rule:1px solid rgba(17,17,17,.48);
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(16px,2.5vw,30px);
 
     font-size:clamp(.76rem,1.2vw,.92rem);
     line-height:1.24;
-    text-align:center;
 
     overflow:hidden;
 }
 
 
-#manifesto-content p{
+.manifesto-column{
+    min-width:0;
+    min-height:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    text-align:left;
+}
+
+
+.manifesto-column + .manifesto-column{
+    padding-left:clamp(16px,2.5vw,30px);
+
+    border-left:1px solid rgba(17,17,17,.48);
+}
+
+
+.manifesto-column p{
     margin:0 0 .38em;
 
     break-inside:avoid;
 }
 
 
-#manifesto-content p:first-child::first-letter{
+.manifesto-column:first-child p:first-child::first-letter{
     float:left;
 
     margin:.05em .14em 0 0;
@@ -215,7 +237,7 @@ h1{
 }
 
 
-#manifesto-content p:nth-last-child(-n+2){
+.manifesto-column:last-child p:nth-last-child(-n+2){
     font-weight:700;
     text-transform:uppercase;
 }
@@ -339,21 +361,24 @@ h1{
     #manifesto-content{
         margin-top:7px;
 
-        columns:2;
-        column-gap:10px;
+        gap:10px;
 
         font-size:clamp(.64rem,2.75vw,.78rem);
         line-height:1.18;
-        text-align:center;
     }
 
 
-    #manifesto-content p{
+    .manifesto-column + .manifesto-column{
+        padding-left:10px;
+    }
+
+
+    .manifesto-column p{
         margin-bottom:.28em;
     }
 
 
-    #manifesto-content p:first-child::first-letter{
+    .manifesto-column:first-child p:first-child::first-letter{
         font-size:2.35em;
     }
 
@@ -405,7 +430,7 @@ h1{
     }
 
 
-    #manifesto-content p{
+    .manifesto-column p{
         margin-bottom:.2em;
     }
 
