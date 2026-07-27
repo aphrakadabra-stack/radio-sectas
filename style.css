@@ -9,16 +9,9 @@
 
 
 :root{
-    /*
-    El ancho se adapta al teléfono, pero nunca supera los 500 px.
-    La imagen y el reproductor utilizan exactamente esta medida.
-    */
     --content-width:min(92vw,500px);
-
-    /*
-    El lema y el estado comparten exactamente el mismo tamaño.
-    */
-    --secondary-text-size:clamp(1.25rem,3.4vw,2rem);
+    --text-width:min(78vw,390px);
+    --secondary-text-size:clamp(1.2rem,3.2vw,1.85rem);
 }
 
 
@@ -69,25 +62,27 @@ h1{
 /* LEMA */
 
 .subtitle{
-    width:var(--content-width);
+    width:var(--text-width);
 
-    margin-top:10px;
+    margin-top:16px;
 
     font-size:var(--secondary-text-size);
     font-style:italic;
     font-weight:400;
-    line-height:1.05;
+    line-height:1.1;
 
+    letter-spacing:.095em;
     text-transform:lowercase;
+    white-space:nowrap;
 }
 
 
 /* ESTADO */
 
 #state{
-    width:var(--content-width);
+    width:var(--text-width);
 
-    margin-top:12px;
+    margin-top:14px;
 
     display:flex;
     justify-content:center;
@@ -95,8 +90,13 @@ h1{
 
     font-size:var(--secondary-text-size);
     font-weight:400;
-    letter-spacing:.025em;
-    line-height:1.05;
+    line-height:1.1;
+
+    /*
+    Expande visualmente el estado hasta aproximarlo
+    al ancho completo del lema.
+    */
+    letter-spacing:.32em;
 
     text-transform:none;
     white-space:nowrap;
@@ -108,17 +108,14 @@ h1{
 .radio-image{
     display:block;
 
-    /*
-    Exactamente el mismo ancho que el reproductor.
-    Sin límites de altura que achiquen el dibujo.
-    */
     width:var(--content-width);
     max-width:var(--content-width);
     height:auto;
 
-    margin-top:12px;
+    margin-top:13px;
 
     object-fit:contain;
+
     flex:0 1 auto;
     min-height:0;
 }
@@ -164,7 +161,8 @@ h1{
 
     :root{
         --content-width:min(94vw,500px);
-        --secondary-text-size:clamp(1.15rem,5vw,1.55rem);
+        --text-width:min(84vw,390px);
+        --secondary-text-size:clamp(1.05rem,4.5vw,1.45rem);
     }
 
 
@@ -179,17 +177,19 @@ h1{
 
 
     .subtitle{
-        margin-top:7px;
+        margin-top:10px;
+        letter-spacing:.07em;
     }
 
 
     #state{
-        margin-top:8px;
+        margin-top:9px;
+        letter-spacing:.26em;
     }
 
 
     .radio-image{
-        margin-top:8px;
+        margin-top:9px;
     }
 
 
@@ -206,7 +206,8 @@ h1{
 
     :root{
         --content-width:min(88vw,450px);
-        --secondary-text-size:clamp(1rem,2.7vw,1.45rem);
+        --text-width:min(74vw,350px);
+        --secondary-text-size:clamp(.95rem,2.6vw,1.35rem);
     }
 
 
@@ -216,7 +217,7 @@ h1{
 
 
     .subtitle{
-        margin-top:5px;
+        margin-top:7px;
     }
 
 
@@ -243,7 +244,8 @@ h1{
 
     :root{
         --content-width:min(88vw,390px);
-        --secondary-text-size:clamp(.95rem,4.4vw,1.35rem);
+        --text-width:min(80vw,330px);
+        --secondary-text-size:clamp(.9rem,4vw,1.25rem);
     }
 
 
@@ -254,6 +256,16 @@ h1{
 
     h1{
         font-size:clamp(2rem,11vw,3.3rem);
+    }
+
+
+    .subtitle{
+        letter-spacing:.055em;
+    }
+
+
+    #state{
+        letter-spacing:.22em;
     }
 
 }
