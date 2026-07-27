@@ -26,6 +26,11 @@ body{
     color:#111;
 
     font-family:"Courier Prime","Courier New",monospace;
+
+    -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none;
+    user-select:none;
 }
 
 
