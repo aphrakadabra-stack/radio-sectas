@@ -8,14 +8,20 @@
 }
 
 
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+
 html{
     background:#EA52F3;
 }
 
 
 body{
-    min-height:100vh;
-
     background:#EA52F3;
     color:#111;
 
@@ -25,46 +31,112 @@ body{
 
 .manifesto-page{
     width:100%;
+    height:100vh;
+    height:100dvh;
 
-    padding:
-        clamp(20px,5vw,64px)
-        clamp(14px,4vw,48px);
+    display:grid;
+    place-items:center;
+
+    padding:clamp(6px,1.5vw,18px);
 }
 
 
 .manifesto-sheet{
-    width:min(94vw,920px);
+    width:min(98vw,1120px);
+    height:min(calc(100dvh - 12px),850px);
 
-    margin:0 auto;
-    padding:clamp(22px,4.5vw,54px);
+    display:grid;
+    grid-template-rows:auto minmax(0,1fr) auto;
+
+    padding:clamp(12px,2vw,26px);
 
     border:1px solid #111;
 
     background:#EA52F3;
+    overflow:hidden;
 }
 
 
 .manifesto-header{
     display:grid;
     grid-template-columns:auto 1fr;
-    column-gap:clamp(20px,4vw,54px);
-    align-items:end;
+    grid-template-rows:auto auto;
+    column-gap:clamp(14px,2.5vw,34px);
+    align-items:center;
 
-    padding-bottom:clamp(18px,3vw,34px);
+    padding-bottom:clamp(8px,1.2vh,14px);
 
     border-bottom:1px solid #111;
 }
 
 
+/* SELLO HANKO */
+
 .radio-name{
+    position:relative;
+
     grid-column:1;
     grid-row:1 / span 2;
 
-    width:clamp(78px,10vw,112px);
+    width:clamp(74px,8vw,104px);
+    aspect-ratio:1;
 
-    font-size:clamp(.85rem,1.7vw,1.05rem);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:.7em .62em;
+
+    border:3px solid #A51F18;
+    border-radius:3% 7% 4% 6%;
+
+    color:#A51F18;
+
+    font-size:clamp(.72rem,1.3vw,.95rem);
     font-weight:700;
     line-height:.88;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(165,31,24,.55),
+        1px 0 0 rgba(165,31,24,.42),
+        -1px 1px 0 rgba(165,31,24,.24);
+
+    text-shadow:
+        .35px 0 #A51F18,
+        -.25px .3px rgba(165,31,24,.7);
+
+    transform:rotate(-3.2deg);
+}
+
+
+.radio-name::before{
+    content:"";
+
+    position:absolute;
+    inset:-5px 2px 1px -4px;
+
+    border:1px solid rgba(165,31,24,.72);
+    border-radius:7% 3% 8% 2%;
+
+    transform:rotate(1.8deg);
+}
+
+
+.radio-name::after{
+    content:"";
+
+    position:absolute;
+    inset:5px;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(circle at 9% 14%,rgba(234,82,243,.75) 0 1px,transparent 1.6px),
+        radial-gradient(circle at 88% 22%,rgba(234,82,243,.55) 0 1.2px,transparent 1.8px),
+        radial-gradient(circle at 20% 82%,rgba(234,82,243,.5) 0 .9px,transparent 1.5px),
+        radial-gradient(circle at 72% 91%,rgba(234,82,243,.65) 0 1px,transparent 1.7px);
+
+    opacity:.9;
 }
 
 
@@ -77,14 +149,14 @@ body{
 
 
 .radio-name-line + .radio-name-line{
-    margin-top:.22em;
+    margin-top:.28em;
 }
 
 
 h1{
     grid-column:2;
 
-    font-size:clamp(2.3rem,7vw,5.7rem);
+    font-size:clamp(1.8rem,5vw,4.8rem);
     font-weight:700;
     letter-spacing:-.06em;
     line-height:.78;
@@ -95,32 +167,37 @@ h1{
 #manifesto-subtitle{
     grid-column:2;
 
-    margin-top:.9em;
+    margin-top:.65em;
 
-    font-size:clamp(.8rem,1.8vw,1.05rem);
+    font-size:clamp(.7rem,1.35vw,.95rem);
     font-style:italic;
-    letter-spacing:.03em;
-    line-height:1.15;
+    letter-spacing:.025em;
+    line-height:1.1;
     text-transform:lowercase;
 }
 
 
 #manifesto-content{
-    margin-top:clamp(24px,4vw,48px);
+    min-height:0;
 
-    columns:2 290px;
-    column-gap:clamp(26px,4vw,52px);
-    column-rule:1px solid rgba(17,17,17,.55);
+    margin-top:clamp(9px,1.4vh,15px);
 
-    font-size:clamp(.78rem,1.45vw,.98rem);
-    line-height:1.34;
+    columns:3;
+    column-fill:balance;
+    column-gap:clamp(16px,2.5vw,30px);
+    column-rule:1px solid rgba(17,17,17,.48);
+
+    font-size:clamp(.66rem,1vw,.8rem);
+    line-height:1.2;
     text-align:justify;
     text-justify:inter-word;
+
+    overflow:hidden;
 }
 
 
 #manifesto-content p{
-    margin:0 0 .9em;
+    margin:0 0 .38em;
 
     break-inside:avoid;
 }
@@ -129,9 +206,9 @@ h1{
 #manifesto-content p:first-child::first-letter{
     float:left;
 
-    margin:.05em .16em 0 0;
+    margin:.05em .14em 0 0;
 
-    font-size:3.6em;
+    font-size:2.8em;
     font-weight:700;
     line-height:.72;
 }
@@ -144,8 +221,8 @@ h1{
 
 
 .manifesto-footer{
-    margin-top:clamp(26px,4vw,46px);
-    padding-top:clamp(14px,2.5vw,24px);
+    margin-top:clamp(7px,1vh,12px);
+    padding-top:clamp(6px,.9vh,10px);
 
     border-top:1px solid #111;
 
@@ -156,7 +233,7 @@ h1{
 #back-link{
     color:#111;
 
-    font-size:clamp(.72rem,1.4vw,.9rem);
+    font-size:clamp(.62rem,1vw,.78rem);
     font-weight:700;
     letter-spacing:.08em;
     text-decoration:none;
@@ -172,48 +249,126 @@ h1{
 #back-link:hover,
 #back-link:focus-visible{
     text-decoration:underline;
-    text-underline-offset:4px;
+    text-underline-offset:3px;
 }
 
 
 @media(max-width:600px){
 
     .manifesto-page{
-        padding:12px;
+        padding:4px;
     }
 
 
     .manifesto-sheet{
-        width:100%;
-        padding:20px 17px;
+        width:calc(100vw - 8px);
+        height:calc(100dvh - 8px);
+
+        padding:9px 8px;
     }
 
 
     .manifesto-header{
-        grid-template-columns:1fr;
-        row-gap:12px;
-    }
+        grid-template-columns:64px 1fr;
+        column-gap:9px;
 
-
-    .radio-name,
-    h1,
-    #manifesto-subtitle{
-        grid-column:1;
-        grid-row:auto;
+        padding-bottom:7px;
     }
 
 
     .radio-name{
-        width:clamp(78px,24vw,104px);
+        width:60px;
+
+        padding:.58em .48em;
+
+        border-width:2px;
+
+        font-size:.62rem;
+    }
+
+
+    h1{
+        font-size:clamp(1.3rem,8vw,2.15rem);
+    }
+
+
+    #manifesto-subtitle{
+        margin-top:.45em;
+
+        font-size:clamp(.58rem,2.25vw,.72rem);
     }
 
 
     #manifesto-content{
-        columns:1;
+        margin-top:7px;
 
-        font-size:.82rem;
-        line-height:1.38;
+        columns:2;
+        column-gap:10px;
+
+        font-size:clamp(.56rem,2.5vw,.7rem);
+        line-height:1.14;
         text-align:left;
+    }
+
+
+    #manifesto-content p{
+        margin-bottom:.28em;
+    }
+
+
+    #manifesto-content p:first-child::first-letter{
+        font-size:2.35em;
+    }
+
+
+    .manifesto-footer{
+        margin-top:5px;
+        padding-top:5px;
+    }
+
+
+    #back-link{
+        font-size:.56rem;
+    }
+
+}
+
+
+@media(max-height:600px){
+
+    .manifesto-sheet{
+        padding-top:6px;
+        padding-bottom:6px;
+    }
+
+
+    .manifesto-header{
+        padding-bottom:5px;
+    }
+
+
+    .radio-name{
+        width:52px;
+
+        font-size:.54rem;
+    }
+
+
+    h1{
+        font-size:clamp(1.2rem,5vh,2.3rem);
+    }
+
+
+    #manifesto-content{
+        margin-top:5px;
+
+        font-size:clamp(.5rem,1.65vh,.65rem);
+        line-height:1.1;
+    }
+
+
+    #manifesto-content p{
+        margin-bottom:.2em;
     }
 
 }
