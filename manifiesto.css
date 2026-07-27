@@ -30,8 +30,8 @@ body{
 
 
 .score-shell{
-    width:min(96vw,96vh);
-    width:min(96vw,96dvh);
+    width:min(98vw,98vh);
+    width:min(98vw,98dvh);
     aspect-ratio:1;
 
     container-type:inline-size;
@@ -46,76 +46,82 @@ body{
 
     overflow:hidden;
 
-    border:1px solid rgba(26,26,26,.7);
     background:#EA52F3;
 }
 
 
-.score-rings,
-.score-spokes{
+.score-rings{
     position:absolute;
-    inset:5%;
+    inset:3%;
 
     border-radius:50%;
+
+    opacity:.42;
+
+    background:
+        repeating-radial-gradient(
+            circle at center,
+            transparent 0 2.55%,
+            rgba(26,26,26,.24) 2.68% 2.82%,
+            transparent 2.95% 5.15%
+        );
 
     pointer-events:none;
 }
 
 
-.score-rings{
-    background:
-        repeating-radial-gradient(
-            circle at center,
-            transparent 0 6.7%,
-            rgba(26,26,26,.32) 6.9% 7.1%,
-            transparent 7.3% 13.7%
-        );
+.score-spokes{
+    position:absolute;
+    inset:18%;
+
+    border:1px solid rgba(26,26,26,.28);
+    border-radius:48% 52% 44% 56%;
+
+    transform:rotate(-11deg);
+
+    pointer-events:none;
 }
 
 
-.score-spokes{
-    opacity:.42;
+.score-spokes::before,
+.score-spokes::after{
+    content:"";
 
-    background:
-        repeating-conic-gradient(
-            from -4deg,
-            transparent 0 13.4deg,
-            rgba(26,26,26,.5) 13.6deg 13.8deg,
-            transparent 14deg 30deg
-        );
+    position:absolute;
+    inset:12%;
 
-    -webkit-mask:
-        radial-gradient(
-            circle,
-            transparent 0 17%,
-            #000 17.5% 100%
-        );
+    border:1px solid rgba(26,26,26,.25);
+    border-radius:56% 44% 52% 48%;
+}
 
-    mask:
-        radial-gradient(
-            circle,
-            transparent 0 17%,
-            #000 17.5% 100%
-        );
+
+.score-spokes::before{
+    transform:rotate(29deg);
+}
+
+
+.score-spokes::after{
+    inset:27%;
+    transform:rotate(-38deg);
 }
 
 
 .score-header{
     position:absolute;
     z-index:4;
-    top:39%;
+    top:50%;
     left:50%;
 
-    width:33%;
+    width:25%;
 
     text-align:center;
 
-    transform:translate(-50%,-50%) rotate(-2deg);
+    transform:translate(-50%,-50%) rotate(-4deg);
 }
 
 
 .radio-name{
-    font-size:2.15cqw;
+    font-size:1.65cqw;
     font-weight:500;
     letter-spacing:.2em;
     line-height:1;
@@ -123,22 +129,22 @@ body{
 
 
 h1{
-    margin-top:1.2cqw;
+    margin-top:1.05cqw;
 
-    font-size:5.4cqw;
+    font-size:4.2cqw;
     font-weight:400;
     letter-spacing:.04em;
-    line-height:.8;
+    line-height:.82;
 }
 
 
 #manifesto-subtitle{
-    margin-top:1.8cqw;
+    margin-top:1.4cqw;
 
-    font-size:1.8cqw;
+    font-size:1.35cqw;
     font-style:italic;
-    letter-spacing:.1em;
-    line-height:1.05;
+    letter-spacing:.08em;
+    line-height:1.06;
     text-transform:lowercase;
 }
 
@@ -150,24 +156,21 @@ h1{
 }
 
 
-.score-fragment{
+.spiral-character{
     position:absolute;
 
     left:var(--x);
     top:var(--y);
 
-    width:var(--w);
+    display:block;
 
-    padding:.18em .35em;
-
-    background:rgba(234,82,243,.93);
+    color:#1a1a1a;
 
     font-size:var(--size);
-    font-style:var(--style,normal);
-    font-weight:400;
-    letter-spacing:var(--tracking,.025em);
-    line-height:1.02;
-    text-align:var(--align,left);
+    font-style:var(--style);
+    font-weight:var(--weight);
+    line-height:1;
+    white-space:pre;
 
     transform:
         translate(-50%,-50%)
@@ -177,25 +180,31 @@ h1{
 }
 
 
+.spiral-character.is-separator{
+    color:#1a1a1a;
+    font-size:1.45cqw;
+}
+
+
 #back-link{
     position:absolute;
     z-index:5;
-    right:3.5%;
-    bottom:3.2%;
+    right:2.8%;
+    bottom:2.8%;
 
-    padding:.3em .55em;
+    padding:.35em .6em;
 
     background:#EA52F3;
     color:#1a1a1a !important;
 
-    font-size:1.55cqw;
+    font-size:1.35cqw;
     font-weight:500;
     letter-spacing:.16em;
     line-height:1;
     text-decoration:none;
     text-transform:uppercase;
 
-    transform:rotate(-6deg);
+    transform:rotate(-7deg);
 }
 
 
@@ -231,13 +240,8 @@ h1{
 @media(max-width:600px){
 
     .score-shell{
-        width:min(97vw,95vh);
-        width:min(97vw,95dvh);
-    }
-
-
-    .score{
-        border-width:.7px;
+        width:min(98vw,95vh);
+        width:min(98vw,95dvh);
     }
 
 }
