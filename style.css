@@ -171,18 +171,22 @@ h1{
     left:50%;
     bottom:clamp(5px,1.2vh,12px);
 
-    width:min(96vw,720px);
+    width:var(--visual-width);
 
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:1.2em;
+    gap:1.15em;
+
+    padding-right:1.8em;
 
     transform:translateX(-50%);
 }
 
 
 .house-note{
+    width:auto;
+
     font-size:clamp(.72rem,1.35vw,.88rem);
     font-style:italic;
     letter-spacing:.012em;
@@ -205,9 +209,9 @@ h1{
 /* PUERTAS */
 
 .house-links{
-    position:relative;
+    position:static;
 
-    min-width:7.7em;
+    width:auto;
     min-height:1.35em;
 
     display:flex;
@@ -242,8 +246,9 @@ h1{
 
 .linktree-link{
     position:absolute;
-    top:50%;
+    top:auto;
     right:0;
+    bottom:0;
 
     display:grid;
     place-items:center;
@@ -260,7 +265,7 @@ h1{
 
     text-decoration:none;
 
-    transform:translateY(-50%);
+    transform:none;
 }
 
 
@@ -417,25 +422,25 @@ h1{
     .visitor-guide{
         bottom:4px;
 
-        width:94vw;
-
-        flex-wrap:wrap;
-        gap:.3em 1em;
+        width:var(--visual-width);
+        flex-direction:column;
+        gap:.22em;
+        padding-right:0;
     }
 
 
     .house-note{
         width:100%;
 
-        font-size:clamp(.68rem,2.8vw,.78rem);
+        font-size:clamp(.53rem,2.15vw,.7rem);
         line-height:1.08;
         text-align:center;
-        white-space:normal;
+        white-space:nowrap;
     }
 
 
     .house-links{
-        min-width:7.5em;
+        width:100%;
     }
 
 

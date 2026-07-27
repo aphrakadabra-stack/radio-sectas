@@ -62,69 +62,124 @@ function cargarTextos(codigo) {
 }
 
 
-function puntoEspiral(angulo) {
+function deformarPalabra(palabra,indice) {
 
-    const centro = 800;
+    if (indice % 3 !== 1) {
+        return palabra;
+    }
 
-    const progreso =
-        Math.max(0,Math.min(1,angulo / (Math.PI * 30)));
 
-    const radioBase =
-        125 + progreso * 575;
+    return Array.from(palabra)
 
-    const ondaLenta =
-        Math.sin(angulo * .41) * 20;
+    .map((caracter,posicion) => {
 
-    const ondaRapida =
-        Math.sin(angulo * 1.37) * 8;
+        const esLetra =
+            caracter.toLocaleLowerCase(idioma) !==
+            caracter.toLocaleUpperCase(idioma);
 
-    const radio =
-        radioBase + ondaLenta + ondaRapida;
 
-    return {
-        x:centro + Math.cos(angulo) * radio,
-        y:centro + Math.sin(angulo) * radio
-    };
+        if (!esLetra) {
+            return caracter;
+        }
+
+
+        return (
+            posicion % 3 === 0 ||
+            (
+                posicion + indice
+            ) % 5 === 0
+        )
+            ? caracter.toLocaleUpperCase(idioma)
+            : caracter.toLocaleLowerCase(idioma);
+
+    })
+
+    .join("");
 
 }
 
 
-function construirCamino() {
+function crearTrayectoria(cantidadPalabras) {
 
-    const puntos = [];
-    const anguloFinal = Math.PI * 30;
-    const pasos = 26000;
+    const centro = 800;
 
-    let distancia = 0;
-    let anterior = puntoEspiral(0);
-
-    puntos.push({
-        ...anterior,
-        angulo:0,
-        distancia:0
-    });
-
-
-    for (let indice = 1; indice <= pasos; indice += 1) {
-
-        const angulo =
-            anguloFinal * indice / pasos;
-
-        const actual =
-            puntoEspiral(angulo);
-
-        distancia += Math.hypot(
-            actual.x - anterior.x,
-            actual.y - anterior.y
+    const vueltas =
+        Math.min(
+            3.15,
+            Math.max(
+                1.25,
+                1.1 + cantidadPalabras / 15
+            )
         );
 
-        puntos.push({
-            ...actual,
-            angulo,
-            distancia
-        });
+    const anguloInicial =
+        -Math.PI * .62;
 
-        anterior = actual;
+    const anguloFinal =
+        anguloInicial + Math.PI * 2 * vueltas;
+
+    const pasos = 7000;
+    const puntos = [];
+
+    let distancia = 0;
+    let anterior = null;
+
+
+    for (let indice = 0; indice <= pasos; indice += 1) {
+
+        const progreso =
+            indice / pasos;
+
+        const angulo =
+            anguloInicial +
+            (
+                anguloFinal - anguloInicial
+            ) * progreso;
+
+        const radioBase =
+            135 + progreso * 390;
+
+        const respiracion =
+            Math.sin(angulo * 2.2) * 28 +
+            Math.sin(angulo * 5.1) * 10;
+
+        const profundidad =
+            Math.sin(progreso * Math.PI) * 24;
+
+        const radio =
+            radioBase +
+            respiracion +
+            profundidad;
+
+        const x =
+            centro +
+            Math.cos(angulo) * radio * 1.04;
+
+        const y =
+            centro +
+            Math.sin(angulo) * radio * .9;
+
+
+        if (anterior) {
+
+            distancia += Math.hypot(
+                x - anterior.x,
+                y - anterior.y
+            );
+
+        }
+
+
+        const punto = {
+            x,
+            y,
+            angulo,
+            distancia,
+            progreso
+        };
+
+        puntos.push(punto);
+        anterior = punto;
 
     }
 
@@ -137,10 +192,10 @@ function construirCamino() {
 }
 
 
-function puntoPorDistancia(camino,objetivo) {
+function puntoPorDistancia(trayectoria,objetivo) {
 
     let inicio = 0;
-    let final = camino.puntos.length - 1;
+    let final = trayectoria.puntos.length - 1;
 
 
     while (inicio < final) {
@@ -148,8 +203,10 @@ function puntoPorDistancia(camino,objetivo) {
         const medio =
             Math.floor((inicio + final) / 2);
 
+
         if (
-            camino.puntos[medio].distancia < objetivo
+            trayectoria.puntos[medio].distancia <
+            objetivo
         ) {
             inicio = medio + 1;
         } else {
@@ -159,40 +216,209 @@ function puntoPorDistancia(camino,objetivo) {
     }
 
 
-    return camino.puntos[inicio];
+    return trayectoria.puntos[inicio];
 
 }
 
 
-function dibujarOndas(contexto) {
+function prepararParrafo(contexto,texto) {
+
+    const palabrasOriginales =
+        texto.trim().split(/\s+/);
+
+    const trayectoria =
+        crearTrayectoria(palabrasOriginales.length);
+
+    const longitudTexto =
+        Array.from(texto).length;
+
+    const tamañoBase =
+        longitudTexto < 34
+            ? 92
+            : longitudTexto < 72
+                ? 70
+                : longitudTexto < 125
+                    ? 54
+                    : 43;
+
+    const palabras = [];
+    let avanceTotal = 0;
+
+
+    palabrasOriginales.forEach((palabra,indice) => {
+
+        const textoVisual =
+            deformarPalabra(palabra,indice);
+
+        const pulso =
+            .84 +
+            (
+                Math.sin(indice * 1.71) + 1
+            ) * .19;
+
+        const tamaño =
+            tamañoBase *
+            pulso *
+            (
+                indice % 7 === 0
+                    ? 1.22
+                    : 1
+            );
+
+        const cursiva =
+            indice % 4 === 1 ||
+            indice % 7 === 5;
+
+        const peso =
+            indice % 5 === 0
+                ? "500"
+                : "400";
+
+        const escalaHorizontal =
+            .78 +
+            (
+                Math.cos(indice * 1.13) + 1
+            ) * .2;
+
+
+        contexto.font =
+            `${cursiva ? "italic " : ""}${peso} ${tamaño}px "Cormorant Garamond", serif`;
+
+
+        const avance =
+            contexto.measureText(textoVisual).width *
+            escalaHorizontal +
+            tamaño * .42;
+
+
+        palabras.push({
+            texto:textoVisual,
+            tamaño,
+            cursiva,
+            peso,
+            escalaHorizontal,
+            avance,
+            indice
+        });
+
+        avanceTotal += avance;
+
+    });
+
+
+    const margen = 75;
+
+    const escalaRecorrido =
+        Math.min(
+            1.18,
+            (
+                trayectoria.longitud -
+                margen * 2
+            ) / avanceTotal
+        );
+
+    let recorrido = margen;
+
+
+    palabras.forEach(palabra => {
+
+        recorrido +=
+            palabra.avance *
+            escalaRecorrido /
+            2;
+
+        const punto =
+            puntoPorDistancia(
+                trayectoria,
+                recorrido
+            );
+
+        const siguiente =
+            puntoPorDistancia(
+                trayectoria,
+                Math.min(
+                    trayectoria.longitud,
+                    recorrido + 6
+                )
+            );
+
+
+        palabra.x = punto.x;
+        palabra.y = punto.y;
+        palabra.progreso = punto.progreso;
+        palabra.rotacion = Math.atan2(
+            siguiente.y - punto.y,
+            siguiente.x - punto.x
+        );
+
+        palabra.profundidad =
+            .82 +
+            Math.sin(
+                punto.progreso *
+                Math.PI
+            ) * .28;
+
+
+        recorrido +=
+            palabra.avance *
+            escalaRecorrido /
+            2;
+
+    });
+
+
+    return palabras;
+
+}
+
+
+function dibujarFondo(contexto,tiempo) {
+
+    contexto.fillStyle = "#EA52F3";
+    contexto.fillRect(0,0,1600,1600);
 
     contexto.save();
-
-    contexto.strokeStyle = "rgba(26,26,26,.22)";
-    contexto.lineWidth = 1.4;
+    contexto.translate(800,800);
 
 
-    for (let vuelta = 0; vuelta < 11; vuelta += 1) {
+    for (let anillo = 0; anillo < 9; anillo += 1) {
 
         contexto.beginPath();
 
 
-        for (let paso = 0; paso <= 900; paso += 1) {
+        for (let paso = 0; paso <= 600; paso += 1) {
 
             const angulo =
-                Math.PI * 2 * paso / 900;
+                Math.PI * 2 * paso / 600;
 
             const radio =
                 165 +
-                vuelta * 49 +
-                Math.sin(angulo * 3 + vuelta) * 13 +
-                Math.sin(angulo * 7 - vuelta) * 5;
+                anillo * 59 +
+                Math.sin(
+                    angulo * 3 +
+                    anillo * .8 +
+                    tiempo * .00018
+                ) * 18 +
+                Math.sin(
+                    angulo * 7 -
+                    tiempo * .00011
+                ) * 6;
 
             const x =
-                800 + Math.cos(angulo) * radio;
+                Math.cos(angulo) *
+                radio *
+                (
+                    1 +
+                    Math.sin(
+                        tiempo * .00009 +
+                        anillo
+                    ) * .025
+                );
 
             const y =
-                800 + Math.sin(angulo) * radio;
+                Math.sin(angulo) *
+                radio *
+                .91;
 
 
             if (paso === 0) {
@@ -205,6 +431,13 @@ function dibujarOndas(contexto) {
 
 
         contexto.closePath();
+
+        contexto.strokeStyle =
+            `rgba(26,26,26,${.08 + anillo * .012})`;
+
+        contexto.lineWidth =
+            .8 + anillo * .16;
+
         contexto.stroke();
 
     }
@@ -215,7 +448,7 @@ function dibujarOndas(contexto) {
 }
 
 
-function dibujarManifiesto(parrafos) {
+function iniciarPartitura(parrafos) {
 
     const lienzo =
         document.getElementById("score-canvas");
@@ -223,215 +456,220 @@ function dibujarManifiesto(parrafos) {
     const contexto =
         lienzo.getContext("2d");
 
-    const separador = "   /   ";
-
-    const caracteres = Array.from(
-        parrafos.join(separador)
-    );
+    let indiceParrafo = 0;
+    let inicioParrafo = 0;
+    let palabras = [];
 
 
-    contexto.clearRect(
-        0,
-        0,
-        lienzo.width,
-        lienzo.height
-    );
+    function cargarParrafo(tiempo) {
 
-    contexto.fillStyle = "#EA52F3";
-    contexto.fillRect(
-        0,
-        0,
-        lienzo.width,
-        lienzo.height
-    );
-
-
-    dibujarOndas(contexto);
-
-
-    const camino =
-        construirCamino();
-
-    const medidas = [];
-    let avanceTotal = 0;
-
-
-    caracteres.forEach((caracter,indice) => {
-
-        const pulso =
-            21 +
-            Math.sin(indice * .071) * 9 +
-            Math.sin(indice * .019) * 6 +
-            (
-                indice % 23 < 3
-                    ? 12
-                    : 0
+        palabras =
+            prepararParrafo(
+                contexto,
+                parrafos[indiceParrafo]
             );
 
-        const marcador =
-            caracter === "/";
+        inicioParrafo = tiempo;
 
-        const tamaño =
-            marcador ? 42 : Math.max(10,pulso);
-
-        const cursiva =
-            indice % 19 < 8;
-
-        const peso =
-            indice % 31 < 10 ? "500" : "400";
-
-        const esLetra =
-            caracter.toLocaleLowerCase(idioma) !==
-            caracter.toLocaleUpperCase(idioma);
-
-        const mayuscula =
-            esLetra &&
-            (
-                indice % 7 === 0 ||
-                indice % 13 < 2 ||
-                Math.sin(indice * .83) > .82
-            );
-
-        const caracterVisual =
-            mayuscula
-                ? caracter.toLocaleUpperCase(idioma)
-                : caracter.toLocaleLowerCase(idioma);
-
-        const escalaHorizontal =
-            .72 +
-            (
-                Math.sin(indice * .113) + 1
-            ) * .32;
-
-        const escalaVertical =
-            .84 +
-            (
-                Math.cos(indice * .079) + 1
-            ) * .23;
-
-        const salto =
-            Math.sin(indice * .167) * 9 +
-            (
-                indice % 17 === 0
-                    ? -12
-                    : 0
-            );
-
-        const giroExtra =
-            Math.sin(indice * .229) * 11 +
-            (
-                indice % 29 === 0
-                    ? 18
-                    : 0
-            );
+    }
 
 
-        contexto.font =
-            `${cursiva ? "italic " : ""}${peso} ${tamaño}px "Cormorant Garamond", serif`;
+    function avanzar(tiempo) {
+
+        indiceParrafo =
+            (indiceParrafo + 1) %
+            parrafos.length;
+
+        cargarParrafo(tiempo);
+
+    }
 
 
-        const avance =
-            caracter === " "
-                ? tamaño * .28
-                : contexto.measureText(caracterVisual).width *
-                    escalaHorizontal *
-                    .9;
+    function dibujar(tiempo) {
+
+        if (!inicioParrafo) {
+            cargarParrafo(tiempo);
+        }
 
 
-        medidas.push({
-            caracter:caracterVisual,
-            tamaño,
-            cursiva,
-            peso,
-            avance,
-            marcador,
-            escalaHorizontal,
-            escalaVertical,
-            salto,
-            giroExtra
-        });
-
-        avanceTotal += avance;
-
-    });
+        dibujarFondo(contexto,tiempo);
 
 
-    const margenCamino = 900;
+        const transcurrido =
+            tiempo - inicioParrafo;
 
-    const espacioDisponible =
-        camino.longitud - margenCamino * 2;
-
-    const escala =
-        Math.min(1.34,espacioDisponible / avanceTotal);
-
-    let recorrido = margenCamino;
-
-
-    contexto.fillStyle = "#1a1a1a";
-    contexto.textAlign = "center";
-    contexto.textBaseline = "middle";
-
-
-    medidas.forEach((medida,indice) => {
-
-        recorrido += medida.avance * escala / 2;
-
-        const punto =
-            puntoPorDistancia(camino,recorrido);
-
-        const siguiente =
-            puntoPorDistancia(
-                camino,
+        const intervalo =
+            Math.max(
+                125,
                 Math.min(
-                    camino.longitud,
-                    recorrido + 4
+                    260,
+                    4200 /
+                    Math.max(1,palabras.length)
                 )
             );
 
-        const inclinacion =
-            Math.atan2(
-                siguiente.y - punto.y,
-                siguiente.x - punto.x
+        const revelado =
+            palabras.length * intervalo;
+
+        const espera =
+            Math.max(
+                3600,
+                parrafos[indiceParrafo].length * 34
             );
 
-        const tamañoVivo =
-            medida.tamaño *
-            (
-                1 +
-                Math.sin(indice * .037) * .28
+        const desvanecido = 1100;
+
+        const duracion =
+            revelado +
+            espera +
+            desvanecido;
+
+        const opacidadGeneral =
+            transcurrido >
+            revelado + espera
+                ? Math.max(
+                    0,
+                    1 -
+                    (
+                        transcurrido -
+                        revelado -
+                        espera
+                    ) /
+                    desvanecido
+                )
+                : 1;
+
+
+        contexto.textAlign = "center";
+        contexto.textBaseline = "middle";
+
+
+        palabras.forEach((palabra,indice) => {
+
+            const aparicion =
+                transcurrido -
+                indice * intervalo;
+
+
+            if (aparicion < 0) {
+                return;
+            }
+
+
+            const entrada =
+                Math.min(1,aparicion / 520);
+
+            const desplazamiento =
+                (1 - entrada) * 46;
+
+            const vibracion =
+                Math.sin(
+                    tiempo * .0017 +
+                    indice * .91
+                ) * 2.2;
+
+            const profundidad =
+                palabra.profundidad *
+                (
+                    .86 +
+                    entrada * .14
+                );
+
+
+            contexto.save();
+
+            contexto.globalAlpha =
+                entrada *
+                opacidadGeneral *
+                (
+                    .72 +
+                    palabra.progreso * .28
+                );
+
+            contexto.fillStyle = "#1a1a1a";
+
+            contexto.translate(
+                palabra.x,
+                palabra.y + desplazamiento
             );
+
+            contexto.rotate(
+                palabra.rotacion +
+                Math.sin(
+                    indice * .73
+                ) * .09
+            );
+
+            contexto.scale(
+                palabra.escalaHorizontal *
+                profundidad,
+                profundidad
+            );
+
+            contexto.font =
+                `${palabra.cursiva ? "italic " : ""}${palabra.peso} ${palabra.tamaño + vibracion}px "Cormorant Garamond", serif`;
+
+            contexto.fillText(
+                palabra.texto,
+                0,
+                0
+            );
+
+            contexto.restore();
+
+        });
 
 
         contexto.save();
 
-        contexto.translate(punto.x,punto.y);
-        contexto.rotate(
-            inclinacion +
-            medida.giroExtra * Math.PI / 180
-        );
-
-        contexto.translate(0,medida.salto);
-
-        contexto.scale(
-            medida.escalaHorizontal,
-            medida.escalaVertical
-        );
+        contexto.fillStyle =
+            "rgba(26,26,26,.62)";
 
         contexto.font =
-            `${medida.cursiva ? "italic " : ""}${medida.peso} ${tamañoVivo}px "Cormorant Garamond", serif`;
+            '500 18px "Cormorant Garamond", serif';
+
+        contexto.textAlign = "center";
+        contexto.textBaseline = "middle";
 
         contexto.fillText(
-            medida.caracter,
-            0,
-            medida.marcador ? -2 : 0
+            `${String(indiceParrafo + 1).padStart(2,"0")} / ${String(parrafos.length).padStart(2,"0")}`,
+            800,
+            1490
         );
 
         contexto.restore();
 
 
-        recorrido += medida.avance * escala / 2;
+        if (transcurrido >= duracion) {
+            avanzar(tiempo);
+        }
+
+
+        window.requestAnimationFrame(dibujar);
+
+    }
+
+
+    lienzo.addEventListener("click",() => {
+
+        avanzar(performance.now());
 
     });
+
+
+    document.addEventListener("keydown",evento => {
+
+        if (
+            evento.key === "ArrowRight" ||
+            evento.key === " "
+        ) {
+            avanzar(performance.now());
+        }
+
+    });
+
+
+    window.requestAnimationFrame(dibujar);
 
 }
 
@@ -473,7 +711,7 @@ cargarTextos(idioma)
 
     document.fonts.ready.then(() => {
 
-        dibujarManifiesto(textos.paragraphs);
+        iniciarPartitura(textos.paragraphs);
 
     });
 
