@@ -3,12 +3,8 @@
   "state_broadcasting": "HABITÉE",
   "state_sleeping": "ENDORMIE",
   "state_silence": "EN SILENCE",
-
   "title": "ÚGJÜ RADIO",
-
-  "subtitle": "L'oreille qui écoute la maison.",
-
+  "subtitle": "L'oreille qui écoute la maison...",
   "enter": "ENTRER",
-
   "listening": "ÉCOUTE"
 }
