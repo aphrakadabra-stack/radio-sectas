@@ -60,7 +60,50 @@
         content="https://ugjusectas.github.io/ugju-radio/images/web1.webp"
     >
 
-    <link rel="stylesheet" href="style.css?v=20260728-19">
+    <link rel="stylesheet" href="style.css?v=20260728-21">
+
+    <script
+        src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+        defer
+    ></script>
+
+    <script>
+        window.OneSignalDeferred =
+            window.OneSignalDeferred || [];
+
+        OneSignalDeferred.push(
+            async function(OneSignal) {
+
+                await OneSignal.init({
+                    appId:
+                        "e4712649-ca34-49e6-a2b4-f2ca6c5c7460",
+
+                    safari_web_id:
+                        "web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",
+
+                    serviceWorkerPath:
+                        "ugju-radio/OneSignalSDKWorker.js",
+
+                    serviceWorkerParam: {
+                        scope: "/ugju-radio/"
+                    },
+
+                    notifyButton: {
+                        enable: false
+                    }
+                });
+
+                window.ugjuOneSignal = OneSignal;
+
+                document.dispatchEvent(
+                    new CustomEvent(
+                        "ugju-onesignal-ready"
+                    )
+                );
+
+            }
+        );
+    </script>
 </head>
 
 <body>
@@ -137,7 +180,7 @@
 
     </main>
 
-    <script src="script.js?v=20260728-18"></script>
+    <script src="script.js?v=20260728-20"></script>
     <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
 
 </body>
