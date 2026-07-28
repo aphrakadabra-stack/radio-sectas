@@ -238,7 +238,7 @@ h1{
 
     pointer-events:auto;
 
-    transform:none;
+    transform:translateY(-3px);
 }
 
 
@@ -272,7 +272,7 @@ h1{
 
     pointer-events:auto;
 
-    transform:none;
+    transform:translateY(3px);
 }
 
 
