@@ -60,7 +60,7 @@
         content="https://ugjusectas.github.io/ugju-radio/images/web1.webp"
     >
 
-    <link rel="stylesheet" href="style.css?v=20260728-19">
+    <link rel="stylesheet" href="style.css?v=20260728-20">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -92,6 +92,14 @@
                         enable: false
                     }
                 });
+
+                window.ugjuOneSignal = OneSignal;
+
+                document.dispatchEvent(
+                    new CustomEvent(
+                        "ugju-onesignal-ready"
+                    )
+                );
 
             }
         );
@@ -157,6 +165,13 @@
             MANIFESTO
         </a>
 
+        <button
+            class="notify-link"
+            type="button"
+        >
+            NOTIFY ME
+        </button>
+
         <a
             class="linktree-link"
             href="https://linktr.ee/ugju.sectas"
@@ -172,7 +187,7 @@
 
     </main>
 
-    <script src="script.js?v=20260728-18"></script>
+    <script src="script.js?v=20260728-19"></script>
     <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
 
 </body>

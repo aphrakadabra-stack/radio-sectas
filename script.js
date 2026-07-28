@@ -9,9 +9,11 @@ const notaCasaLineaDos = document.querySelector(
 );
 const notaCasa = document.querySelector(".house-note");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
+const enlaceAvisame = document.querySelector(".notify-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
+let textosActuales;
 
 
 if (esNavegadorInstagram) {
@@ -224,8 +226,10 @@ function ajustarNotaCasa() {
 function evitarChoquesDePuertas() {
 
     enlaceManifiesto.style.transform = "";
+    enlaceAvisame.style.transform = "";
     enlaceLinktree.style.transform = "";
     enlaceManifiesto.style.transformOrigin = "";
+    enlaceAvisame.style.transformOrigin = "";
     enlaceLinktree.style.transformOrigin = "";
 
     const esVistaDeTelefono =
@@ -246,22 +250,37 @@ function evitarChoquesDePuertas() {
         const cajaManifiesto =
             enlaceManifiesto.getBoundingClientRect();
 
+        const cajaAvisame =
+            enlaceAvisame.getBoundingClientRect();
+
         const cajaTitulo =
             titulo.getBoundingClientRect();
 
 
         if (
-            cajaManifiesto.bottom + separacion >
+            Math.max(
+                cajaManifiesto.bottom,
+                cajaAvisame.bottom
+            ) + separacion >
             cajaTitulo.top
         ) {
 
             const falta =
-                cajaManifiesto.bottom +
+                Math.max(
+                    cajaManifiesto.bottom,
+                    cajaAvisame.bottom
+                ) +
                 separacion -
                 cajaTitulo.top;
 
             const subidaDisponible =
-                Math.max(0,cajaManifiesto.top - 2);
+                Math.max(
+                    0,
+                    Math.min(
+                        cajaManifiesto.top,
+                        cajaAvisame.top
+                    ) - 2
+                );
 
             const subida =
                 Math.min(falta,subidaDisponible);
@@ -269,7 +288,13 @@ function evitarChoquesDePuertas() {
             enlaceManifiesto.style.transformOrigin =
                 "left top";
 
+            enlaceAvisame.style.transformOrigin =
+                "right top";
+
             enlaceManifiesto.style.transform =
+                `translateY(-${subida}px)`;
+
+            enlaceAvisame.style.transform =
                 `translateY(-${subida}px)`;
 
         }
@@ -354,9 +379,123 @@ function mostrarEstado(texto) {
 }
 
 
+function actualizarAvisame() {
+
+    if (!textosActuales) {
+        return;
+    }
+
+    const OneSignal = window.ugjuOneSignal;
+
+    if (!OneSignal) {
+        enlaceAvisame.textContent =
+            textosActuales.notify_me;
+
+        enlaceAvisame.setAttribute(
+            "aria-pressed",
+            "false"
+        );
+
+        return;
+    }
+
+    const estaSuscrito =
+        OneSignal.User.PushSubscription.optedIn;
+
+    enlaceAvisame.textContent =
+        estaSuscrito
+            ? textosActuales.notify_active
+            : textosActuales.notify_me;
+
+    enlaceAvisame.setAttribute(
+        "aria-pressed",
+        String(estaSuscrito)
+    );
+
+}
+
+
+async function solicitarAviso() {
+
+    if (!textosActuales) {
+        return;
+    }
+
+    if (esNavegadorInstagram) {
+
+        window.alert(
+            textosActuales.notify_open_browser
+        );
+
+        return;
+
+    }
+
+    const OneSignal = window.ugjuOneSignal;
+
+    if (!OneSignal) {
+
+        window.alert(
+            textosActuales.notify_loading
+        );
+
+        return;
+
+    }
+
+    if (!OneSignal.Notifications.isPushSupported()) {
+
+        window.alert(
+            textosActuales.notify_unsupported
+        );
+
+        return;
+
+    }
+
+    try {
+
+        await OneSignal.User.PushSubscription.optIn();
+
+        actualizarAvisame();
+
+    } catch (error) {
+
+        window.alert(
+            textosActuales.notify_error
+        );
+
+    }
+
+}
+
+
+enlaceAvisame.addEventListener(
+    "click",
+    solicitarAviso
+);
+
+
+document.addEventListener(
+    "ugju-onesignal-ready",
+    () => {
+
+        const OneSignal = window.ugjuOneSignal;
+
+        OneSignal.User.PushSubscription.addEventListener(
+            "change",
+            actualizarAvisame
+        );
+
+        actualizarAvisame();
+
+    }
+);
+
+
 function cargarIdioma(codigo) {
 
-    return fetch(`lang/${codigo}.json?v=20260727-10`)
+    return fetch(`lang/${codigo}.json?v=20260728-11`)
 
     .then(respuesta => {
 
@@ -383,6 +522,8 @@ cargarIdioma(idioma)
 
 .then(textos => {
 
+    textosActuales = textos;
+
     titulo.textContent = textos.title;
 
     lema.textContent = textos.subtitle;
@@ -396,10 +537,20 @@ cargarIdioma(idioma)
     enlaceManifiesto.textContent =
         textos.manifesto;
 
+    enlaceAvisame.textContent =
+        textos.notify_me;
+
+    enlaceAvisame.setAttribute(
+        "aria-label",
+        textos.notify_label
+    );
+
     enlaceLinktree.setAttribute(
         "aria-label",
         textos.linktree_label
     );
+
+    actualizarAvisame();
 
 
     function comprobarRadio() {

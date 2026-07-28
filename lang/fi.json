@@ -11,5 +11,12 @@
   "house_note_2": "jos ei ole mitään kuunneltavaa, tule myöhemmin kurkistamaan uudelleen",
   "manifesto": "MANIFESTI",
   "close_manifesto": "Sulje manifesti",
+  "notify_me": "ILMOITA MINULLE",
+  "notify_active": "ILMOITUKSET PÄÄLLÄ",
+  "notify_label": "Ilmoita minulle, kun ÚGJÜ RADIO lähettää",
+  "notify_open_browser": "Saat ilmoituksia avaamalla tämän sivun Chromessa, Firefoxissa, Safarissa tai Edgessä.",
+  "notify_loading": "Ilmoitusjärjestelmä on vielä heräämässä. Yritä muutaman sekunnin kuluttua uudelleen.",
+  "notify_unsupported": "Tämä selain ei tue ilmoituksia.",
+  "notify_error": "Ilmoituksia ei voitu ottaa käyttöön. Tarkista selaimen ilmoitusluvat.",
   "linktree_label": "Avaa ÚGJÜ SECTAS Linktreessä"
 }

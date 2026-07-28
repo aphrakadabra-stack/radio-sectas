@@ -11,5 +11,12 @@
   "house_note_2": "se non c'è nulla da ascoltare, torna a dare un'occhiata più tardi",
   "manifesto": "MANIFESTO",
   "close_manifesto": "Chiudi il manifesto",
+  "notify_me": "AVVISAMI",
+  "notify_active": "AVVISI ATTIVI",
+  "notify_label": "Avvisami quando ÚGJÜ RADIO trasmette",
+  "notify_open_browser": "Per ricevere gli avvisi, apri questa pagina in Chrome, Firefox, Safari o Edge.",
+  "notify_loading": "Il sistema di avvisi si sta ancora svegliando. Riprova tra qualche secondo.",
+  "notify_unsupported": "Questo browser non supporta gli avvisi.",
+  "notify_error": "Non è stato possibile attivare gli avvisi. Controlla i permessi di notifica del browser.",
   "linktree_label": "Apri ÚGJÜ SECTAS su Linktree"
 }

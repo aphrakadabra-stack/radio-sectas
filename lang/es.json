@@ -11,5 +11,12 @@
   "house_note_2": "si no escuchás nada, volvé a pispear más tarde",
   "manifesto": "MANIFIESTO",
   "close_manifesto": "Cerrar manifiesto",
+  "notify_me": "AVISAME",
+  "notify_active": "AVISOS ACTIVOS",
+  "notify_label": "Avisarme cuando ÚGJÜ RADIO transmita",
+  "notify_open_browser": "Para recibir avisos, abrí esta página en Chrome, Firefox, Safari o Edge.",
+  "notify_loading": "El sistema de avisos todavía está despertando. Probá nuevamente en unos segundos.",
+  "notify_unsupported": "Este navegador no permite recibir avisos.",
+  "notify_error": "No pudimos activar los avisos. Revisá los permisos de notificaciones del navegador.",
   "linktree_label": "Abrir Linktree de ÚGJÜ SECTAS"
 }

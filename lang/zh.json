@@ -11,5 +11,12 @@
   "house_note_2": "如果没有什么可聆听，晚些时候再来看看",
   "manifesto": "宣言",
   "close_manifesto": "关闭宣言",
+  "notify_me": "通知我",
+  "notify_active": "通知已开启",
+  "notify_label": "ÚGJÜ RADIO开始播出时通知我",
+  "notify_open_browser": "要接收通知，请在Chrome、Firefox、Safari或Edge中打开此页面。",
+  "notify_loading": "通知系统仍在苏醒，请几秒后再试。",
+  "notify_unsupported": "此浏览器不支持通知。",
+  "notify_error": "无法开启通知，请检查浏览器的通知权限。",
   "linktree_label": "在Linktree上打开ÚGJÜ SECTAS"
 }

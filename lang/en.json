@@ -11,5 +11,12 @@
   "house_note_2": "if there is nothing to listen to, come back and take another peek later",
   "manifesto": "MANIFESTO",
   "close_manifesto": "Close manifesto",
+  "notify_me": "NOTIFY ME",
+  "notify_active": "NOTIFICATIONS ON",
+  "notify_label": "Notify me when ÚGJÜ RADIO is transmitting",
+  "notify_open_browser": "To receive notifications, open this page in Chrome, Firefox, Safari or Edge.",
+  "notify_loading": "The notification system is still waking up. Try again in a few seconds.",
+  "notify_unsupported": "This browser does not support notifications.",
+  "notify_error": "Notifications could not be enabled. Check your browser notification permissions.",
   "linktree_label": "Open ÚGJÜ SECTAS on Linktree"
 }
