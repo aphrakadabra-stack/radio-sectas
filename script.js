@@ -228,6 +228,16 @@ function evitarChoquesDePuertas() {
     enlaceManifiesto.style.transformOrigin = "";
     enlaceLinktree.style.transformOrigin = "";
 
+    const esVistaDeTelefono =
+        window.matchMedia(
+            "(max-width: 700px)"
+        ).matches;
+
+
+    if (!esVistaDeTelefono) {
+        return;
+    }
+
 
     requestAnimationFrame(() => {
 
