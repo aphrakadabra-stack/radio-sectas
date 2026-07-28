@@ -322,11 +322,13 @@ h1{
     display:inline-flex;
     align-items:center;
     justify-self:end;
+
+    transform:translateY(2px);
 }
 
 
 .manifesto-notify{
-    width:18px;
+    width:20px;
     height:16px;
 
     display:flex;
