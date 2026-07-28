@@ -14,6 +14,13 @@ const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 
 
+if (esNavegadorInstagram) {
+    document.documentElement.classList.add(
+        "instagram-browser"
+    );
+}
+
+
 document.addEventListener(
     "click",
     evento => {
@@ -214,12 +221,116 @@ function ajustarNotaCasa() {
 }
 
 
+function evitarChoquesDePuertas() {
+
+    enlaceManifiesto.style.transform = "";
+    enlaceLinktree.style.transform = "";
+    enlaceManifiesto.style.transformOrigin = "";
+    enlaceLinktree.style.transformOrigin = "";
+
+
+    requestAnimationFrame(() => {
+
+        const separacion = 10;
+
+        const cajaManifiesto =
+            enlaceManifiesto.getBoundingClientRect();
+
+        const cajaTitulo =
+            titulo.getBoundingClientRect();
+
+
+        if (
+            cajaManifiesto.bottom + separacion >
+            cajaTitulo.top
+        ) {
+
+            const falta =
+                cajaManifiesto.bottom +
+                separacion -
+                cajaTitulo.top;
+
+            const subidaDisponible =
+                Math.max(0,cajaManifiesto.top - 2);
+
+            const subida =
+                Math.min(falta,subidaDisponible);
+
+            enlaceManifiesto.style.transformOrigin =
+                "left top";
+
+            enlaceManifiesto.style.transform =
+                `translateY(-${subida}px)`;
+
+        }
+
+
+        const cajaNota =
+            notaCasa.getBoundingClientRect();
+
+        const cajaLinktree =
+            enlaceLinktree.getBoundingClientRect();
+
+
+        if (
+            cajaNota.bottom + separacion >
+            cajaLinktree.top
+        ) {
+
+            const falta =
+                cajaNota.bottom +
+                separacion -
+                cajaLinktree.top;
+
+            const bajadaDisponible =
+                Math.max(
+                    0,
+                    window.innerHeight -
+                    cajaLinktree.bottom -
+                    2
+                );
+
+            const bajada =
+                Math.min(falta,bajadaDisponible);
+
+            const faltaRestante =
+                Math.max(0,falta - bajada);
+
+            const escala =
+                faltaRestante > 0
+                    ? Math.max(
+                        .72,
+                        1 -
+                        faltaRestante /
+                        cajaLinktree.height
+                    )
+                    : 1;
+
+            enlaceLinktree.style.transformOrigin =
+                "right bottom";
+
+            enlaceLinktree.style.transform =
+                `translateY(${bajada}px) scale(${escala})`;
+
+        }
+
+    });
+
+}
+
+
 function ajustarInterfaz() {
 
     ajustarTextoAlAncho(titulo);
     ajustarTextoAlAncho(lema);
     ajustarNotaCasa();
     ajustarEstado();
+
+    requestAnimationFrame(
+        () => requestAnimationFrame(
+            evitarChoquesDePuertas
+        )
+    );
 
 }
 
@@ -346,6 +457,9 @@ cargarIdioma(idioma)
                 setTimeout(ajustarInterfaz,1000);
 
             }
+
+            setTimeout(evitarChoquesDePuertas,500);
+            setTimeout(evitarChoquesDePuertas,1500);
 
         }
     );
