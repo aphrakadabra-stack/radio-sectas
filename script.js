@@ -161,6 +161,7 @@ function ajustarNotaCasa() {
 
 function ajustarInterfaz() {
 
+    ajustarTextoAlAncho(titulo);
     ajustarTextoAlAncho(lema);
     ajustarNotaCasa();
     ajustarEstado();
