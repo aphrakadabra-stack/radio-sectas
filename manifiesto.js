@@ -27,6 +27,11 @@ document.documentElement.lang = idioma;
 
 const enlaceEmail =
     document.getElementById("email-link");
+const botonAviso =
+    document.getElementById("notify-link");
+const esNavegadorInstagram =
+    /Instagram/i.test(navigator.userAgent);
+let textosActuales;
 
 
 enlaceEmail.addEventListener("click", () => {
@@ -42,10 +47,130 @@ enlaceEmail.addEventListener("click", () => {
 });
 
 
+function actualizarAvisame() {
+
+    if (!textosActuales) {
+        return;
+    }
+
+    const OneSignal = window.ugjuOneSignal;
+
+    const estaSuscrito =
+        Boolean(
+            OneSignal &&
+            OneSignal.User.PushSubscription.optedIn
+        );
+
+    botonAviso.setAttribute(
+        "aria-pressed",
+        String(estaSuscrito)
+    );
+
+    const etiqueta =
+        estaSuscrito
+            ? textosActuales.notify_active
+            : textosActuales.notify_label;
+
+    botonAviso.setAttribute(
+        "aria-label",
+        etiqueta
+    );
+
+    botonAviso.title = etiqueta;
+
+}
+
+
+async function solicitarAviso() {
+
+    if (!textosActuales) {
+        return;
+    }
+
+    if (esNavegadorInstagram) {
+
+        window.alert(
+            textosActuales.notify_open_browser
+        );
+
+        return;
+
+    }
+
+    const OneSignal = window.ugjuOneSignal;
+
+    if (!OneSignal) {
+
+        window.alert(
+            textosActuales.notify_loading
+        );
+
+        return;
+
+    }
+
+    if (!OneSignal.Notifications.isPushSupported()) {
+
+        window.alert(
+            textosActuales.notify_unsupported
+        );
+
+        return;
+
+    }
+
+    try {
+
+        await OneSignal.User.PushSubscription.optIn();
+
+        actualizarAvisame();
+
+        if (OneSignal.User.PushSubscription.optedIn) {
+
+            window.alert(
+                textosActuales.notify_success
+            );
+
+        }
+
+    } catch (error) {
+
+        window.alert(
+            textosActuales.notify_error
+        );
+
+    }
+
+}
+
+
+botonAviso.addEventListener(
+    "click",
+    solicitarAviso
+);
+
+
+document.addEventListener(
+    "ugju-onesignal-ready",
+    () => {
+
+        const OneSignal = window.ugjuOneSignal;
+
+        OneSignal.User.PushSubscription.addEventListener(
+            "change",
+            actualizarAvisame
+        );
+
+        actualizarAvisame();
+
+    }
+);
+
+
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260727-8`
+        `manifiestos/${codigo}.json?v=20260728-9`
     )
 
     .then(respuesta => {
@@ -73,6 +198,8 @@ cargarTextos(idioma)
 
 .then(textos => {
 
+    textosActuales = textos;
+
     document.title =
         `ÚGJÜ RADIO — ${textos.title}`;
 
@@ -87,6 +214,16 @@ cargarTextos(idioma)
     document.getElementById(
         "back-link"
     ).textContent = textos.back;
+
+    botonAviso.setAttribute(
+        "aria-label",
+        textos.notify_label
+    );
+
+    botonAviso.title =
+        textos.notify_label;
+
+    actualizarAvisame();
 
 
     const contenido =

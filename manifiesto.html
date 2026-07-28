@@ -18,7 +18,50 @@
 
     <meta name="theme-color" content="#EA52F3">
 
-    <link rel="stylesheet" href="manifiesto.css?v=20260728-15">
+    <link rel="stylesheet" href="manifiesto.css?v=20260728-17">
+
+    <script
+        src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
+        defer
+    ></script>
+
+    <script>
+        window.OneSignalDeferred =
+            window.OneSignalDeferred || [];
+
+        OneSignalDeferred.push(
+            async function(OneSignal) {
+
+                await OneSignal.init({
+                    appId:
+                        "e4712649-ca34-49e6-a2b4-f2ca6c5c7460",
+
+                    safari_web_id:
+                        "web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",
+
+                    serviceWorkerPath:
+                        "ugju-radio/OneSignalSDKWorker.js",
+
+                    serviceWorkerParam: {
+                        scope: "/ugju-radio/"
+                    },
+
+                    notifyButton: {
+                        enable: false
+                    }
+                });
+
+                window.ugjuOneSignal = OneSignal;
+
+                document.dispatchEvent(
+                    new CustomEvent(
+                        "ugju-onesignal-ready"
+                    )
+                );
+
+            }
+        );
+    </script>
 </head>
 
 <body>
@@ -69,27 +112,50 @@
 
             <footer class="manifesto-footer">
 
-                <button
-                    class="radio-email"
-                    id="email-link"
-                    type="button"
-                    aria-label="Email ÚGJÜ RADIO"
-                    title="Email ÚGJÜ RADIO"
-                >
-                    <svg
-                        viewBox="0 0 24 18"
-                        aria-hidden="true"
-                    >
-                        <rect
-                            x="1"
-                            y="1"
-                            width="22"
-                            height="16"
-                        ></rect>
+                <div class="manifesto-actions">
 
-                        <path d="M2 2L12 10L22 2"></path>
-                    </svg>
-                </button>
+                    <button
+                        class="radio-email"
+                        id="email-link"
+                        type="button"
+                        aria-label="Email ÚGJÜ RADIO"
+                        title="Email ÚGJÜ RADIO"
+                    >
+                        <svg
+                            viewBox="0 0 24 18"
+                            aria-hidden="true"
+                        >
+                            <rect
+                                x="1"
+                                y="1"
+                                width="22"
+                                height="16"
+                            ></rect>
+
+                            <path d="M2 2L12 10L22 2"></path>
+                        </svg>
+                    </button>
+
+                    <button
+                        class="manifesto-notify"
+                        id="notify-link"
+                        type="button"
+                        aria-label="Notify me"
+                        title="Notify me"
+                    >
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                            ></path>
+
+                            <path d="M10 21h4"></path>
+                        </svg>
+                    </button>
+
+                </div>
 
                 <a
                     id="back-link"
@@ -104,7 +170,7 @@
 
     </main>
 
-    <script src="manifiesto.js?v=20260727-15"></script>
+    <script src="manifiesto.js?v=20260728-17"></script>
 
 </body>
 
