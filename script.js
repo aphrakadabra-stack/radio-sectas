@@ -77,6 +77,43 @@ function medirTexto(elemento) {
 }
 
 
+function centrarTextoMedido(elemento) {
+
+    if (!esNavegadorInstagram || elemento !== titulo) {
+        return;
+    }
+
+    elemento.style.transform = "";
+
+    requestAnimationFrame(() => {
+
+        const cajaElemento =
+            elemento.getBoundingClientRect();
+
+        const rango = document.createRange();
+
+        rango.selectNodeContents(elemento);
+
+        const cajaTexto =
+            rango.getBoundingClientRect();
+
+        const centroElemento =
+            cajaElemento.left + cajaElemento.width / 2;
+
+        const centroTexto =
+            cajaTexto.left + cajaTexto.width / 2;
+
+        const correccion =
+            centroElemento - centroTexto;
+
+        elemento.style.transform =
+            `translateX(${correccion}px)`;
+
+    });
+
+}
+
+
 function ajustarEstado() {
 
     estado.style.fontSize = "";
@@ -128,6 +165,9 @@ function ajustarTextoAlAncho(elemento) {
 
 
     if (!anchoDisponible || !anchoReal || anchoReal <= anchoObjetivo) {
+
+        centrarTextoMedido(elemento);
+
         return;
     }
 
@@ -139,6 +179,8 @@ function ajustarTextoAlAncho(elemento) {
 
     elemento.style.fontSize =
         `${tamañoBase * anchoObjetivo / anchoReal}px`;
+
+    centrarTextoMedido(elemento);
 
 }
 
