@@ -10,6 +10,8 @@ const notaCasaLineaDos = document.querySelector(
 const notaCasa = document.querySelector(".house-note");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
+const esNavegadorInstagram =
+    /Instagram/i.test(navigator.userAgent);
 
 
 document.addEventListener(
@@ -111,10 +113,21 @@ function ajustarTextoAlAncho(elemento) {
 
 
     const anchoDisponible = elemento.clientWidth;
-    const anchoReal = elemento.scrollWidth;
+    const esTituloEnInstagram =
+        esNavegadorInstagram && elemento === titulo;
+
+    const anchoObjetivo =
+        esTituloEnInstagram
+            ? anchoDisponible * .94
+            : anchoDisponible;
+
+    const anchoReal =
+        esTituloEnInstagram
+            ? medirTexto(elemento)
+            : elemento.scrollWidth;
 
 
-    if (!anchoDisponible || anchoReal <= anchoDisponible) {
+    if (!anchoDisponible || !anchoReal || anchoReal <= anchoObjetivo) {
         return;
     }
 
@@ -125,7 +138,7 @@ function ajustarTextoAlAncho(elemento) {
 
 
     elemento.style.fontSize =
-        `${tamañoBase * anchoDisponible / anchoReal}px`;
+        `${tamañoBase * anchoObjetivo / anchoReal}px`;
 
 }
 
@@ -271,7 +284,28 @@ cargarIdioma(idioma)
     );
 
     document.fonts.ready.then(
-        ajustarInterfaz
+        () => {
+
+            ajustarInterfaz();
+
+            if (esNavegadorInstagram) {
+
+                window.addEventListener(
+                    "orientationchange",
+                    ajustarInterfaz
+                );
+
+                window.addEventListener(
+                    "pageshow",
+                    ajustarInterfaz
+                );
+
+                setTimeout(ajustarInterfaz,250);
+                setTimeout(ajustarInterfaz,1000);
+
+            }
+
+        }
     );
 
 });
