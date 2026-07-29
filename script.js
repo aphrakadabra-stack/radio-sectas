@@ -10,8 +10,15 @@ const notaCasaLineaDos = document.querySelector(
 const notaCasa = document.querySelector(".house-note");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
+const capaManifiesto = document.getElementById(
+    "manifesto-overlay"
+);
+const marcoManifiesto = document.getElementById(
+    "manifesto-frame"
+);
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
+let manifiestoCargado = false;
 
 
 if (esNavegadorInstagram) {
@@ -21,28 +28,89 @@ if (esNavegadorInstagram) {
 }
 
 
-document.addEventListener(
+function abrirManifiesto() {
+
+    if (!manifiestoCargado) {
+        marcoManifiesto.src = "manifiesto.html?inside=radio";
+        manifiestoCargado = true;
+    }
+
+    capaManifiesto.hidden = false;
+    capaManifiesto.setAttribute("aria-hidden","false");
+
+}
+
+
+function cerrarManifiesto() {
+
+    capaManifiesto.hidden = true;
+    capaManifiesto.setAttribute("aria-hidden","true");
+    enlaceManifiesto.focus();
+
+}
+
+
+enlaceManifiesto.addEventListener(
     "click",
     evento => {
 
-        if (!(evento.target instanceof Element)) {
-            return;
-        }
-
-        const enlace =
-            evento.target.closest(".manifesto-link");
-
-        if (!enlace) {
-            return;
-        }
-
         evento.preventDefault();
-        evento.stopImmediatePropagation();
+        abrirManifiesto();
 
-        window.location.assign(enlace.href);
+    }
+);
 
-    },
-    true
+
+marcoManifiesto.addEventListener(
+    "load",
+    () => {
+
+        try {
+
+            const enlaceVolver =
+                marcoManifiesto.contentDocument
+                    ?.getElementById("back-link");
+
+            if (!enlaceVolver) {
+                return;
+            }
+
+            enlaceVolver.addEventListener(
+                "click",
+                evento => {
+
+                    evento.preventDefault();
+                    cerrarManifiesto();
+
+                }
+            );
+
+        } catch (error) {
+
+            /*
+            En producción ambos documentos comparten origen.
+            Si un navegador impide el acceso, el enlace normal
+            del manifiesto sigue funcionando como respaldo.
+            */
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    evento => {
+
+        if (
+            evento.key === "Escape" &&
+            !capaManifiesto.hidden
+        ) {
+            cerrarManifiesto();
+        }
+
+    }
 );
 
 
@@ -356,7 +424,7 @@ function mostrarEstado(texto) {
 
 function cargarIdioma(codigo) {
 
-    return fetch(`lang/${codigo}.json?v=20260727-10`)
+    return fetch(`lang/${codigo}.json?v=20260728-11`)
 
     .then(respuesta => {
 
