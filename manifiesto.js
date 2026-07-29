@@ -170,7 +170,7 @@ document.addEventListener(
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260728-9`
+        `manifiestos/${codigo}.json?v=20260728-10`
     )
 
     .then(respuesta => {

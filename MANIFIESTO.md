@@ -4,7 +4,7 @@
 
 *La oreja que escucha la casa...*
 
-ÚGJÜ RADIO es una casa sonora con la puerta entreabierta.
+ÚGJÜ RADIO es una oreja dentro de una casa que escucha desde la puerta entreabierta.
 
 No tiene horarios.
 
@@ -59,3 +59,5 @@ Perseguimos la presencia.
 ÚGJÜ RADIO no está programada.
 
 Está habitada.
+
+ÚGJÜ RADIO es un proyecto dentro de ÚGJÜ SECTAS.
