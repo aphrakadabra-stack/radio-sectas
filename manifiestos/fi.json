@@ -10,6 +10,12 @@
   "notify_loading": "Ilmoitusjärjestelmä on vielä heräämässä. Yritä muutaman sekunnin kuluttua uudelleen.",
   "notify_unsupported": "Tämä selain ei tue ilmoituksia.",
   "notify_error": "Ilmoituksia ei voitu ottaa käyttöön. Tarkista selaimen ilmoitusluvat.",
+  "support": "TUE",
+  "support_title": "TUE ÚGJÜ RADIOTA",
+  "support_argentina": "ARGENTIINA — KOPIOI ALIAS",
+  "support_international": "MUUT MAAT — PAYPAL",
+  "support_copied": "ALIAS KOPIOITU:",
+  "support_close": "SULJE",
   "paragraphs": [
     "ÚGJÜ RADIO on korva talon sisällä, kuuntelemassa raollaan olevalta ovelta.",
     "Sillä ei ole aikataulua.",

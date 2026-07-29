@@ -10,6 +10,12 @@
   "notify_loading": "El sistema de avisos todavía está despertando. Probá nuevamente en unos segundos.",
   "notify_unsupported": "Este navegador no permite recibir avisos.",
   "notify_error": "No pudimos activar los avisos. Revisá los permisos de notificaciones del navegador.",
+  "support": "APOYAR",
+  "support_title": "APOYAR ÚGJÜ RADIO",
+  "support_argentina": "ARGENTINA — COPIAR ALIAS",
+  "support_international": "OTROS PAÍSES — PAYPAL",
+  "support_copied": "ALIAS COPIADO:",
+  "support_close": "CERRAR",
   "paragraphs": [
     "ÚGJÜ RADIO es una oreja dentro de una casa que escucha desde la puerta entreabierta.",
     "No tiene horarios.",

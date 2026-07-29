@@ -29,9 +29,46 @@ const enlaceEmail =
     document.getElementById("email-link");
 const botonAviso =
     document.getElementById("notify-link");
+const botonApoyo =
+    document.getElementById("support-link");
+const panelApoyo =
+    document.getElementById("support-panel");
+const tituloApoyo =
+    document.getElementById("support-title");
+const botonArgentina =
+    document.getElementById("support-argentina");
+const enlacePaypal =
+    document.getElementById("support-paypal");
+const estadoApoyo =
+    document.getElementById("support-status");
+const botonCerrarApoyo =
+    document.getElementById("support-close");
+const tarjetaApoyo =
+    panelApoyo.querySelector(".support-card");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let textosActuales;
+
+
+const configuracionesRegionales = (
+    navigator.languages || [navigator.language]
+)
+.filter(Boolean);
+
+
+const zonaHoraria = (
+    Intl.DateTimeFormat()
+        .resolvedOptions()
+        .timeZone || ""
+);
+
+
+const pareceEstarEnArgentina =
+    configuracionesRegionales.some(
+        codigo => /^es[-_]AR$/i.test(codigo)
+    ) ||
+    zonaHoraria.startsWith("America/Argentina/") ||
+    zonaHoraria === "America/Buenos_Aires";
 
 
 enlaceEmail.addEventListener("click", () => {
@@ -150,6 +187,123 @@ botonAviso.addEventListener(
 );
 
 
+function abrirApoyo() {
+
+    if (pareceEstarEnArgentina) {
+
+        tarjetaApoyo.insertBefore(
+            botonArgentina,
+            enlacePaypal
+        );
+
+    } else {
+
+        tarjetaApoyo.insertBefore(
+            enlacePaypal,
+            botonArgentina
+        );
+
+    }
+
+    panelApoyo.hidden = false;
+    estadoApoyo.textContent = "";
+
+    (
+        pareceEstarEnArgentina
+            ? botonArgentina
+            : enlacePaypal
+    ).focus();
+
+}
+
+
+function cerrarApoyo() {
+
+    panelApoyo.hidden = true;
+    estadoApoyo.textContent = "";
+    botonApoyo.focus();
+
+}
+
+
+async function copiarAlias() {
+
+    const alias = "muriscia.mp";
+
+    try {
+
+        await navigator.clipboard.writeText(alias);
+
+    } catch (error) {
+
+        const campo = document.createElement("textarea");
+
+        campo.value = alias;
+        campo.setAttribute("readonly","");
+        campo.style.position = "fixed";
+        campo.style.opacity = "0";
+
+        document.body.appendChild(campo);
+        campo.select();
+        document.execCommand("copy");
+        campo.remove();
+
+    }
+
+    estadoApoyo.textContent =
+        `${
+            textosActuales?.support_copied ||
+            "ALIAS COPIED:"
+        } ${alias}`;
+
+}
+
+
+botonApoyo.addEventListener(
+    "click",
+    abrirApoyo
+);
+
+
+botonCerrarApoyo.addEventListener(
+    "click",
+    cerrarApoyo
+);
+
+
+botonArgentina.addEventListener(
+    "click",
+    copiarAlias
+);
+
+
+panelApoyo.addEventListener(
+    "click",
+    evento => {
+
+        if (evento.target === panelApoyo) {
+            cerrarApoyo();
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    evento => {
+
+        if (
+            evento.key === "Escape" &&
+            !panelApoyo.hidden
+        ) {
+            cerrarApoyo();
+        }
+
+    }
+);
+
+
 document.addEventListener(
     "ugju-onesignal-ready",
     () => {
@@ -170,7 +324,7 @@ document.addEventListener(
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260728-10`
+        `manifiestos/${codigo}.json?v=20260729-1`
     )
 
     .then(respuesta => {
@@ -222,6 +376,21 @@ cargarTextos(idioma)
 
     botonAviso.title =
         textos.notify_label;
+
+    botonApoyo.textContent =
+        textos.support;
+
+    tituloApoyo.textContent =
+        textos.support_title;
+
+    botonArgentina.textContent =
+        textos.support_argentina;
+
+    enlacePaypal.textContent =
+        textos.support_international;
+
+    botonCerrarApoyo.textContent =
+        textos.support_close;
 
     actualizarAvisame();
 

@@ -10,6 +10,12 @@
   "notify_loading": "通知システムはまだ目覚めている途中です。数秒後にもう一度お試しください。",
   "notify_unsupported": "このブラウザは通知に対応していません。",
   "notify_error": "通知を有効にできませんでした。ブラウザの通知設定を確認してください。",
+  "support": "支援",
+  "support_title": "ÚGJÜ RADIOを支援",
+  "support_argentina": "アルゼンチン — エイリアスをコピー",
+  "support_international": "その他の国 — PAYPAL",
+  "support_copied": "エイリアスをコピーしました：",
+  "support_close": "閉じる",
   "paragraphs": [
     "ÚGJÜ RADIOは、半開きの扉から耳を澄ませている家の中の、一つの耳です。",
     "決まった時間割はありません。",

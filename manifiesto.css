@@ -64,6 +64,7 @@ body{
 
     background:#EA52F3;
     overflow:hidden;
+    position:relative;
 }
 
 
@@ -278,6 +279,7 @@ h1{
 
 
 .radio-email,
+.manifesto-support,
 #back-link{
     color:#111;
 
@@ -287,6 +289,22 @@ h1{
     line-height:1;
     text-decoration:none;
     text-transform:uppercase;
+}
+
+
+.manifesto-support{
+    height:16px;
+
+    display:inline-flex;
+    align-items:center;
+
+    padding:0;
+    border:0;
+
+    background:transparent;
+    color:#111;
+
+    cursor:pointer;
 }
 
 
@@ -385,10 +403,113 @@ h1{
 
 .radio-email:hover,
 .radio-email:focus-visible,
+.manifesto-support:hover,
+.manifesto-support:focus-visible,
 #back-link:hover,
 #back-link:focus-visible{
     text-decoration:underline;
     text-underline-offset:3px;
+}
+
+
+.support-panel{
+    position:absolute;
+    inset:0;
+    z-index:20;
+
+    display:grid;
+    place-items:center;
+
+    padding:18px;
+
+    background:rgba(234,82,243,.94);
+}
+
+
+.support-panel[hidden]{
+    display:none;
+}
+
+
+.support-card{
+    width:min(88%,430px);
+
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    gap:14px;
+
+    padding:clamp(18px,4vw,34px);
+
+    border:1px solid #111;
+    background:#EA52F3;
+
+    text-align:center;
+}
+
+
+.support-card h2{
+    font-size:clamp(1rem,2.4vw,1.5rem);
+    font-weight:700;
+    letter-spacing:.08em;
+    line-height:1.1;
+    text-transform:uppercase;
+}
+
+
+.support-option,
+.support-close{
+    color:#111;
+    font-family:inherit;
+    font-weight:700;
+    letter-spacing:.05em;
+    line-height:1.15;
+    text-align:center;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+
+
+.support-option{
+    width:100%;
+
+    padding:11px 10px 9px;
+
+    border:1px solid #111;
+    background:transparent;
+
+    font-size:clamp(.72rem,1.5vw,.88rem);
+    cursor:pointer;
+}
+
+
+.support-option:hover,
+.support-option:focus-visible{
+    background:#111;
+    color:#EA52F3;
+}
+
+
+.support-status{
+    min-height:1.2em;
+
+    font-size:clamp(.68rem,1.3vw,.8rem);
+    font-weight:700;
+    line-height:1.2;
+}
+
+
+.support-close{
+    align-self:center;
+
+    padding:2px 0;
+    border:0;
+    border-bottom:1px solid currentColor;
+
+    background:transparent;
+
+    font-size:clamp(.64rem,1.2vw,.76rem);
+    cursor:pointer;
 }
 
 
@@ -474,8 +595,26 @@ h1{
 
 
     .radio-email,
+    .manifesto-support,
     #back-link{
         font-size:.56rem;
+    }
+
+
+    .manifesto-actions{
+        gap:9px;
+    }
+
+
+    .support-panel{
+        padding:10px;
+    }
+
+
+    .support-card{
+        width:min(94%,390px);
+        gap:11px;
+        padding:18px 14px;
     }
 
 }

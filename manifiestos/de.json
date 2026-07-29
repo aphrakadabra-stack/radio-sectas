@@ -10,6 +10,12 @@
   "notify_loading": "Das Benachrichtigungssystem wacht noch auf. Versuche es in einigen Sekunden erneut.",
   "notify_unsupported": "Dieser Browser unterstützt keine Benachrichtigungen.",
   "notify_error": "Benachrichtigungen konnten nicht aktiviert werden. Prüfe die Benachrichtigungsberechtigungen des Browsers.",
+  "support": "UNTERSTÜTZEN",
+  "support_title": "ÚGJÜ RADIO UNTERSTÜTZEN",
+  "support_argentina": "ARGENTINIEN — ALIAS KOPIEREN",
+  "support_international": "ANDERE LÄNDER — PAYPAL",
+  "support_copied": "ALIAS KOPIERT:",
+  "support_close": "SCHLIESSEN",
   "paragraphs": [
     "ÚGJÜ RADIO ist ein Ohr in einem Haus, das von der angelehnten Tür aus lauscht.",
     "Es hat keinen Zeitplan.",

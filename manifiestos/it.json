@@ -10,6 +10,12 @@
   "notify_loading": "Il sistema di avvisi si sta ancora svegliando. Riprova tra qualche secondo.",
   "notify_unsupported": "Questo browser non supporta gli avvisi.",
   "notify_error": "Non è stato possibile attivare gli avvisi. Controlla i permessi di notifica del browser.",
+  "support": "SOSTIENI",
+  "support_title": "SOSTIENI ÚGJÜ RADIO",
+  "support_argentina": "ARGENTINA — COPIA ALIAS",
+  "support_international": "ALTRI PAESI — PAYPAL",
+  "support_copied": "ALIAS COPIATO:",
+  "support_close": "CHIUDI",
   "paragraphs": [
     "ÚGJÜ RADIO è un orecchio dentro una casa che ascolta dalla porta socchiusa.",
     "Non ha orari.",

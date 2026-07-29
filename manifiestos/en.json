@@ -10,6 +10,12 @@
   "notify_loading": "The notification system is still waking up. Try again in a few seconds.",
   "notify_unsupported": "This browser does not support notifications.",
   "notify_error": "Notifications could not be enabled. Check your browser notification permissions.",
+  "support": "SUPPORT",
+  "support_title": "SUPPORT ÚGJÜ RADIO",
+  "support_argentina": "ARGENTINA — COPY ALIAS",
+  "support_international": "OTHER COUNTRIES — PAYPAL",
+  "support_copied": "ALIAS COPIED:",
+  "support_close": "CLOSE",
   "paragraphs": [
     "ÚGJÜ RADIO is an ear inside a house, listening from the half-open door.",
     "It has no schedule.",

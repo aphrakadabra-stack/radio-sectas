@@ -30,7 +30,7 @@
         href="https://ugjusectas.github.io/ugju-radio/manifiesto.html"
     >
 
-    <link rel="stylesheet" href="manifiesto.css?v=20260728-19">
+    <link rel="stylesheet" href="manifiesto.css?v=20260729-1">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -167,6 +167,14 @@
                         </svg>
                     </button>
 
+                    <button
+                        class="manifesto-support"
+                        id="support-link"
+                        type="button"
+                    >
+                        SUPPORT
+                    </button>
+
                 </div>
 
                 <a
@@ -178,11 +186,62 @@
 
             </footer>
 
+            <section
+                class="support-panel"
+                id="support-panel"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="support-title"
+                hidden
+            >
+
+                <div class="support-card">
+
+                    <h2 id="support-title">
+                        SUPPORT ÚGJÜ RADIO
+                    </h2>
+
+                    <button
+                        class="support-option"
+                        id="support-argentina"
+                        type="button"
+                    >
+                        ARGENTINA — COPY ALIAS
+                    </button>
+
+                    <a
+                        class="support-option"
+                        id="support-paypal"
+                        href="https://paypal.me/chromemoon"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        OTHER COUNTRIES — PAYPAL
+                    </a>
+
+                    <p
+                        class="support-status"
+                        id="support-status"
+                        aria-live="polite"
+                    ></p>
+
+                    <button
+                        class="support-close"
+                        id="support-close"
+                        type="button"
+                    >
+                        CLOSE
+                    </button>
+
+                </div>
+
+            </section>
+
         </article>
 
     </main>
 
-    <script src="manifiesto.js?v=20260728-17"></script>
+    <script src="manifiesto.js?v=20260729-2"></script>
 
 </body>
 

@@ -10,6 +10,12 @@
   "notify_loading": "Le système de notifications se réveille encore. Réessayez dans quelques secondes.",
   "notify_unsupported": "Ce navigateur ne prend pas en charge les notifications.",
   "notify_error": "Impossible d’activer les notifications. Vérifiez les autorisations de notification du navigateur.",
+  "support": "SOUTENIR",
+  "support_title": "SOUTENIR ÚGJÜ RADIO",
+  "support_argentina": "ARGENTINE — COPIER L’ALIAS",
+  "support_international": "AUTRES PAYS — PAYPAL",
+  "support_copied": "ALIAS COPIÉ :",
+  "support_close": "FERMER",
   "paragraphs": [
     "ÚGJÜ RADIO est une oreille dans une maison qui écoute depuis la porte entrouverte.",
     "Elle n'a pas d'horaires.",
