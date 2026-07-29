@@ -54,7 +54,7 @@ body{
     height:min(calc(100dvh - 32px),780px);
 
     display:grid;
-    grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-rows:auto minmax(0,1fr) auto auto;
 
     padding:
         var(--sheet-padding-block)
@@ -258,6 +258,20 @@ h1{
 .manifesto-column:last-child p:nth-last-child(-n+2){
     font-weight:700;
     text-transform:uppercase;
+}
+
+
+#manifesto-project{
+    width:100%;
+
+    margin-top:clamp(4px,.7vh,8px);
+
+    font-size:clamp(.56rem,.9vw,.7rem);
+    font-weight:400;
+    letter-spacing:.015em;
+    line-height:1;
+    text-align:center;
+    white-space:nowrap;
 }
 
 
@@ -588,6 +602,14 @@ h1{
     }
 
 
+    #manifesto-project{
+        margin-top:4px;
+
+        font-size:clamp(.45rem,1.8vw,.58rem);
+        letter-spacing:-.01em;
+    }
+
+
     .manifesto-footer{
         margin-top:5px;
         padding-top:5px;
@@ -654,6 +676,12 @@ h1{
 
     .manifesto-column p{
         margin-bottom:.2em;
+    }
+
+
+    #manifesto-project{
+        margin-top:3px;
+        font-size:clamp(.42rem,1.45vh,.54rem);
     }
 
 }

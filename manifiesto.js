@@ -324,7 +324,7 @@ document.addEventListener(
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260729-1`
+        `manifiestos/${codigo}.json?v=20260729-2`
     )
 
     .then(respuesta => {
@@ -368,6 +368,10 @@ cargarTextos(idioma)
     document.getElementById(
         "back-link"
     ).textContent = textos.back;
+
+    document.getElementById(
+        "manifesto-project"
+    ).textContent = textos.project;
 
     botonAviso.setAttribute(
         "aria-label",
