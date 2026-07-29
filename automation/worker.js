@@ -100,7 +100,8 @@ async function checkRadio(env) {
 
         }
 
-        await sendOneSignalNotification(env);
+        const notification =
+            await sendOneSignalNotification(env);
 
         await saveState(
             env,
@@ -113,7 +114,8 @@ async function checkRadio(env) {
 
         return {
             live: true,
-            notificationSent: true
+            notificationSent: true,
+            notificationId: notification.id
         };
 
     }
@@ -246,7 +248,7 @@ async function sendOneSignalNotification(env) {
                 app_id: ONESIGNAL_APP_ID,
                 target_channel: "push",
                 included_segments: [
-                    "Subscribed Users"
+                    "Total Subscriptions"
                 ],
                 headings: {
                     en: "ÚGJÜ RADIO"
@@ -280,6 +282,12 @@ async function sendOneSignalNotification(env) {
     if (!response.ok) {
         throw new Error(
             `OneSignal error: ${JSON.stringify(result)}`
+        );
+    }
+
+    if (!result.id) {
+        throw new Error(
+            `OneSignal did not create a message: ${JSON.stringify(result)}`
         );
     }
 
