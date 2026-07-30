@@ -418,13 +418,6 @@ function ajustarInterfaz() {
 function fijarAlturaDelReproductorCaster() {
 
     let iframeObservado = null;
-    let proporcionOriginal = null;
-    let aplicandoAltura = false;
-
-    const observadorDeTamaño =
-        new ResizeObserver(() => {
-            aplicarAlturaFija();
-        });
 
 
     function limpiarAlturaFija() {
@@ -437,16 +430,10 @@ function fijarAlturaDelReproductorCaster() {
             iframeObservado.style.removeProperty("height");
         }
 
-        proporcionOriginal = null;
-
     }
 
 
     function aplicarAlturaFija() {
-
-        if (aplicandoAltura) {
-            return;
-        }
 
         const esDispositivoTactilCompacto =
             window.matchMedia(
@@ -472,27 +459,31 @@ function fijarAlturaDelReproductorCaster() {
             reproductor.clientWidth ||
             cajaIframe.width;
 
-        if (!ancho || cajaIframe.height < 100) {
-            setTimeout(aplicarAlturaFija,100);
+        if (!ancho) {
             return;
         }
 
-        if (!proporcionOriginal) {
-            proporcionOriginal =
-                cajaIframe.height / ancho;
-        }
+        /*
+        Caster crea primero un iframe de 150 px y después intenta
+        redimensionarlo. En algunos navegadores móviles ese segundo
+        paso no ocurre. No usamos esa altura inicial: calculamos una
+        altura estable a partir del ancho real del reproductor.
+
+        En teléfonos estrechos el widget apila más elementos y
+        necesita una proporción algo mayor. En tabletas conserva
+        la proporción más horizontal del reproductor original.
+        */
+        const proporcion =
+            ancho < 400
+                ? .94
+                : .86;
 
         const alturaFija =
-            Math.round(
-                reproductor.clientWidth *
-                proporcionOriginal
-            );
+            Math.round(ancho * proporcion);
 
         if (!alturaFija) {
             return;
         }
-
-        aplicandoAltura = true;
 
         reproductor.style.height =
             `${alturaFija}px`;
@@ -509,10 +500,6 @@ function fijarAlturaDelReproductorCaster() {
             "important"
         );
 
-        requestAnimationFrame(() => {
-            aplicandoAltura = false;
-        });
-
     }
 
 
@@ -526,7 +513,6 @@ function fijarAlturaDelReproductorCaster() {
         }
 
         iframeObservado = iframe;
-        observadorDeTamaño.observe(iframe);
         aplicarAlturaFija();
 
     }
@@ -542,12 +528,7 @@ function fijarAlturaDelReproductorCaster() {
         reproductor,
         {
             childList:true,
-            subtree:true,
-            attributes:true,
-            attributeFilter:[
-                "height",
-                "style"
-            ]
+            subtree:true
         }
     );
 
