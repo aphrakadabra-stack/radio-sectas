@@ -11,6 +11,10 @@ const ONESIGNAL_APP_ID =
 
 const STATE_KEY = "ugju-radio-state";
 
+const LIVE_CONFIRMATIONS_REQUIRED = 2;
+
+const SLEEP_CONFIRMATIONS_REQUIRED = 5;
+
 
 export default {
 
@@ -76,13 +80,36 @@ async function checkRadio(env) {
 
         }
 
+        if (savedState.status === "falling-asleep") {
+
+            await saveState(
+                env,
+                {
+                    status: "live",
+                    confirmations:
+                        LIVE_CONFIRMATIONS_REQUIRED
+                }
+            );
+
+            return {
+                live: true,
+                notificationSent: false,
+                reason:
+                    "brief-interruption-recovered"
+            };
+
+        }
+
         const confirmations =
             savedState.status === "waking"
                 ? savedState.confirmations + 1
                 : 1;
 
 
-        if (confirmations < 2) {
+        if (
+            confirmations <
+            LIVE_CONFIRMATIONS_REQUIRED
+        ) {
 
             await saveState(
                 env,
@@ -107,7 +134,8 @@ async function checkRadio(env) {
             env,
             {
                 status: "live",
-                confirmations: 2,
+                confirmations:
+                    LIVE_CONFIRMATIONS_REQUIRED,
                 notifiedAt: new Date().toISOString()
             }
         );
@@ -131,6 +159,24 @@ async function checkRadio(env) {
 
     }
 
+    if (savedState.status === "waking") {
+
+        await saveState(
+            env,
+            {
+                status: "sleeping",
+                confirmations: 0
+            }
+        );
+
+        return {
+            live: false,
+            notificationSent: false,
+            reason: "false-start"
+        };
+
+    }
+
 
     const confirmations =
         savedState.status === "falling-asleep"
@@ -138,7 +184,10 @@ async function checkRadio(env) {
             : 1;
 
 
-    if (confirmations < 2) {
+    if (
+        confirmations <
+        SLEEP_CONFIRMATIONS_REQUIRED
+    ) {
 
         await saveState(
             env,
@@ -151,7 +200,10 @@ async function checkRadio(env) {
         return {
             live: false,
             notificationSent: false,
-            reason: "confirming-sleep"
+            reason: "confirming-sleep",
+            confirmations,
+            required:
+                SLEEP_CONFIRMATIONS_REQUIRED
         };
 
     }
@@ -167,7 +219,8 @@ async function checkRadio(env) {
 
     return {
         live: false,
-        notificationSent: false
+        notificationSent: false,
+        reason: "sleep-confirmed"
     };
 
 }
