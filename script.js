@@ -8,6 +8,8 @@ const notaCasaLineaDos = document.querySelector(
     ".house-note-line-two"
 );
 const notaCasa = document.querySelector(".house-note");
+const reproductor = document.querySelector(".player");
+const widgetCaster = document.querySelector(".cstrEmbed");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
 const capaManifiesto = document.getElementById(
@@ -411,6 +413,155 @@ function ajustarInterfaz() {
     );
 
 }
+
+
+function fijarAlturaDelReproductorCaster() {
+
+    let iframeObservado = null;
+    let proporcionOriginal = null;
+    let aplicandoAltura = false;
+
+    const observadorDeTamaño =
+        new ResizeObserver(() => {
+            aplicarAlturaFija();
+        });
+
+
+    function limpiarAlturaFija() {
+
+        reproductor.style.height = "";
+        reproductor.style.overflow = "";
+        widgetCaster.style.height = "";
+
+        if (iframeObservado) {
+            iframeObservado.style.removeProperty("height");
+        }
+
+        proporcionOriginal = null;
+
+    }
+
+
+    function aplicarAlturaFija() {
+
+        if (aplicandoAltura) {
+            return;
+        }
+
+        const esDispositivoTactilCompacto =
+            window.matchMedia(
+                "(max-width: 1024px) and (pointer: coarse)"
+            ).matches;
+
+        if (!esDispositivoTactilCompacto) {
+            limpiarAlturaFija();
+            return;
+        }
+
+        const iframe =
+            reproductor.querySelector("iframe");
+
+        if (!iframe) {
+            return;
+        }
+
+        const cajaIframe =
+            iframe.getBoundingClientRect();
+
+        const ancho =
+            reproductor.clientWidth ||
+            cajaIframe.width;
+
+        if (!ancho || cajaIframe.height < 100) {
+            setTimeout(aplicarAlturaFija,100);
+            return;
+        }
+
+        if (!proporcionOriginal) {
+            proporcionOriginal =
+                cajaIframe.height / ancho;
+        }
+
+        const alturaFija =
+            Math.round(
+                reproductor.clientWidth *
+                proporcionOriginal
+            );
+
+        if (!alturaFija) {
+            return;
+        }
+
+        aplicandoAltura = true;
+
+        reproductor.style.height =
+            `${alturaFija}px`;
+
+        reproductor.style.overflow =
+            "hidden";
+
+        widgetCaster.style.height =
+            `${alturaFija}px`;
+
+        iframe.style.setProperty(
+            "height",
+            `${alturaFija}px`,
+            "important"
+        );
+
+        requestAnimationFrame(() => {
+            aplicandoAltura = false;
+        });
+
+    }
+
+
+    function conectarIframe() {
+
+        const iframe =
+            reproductor.querySelector("iframe");
+
+        if (!iframe || iframe === iframeObservado) {
+            return;
+        }
+
+        iframeObservado = iframe;
+        observadorDeTamaño.observe(iframe);
+        aplicarAlturaFija();
+
+    }
+
+
+    const observadorDelWidget =
+        new MutationObserver(() => {
+            conectarIframe();
+            aplicarAlturaFija();
+        });
+
+    observadorDelWidget.observe(
+        reproductor,
+        {
+            childList:true,
+            subtree:true,
+            attributes:true,
+            attributeFilter:[
+                "height",
+                "style"
+            ]
+        }
+    );
+
+    conectarIframe();
+
+    window.addEventListener(
+        "resize",
+        aplicarAlturaFija
+    );
+
+}
+
+
+fijarAlturaDelReproductorCaster();
 
 
 function mostrarEstado(texto) {

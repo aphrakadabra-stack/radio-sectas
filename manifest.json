@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "id": "/ugju-radio/",
+  "name": "ÚGJÜ RADIO",
+  "short_name": "ÚGJÜ RADIO",
+  "description": "The ear that listens to the house...",
+  "lang": "en",
+  "start_url": "/ugju-radio/",
+  "scope": "/ugju-radio/",
+  "display": "standalone",
+  "background_color": "#EA52F3",
+  "theme_color": "#EA52F3",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

@@ -47,6 +47,12 @@ const tarjetaApoyo =
     panelApoyo.querySelector(".support-card");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
+const esDispositivoAppleMovil =
+    /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
+    (
+        navigator.platform === "MacIntel" &&
+        navigator.maxTouchPoints > 1
+    );
 let textosActuales;
 
 
@@ -84,13 +90,87 @@ enlaceEmail.addEventListener("click", () => {
 });
 
 
+function obtenerOneSignal() {
+
+    if (window.ugjuOneSignal) {
+        return window.ugjuOneSignal;
+    }
+
+    try {
+
+        if (
+            window.parent &&
+            window.parent !== window &&
+            window.parent.ugjuOneSignal
+        ) {
+            return window.parent.ugjuOneSignal;
+        }
+
+    } catch (error) {
+
+        /*
+        El manifiesto también funciona como página independiente.
+        Si no comparte origen con su contenedor, usa su propia
+        instancia de OneSignal.
+        */
+
+    }
+
+    return null;
+
+}
+
+
+function estaInstaladaComoAplicacion() {
+
+    return (
+        window.navigator.standalone === true ||
+        window.matchMedia(
+            "(display-mode: standalone)"
+        ).matches
+    );
+
+}
+
+
+function esperarOneSignal() {
+
+    const disponible = obtenerOneSignal();
+
+    if (disponible) {
+        return Promise.resolve(disponible);
+    }
+
+    return new Promise(resolve => {
+
+        const inicio = Date.now();
+
+        const intervalo = window.setInterval(() => {
+
+            const OneSignal = obtenerOneSignal();
+
+            if (
+                OneSignal ||
+                Date.now() - inicio >= 4000
+            ) {
+                window.clearInterval(intervalo);
+                resolve(OneSignal);
+            }
+
+        },100);
+
+    });
+
+}
+
+
 function actualizarAvisame() {
 
     if (!textosActuales) {
         return;
     }
 
-    const OneSignal = window.ugjuOneSignal;
+    const OneSignal = obtenerOneSignal();
 
     const estaSuscrito =
         Boolean(
@@ -134,7 +214,20 @@ async function solicitarAviso() {
 
     }
 
-    const OneSignal = window.ugjuOneSignal;
+    if (
+        esDispositivoAppleMovil &&
+        !estaInstaladaComoAplicacion()
+    ) {
+
+        window.alert(
+            textosActuales.notify_ios_install
+        );
+
+        return;
+
+    }
+
+    const OneSignal = await esperarOneSignal();
 
     if (!OneSignal) {
 
@@ -308,7 +401,7 @@ document.addEventListener(
     "ugju-onesignal-ready",
     () => {
 
-        const OneSignal = window.ugjuOneSignal;
+        const OneSignal = obtenerOneSignal();
 
         OneSignal.User.PushSubscription.addEventListener(
             "change",
@@ -321,10 +414,34 @@ document.addEventListener(
 );
 
 
+try {
+
+    if (
+        window.parent &&
+        window.parent !== window
+    ) {
+
+        window.parent.document.addEventListener(
+            "ugju-onesignal-ready",
+            actualizarAvisame
+        );
+
+    }
+
+} catch (error) {
+
+    /*
+    La página independiente no necesita escuchar
+    el documento que la abrió.
+    */
+
+}
+
+
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260729-2`
+        `manifiestos/${codigo}.json?v=20260730-1`
     )
 
     .then(respuesta => {

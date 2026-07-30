@@ -7,6 +7,7 @@
   "notify_label": "Avisarme cuando ÚGJÜ RADIO transmita",
   "notify_success": "Los avisos quedaron activados.",
   "notify_open_browser": "Para recibir avisos, abrí esta página en Chrome, Firefox, Safari o Edge.",
+  "notify_ios_install": "Para activar los avisos en iPhone o iPad: tocá Compartir y después Agregar a pantalla de inicio. Luego abrí ÚGJÜ RADIO desde el nuevo icono y tocá nuevamente la campana.",
   "notify_loading": "El sistema de avisos todavía está despertando. Probá nuevamente en unos segundos.",
   "notify_unsupported": "Este navegador no permite recibir avisos.",
   "notify_error": "No pudimos activar los avisos. Revisá los permisos de notificaciones del navegador.",

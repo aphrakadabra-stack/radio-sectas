@@ -7,6 +7,7 @@
   "notify_label": "ÚGJÜ RADIOの放送開始を通知する",
   "notify_success": "通知が有効になりました。",
   "notify_open_browser": "通知を受け取るには、このページをChrome、Firefox、Safari、またはEdgeで開いてください。",
+  "notify_ios_install": "iPhoneまたはiPadで通知を有効にするには、「共有」から「ホーム画面に追加」を選びます。追加されたアイコンからÚGJÜ RADIOを開き、もう一度ベルを押してください。",
   "notify_loading": "通知システムはまだ目覚めている途中です。数秒後にもう一度お試しください。",
   "notify_unsupported": "このブラウザは通知に対応していません。",
   "notify_error": "通知を有効にできませんでした。ブラウザの通知設定を確認してください。",
