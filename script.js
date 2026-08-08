@@ -9,6 +9,7 @@ const notaCasaLineaDos = document.querySelector(
 );
 const notaCasa = document.querySelector(".house-note");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
+const enlaceArchivo = document.querySelector(".archive-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
 const capaManifiesto = document.getElementById(
     "manifesto-overlay"
@@ -16,9 +17,16 @@ const capaManifiesto = document.getElementById(
 const marcoManifiesto = document.getElementById(
     "manifesto-frame"
 );
+const capaArchivo = document.getElementById("archive-overlay");
+const marcoArchivo = document.getElementById("archive-frame");
+const reproductorCaster = document.querySelector(".cstrEmbed");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let manifiestoCargado = false;
+let archivoCargado = false;
+let vivoDetenidoPorArchivo = false;
+
+const contenidoOriginalCaster = reproductorCaster.innerHTML;
 
 
 if (esNavegadorInstagram) {
@@ -50,12 +58,89 @@ function cerrarManifiesto() {
 }
 
 
+function abrirArchivo() {
+
+    if (!archivoCargado) {
+        marcoArchivo.src = "archivo.html?inside=radio";
+        archivoCargado = true;
+    }
+
+    capaArchivo.hidden = false;
+    capaArchivo.setAttribute("aria-hidden","false");
+
+}
+
+
+function restaurarCaster() {
+
+    if (!vivoDetenidoPorArchivo) {
+        return;
+    }
+
+    reproductorCaster.innerHTML = contenidoOriginalCaster;
+    reproductorCaster.setAttribute("data-rendered","false");
+    reproductorCaster.style.height = "";
+
+    if (typeof window.casterfmWidgetsRescan === "function") {
+        window.casterfmWidgetsRescan();
+    }
+
+    vivoDetenidoPorArchivo = false;
+
+}
+
+
+function detenerVivoParaArchivo() {
+
+    const marcoCaster = reproductorCaster.querySelector("iframe");
+
+    if (marcoCaster) {
+        marcoCaster.src = "about:blank";
+        marcoCaster.remove();
+    }
+
+    vivoDetenidoPorArchivo = true;
+
+}
+
+
+function cerrarArchivo() {
+
+    try {
+        marcoArchivo.contentDocument
+            ?.querySelectorAll("audio")
+            .forEach(audio => audio.pause());
+    } catch (error) {
+
+        /* La página independiente conserva sus propios controles. */
+
+    }
+
+    capaArchivo.hidden = true;
+    capaArchivo.setAttribute("aria-hidden","true");
+    restaurarCaster();
+    enlaceArchivo.focus();
+
+}
+
+
 enlaceManifiesto.addEventListener(
     "click",
     evento => {
 
         evento.preventDefault();
         abrirManifiesto();
+
+    }
+);
+
+
+enlaceArchivo.addEventListener(
+    "click",
+    evento => {
+
+        evento.preventDefault();
+        abrirArchivo();
 
     }
 );
@@ -99,6 +184,56 @@ marcoManifiesto.addEventListener(
 );
 
 
+marcoArchivo.addEventListener(
+    "load",
+    () => {
+
+        try {
+
+            const enlaceVolver =
+                marcoArchivo.contentDocument
+                    ?.getElementById("back-link");
+
+            if (!enlaceVolver) {
+                return;
+            }
+
+            enlaceVolver.addEventListener(
+                "click",
+                evento => {
+
+                    evento.preventDefault();
+                    cerrarArchivo();
+
+                }
+            );
+
+        } catch (error) {
+
+            /* La página independiente conserva su enlace normal. */
+
+        }
+
+    }
+);
+
+
+window.addEventListener(
+    "message",
+    evento => {
+
+        if (
+            evento.origin === window.location.origin &&
+            evento.source === marcoArchivo.contentWindow &&
+            evento.data?.type === "ugju-archive-play"
+        ) {
+            detenerVivoParaArchivo();
+        }
+
+    }
+);
+
+
 document.addEventListener(
     "keydown",
     evento => {
@@ -108,6 +243,14 @@ document.addEventListener(
             !capaManifiesto.hidden
         ) {
             cerrarManifiesto();
+            return;
+        }
+
+        if (
+            evento.key === "Escape" &&
+            !capaArchivo.hidden
+        ) {
+            cerrarArchivo();
         }
 
     }
@@ -424,7 +567,7 @@ function mostrarEstado(texto) {
 
 function cargarIdioma(codigo) {
 
-    return fetch(`lang/${codigo}.json?v=20260728-11`)
+    return fetch(`lang/${codigo}.json?v=20260808-1`)
 
     .then(respuesta => {
 
@@ -463,6 +606,9 @@ cargarIdioma(idioma)
 
     enlaceManifiesto.textContent =
         textos.manifesto;
+
+    enlaceArchivo.textContent =
+        textos.archive;
 
     enlaceLinktree.setAttribute(
         "aria-label",
