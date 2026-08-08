@@ -35,24 +35,85 @@ body{
     grid-template-columns:auto 1fr;
     grid-template-rows:auto auto;
     column-gap:clamp(14px,2.5vw,34px);
-    align-items:end;
+    align-items:center;
     padding-bottom:clamp(8px,1.2vh,14px);
     border-bottom:1px solid #111;
 }
 
 .radio-name{
+    position:relative;
+
+    grid-column:1;
     grid-row:1 / span 2;
+
     width:clamp(74px,8vw,104px);
     aspect-ratio:1;
-    display:grid;
-    place-items:center;
-    padding:10px;
-    border:3px double #A51F18;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:.7em .62em;
+
+    border:3px solid #A51F18;
+    border-radius:3% 7% 4% 6%;
+
     color:#A51F18;
+
+    font-size:clamp(.72rem,1.3vw,.95rem);
     font-weight:700;
-    line-height:.9;
-    text-align:center;
-    transform:rotate(-3deg);
+    line-height:.88;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(165,31,24,.55),
+        1px 0 0 rgba(165,31,24,.42),
+        -1px 1px 0 rgba(165,31,24,.24);
+
+    text-shadow:
+        .35px 0 #A51F18,
+        -.25px .3px rgba(165,31,24,.7);
+
+    transform:rotate(-3.2deg);
+}
+
+.radio-name::before{
+    content:"";
+
+    position:absolute;
+    inset:-5px 2px 1px -4px;
+
+    border:1px solid rgba(165,31,24,.72);
+    border-radius:7% 3% 8% 2%;
+
+    transform:rotate(1.8deg);
+}
+
+.radio-name::after{
+    content:"";
+
+    position:absolute;
+    inset:5px;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(circle at 9% 14%,rgba(234,82,243,.75) 0 1px,transparent 1.6px),
+        radial-gradient(circle at 88% 22%,rgba(234,82,243,.55) 0 1.2px,transparent 1.8px),
+        radial-gradient(circle at 20% 82%,rgba(234,82,243,.5) 0 .9px,transparent 1.5px),
+        radial-gradient(circle at 72% 91%,rgba(234,82,243,.65) 0 1px,transparent 1.7px);
+
+    opacity:.9;
+}
+
+.radio-name-line{
+    display:flex;
+    justify-content:space-between;
+
+    width:100%;
+}
+
+.radio-name-line + .radio-name-line{
+    margin-top:.28em;
 }
 
 h1{
@@ -146,7 +207,12 @@ h1{
     .archive-page{padding:8px 4px}
     .archive-sheet{width:calc(100vw - 8px);height:calc(100dvh - 16px);padding:9px 8px}
     .archive-header{grid-template-columns:64px 1fr;column-gap:9px;padding-bottom:7px}
-    .radio-name{width:60px;border-width:2px;font-size:.68rem}
+    .radio-name{
+        width:60px;
+        padding:.58em .48em;
+        border-width:2px;
+        font-size:.62rem;
+    }
     h1{font-size:clamp(1.3rem,8vw,2.15rem)}
     #archive-subtitle{font-size:clamp(.58rem,2.25vw,.72rem)}
     .archive-entry{grid-template-columns:7ch minmax(0,1fr) auto;gap:7px;font-size:.66rem}
