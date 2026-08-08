@@ -29,6 +29,14 @@ const enlaceEmail =
     document.getElementById("email-link");
 const botonAviso =
     document.getElementById("notify-link");
+const panelInstalacionAvisos =
+    document.getElementById("notification-install-panel");
+const tituloInstalacionAvisos =
+    document.getElementById("notification-install-title");
+const textoInstalacionAvisos =
+    document.getElementById("notification-install-copy");
+const botonCerrarInstalacionAvisos =
+    document.getElementById("notification-install-close");
 const botonApoyo =
     document.getElementById("support-link");
 const panelApoyo =
@@ -133,6 +141,43 @@ function estaInstaladaComoAplicacion() {
 }
 
 
+function abrirInstruccionesDeInstalacion() {
+
+    panelInstalacionAvisos.hidden = false;
+
+    requestAnimationFrame(() => {
+        botonCerrarInstalacionAvisos.focus();
+    });
+
+}
+
+
+function cerrarInstruccionesDeInstalacion() {
+
+    panelInstalacionAvisos.hidden = true;
+    botonAviso.focus();
+
+}
+
+
+botonCerrarInstalacionAvisos.addEventListener(
+    "click",
+    cerrarInstruccionesDeInstalacion
+);
+
+
+panelInstalacionAvisos.addEventListener(
+    "click",
+    evento => {
+
+        if (evento.target === panelInstalacionAvisos) {
+            cerrarInstruccionesDeInstalacion();
+        }
+
+    }
+);
+
+
 function esperarOneSignal() {
 
     const disponible = obtenerOneSignal();
@@ -219,9 +264,7 @@ async function solicitarAviso() {
         !estaInstaladaComoAplicacion()
     ) {
 
-        window.alert(
-            textosActuales.notify_ios_install
-        );
+        abrirInstruccionesDeInstalacion();
 
         return;
 
@@ -388,6 +431,14 @@ document.addEventListener(
 
         if (
             evento.key === "Escape" &&
+            !panelInstalacionAvisos.hidden
+        ) {
+            cerrarInstruccionesDeInstalacion();
+            return;
+        }
+
+        if (
+            evento.key === "Escape" &&
             !panelApoyo.hidden
         ) {
             cerrarApoyo();
@@ -441,7 +492,7 @@ try {
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260730-1`
+        `manifiestos/${codigo}.json?v=20260807-1`
     )
 
     .then(respuesta => {
@@ -497,6 +548,15 @@ cargarTextos(idioma)
 
     botonAviso.title =
         textos.notify_label;
+
+    tituloInstalacionAvisos.textContent =
+        textos.notify_ios_title;
+
+    textoInstalacionAvisos.textContent =
+        textos.notify_ios_install;
+
+    botonCerrarInstalacionAvisos.textContent =
+        textos.support_close;
 
     botonApoyo.textContent =
         textos.support;
