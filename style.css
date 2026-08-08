@@ -176,35 +176,65 @@ h1{
 }
 
 
-.live-return{
+.archive-session{
     width:calc(100% - 16px);
-    min-height:42px;
 
     margin:0 auto;
-    padding:8px 12px;
+    padding:7px 10px 6px;
 
     border:1px solid #1a1a1a;
     background:#1a1a1a;
     color:#EA52F3;
 
+    text-align:left;
+}
+
+
+.archive-session[hidden],
+#archive-audio{
+    display:none;
+}
+
+
+.archive-session-now{
+    overflow:hidden;
+
+    font-size:clamp(.64rem,calc(var(--content-width) * .022),.82rem);
+    line-height:1.15;
+    letter-spacing:.055em;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+
+.archive-session-actions{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+
+    margin-top:6px;
+}
+
+
+.archive-session-actions button{
+    padding:0 0 2px;
+
+    border:0;
+    border-bottom:1px solid currentColor;
+    background:transparent;
+    color:inherit;
+
     font:500 clamp(.68rem,calc(var(--content-width) * .024),.88rem)/1.1 "Cormorant Garamond",serif;
-    letter-spacing:.18em;
+    letter-spacing:.1em;
     text-transform:uppercase;
 
     cursor:pointer;
 }
 
 
-.live-return[hidden],
-#archive-audio{
-    display:none;
-}
-
-
-.live-return:hover,
-.live-return:focus-visible{
-    background:transparent;
-    color:#1a1a1a;
+.archive-session-actions button:hover,
+.archive-session-actions button:focus-visible{
+    opacity:.62;
 }
 
 
@@ -275,8 +305,9 @@ h1{
 }
 
 .archive-link{
-    right:clamp(14px,2vw,28px);
-    left:auto;
+    top:calc(clamp(14px,2vh,24px) + 25px);
+    right:auto;
+    left:clamp(14px,2vw,28px);
 }
 
 

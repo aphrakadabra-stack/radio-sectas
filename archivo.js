@@ -4,14 +4,14 @@ const idioma = (navigator.languages || [navigator.language])
     .find(codigo => idiomasDisponibles.includes(codigo)) || "en";
 
 const textos = {
-    es:{title:"ARCHIVO",subtitle:"Emisiones guardadas en la casa",listen:"ESCUCHAR",pause:"PAUSA",back:"VOLVER A LA CASA",loading:"BUSCANDO EN EL ARCHIVO...",empty:"TODAVÍA NO HAY EMISIONES ARCHIVADAS",error:"NO SE PUDO REPRODUCIR EL ARCHIVO"},
-    en:{title:"ARCHIVE",subtitle:"Broadcasts kept in the house",listen:"LISTEN",pause:"PAUSE",back:"RETURN TO THE HOUSE",loading:"SEARCHING THE ARCHIVE...",empty:"THERE ARE NO ARCHIVED BROADCASTS YET",error:"THE ARCHIVE COULD NOT BE PLAYED"},
-    de:{title:"ARCHIV",subtitle:"Im Haus bewahrte Sendungen",listen:"ANHÖREN",pause:"PAUSE",back:"ZURÜCK ZUM HAUS",loading:"ARCHIV WIRD DURCHSUCHT...",empty:"NOCH KEINE ARCHIVIERTEN SENDUNGEN",error:"DAS ARCHIV KONNTE NICHT ABSPIELEN"},
-    fi:{title:"ARKISTO",subtitle:"Talossa säilytetyt lähetykset",listen:"KUUNTELE",pause:"TAUKO",back:"PALAA TALOON",loading:"ETSITÄÄN ARKISTOSTA...",empty:"ARKISTOITUJA LÄHETYKSIÄ EI VIELÄ OLE",error:"ARKISTOA EI VOITU TOISTAA"},
-    fr:{title:"ARCHIVES",subtitle:"Émissions conservées dans la maison",listen:"ÉCOUTER",pause:"PAUSE",back:"RETOUR À LA MAISON",loading:"RECHERCHE DANS LES ARCHIVES...",empty:"AUCUNE ÉMISSION ARCHIVÉE POUR LE MOMENT",error:"IMPOSSIBLE DE LIRE L’ARCHIVE"},
-    it:{title:"ARCHIVIO",subtitle:"Trasmissioni custodite nella casa",listen:"ASCOLTA",pause:"PAUSA",back:"TORNA ALLA CASA",loading:"RICERCA NELL’ARCHIVIO...",empty:"NON CI SONO ANCORA TRASMISSIONI ARCHIVIATE",error:"IMPOSSIBILE RIPRODURRE L’ARCHIVIO"},
-    ja:{title:"アーカイブ",subtitle:"家に保管された放送",listen:"聴く",pause:"一時停止",back:"家に戻る",loading:"アーカイブを検索中...",empty:"アーカイブされた放送はまだありません",error:"アーカイブを再生できませんでした"},
-    zh:{title:"档案",subtitle:"保存在屋中的广播",listen:"收听",pause:"暂停",back:"返回屋中",loading:"正在搜索档案...",empty:"目前还没有存档广播",error:"无法播放档案"}
+    es:{title:"ARCHIVO",subtitle:"Emisiones guardadas en la casa",listen:"ESCUCHAR",pause:"PAUSA",stop:"DETENER",back:"VOLVER A LA CASA",loading:"BUSCANDO EN EL ARCHIVO...",empty:"TODAVÍA NO HAY EMISIONES ARCHIVADAS",error:"NO SE PUDO REPRODUCIR EL ARCHIVO"},
+    en:{title:"ARCHIVE",subtitle:"Broadcasts kept in the house",listen:"LISTEN",pause:"PAUSE",stop:"STOP",back:"RETURN TO THE HOUSE",loading:"SEARCHING THE ARCHIVE...",empty:"THERE ARE NO ARCHIVED BROADCASTS YET",error:"THE ARCHIVE COULD NOT BE PLAYED"},
+    de:{title:"ARCHIV",subtitle:"Im Haus bewahrte Sendungen",listen:"ANHÖREN",pause:"PAUSE",stop:"STOPP",back:"ZURÜCK ZUM HAUS",loading:"ARCHIV WIRD DURCHSUCHT...",empty:"NOCH KEINE ARCHIVIERTEN SENDUNGEN",error:"DAS ARCHIV KONNTE NICHT ABSPIELEN"},
+    fi:{title:"ARKISTO",subtitle:"Talossa säilytetyt lähetykset",listen:"KUUNTELE",pause:"TAUKO",stop:"PYSÄYTÄ",back:"PALAA TALOON",loading:"ETSITÄÄN ARKISTOSTA...",empty:"ARKISTOITUJA LÄHETYKSIÄ EI VIELÄ OLE",error:"ARKISTOA EI VOITU TOISTAA"},
+    fr:{title:"ARCHIVES",subtitle:"Émissions conservées dans la maison",listen:"ÉCOUTER",pause:"PAUSE",stop:"ARRÊTER",back:"RETOUR À LA MAISON",loading:"RECHERCHE DANS LES ARCHIVES...",empty:"AUCUNE ÉMISSION ARCHIVÉE POUR LE MOMENT",error:"IMPOSSIBLE DE LIRE L’ARCHIVE"},
+    it:{title:"ARCHIVIO",subtitle:"Trasmissioni custodite nella casa",listen:"ASCOLTA",pause:"PAUSA",stop:"FERMA",back:"TORNA ALLA CASA",loading:"RICERCA NELL’ARCHIVIO...",empty:"NON CI SONO ANCORA TRASMISSIONI ARCHIVIATE",error:"IMPOSSIBILE RIPRODURRE L’ARCHIVIO"},
+    ja:{title:"アーカイブ",subtitle:"家に保管された放送",listen:"聴く",pause:"一時停止",stop:"停止",back:"家に戻る",loading:"アーカイブを検索中...",empty:"アーカイブされた放送はまだありません",error:"アーカイブを再生できませんでした"},
+    zh:{title:"档案",subtitle:"保存在屋中的广播",listen:"收听",pause:"暂停",stop:"停止",back:"返回屋中",loading:"正在搜索档案...",empty:"目前还没有存档广播",error:"无法播放档案"}
 };
 
 const copia = textos[idioma];
@@ -68,6 +68,15 @@ function actualizarControles() {
                 "aria-pressed",
                 String(estaActivo)
             );
+
+            const detener = control.parentElement
+                ?.querySelector(".archive-stop");
+
+            if (detener) {
+                detener.hidden =
+                    control.dataset.identifier !==
+                    estadoReproduccion.identifier;
+            }
         });
 }
 
@@ -81,6 +90,8 @@ function renderizarCatalogo(entradas) {
         const titulo = document.createElement("span");
         const duracion = document.createElement("span");
         const control = document.createElement("button");
+        const detener = document.createElement("button");
+        const controles = document.createElement("div");
 
         item.className = "archive-entry";
         fecha.dateTime = entrada.date;
@@ -99,7 +110,16 @@ function renderizarCatalogo(entradas) {
             () => alternarEntrada(entrada)
         );
 
-        item.append(fecha,titulo,duracion,control);
+        detener.className = "archive-stop";
+        detener.type = "button";
+        detener.hidden = true;
+        detener.textContent = copia.stop;
+        detener.addEventListener("click",detenerArchivo);
+
+        controles.className = "archive-controls";
+        controles.append(control,detener);
+
+        item.append(fecha,titulo,duracion,controles);
         lista.appendChild(item);
     });
 
@@ -158,6 +178,36 @@ async function reproducirIndependiente(entrada) {
     }
 
     await audioIndependiente.play();
+}
+
+
+function detenerIndependiente() {
+    if (!audioIndependiente) {
+        return;
+    }
+
+    audioIndependiente.pause();
+    audioIndependiente.removeAttribute("src");
+    audioIndependiente.load();
+    audioIndependiente.dataset.identifier = "";
+
+    if ("mediaSession" in navigator) {
+        navigator.mediaSession.metadata = null;
+    }
+
+    informarSesionIndependiente();
+}
+
+
+function detenerArchivo() {
+    if (estaDentroDeRadio) {
+        window.parent.postMessage(
+            {type:"ugju-archive-stop"},
+            window.location.origin
+        );
+    } else {
+        detenerIndependiente();
+    }
 }
 
 

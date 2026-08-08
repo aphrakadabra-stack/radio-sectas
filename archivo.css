@@ -99,7 +99,24 @@ h1{
     cursor:pointer;
 }
 
-.archive-control:hover,.archive-control:focus-visible{opacity:.62}
+.archive-controls{
+    display:flex;
+    justify-content:flex-end;
+    gap:clamp(7px,1.4vw,14px);
+}
+
+.archive-stop{
+    padding:0 0 2px;
+    border:0;
+    border-bottom:1px solid currentColor;
+    background:transparent;
+    color:#111;
+    font:700 inherit;
+    cursor:pointer;
+}
+
+.archive-stop[hidden]{display:none}
+.archive-control:hover,.archive-control:focus-visible,.archive-stop:hover,.archive-stop:focus-visible{opacity:.62}
 .archive-entry audio{display:none}
 
 .archive-status{

@@ -26,5 +26,9 @@ en el navegador. En una primera visita sin conexión utiliza
 - Pulsar ESCUCHAR detiene el vivo y reproduce la emisión elegida.
 - El archivo sigue sonando al volver a la casa, cambiar de aplicación o bloquear
   la pantalla, según las capacidades del sistema operativo y el navegador.
+- Al volver a la casa se muestra el título del archivo activo y un control para
+  pausarlo o reanudarlo.
+- DETENER descarta por completo el archivo actual. Si se elige otra emisión, la
+  anterior se detiene y es reemplazada; nunca quedan dos archivos activos.
 - VOLVER A LA RADIO EN VIVO detiene el archivo y restaura el reproductor Caster
   para que el oyente lo inicie manualmente.

@@ -20,7 +20,11 @@ const marcoManifiesto = document.getElementById(
 const capaArchivo = document.getElementById("archive-overlay");
 const marcoArchivo = document.getElementById("archive-frame");
 const reproductorCaster = document.querySelector(".cstrEmbed");
+const panelArchivo = document.getElementById("archive-session");
 const botonVolverAlVivo = document.getElementById("live-return");
+const botonPausaArchivo = document.getElementById("archive-session-toggle");
+const etiquetaSesionArchivo = document.getElementById("archive-session-label");
+const tituloSesionArchivo = document.getElementById("archive-session-title");
 const audioArchivo = document.getElementById("archive-audio");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
@@ -84,7 +88,7 @@ function restaurarCaster() {
     reproductorCaster.setAttribute("data-rendered","false");
     reproductorCaster.style.height = "";
     reproductorCaster.hidden = false;
-    botonVolverAlVivo.hidden = true;
+    panelArchivo.hidden = true;
 
     if (typeof window.casterfmWidgetsRescan === "function") {
         window.casterfmWidgetsRescan();
@@ -106,7 +110,24 @@ function detenerVivoParaArchivo() {
 
     vivoDetenidoPorArchivo = true;
     reproductorCaster.hidden = true;
-    botonVolverAlVivo.hidden = false;
+    panelArchivo.hidden = false;
+
+}
+
+
+function actualizarPanelArchivo() {
+
+    if (!entradaArchivoActual) {
+        panelArchivo.hidden = true;
+        tituloSesionArchivo.textContent = "";
+        return;
+    }
+
+    panelArchivo.hidden = false;
+    tituloSesionArchivo.textContent = entradaArchivoActual.title;
+    botonPausaArchivo.textContent = audioArchivo.paused
+        ? botonPausaArchivo.dataset.resume
+        : botonPausaArchivo.dataset.pause;
 
 }
 
@@ -128,6 +149,8 @@ function informarEstadoArchivo() {
         },
         window.location.origin
     );
+
+    actualizarPanelArchivo();
 
     if ("mediaSession" in navigator && entradaArchivoActual) {
         navigator.mediaSession.playbackState =
@@ -222,6 +245,21 @@ function volverAlVivo() {
     actualizarSesionMultimedia();
     informarEstadoArchivo();
     restaurarCaster();
+
+}
+
+
+function alternarPausaArchivo() {
+
+    if (!entradaArchivoActual) {
+        return;
+    }
+
+    if (audioArchivo.paused) {
+        audioArchivo.play().catch(informarEstadoArchivo);
+    } else {
+        audioArchivo.pause();
+    }
 
 }
 
@@ -349,11 +387,20 @@ window.addEventListener(
                 });
         }
 
+        if (
+            evento.origin === window.location.origin &&
+            evento.source === marcoArchivo.contentWindow &&
+            evento.data?.type === "ugju-archive-stop"
+        ) {
+            volverAlVivo();
+        }
+
     }
 );
 
 
 botonVolverAlVivo.addEventListener("click",volverAlVivo);
+botonPausaArchivo.addEventListener("click",alternarPausaArchivo);
 
 
 ["play","pause","ended","loadedmetadata","timeupdate"]
@@ -751,7 +798,7 @@ function mostrarEstado(texto) {
 
 function cargarIdioma(codigo) {
 
-    return fetch(`lang/${codigo}.json?v=20260808-2`)
+    return fetch(`lang/${codigo}.json?v=20260808-3`)
 
     .then(respuesta => {
 
@@ -796,6 +843,17 @@ cargarIdioma(idioma)
 
     botonVolverAlVivo.textContent =
         textos.live_return;
+
+    etiquetaSesionArchivo.textContent =
+        textos.archive_playing;
+
+    botonPausaArchivo.dataset.pause =
+        textos.archive_pause;
+
+    botonPausaArchivo.dataset.resume =
+        textos.archive_resume;
+
+    actualizarPanelArchivo();
 
     enlaceLinktree.setAttribute(
         "aria-label",

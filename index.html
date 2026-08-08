@@ -99,7 +99,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=20260808-2">
+    <link rel="stylesheet" href="style.css?v=20260808-3">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -181,14 +181,34 @@
                 <a href="https://www.caster.fm">Radio Server Hosting</a>
             </div>
 
-            <button
-                class="live-return"
-                id="live-return"
-                type="button"
+            <section
+                class="archive-session"
+                id="archive-session"
+                aria-live="polite"
                 hidden
             >
-                RETURN TO LIVE RADIO
-            </button>
+                <p class="archive-session-now">
+                    <span id="archive-session-label">ARCHIVE</span>
+                    —
+                    <span id="archive-session-title"></span>
+                </p>
+
+                <div class="archive-session-actions">
+                    <button
+                        id="archive-session-toggle"
+                        type="button"
+                    >
+                        PAUSE
+                    </button>
+
+                    <button
+                        id="live-return"
+                        type="button"
+                    >
+                        RETURN TO LIVE RADIO
+                    </button>
+                </div>
+            </section>
 
             <audio
                 id="archive-audio"
@@ -269,7 +289,7 @@
         ></iframe>
     </section>
 
-    <script src="script.js?v=20260808-2"></script>
+    <script src="script.js?v=20260808-3"></script>
     <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
 
 </body>
