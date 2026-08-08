@@ -20,11 +20,14 @@ const marcoManifiesto = document.getElementById(
 const capaArchivo = document.getElementById("archive-overlay");
 const marcoArchivo = document.getElementById("archive-frame");
 const reproductorCaster = document.querySelector(".cstrEmbed");
+const botonVolverAlVivo = document.getElementById("live-return");
+const audioArchivo = document.getElementById("archive-audio");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let manifiestoCargado = false;
 let archivoCargado = false;
 let vivoDetenidoPorArchivo = false;
+let entradaArchivoActual = null;
 
 const contenidoOriginalCaster = reproductorCaster.innerHTML;
 
@@ -80,6 +83,8 @@ function restaurarCaster() {
     reproductorCaster.innerHTML = contenidoOriginalCaster;
     reproductorCaster.setAttribute("data-rendered","false");
     reproductorCaster.style.height = "";
+    reproductorCaster.hidden = false;
+    botonVolverAlVivo.hidden = true;
 
     if (typeof window.casterfmWidgetsRescan === "function") {
         window.casterfmWidgetsRescan();
@@ -100,25 +105,131 @@ function detenerVivoParaArchivo() {
     }
 
     vivoDetenidoPorArchivo = true;
+    reproductorCaster.hidden = true;
+    botonVolverAlVivo.hidden = false;
+
+}
+
+
+function informarEstadoArchivo() {
+
+    if (!marcoArchivo.contentWindow) {
+        return;
+    }
+
+    marcoArchivo.contentWindow.postMessage(
+        {
+            type: "ugju-archive-state",
+            identifier: entradaArchivoActual?.identifier || null,
+            paused: audioArchivo.paused,
+            currentTime: audioArchivo.currentTime || 0,
+            duration: audioArchivo.duration ||
+                entradaArchivoActual?.duration || 0
+        },
+        window.location.origin
+    );
+
+    if ("mediaSession" in navigator && entradaArchivoActual) {
+        navigator.mediaSession.playbackState =
+            audioArchivo.paused ? "paused" : "playing";
+
+        if (
+            Number.isFinite(audioArchivo.duration) &&
+            audioArchivo.duration > 0 &&
+            typeof navigator.mediaSession.setPositionState === "function"
+        ) {
+            navigator.mediaSession.setPositionState({
+                duration: audioArchivo.duration,
+                playbackRate: audioArchivo.playbackRate,
+                position: Math.min(
+                    audioArchivo.currentTime,
+                    audioArchivo.duration
+                )
+            });
+        }
+    }
+
+}
+
+
+function actualizarSesionMultimedia() {
+
+    if (
+        !("mediaSession" in navigator) ||
+        typeof MediaMetadata !== "function"
+    ) {
+        return;
+    }
+
+    if (!entradaArchivoActual) {
+        navigator.mediaSession.metadata = null;
+        return;
+    }
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+        title: entradaArchivoActual.title,
+        artist: "ÚGJÜ RADIO",
+        album: "ARCHIVO",
+        artwork: [
+            {
+                src: new URL(
+                    "images/icon-512.png",
+                    window.location.href
+                ).href,
+                sizes: "512x512",
+                type: "image/png"
+            }
+        ]
+    });
+
+}
+
+
+async function reproducirEntradaArchivo(entrada) {
+
+    const esLaMisma =
+        entradaArchivoActual?.identifier === entrada.identifier;
+
+    if (esLaMisma && !audioArchivo.paused) {
+        audioArchivo.pause();
+        return;
+    }
+
+    detenerVivoParaArchivo();
+
+    if (!esLaMisma) {
+        entradaArchivoActual = entrada;
+        audioArchivo.src = entrada.audioUrl;
+        actualizarSesionMultimedia();
+    }
+
+    try {
+        await audioArchivo.play();
+    } catch (error) {
+        informarEstadoArchivo();
+        throw error;
+    }
+
+}
+
+
+function volverAlVivo() {
+
+    audioArchivo.pause();
+    audioArchivo.removeAttribute("src");
+    audioArchivo.load();
+    entradaArchivoActual = null;
+    actualizarSesionMultimedia();
+    informarEstadoArchivo();
+    restaurarCaster();
 
 }
 
 
 function cerrarArchivo() {
 
-    try {
-        marcoArchivo.contentDocument
-            ?.querySelectorAll("audio")
-            .forEach(audio => audio.pause());
-    } catch (error) {
-
-        /* La página independiente conserva sus propios controles. */
-
-    }
-
     capaArchivo.hidden = true;
     capaArchivo.setAttribute("aria-hidden","true");
-    restaurarCaster();
     enlaceArchivo.focus();
 
 }
@@ -208,6 +319,8 @@ marcoArchivo.addEventListener(
                 }
             );
 
+            informarEstadoArchivo();
+
         } catch (error) {
 
             /* La página independiente conserva su enlace normal. */
@@ -225,13 +338,84 @@ window.addEventListener(
         if (
             evento.origin === window.location.origin &&
             evento.source === marcoArchivo.contentWindow &&
-            evento.data?.type === "ugju-archive-play"
+            evento.data?.type === "ugju-archive-toggle"
         ) {
-            detenerVivoParaArchivo();
+            reproducirEntradaArchivo(evento.data.entry)
+                .catch(() => {
+                    marcoArchivo.contentWindow.postMessage(
+                        {type:"ugju-archive-error"},
+                        window.location.origin
+                    );
+                });
         }
 
     }
 );
+
+
+botonVolverAlVivo.addEventListener("click",volverAlVivo);
+
+
+["play","pause","ended","loadedmetadata","timeupdate"]
+.forEach(tipo => {
+    audioArchivo.addEventListener(tipo,informarEstadoArchivo);
+});
+
+
+if ("mediaSession" in navigator) {
+
+    const registrarAccionMultimedia = (accion,manejador) => {
+        try {
+            navigator.mediaSession.setActionHandler(accion,manejador);
+        } catch (error) {
+
+            /* Algunos navegadores implementan sólo parte de Media Session. */
+
+        }
+    };
+
+    registrarAccionMultimedia(
+        "play",
+        () => audioArchivo.play()
+    );
+
+    registrarAccionMultimedia(
+        "pause",
+        () => audioArchivo.pause()
+    );
+
+    registrarAccionMultimedia(
+        "seekbackward",
+        detalles => {
+            audioArchivo.currentTime = Math.max(
+                0,
+                audioArchivo.currentTime -
+                    (detalles.seekOffset || 10)
+            );
+        }
+    );
+
+    registrarAccionMultimedia(
+        "seekforward",
+        detalles => {
+            audioArchivo.currentTime = Math.min(
+                audioArchivo.duration || Infinity,
+                audioArchivo.currentTime +
+                    (detalles.seekOffset || 10)
+            );
+        }
+    );
+
+    registrarAccionMultimedia(
+        "seekto",
+        detalles => {
+            if (Number.isFinite(detalles.seekTime)) {
+                audioArchivo.currentTime = detalles.seekTime;
+            }
+        }
+    );
+
+}
 
 
 document.addEventListener(
@@ -609,6 +793,9 @@ cargarIdioma(idioma)
 
     enlaceArchivo.textContent =
         textos.archive;
+
+    botonVolverAlVivo.textContent =
+        textos.live_return;
 
     enlaceLinktree.setAttribute(
         "aria-label",

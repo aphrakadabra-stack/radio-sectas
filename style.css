@@ -176,6 +176,38 @@ h1{
 }
 
 
+.live-return{
+    width:calc(100% - 16px);
+    min-height:42px;
+
+    margin:0 auto;
+    padding:8px 12px;
+
+    border:1px solid #1a1a1a;
+    background:#1a1a1a;
+    color:#EA52F3;
+
+    font:500 clamp(.68rem,calc(var(--content-width) * .024),.88rem)/1.1 "Cormorant Garamond",serif;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+
+    cursor:pointer;
+}
+
+
+.live-return[hidden],
+#archive-audio{
+    display:none;
+}
+
+
+.live-return:hover,
+.live-return:focus-visible{
+    background:transparent;
+    color:#1a1a1a;
+}
+
+
 /* INVITACIÓN */
 
 .visitor-guide{
