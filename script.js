@@ -751,7 +751,7 @@ function mostrarEstado(texto) {
 
 function cargarIdioma(codigo) {
 
-    return fetch(`lang/${codigo}.json?v=20260808-1`)
+    return fetch(`lang/${codigo}.json?v=20260808-2`)
 
     .then(respuesta => {
 
