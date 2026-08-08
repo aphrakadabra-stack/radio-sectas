@@ -492,7 +492,7 @@ try {
 function cargarTextos(codigo) {
 
     return fetch(
-        `manifiestos/${codigo}.json?v=20260807-1`
+        `manifiestos/${codigo}.json?v=20260807-2`
     )
 
     .then(respuesta => {

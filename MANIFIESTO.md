@@ -12,7 +12,7 @@ A veces está habitada.
 
 A veces duerme.
 
-A veces el silencio también forma parte de la transmisión.
+A veces el silencio forma parte de la transmisión.
 
 Aquí la radio no transmite programas.
 
@@ -26,11 +26,11 @@ No queremos convertir la música en recomendaciones.
 
 No somos un servicio, una plataforma ni un algoritmo.
 
-Somos un estudio abierto.
+Somos una casa abierta.
 
 Un archivo vivo.
 
-Un lugar para las músicas que no encuentran un lugar estable.
+Una casa donde las músicas pueden encontrar morada.
 
 Creemos en los ensayos, los accidentes, las grabaciones imperfectas y las ideas que todavía están naciendo.
 
