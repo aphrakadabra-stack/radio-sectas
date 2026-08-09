@@ -173,7 +173,7 @@ async function reproducirIndependiente(entrada) {
             title: entrada.title,
             artist: "ÚGJÜ RADIO",
             album: copia.title,
-            artwork:[{src:"images/icon-512.png?v=20260808-2",sizes:"512x512",type:"image/png"}]
+            artwork:[{src:"images/icon-512.png?v=20260808-3",sizes:"512x512",type:"image/png"}]
         });
     }
 
