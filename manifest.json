@@ -12,13 +12,13 @@
   "theme_color": "#EA52F3",
   "icons": [
     {
-      "src": "images/icon-charcoal-192.png",
+      "src": "images/icon-charcoal-lowered-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "images/icon-charcoal-512.png",
+      "src": "images/icon-charcoal-lowered-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
