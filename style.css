@@ -432,7 +432,18 @@ h1{
 
     pointer-events:auto;
 
+    -webkit-tap-highlight-color:transparent;
+    outline:none;
+
     transform:translateY(-3px);
+}
+
+@media (hover:hover) and (pointer:fine){
+    .manifesto-link:focus-visible,
+    .archive-link:focus-visible{
+        outline:1px solid #1a1a1a;
+        outline-offset:4px;
+    }
 }
 
 .archive-link{

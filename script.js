@@ -74,11 +74,13 @@ function abrirManifiesto() {
 }
 
 
-function cerrarManifiesto() {
+function cerrarManifiesto(devolverFoco = false) {
 
     capaManifiesto.hidden = true;
     capaManifiesto.setAttribute("aria-hidden","true");
-    enlaceManifiesto.focus();
+    if (devolverFoco) {
+        enlaceManifiesto.focus({preventScroll:true});
+    }
 
 }
 
@@ -498,11 +500,13 @@ function alternarPausaArchivo() {
 }
 
 
-function cerrarArchivo() {
+function cerrarArchivo(devolverFoco = false) {
 
     capaArchivo.hidden = true;
     capaArchivo.setAttribute("aria-hidden","true");
-    enlaceArchivo.focus();
+    if (devolverFoco) {
+        enlaceArchivo.focus({preventScroll:true});
+    }
 
 }
 
@@ -512,6 +516,7 @@ enlaceManifiesto.addEventListener(
     evento => {
 
         evento.preventDefault();
+        enlaceManifiesto.blur();
         abrirManifiesto();
 
     }
@@ -523,6 +528,7 @@ enlaceArchivo.addEventListener(
     evento => {
 
         evento.preventDefault();
+        enlaceArchivo.blur();
         abrirArchivo();
 
     }
@@ -765,7 +771,7 @@ document.addEventListener(
             evento.key === "Escape" &&
             !capaManifiesto.hidden
         ) {
-            cerrarManifiesto();
+            cerrarManifiesto(true);
             return;
         }
 
@@ -773,7 +779,7 @@ document.addEventListener(
             evento.key === "Escape" &&
             !capaArchivo.hidden
         ) {
-            cerrarArchivo();
+            cerrarArchivo(true);
         }
 
     }
