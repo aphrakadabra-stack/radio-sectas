@@ -27,29 +27,12 @@ const etiquetaSesionArchivo = document.getElementById("archive-session-label");
 const tituloSesionArchivo = document.getElementById("archive-session-title");
 const pistaSesionArchivo = document.getElementById("archive-session-track");
 const audioArchivo = document.getElementById("archive-audio");
-const audioVivo = document.getElementById("live-audio");
-const controlesVivo = document.getElementById("live-controls");
-const botonVivo = document.getElementById("live-toggle");
-const iconoBotonVivo = document.getElementById("live-toggle-icon");
-const etiquetaBotonVivo = document.getElementById("live-toggle-label");
-const volumenVivo = document.getElementById("live-volume");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let manifiestoCargado = false;
 let archivoCargado = false;
 let vivoDetenidoPorArchivo = false;
 let entradaArchivoActual = null;
-let radioHabitada = false;
-let escuchaVivoIniciadaPorUsuario = false;
-let vivoIniciadoConExito = false;
-let temporizadorReconexionVivo = null;
-let temporizadorEsperaVivo = null;
-let intentoReconexionVivo = 0;
-
-const URL_VIVO =
-    "https://sapircast.caster.fm:15920/Ez2oz" +
-    "?token=ce4227e52e69e1347e59069a0cc977cd";
-const RETRASOS_RECONEXION_VIVO = [2000,4000,8000,15000,30000,60000];
 
 const contenidoOriginalCaster = reproductorCaster.innerHTML;
 
@@ -108,7 +91,6 @@ function restaurarCaster() {
     reproductorCaster.setAttribute("data-rendered","false");
     reproductorCaster.style.height = "";
     reproductorCaster.hidden = false;
-    controlesVivo.hidden = false;
     panelArchivo.hidden = true;
 
     if (typeof window.casterfmWidgetsRescan === "function") {
@@ -122,12 +104,6 @@ function restaurarCaster() {
 
 function detenerVivoParaArchivo() {
 
-    cancelarReconexionVivo(true);
-    audioVivo.pause();
-    escuchaVivoIniciadaPorUsuario = false;
-    vivoIniciadoConExito = false;
-    actualizarControlVivo();
-
     const marcoCaster = reproductorCaster.querySelector("iframe");
 
     if (marcoCaster) {
@@ -137,161 +113,7 @@ function detenerVivoParaArchivo() {
 
     vivoDetenidoPorArchivo = true;
     reproductorCaster.hidden = true;
-    controlesVivo.hidden = true;
     panelArchivo.hidden = false;
-
-}
-
-
-function actualizarControlVivo(reconectando = false) {
-
-    const reproduciendo = !audioVivo.paused && !audioVivo.ended;
-
-    botonVivo.setAttribute("aria-pressed",String(reproduciendo));
-    botonVivo.dataset.reconnecting = String(reconectando);
-    iconoBotonVivo.textContent = reproduciendo ? "Ⅱ" : "▶";
-    etiquetaBotonVivo.textContent = reconectando
-        ? "RECONNECTING"
-        : reproduciendo ? "PAUSE" : "PLAY";
-
-}
-
-
-function cancelarReconexionVivo(reiniciarContador = false) {
-
-    clearTimeout(temporizadorReconexionVivo);
-    clearTimeout(temporizadorEsperaVivo);
-    temporizadorReconexionVivo = null;
-    temporizadorEsperaVivo = null;
-
-    if (reiniciarContador) {
-        intentoReconexionVivo = 0;
-    }
-
-}
-
-
-function puedeReconectarVivo() {
-
-    return escuchaVivoIniciadaPorUsuario &&
-        vivoIniciadoConExito &&
-        radioHabitada &&
-        !vivoDetenidoPorArchivo &&
-        navigator.onLine;
-
-}
-
-
-async function iniciarVivo(esReconexion = false) {
-
-    if (!escuchaVivoIniciadaPorUsuario || vivoDetenidoPorArchivo) {
-        return;
-    }
-
-    cancelarReconexionVivo();
-
-    if (!audioVivo.src) {
-        audioVivo.src = URL_VIVO;
-    }
-
-    if (esReconexion) {
-        audioVivo.load();
-        actualizarControlVivo(true);
-    }
-
-    try {
-        await audioVivo.play();
-    } catch (error) {
-        if (vivoIniciadoConExito) {
-            programarReconexionVivo();
-        } else {
-            escuchaVivoIniciadaPorUsuario = false;
-            actualizarControlVivo();
-        }
-    }
-
-}
-
-
-function programarReconexionVivo() {
-
-    if (!puedeReconectarVivo() || temporizadorReconexionVivo) {
-        actualizarControlVivo();
-        return;
-    }
-
-    const indice = Math.min(
-        intentoReconexionVivo,
-        RETRASOS_RECONEXION_VIVO.length - 1
-    );
-    const retraso = RETRASOS_RECONEXION_VIVO[indice];
-
-    intentoReconexionVivo += 1;
-    actualizarControlVivo(true);
-
-    temporizadorReconexionVivo = setTimeout(() => {
-        temporizadorReconexionVivo = null;
-        iniciarVivo(true);
-    },retraso);
-
-}
-
-
-function vigilarEsperaVivo() {
-
-    clearTimeout(temporizadorEsperaVivo);
-
-    temporizadorEsperaVivo = setTimeout(() => {
-        temporizadorEsperaVivo = null;
-        programarReconexionVivo();
-    },10000);
-
-}
-
-
-function alternarVivo() {
-
-    if (!audioVivo.paused) {
-        detenerEscuchaVivo();
-        return;
-    }
-
-    escuchaVivoIniciadaPorUsuario = true;
-    intentoReconexionVivo = 0;
-    iniciarVivo();
-
-}
-
-
-function detenerEscuchaVivo() {
-
-    escuchaVivoIniciadaPorUsuario = false;
-    vivoIniciadoConExito = false;
-    cancelarReconexionVivo(true);
-    audioVivo.pause();
-    actualizarControlVivo();
-
-    if ("mediaSession" in navigator && !entradaArchivoActual) {
-        navigator.mediaSession.playbackState = "paused";
-    }
-
-}
-
-
-function actualizarEstadoRadioVivo(estaHabitada) {
-
-    const estabaHabitada = radioHabitada;
-    radioHabitada = estaHabitada;
-
-    if (!radioHabitada) {
-        cancelarReconexionVivo(true);
-        actualizarControlVivo();
-        return;
-    }
-
-    if (!estabaHabitada && escuchaVivoIniciadaPorUsuario) {
-        programarReconexionVivo();
-    }
 
 }
 
@@ -641,60 +463,7 @@ window.addEventListener(
 
 botonVolverAlVivo.addEventListener("click",volverAlVivo);
 botonPausaArchivo.addEventListener("click",alternarPausaArchivo);
-botonVivo.addEventListener("click",alternarVivo);
-volumenVivo.addEventListener("input",() => {
-    audioVivo.volume = Number(volumenVivo.value) / 100;
-});
 window.addEventListener("resize",ajustarDesplazamientoTituloArchivo);
-
-
-audioVivo.addEventListener("playing",() => {
-    vivoIniciadoConExito = true;
-    cancelarReconexionVivo(true);
-    actualizarControlVivo();
-
-    if (
-        "mediaSession" in navigator &&
-        typeof MediaMetadata === "function"
-    ) {
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: "ÚGJÜ RADIO",
-            artist: "ÚGJÜ SECTAS",
-            album: "LIVE",
-            artwork: [{
-                src: new URL(
-                    "images/icon-charcoal-lowered-512.png",
-                    window.location.href
-                ).href,
-                sizes: "512x512",
-                type: "image/png"
-            }]
-        });
-        navigator.mediaSession.playbackState = "playing";
-    }
-});
-
-audioVivo.addEventListener("pause",() => actualizarControlVivo());
-
-["error","stalled","abort","ended"].forEach(tipo => {
-    audioVivo.addEventListener(tipo,programarReconexionVivo);
-});
-
-audioVivo.addEventListener("waiting",vigilarEsperaVivo);
-
-audioVivo.addEventListener("canplay",() => {
-    clearTimeout(temporizadorEsperaVivo);
-    temporizadorEsperaVivo = null;
-});
-
-window.addEventListener("online",programarReconexionVivo);
-window.addEventListener("offline",() => cancelarReconexionVivo());
-
-document.addEventListener("visibilitychange",() => {
-    if (!document.hidden) {
-        programarReconexionVivo();
-    }
-});
 
 
 ["play","pause","ended","loadedmetadata","timeupdate"]
@@ -717,16 +486,12 @@ if ("mediaSession" in navigator) {
 
     registrarAccionMultimedia(
         "play",
-        () => entradaArchivoActual
-            ? audioArchivo.play()
-            : alternarVivo()
+        () => audioArchivo.play()
     );
 
     registrarAccionMultimedia(
         "pause",
-        () => entradaArchivoActual
-            ? audioArchivo.pause()
-            : detenerEscuchaVivo()
+        () => audioArchivo.pause()
     );
 
     registrarAccionMultimedia(
@@ -1175,12 +940,10 @@ cargarIdioma(idioma)
 
             if (fuente) {
 
-                actualizarEstadoRadioVivo(true);
                 mostrarEstado(textos.state_living);
 
             } else {
 
-                actualizarEstadoRadioVivo(false);
                 mostrarEstado(textos.state_sleeping);
 
             }
@@ -1189,7 +952,6 @@ cargarIdioma(idioma)
 
         .catch(() => {
 
-            actualizarEstadoRadioVivo(false);
             mostrarEstado(textos.state_sleeping);
 
         });
