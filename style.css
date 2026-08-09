@@ -207,6 +207,34 @@ h1{
 }
 
 
+.archive-session-track{
+    display:inline-block;
+    min-width:max-content;
+    will-change:transform;
+}
+
+
+.archive-session-track.is-scrolling{
+    animation:
+        archive-title-scroll
+        var(--archive-scroll-duration,12s)
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+@keyframes archive-title-scroll{
+    0%,15%{
+        transform:translateX(0);
+    }
+
+    85%,100%{
+        transform:translateX(var(--archive-scroll-distance,0));
+    }
+}
+
+
 .archive-session-actions{
     display:flex;
     justify-content:space-between;
@@ -243,26 +271,35 @@ h1{
 @media(min-width:701px){
 
     .archive-session{
-        padding:14px 17px 12px;
+        padding:9px 12px 8px;
     }
 
 
     .archive-session-now{
-        font-size:clamp(1.2rem,calc(var(--content-width) * .048),1.55rem);
+        font-size:clamp(.96rem,calc(var(--content-width) * .032),1.08rem);
         font-weight:500;
         line-height:1.16;
-        letter-spacing:.025em;
+        letter-spacing:.035em;
     }
 
 
     .archive-session-actions{
-        margin-top:11px;
+        margin-top:7px;
     }
 
 
     .archive-session-actions button{
-        font-size:clamp(1rem,calc(var(--content-width) * .034),1.18rem);
-        letter-spacing:.075em;
+        font-size:clamp(.8rem,calc(var(--content-width) * .027),.92rem);
+        letter-spacing:.09em;
+    }
+
+}
+
+
+@media(prefers-reduced-motion:reduce){
+
+    .archive-session-track.is-scrolling{
+        animation:none;
     }
 
 }

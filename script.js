@@ -25,6 +25,7 @@ const botonVolverAlVivo = document.getElementById("live-return");
 const botonPausaArchivo = document.getElementById("archive-session-toggle");
 const etiquetaSesionArchivo = document.getElementById("archive-session-label");
 const tituloSesionArchivo = document.getElementById("archive-session-title");
+const pistaSesionArchivo = document.getElementById("archive-session-track");
 const audioArchivo = document.getElementById("archive-audio");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
@@ -124,10 +125,46 @@ function actualizarPanelArchivo() {
     }
 
     panelArchivo.hidden = false;
-    tituloSesionArchivo.textContent = entradaArchivoActual.title;
+
+    if (tituloSesionArchivo.textContent !== entradaArchivoActual.title) {
+        tituloSesionArchivo.textContent = entradaArchivoActual.title;
+        requestAnimationFrame(ajustarDesplazamientoTituloArchivo);
+    }
+
     botonPausaArchivo.textContent = audioArchivo.paused
         ? botonPausaArchivo.dataset.resume
         : botonPausaArchivo.dataset.pause;
+
+}
+
+
+function ajustarDesplazamientoTituloArchivo() {
+
+    pistaSesionArchivo.classList.remove("is-scrolling");
+    pistaSesionArchivo.style.removeProperty("--archive-scroll-distance");
+    pistaSesionArchivo.style.removeProperty("--archive-scroll-duration");
+
+    requestAnimationFrame(() => {
+        const contenedor = pistaSesionArchivo.parentElement;
+        const distancia =
+            pistaSesionArchivo.scrollWidth - contenedor.clientWidth;
+
+        if (distancia <= 1) {
+            return;
+        }
+
+        pistaSesionArchivo.style.setProperty(
+            "--archive-scroll-distance",
+            `-${Math.ceil(distancia)}px`
+        );
+
+        pistaSesionArchivo.style.setProperty(
+            "--archive-scroll-duration",
+            `${Math.max(9,distancia / 24 + 4).toFixed(1)}s`
+        );
+
+        pistaSesionArchivo.classList.add("is-scrolling");
+    });
 
 }
 
@@ -401,6 +438,7 @@ window.addEventListener(
 
 botonVolverAlVivo.addEventListener("click",volverAlVivo);
 botonPausaArchivo.addEventListener("click",alternarPausaArchivo);
+window.addEventListener("resize",ajustarDesplazamientoTituloArchivo);
 
 
 ["play","pause","ended","loadedmetadata","timeupdate"]
