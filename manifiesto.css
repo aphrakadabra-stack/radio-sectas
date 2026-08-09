@@ -84,70 +84,23 @@ body{
 /* SELLO HANKO */
 
 .radio-name{
-    position:relative;
-
     grid-column:1;
     grid-row:1 / span 2;
-
     width:clamp(74px,8vw,104px);
+    height:auto;
     aspect-ratio:1;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    padding:.7em .62em;
-
-    border:3px solid #A51F18;
-    border-radius:3% 7% 4% 6%;
-
-    color:#A51F18;
-
-    font-size:clamp(.72rem,1.3vw,.95rem);
-    font-weight:700;
-    line-height:.88;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(165,31,24,.55),
-        1px 0 0 rgba(165,31,24,.42),
-        -1px 1px 0 rgba(165,31,24,.24);
-
-    text-shadow:
-        .35px 0 #A51F18,
-        -.25px .3px rgba(165,31,24,.7);
-
-    transform:rotate(-3.2deg);
+    display:block;
+    object-fit:cover;
 }
 
 
 .radio-name::before{
-    content:"";
-
-    position:absolute;
-    inset:-5px 2px 1px -4px;
-
-    border:1px solid rgba(165,31,24,.72);
-    border-radius:7% 3% 8% 2%;
-
-    transform:rotate(1.8deg);
+    content:none;
 }
 
 
 .radio-name::after{
-    content:"";
-
-    position:absolute;
-    inset:5px;
-
-    pointer-events:none;
-
-    background:
-        radial-gradient(circle at 9% 14%,rgba(234,82,243,.75) 0 1px,transparent 1.6px),
-        radial-gradient(circle at 88% 22%,rgba(234,82,243,.55) 0 1.2px,transparent 1.8px),
-        radial-gradient(circle at 20% 82%,rgba(234,82,243,.5) 0 .9px,transparent 1.5px),
-        radial-gradient(circle at 72% 91%,rgba(234,82,243,.65) 0 1px,transparent 1.7px);
-
-    opacity:.9;
+    content:none;
 }
 
 
@@ -632,12 +585,6 @@ h1{
 
     .radio-name{
         width:60px;
-
-        padding:.58em .48em;
-
-        border-width:2px;
-
-        font-size:.62rem;
     }
 
 
@@ -725,8 +672,6 @@ h1{
 
     .radio-name{
         width:52px;
-
-        font-size:.54rem;
     }
 
 

@@ -252,7 +252,7 @@ function actualizarSesionMultimedia() {
         artwork: [
             {
                 src: new URL(
-                    "images/icon-seal-512.png",
+                    "images/icon-official-512.png",
                     window.location.href
                 ).href,
                 sizes: "512x512",
