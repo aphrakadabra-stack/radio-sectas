@@ -99,7 +99,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=20260809-4">
+    <link rel="stylesheet" href="style.css?v=20260809-5">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -167,18 +167,29 @@
 
         <div class="player">
 
-            <div
-                data-type="newStreamPlayer"
-                data-publicToken="ce595496-3ed3-465e-b7fb-a67b577d9812"
-                data-theme="dark"
-                data-color="EA52F3"
-                data-channelId="a256cdde-27eb-43f9-b64e-857f519fd977"
-                data-rendered="false"
-                class="cstrEmbed"
-            >
-                <a href="https://www.caster.fm">Shoutcast Hosting</a>
-                <a href="https://www.caster.fm">Stream Hosting</a>
-                <a href="https://www.caster.fm">Radio Server Hosting</a>
+            <div class="live-controls" id="live-controls">
+                <label class="live-volume" for="live-volume">
+                    <span aria-hidden="true">−</span>
+                    <input
+                        id="live-volume"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="100"
+                        aria-label="Live radio volume"
+                    >
+                    <span aria-hidden="true">+</span>
+                </label>
+
+                <button
+                    class="live-toggle"
+                    id="live-toggle"
+                    type="button"
+                    aria-pressed="false"
+                >
+                    <span aria-hidden="true" id="live-toggle-icon">▶</span>
+                    <span id="live-toggle-label">PLAY</span>
+                </button>
             </div>
 
             <section
@@ -215,6 +226,12 @@
             <audio
                 id="archive-audio"
                 preload="metadata"
+                playsinline
+            ></audio>
+
+            <audio
+                id="live-audio"
+                preload="none"
                 playsinline
             ></audio>
 
@@ -291,8 +308,7 @@
         ></iframe>
     </section>
 
-    <script src="script.js?v=20260809-12"></script>
-    <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
+    <script src="script.js?v=20260809-13"></script>
 
 </body>
 

@@ -1,7 +1,5 @@
 const RADIO_STATUS_URL =
-    "https://sapircast.caster.fm:15920/admin/publicstats.json";
-
-const RADIO_MOUNT = "/Ez2oz";
+    "https://radio.free-shoutcast.com/api/get-station-info/91014";
 
 const RADIO_URL =
     "https://ugjusectas.github.io/ugju-radio/";
@@ -243,39 +241,13 @@ async function readRadioStatus() {
 
     if (!response.ok) {
         throw new Error(
-            `Caster returned ${response.status}`
+            `Free-ShoutCast returned ${response.status}`
         );
     }
 
     const data = await response.json();
 
-    return containsMount(data,RADIO_MOUNT);
-
-}
-
-
-function containsMount(value,mount) {
-
-    if (value === mount) {
-        return true;
-    }
-
-    if (!value || typeof value !== "object") {
-        return false;
-    }
-
-    if (
-        Object.prototype.hasOwnProperty.call(
-            value,
-            mount
-        )
-    ) {
-        return true;
-    }
-
-    return Object.values(value).some(
-        child => containsMount(child,mount)
-    );
+    return data?.error === false && data?.station?.isOnline === true;
 
 }
 

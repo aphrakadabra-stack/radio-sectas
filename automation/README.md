@@ -1,6 +1,6 @@
 # Automatización de ÚGJÜ RADIO
 
-Este Worker consulta el estado público de Caster cada minuto.
+Este Worker consulta el estado público de Free-ShoutCast cada minuto.
 
 - Exige dos comprobaciones positivas consecutivas antes de anunciar una transmisión.
 - Envía una sola notificación cuando la radio pasa de dormida a habitada.
