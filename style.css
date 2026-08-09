@@ -180,7 +180,7 @@ h1{
     width:calc(100% - 16px);
 
     margin:0 auto;
-    padding:7px 10px 6px;
+    padding:10px 13px 9px;
 
     border:1px solid #1a1a1a;
     background:#1a1a1a;
@@ -197,13 +197,16 @@ h1{
 
 
 .archive-session-now{
+    display:-webkit-box;
     overflow:hidden;
 
-    font-size:clamp(.64rem,calc(var(--content-width) * .022),.82rem);
-    line-height:1.15;
-    letter-spacing:.055em;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+    font-size:clamp(1rem,calc(var(--content-width) * .036),1.28rem);
+    font-weight:500;
+    line-height:1.18;
+    letter-spacing:.025em;
+
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
 }
 
 
@@ -212,7 +215,7 @@ h1{
     justify-content:space-between;
     gap:10px;
 
-    margin-top:6px;
+    margin-top:9px;
 }
 
 
@@ -224,7 +227,7 @@ h1{
     background:transparent;
     color:inherit;
 
-    font:500 clamp(.68rem,calc(var(--content-width) * .024),.88rem)/1.1 "Cormorant Garamond",serif;
+    font:500 clamp(.78rem,calc(var(--content-width) * .028),1rem)/1.1 "Cormorant Garamond",serif;
     letter-spacing:.1em;
     text-transform:uppercase;
 
