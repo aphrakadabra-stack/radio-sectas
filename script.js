@@ -126,14 +126,33 @@ function actualizarPanelArchivo() {
 
     panelArchivo.hidden = false;
 
-    if (tituloSesionArchivo.textContent !== entradaArchivoActual.title) {
-        tituloSesionArchivo.textContent = entradaArchivoActual.title;
+    const fechaYTitulo = `${formatearFechaArchivo(
+        entradaArchivoActual.date
+    )} — ${entradaArchivoActual.title}`;
+
+    if (tituloSesionArchivo.textContent !== fechaYTitulo) {
+        tituloSesionArchivo.textContent = fechaYTitulo;
         requestAnimationFrame(ajustarDesplazamientoTituloArchivo);
     }
 
     botonPausaArchivo.textContent = audioArchivo.paused
         ? botonPausaArchivo.dataset.resume
         : botonPausaArchivo.dataset.pause;
+
+}
+
+
+function formatearFechaArchivo(fecha) {
+
+    const partes = String(fecha || "")
+        .slice(0,10)
+        .split("-");
+
+    if (partes.length !== 3) {
+        return String(fecha || "");
+    }
+
+    return `${partes[2]}.${partes[1]}.${partes[0].slice(2)}`;
 
 }
 
