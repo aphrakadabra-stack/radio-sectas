@@ -99,7 +99,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=20260809-1">
+    <link rel="stylesheet" href="style.css?v=20260809-2">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -181,6 +181,31 @@
                 <a href="https://www.caster.fm">Radio Server Hosting</a>
             </div>
 
+            <div class="live-controls" id="live-controls">
+                <label class="live-volume" for="live-volume">
+                    <span aria-hidden="true">−</span>
+                    <input
+                        id="live-volume"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="100"
+                        aria-label="Live radio volume"
+                    >
+                    <span aria-hidden="true">+</span>
+                </label>
+
+                <button
+                    class="live-toggle"
+                    id="live-toggle"
+                    type="button"
+                    aria-pressed="false"
+                >
+                    <span aria-hidden="true" id="live-toggle-icon">▶</span>
+                    <span id="live-toggle-label">PLAY</span>
+                </button>
+            </div>
+
             <section
                 class="archive-session"
                 id="archive-session"
@@ -215,6 +240,12 @@
             <audio
                 id="archive-audio"
                 preload="metadata"
+                playsinline
+            ></audio>
+
+            <audio
+                id="live-audio"
+                preload="none"
                 playsinline
             ></audio>
 
@@ -291,7 +322,7 @@
         ></iframe>
     </section>
 
-    <script src="script.js?v=20260808-9"></script>
+    <script src="script.js?v=20260809-10"></script>
     <script src="https://cdn.cloud.caster.fm/widgets/embed.js"></script>
 
 </body>
