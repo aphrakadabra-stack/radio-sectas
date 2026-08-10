@@ -160,10 +160,22 @@ h1{
     align-items:center;
     background:#171717;
     display:flex;
-    justify-content:flex-end;
+    justify-content:space-between;
     min-height:44px;
     padding:4px;
     width:100%;
+}
+
+.live-status{
+    color:#b8b8b8;
+    font:700 .68rem/1 "Courier New",monospace;
+    letter-spacing:.12em;
+    padding-left:8px;
+    white-space:nowrap;
+}
+
+.live-status[data-live="true"]{
+    color:#EA52F3;
 }
 
 .live-toggle{
@@ -178,9 +190,10 @@ h1{
     gap:6px;
     justify-content:center;
     min-height:36px;
-    min-width:84px;
+    min-width:128px;
     padding:6px 11px;
     letter-spacing:.08em;
+    white-space:nowrap;
 }
 
 .live-toggle:focus-visible{

@@ -99,7 +99,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=20260809-8">
+    <link rel="stylesheet" href="style.css?v=20260809-9">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -168,6 +168,15 @@
         <div class="player">
 
             <div class="live-controls" id="live-controls">
+                <span
+                    class="live-status"
+                    id="live-status"
+                    data-live="false"
+                    aria-live="polite"
+                >
+                    OFF LINE
+                </span>
+
                 <button
                     class="live-toggle"
                     id="live-toggle"

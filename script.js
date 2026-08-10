@@ -28,6 +28,7 @@ const pistaSesionArchivo = document.getElementById("archive-session-track");
 const audioArchivo = document.getElementById("archive-audio");
 const audioVivo = document.getElementById("live-audio");
 const controlesVivo = document.getElementById("live-controls");
+const estadoVivo = document.getElementById("live-status");
 const botonVivo = document.getElementById("live-toggle");
 const iconoBotonVivo = document.getElementById("live-toggle-icon");
 const etiquetaBotonVivo = document.getElementById("live-toggle-label");
@@ -260,6 +261,8 @@ function actualizarEstadoRadioVivo(estaHabitada) {
 
     const estabaHabitada = radioHabitada;
     radioHabitada = estaHabitada;
+    estadoVivo.dataset.live = String(radioHabitada);
+    estadoVivo.textContent = radioHabitada ? "● ON AIR" : "OFF LINE";
 
     if (!radioHabitada) {
         cancelarReconexionVivo(true);
