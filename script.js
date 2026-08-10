@@ -103,6 +103,8 @@ function cerrarManifiesto(devolverFoco = false) {
 
 function cargarFotoVentana() {
 
+    ventanaCerrar.hidden = true;
+
     const fuente = ventanaFoto.dataset.src ||
         URL_FOTO_VENTANA_LOCAL;
     const version = ventanaFoto.dataset.version || Date.now();
@@ -178,12 +180,22 @@ async function actualizarFotoVentanaDesdeArchive() {
 
 function abrirVentana() {
 
-    cargarFotoVentana();
+    ventanaCerrar.hidden = true;
     ventanaCapa.hidden = false;
-    ventanaCerrar.focus({preventScroll:true});
+    cargarFotoVentana();
     actualizarFotoVentanaDesdeArchive();
 
 }
+
+
+ventanaFoto.addEventListener("load", () => {
+
+    if (ventanaCapa.hidden) return;
+
+    ventanaCerrar.hidden = false;
+    ventanaCerrar.focus({preventScroll:true});
+
+});
 
 
 actualizarFotoVentanaDesdeArchive();
@@ -192,6 +204,7 @@ actualizarFotoVentanaDesdeArchive();
 function cerrarVentana(devolverFoco = false) {
 
     ventanaCapa.hidden = true;
+    ventanaCerrar.hidden = true;
 
     if (devolverFoco) {
         ventanaDisparador.focus({preventScroll:true});
