@@ -163,7 +163,9 @@ h1{
 
     border:0;
     background:transparent;
+    contain:paint;
     cursor:pointer;
+    isolation:isolate;
     overflow:hidden;
 }
 
@@ -173,19 +175,30 @@ h1{
     position:absolute;
     top:-24%;
     bottom:-24%;
-    left:-38%;
+    left:-42%;
 
-    width:30%;
+    width:36%;
 
-    background:linear-gradient(
-        105deg,
-        transparent 0%,
-        rgba(255,255,255,.08) 30%,
-        rgba(255,255,255,.38) 50%,
-        rgba(234,82,243,.12) 66%,
-        transparent 100%
-    );
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,255,255,.98) 0 4%,
+            rgba(255,242,165,.52) 8%,
+            transparent 23%
+        ),
+        linear-gradient(
+            105deg,
+            transparent 0 25%,
+            rgba(255,72,205,.22) 34%,
+            rgba(111,220,255,.3) 42%,
+            rgba(255,255,255,.9) 50%,
+            rgba(255,238,108,.32) 57%,
+            rgba(154,102,255,.24) 64%,
+            transparent 74% 100%
+        );
 
+    filter:saturate(1.2);
+    mix-blend-mode:screen;
     opacity:0;
     pointer-events:none;
     transform:translateX(0) skewX(-10deg);
@@ -199,17 +212,17 @@ h1{
     }
 
     73%{
-        opacity:.52;
+        opacity:.72;
     }
 
     84%{
-        opacity:.34;
-        transform:translateX(470%) skewX(-10deg);
+        opacity:.5;
+        transform:translateX(410%) skewX(-10deg);
     }
 
     88%,100%{
         opacity:0;
-        transform:translateX(470%) skewX(-10deg);
+        transform:translateX(410%) skewX(-10deg);
     }
 }
 
