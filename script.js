@@ -50,7 +50,7 @@ let temporizadorEsperaVivo = null;
 let intentoReconexionVivo = 0;
 let textosControlVivo = {
     onAir: "ON AIR",
-    offline: "OFF LINE",
+    inClouds: "IN THE CLOUDS",
     play: "PLAY",
     pause: "PAUSE",
     reconnecting: "RECONNECTING"
@@ -334,7 +334,7 @@ function actualizarEstadoRadioVivo(estaHabitada) {
     estadoVivo.dataset.live = String(radioHabitada);
     estadoVivo.textContent = radioHabitada
         ? textosControlVivo.onAir
-        : textosControlVivo.offline;
+        : textosControlVivo.inClouds;
     requestAnimationFrame(ajustarControlesVivo);
 
     if (!radioHabitada) {
@@ -1163,7 +1163,7 @@ function mostrarEstado(texto) {
 
 function cargarIdioma(codigo) {
 
-    return fetch(`lang/${codigo}.json?v=20260808-3`)
+    return fetch(`lang/${codigo}.json?v=20260809-4`)
 
     .then(respuesta => {
 
@@ -1192,7 +1192,7 @@ cargarIdioma(idioma)
 
     textosControlVivo = {
         onAir: textos.live_on_air,
-        offline: textos.live_offline,
+        inClouds: textos.live_in_clouds,
         play: textos.live_play,
         pause: textos.live_pause,
         reconnecting: textos.live_reconnecting
@@ -1200,7 +1200,7 @@ cargarIdioma(idioma)
 
     estadoVivo.textContent = radioHabitada
         ? textosControlVivo.onAir
-        : textosControlVivo.offline;
+        : textosControlVivo.inClouds;
     actualizarControlVivo();
 
     titulo.textContent = textos.title;
