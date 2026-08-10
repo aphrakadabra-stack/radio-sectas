@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ugju-radio-automation",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-10",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "kv_namespaces": [
+    {
+      "binding": "RADIO_STATE",
+      "id": "94c549f2ae13400da1437bf20bdd5624"
+    }
+  ],
+  "triggers": {
+    "crons": [
+      "*/1 * * * *"
+    ]
+  }
+}

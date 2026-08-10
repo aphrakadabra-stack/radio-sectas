@@ -14,14 +14,14 @@ La clave REST de OneSignal debe crearse en OneSignal y guardarse únicamente com
 
 `ONESIGNAL_API_KEY`
 
-## Configuración pendiente en Cloudflare
+## Configuración de producción
 
-1. Crear un Worker.
-2. Pegar el contenido de `worker.js`.
-3. Crear un espacio KV y enlazarlo al Worker con el nombre `RADIO_STATE`.
-4. Añadir `ONESIGNAL_API_KEY` como secreto cifrado.
-5. Crear un Cron Trigger con la expresión `* * * * *`.
-6. Ejecutar `/check` dos veces con la radio apagada y comprobar el resultado.
-7. Encender la radio y verificar que, tras dos comprobaciones, llegue una sola notificación.
+El Worker de producción se llama `ugju-radio-automation` y está configurado con:
 
-La automatización no estará activa hasta completar esos pasos.
+1. El espacio KV `ugju-radio-state`, enlazado como `RADIO_STATE`.
+2. El secreto cifrado `ONESIGNAL_API_KEY` (nunca se guarda aquí).
+3. Un Cron Trigger cada minuto: `*/1 * * * *`.
+
+Antes de un cambio futuro, validar que el Worker conserve el secreto y el enlace KV. Después del despliegue, encender la radio y comprobar que, tras dos comprobaciones, llegue una sola notificación.
+
+La detección consulta Free-ShoutCast, no Caster.
