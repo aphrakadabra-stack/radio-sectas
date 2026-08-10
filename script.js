@@ -508,7 +508,12 @@ function actualizarMetadatosMultimediaVivo(tituloActual) {
 
 async function comprobarMetadatosVivo() {
 
-    if (!radioHabitada || entradaArchivoActual) {
+    if (
+        !radioHabitada ||
+        !escuchaVivoIniciadaPorUsuario ||
+        audioVivo.paused ||
+        entradaArchivoActual
+    ) {
         ocultarMetadatosVivo();
         return;
     }
@@ -904,6 +909,7 @@ audioVivo.addEventListener("playing",() => {
     vivoIniciadoConExito = true;
     cancelarReconexionVivo(true);
     actualizarControlVivo();
+    comprobarMetadatosVivo();
 
     if (
         "mediaSession" in navigator &&
@@ -916,7 +922,10 @@ audioVivo.addEventListener("playing",() => {
     }
 });
 
-audioVivo.addEventListener("pause",() => actualizarControlVivo());
+audioVivo.addEventListener("pause",() => {
+    ocultarMetadatosVivo();
+    actualizarControlVivo();
+});
 
 ["error","stalled","abort","ended"].forEach(tipo => {
     audioVivo.addEventListener(tipo,programarReconexionVivo);
