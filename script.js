@@ -37,6 +37,8 @@ const etiquetaEstadoVivo = document.getElementById("live-status-label");
 const botonVivo = document.getElementById("live-toggle");
 const iconoBotonVivo = document.getElementById("live-toggle-icon");
 const etiquetaBotonVivo = document.getElementById("live-toggle-label");
+const metadatosVivo = document.getElementById("live-metadata");
+const pistaMetadatosVivo = document.getElementById("live-metadata-track");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let manifiestoCargado = false;
@@ -59,6 +61,9 @@ let textosControlVivo = {
 
 const URL_VIVO =
     "https://s3.free-shoutcast.com/stream/18210/;stream.mp3";
+const URL_METADATA_VIVO =
+    "https://ugju-radio-metadata.ugjusectas.workers.dev/metadata";
+const INTERVALO_METADATA_VIVO = 30000;
 const RETRASOS_RECONEXION_VIVO = [2000,4000,8000,15000,30000,60000];
 const ITEM_VENTANA_ARCHIVE = "ugju-radio-window";
 const URL_METADATA_VENTANA =
@@ -421,13 +426,118 @@ function actualizarEstadoRadioVivo(estaHabitada) {
     requestAnimationFrame(ajustarControlesVivo);
 
     if (!radioHabitada) {
+        ocultarMetadatosVivo();
         cancelarReconexionVivo(true);
         actualizarControlVivo();
         return;
     }
 
+    comprobarMetadatosVivo();
+
     if (!estabaHabitada && escuchaVivoIniciadaPorUsuario) {
         programarReconexionVivo();
+    }
+
+}
+
+
+function ajustarDesplazamientoMetadatosVivo() {
+
+    pistaMetadatosVivo.classList.remove("is-scrolling");
+    pistaMetadatosVivo.style.removeProperty(
+        "--live-metadata-shift"
+    );
+
+    if (metadatosVivo.hidden) {
+        return;
+    }
+
+    const exceso = pistaMetadatosVivo.scrollWidth -
+        metadatosVivo.clientWidth + 14;
+
+    if (exceso > 2) {
+        pistaMetadatosVivo.style.setProperty(
+            "--live-metadata-shift",
+            `${-exceso}px`
+        );
+        pistaMetadatosVivo.style.setProperty(
+            "--live-metadata-scroll-duration",
+            `${Math.max(10,exceso / 16)}s`
+        );
+        pistaMetadatosVivo.classList.add("is-scrolling");
+    }
+
+}
+
+
+function ocultarMetadatosVivo() {
+
+    metadatosVivo.hidden = true;
+    pistaMetadatosVivo.textContent = "";
+    pistaMetadatosVivo.classList.remove("is-scrolling");
+
+}
+
+
+function actualizarMetadatosMultimediaVivo(tituloActual) {
+
+    if (
+        !("mediaSession" in navigator) ||
+        typeof MediaMetadata !== "function" ||
+        entradaArchivoActual
+    ) {
+        return;
+    }
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+        title: tituloActual || "ÚGJÜ RADIO",
+        artist: tituloActual ? "ÚGJÜ RADIO" : "ÚGJÜ SECTAS",
+        album: "LIVE",
+        artwork: [{
+            src: new URL(
+                "images/icon-charcoal-lowered-512.png",
+                window.location.href
+            ).href,
+            sizes: "512x512",
+            type: "image/png"
+        }]
+    });
+
+}
+
+
+async function comprobarMetadatosVivo() {
+
+    if (!radioHabitada || entradaArchivoActual) {
+        ocultarMetadatosVivo();
+        return;
+    }
+
+    try {
+        const respuesta = await fetch(URL_METADATA_VIVO,{
+            cache:"no-store"
+        });
+
+        if (!respuesta.ok) {
+            throw new Error("Metadata unavailable");
+        }
+
+        const datos = await respuesta.json();
+        const tituloActual = typeof datos.title === "string"
+            ? datos.title.trim()
+            : "";
+
+        if (!datos.online || !tituloActual) {
+            ocultarMetadatosVivo();
+            return;
+        }
+
+        pistaMetadatosVivo.textContent = tituloActual;
+        metadatosVivo.hidden = false;
+        requestAnimationFrame(ajustarDesplazamientoMetadatosVivo);
+        actualizarMetadatosMultimediaVivo(tituloActual);
+    } catch (error) {
+        ocultarMetadatosVivo();
     }
 
 }
@@ -787,6 +897,7 @@ ventanaCapa.addEventListener("click",evento => {
     }
 });
 window.addEventListener("resize",ajustarDesplazamientoTituloArchivo);
+window.addEventListener("resize",ajustarDesplazamientoMetadatosVivo);
 
 
 audioVivo.addEventListener("playing",() => {
@@ -798,19 +909,9 @@ audioVivo.addEventListener("playing",() => {
         "mediaSession" in navigator &&
         typeof MediaMetadata === "function"
     ) {
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: "ÚGJÜ RADIO",
-            artist: "ÚGJÜ SECTAS",
-            album: "LIVE",
-            artwork: [{
-                src: new URL(
-                    "images/icon-charcoal-lowered-512.png",
-                    window.location.href
-                ).href,
-                sizes: "512x512",
-                type: "image/png"
-            }]
-        });
+        actualizarMetadatosMultimediaVivo(
+            pistaMetadatosVivo.textContent
+        );
         navigator.mediaSession.playbackState = "playing";
     }
 });
@@ -1359,8 +1460,10 @@ cargarIdioma(idioma)
 
 
     comprobarRadio();
+    comprobarMetadatosVivo();
 
     setInterval(comprobarRadio,60000);
+    setInterval(comprobarMetadatosVivo,INTERVALO_METADATA_VIVO);
 
     window.addEventListener(
         "resize",

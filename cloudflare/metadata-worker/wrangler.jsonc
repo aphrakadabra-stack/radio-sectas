@@ -1,0 +1,11 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "ugju-radio-metadata",
+    "main": "src/index.js",
+    "compatibility_date": "2026-08-09",
+    "workers_dev": true,
+    "preview_urls": false,
+    "observability": {
+        "enabled": true
+    }
+}

@@ -254,11 +254,53 @@ h1{
     align-items:center;
     background:#171717;
     display:flex;
+    flex-wrap:wrap;
     gap:6px;
     justify-content:space-between;
     min-height:44px;
     padding:4px;
     width:100%;
+}
+
+.live-metadata{
+    color:#f3f3f3;
+    flex:0 0 100%;
+    font:400 clamp(.62rem,calc(var(--content-width) * .021),.78rem)/1.15 "Courier New",monospace;
+    letter-spacing:.045em;
+    min-width:0;
+    overflow:hidden;
+    padding:2px 7px 3px;
+    text-align:center;
+    white-space:nowrap;
+}
+
+.live-metadata[hidden]{
+    display:none;
+}
+
+.live-metadata-track{
+    display:inline-block;
+    min-width:max-content;
+    will-change:transform;
+}
+
+.live-metadata-track.is-scrolling{
+    animation:
+        live-metadata-scroll
+        var(--live-metadata-scroll-duration,12s)
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes live-metadata-scroll{
+    0%,15%{
+        transform:translateX(0);
+    }
+
+    85%,100%{
+        transform:translateX(var(--live-metadata-shift,0));
+    }
 }
 
 .live-status{
