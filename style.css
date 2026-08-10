@@ -291,14 +291,14 @@ h1{
 }
 
 .live-status[data-live="true"]{
-    color:#EA52F3;
+    color:#fff;
     border-color:#E62506;
     background:#E62506;
 }
 
 .live-status[data-live="true"]::before{
-    border-color:#EA52F3;
-    background:#EA52F3;
+    border-color:#fff;
+    background:#fff;
     box-shadow:none;
 }
 
