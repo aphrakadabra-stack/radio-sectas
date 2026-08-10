@@ -161,7 +161,7 @@ h1{
     background:#171717;
     display:flex;
     justify-content:flex-end;
-    min-height:38px;
+    min-height:44px;
     padding:4px;
     width:100%;
 }
@@ -174,12 +174,12 @@ h1{
     color:#171717;
     cursor:pointer;
     display:flex;
-    font:700 .68rem/1 "Courier New",monospace;
+    font:700 .72rem/1 "Courier New",monospace;
     gap:6px;
     justify-content:center;
-    min-height:30px;
-    min-width:76px;
-    padding:5px 9px;
+    min-height:36px;
+    min-width:84px;
+    padding:6px 11px;
     letter-spacing:.08em;
 }
 
