@@ -62,34 +62,34 @@ body::before{
     background:
         radial-gradient(
             ellipse at 28% 38%,
-            rgba(255,255,255,.13) 0%,
-            rgba(255,255,255,.06) 22%,
+            rgba(255,255,255,.1) 0%,
+            rgba(255,255,255,.045) 22%,
             transparent 51%
         ),
         radial-gradient(
             ellipse at 72% 64%,
-            rgba(87,0,94,.09) 0%,
-            rgba(87,0,94,.038) 25%,
+            rgba(87,0,94,.07) 0%,
+            rgba(87,0,94,.028) 25%,
             transparent 54%
         );
 
     pointer-events:none;
-    transform:translate3d(-2.2%,1.5%,0) scale(1.015);
+    transform:translate3d(-1.8%,1.2%,0) scale(1.015);
     animation:background-frequency 19s ease-in-out infinite alternate;
 }
 
 
 @keyframes background-frequency{
     0%{
-        transform:translate3d(-2.2%,1.5%,0) scale(1.015);
+        transform:translate3d(-1.8%,1.2%,0) scale(1.015);
     }
 
     48%{
-        transform:translate3d(1.8%,-1.4%,0) scale(1.055);
+        transform:translate3d(1.4%,-1.1%,0) scale(1.045);
     }
 
     100%{
-        transform:translate3d(-.8%,-2.2%,0) scale(1.095);
+        transform:translate3d(-.6%,-1.8%,0) scale(1.075);
     }
 }
 
@@ -686,6 +686,15 @@ h1{
     body::before{
         animation:none;
         transform:none;
+    }
+
+}
+
+
+@media(max-width:700px), (hover:none) and (pointer:coarse){
+
+    body::before{
+        display:none;
     }
 
 }
