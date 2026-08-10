@@ -178,6 +178,18 @@ async function actualizarFotoVentanaDesdeArchive() {
         }
 
         const fotografia = originales[0];
+        const nombreArchivo = fotografia.name
+            .split("/")
+            .pop()
+            .toLowerCase();
+
+        if (/^sin-foto\.(?:avif|gif|jpe?g|png|webp)$/.test(
+            nombreArchivo
+        )) {
+            establecerDisponibilidadVentana(false);
+            return;
+        }
+
         const nombre = encodeURIComponent(fotografia.name)
             .replace(/%2F/gi,"/");
 
