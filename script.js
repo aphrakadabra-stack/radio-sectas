@@ -31,7 +31,6 @@ const controlesVivo = document.getElementById("live-controls");
 const botonVivo = document.getElementById("live-toggle");
 const iconoBotonVivo = document.getElementById("live-toggle-icon");
 const etiquetaBotonVivo = document.getElementById("live-toggle-label");
-const volumenVivo = document.getElementById("live-volume");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let manifiestoCargado = false;
@@ -621,9 +620,6 @@ window.addEventListener(
 botonVolverAlVivo.addEventListener("click",volverAlVivo);
 botonPausaArchivo.addEventListener("click",alternarPausaArchivo);
 botonVivo.addEventListener("click",alternarVivo);
-volumenVivo.addEventListener("input",() => {
-    audioVivo.volume = Number(volumenVivo.value) / 100;
-});
 window.addEventListener("resize",ajustarDesplazamientoTituloArchivo);
 
 

@@ -158,32 +158,18 @@ h1{
 
 .live-controls{
     align-items:center;
+    background:#171717;
     display:flex;
-    gap:12px;
-    justify-content:space-between;
-    min-height:30px;
-    width:100%;
-}
-
-.live-volume{
-    align-items:center;
-    color:#171717;
-    display:flex;
-    gap:6px;
-    max-width:150px;
-    width:40%;
-}
-
-.live-volume input{
-    accent-color:#171717;
-    min-width:60px;
+    justify-content:flex-end;
+    min-height:38px;
+    padding:4px;
     width:100%;
 }
 
 .live-toggle{
     align-items:center;
-    background:transparent;
-    border:1px solid #171717;
+    background:#EA52F3;
+    border:0;
     border-radius:0;
     color:#171717;
     cursor:pointer;
@@ -191,14 +177,14 @@ h1{
     font:700 .68rem/1 "Courier New",monospace;
     gap:6px;
     justify-content:center;
-    min-height:28px;
+    min-height:30px;
     min-width:76px;
     padding:5px 9px;
     letter-spacing:.08em;
 }
 
 .live-toggle:focus-visible{
-    outline:2px solid #171717;
+    outline:2px solid #fff;
     outline-offset:2px;
 }
 
