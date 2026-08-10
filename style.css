@@ -164,12 +164,16 @@ h1{
     border:0;
     background:transparent;
     contain:paint;
-    cursor:pointer;
+    cursor:default;
     isolation:isolate;
     overflow:hidden;
 }
 
-.window-trigger::after{
+.window-trigger.has-window-photo{
+    cursor:pointer;
+}
+
+.window-trigger.has-window-photo::after{
     content:"";
 
     position:absolute;
@@ -298,8 +302,9 @@ h1{
 
     display:flex;
 
-    max-width:92vw;
-    max-height:88vh;
+    max-width:calc(100vw - 44px);
+    max-height:calc(100vh - 44px);
+    max-height:calc(100dvh - 44px);
 
     box-shadow:0 10px 36px rgba(23,23,23,.42);
 }
@@ -308,9 +313,10 @@ h1{
     display:block;
 
     width:auto;
-    max-width:min(92vw,1200px);
+    max-width:min(calc(100vw - 44px),1200px);
     height:auto;
-    max-height:88vh;
+    max-height:calc(100vh - 44px);
+    max-height:calc(100dvh - 44px);
 
     object-fit:contain;
 }

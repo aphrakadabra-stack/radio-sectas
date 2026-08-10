@@ -68,7 +68,7 @@ const RETRASOS_RECONEXION_VIVO = [2000,4000,8000,15000,30000,60000];
 const ITEM_VENTANA_ARCHIVE = "ugju-radio-window";
 const URL_METADATA_VENTANA =
     `https://archive.org/metadata/${ITEM_VENTANA_ARCHIVE}`;
-const URL_FOTO_VENTANA_LOCAL = ventanaFoto.dataset.src;
+const INTERVALO_FOTO_VENTANA = 60000;
 
 if (esNavegadorInstagram) {
     document.documentElement.classList.add(
@@ -105,8 +105,10 @@ function cargarFotoVentana() {
 
     ventanaCerrar.hidden = true;
 
-    const fuente = ventanaFoto.dataset.src ||
-        URL_FOTO_VENTANA_LOCAL;
+    const fuente = ventanaFoto.dataset.src;
+
+    if (!fuente) return;
+
     const version = ventanaFoto.dataset.version || Date.now();
     const separador = fuente.includes("?") ? "&" : "?";
 
@@ -114,15 +116,33 @@ function cargarFotoVentana() {
 
         ventanaFoto.onerror = null;
 
-        if (fuente !== URL_FOTO_VENTANA_LOCAL) {
-            ventanaFoto.src =
-                `${URL_FOTO_VENTANA_LOCAL}?v=${Date.now()}`;
-        }
+        establecerDisponibilidadVentana(false);
 
     };
 
     ventanaFoto.src =
         `${fuente}${separador}v=${encodeURIComponent(version)}`;
+
+}
+
+
+function establecerDisponibilidadVentana(disponible) {
+
+    ventanaDisparador.disabled = !disponible;
+    ventanaDisparador.classList.toggle(
+        "has-window-photo",
+        disponible
+    );
+
+    if (disponible) return;
+
+    ventanaFoto.removeAttribute("src");
+    delete ventanaFoto.dataset.src;
+    delete ventanaFoto.dataset.version;
+
+    if (!ventanaCapa.hidden) {
+        cerrarVentana();
+    }
 
 }
 
@@ -152,7 +172,8 @@ async function actualizarFotoVentanaDesdeArchive() {
             );
 
         if (!originales.length) {
-            throw new Error("No hay fotografías originales");
+            establecerDisponibilidadVentana(false);
+            return;
         }
 
         const fotografia = originales[0];
@@ -163,6 +184,7 @@ async function actualizarFotoVentanaDesdeArchive() {
             `https://archive.org/download/${ITEM_VENTANA_ARCHIVE}/${nombre}`;
         ventanaFoto.dataset.version = fotografia.mtime ||
             datos.item_last_updated || Date.now();
+        establecerDisponibilidadVentana(true);
 
         if (!ventanaCapa.hidden) {
             cargarFotoVentana();
@@ -170,8 +192,7 @@ async function actualizarFotoVentanaDesdeArchive() {
 
     } catch (error) {
 
-        ventanaFoto.dataset.src = URL_FOTO_VENTANA_LOCAL;
-        ventanaFoto.dataset.version = Date.now();
+        establecerDisponibilidadVentana(false);
 
     }
 
@@ -179,6 +200,8 @@ async function actualizarFotoVentanaDesdeArchive() {
 
 
 function abrirVentana() {
+
+    if (ventanaDisparador.disabled) return;
 
     ventanaCerrar.hidden = true;
     ventanaCapa.hidden = false;
@@ -199,6 +222,14 @@ ventanaFoto.addEventListener("load", () => {
 
 
 actualizarFotoVentanaDesdeArchive();
+
+setInterval(() => {
+
+    if (!document.hidden) {
+        actualizarFotoVentanaDesdeArchive();
+    }
+
+},INTERVALO_FOTO_VENTANA);
 
 
 function cerrarVentana(devolverFoco = false) {
