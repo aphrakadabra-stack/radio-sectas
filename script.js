@@ -608,6 +608,7 @@ function actualizarEstadoRadioVivo(estaHabitada) {
     etiquetaEstadoVivo.textContent = radioHabitada
         ? textosControlVivo.onAir
         : textosControlVivo.inClouds;
+    actualizarControlVivo();
     requestAnimationFrame(ajustarControlesVivo);
 
     if (!radioHabitada) {
