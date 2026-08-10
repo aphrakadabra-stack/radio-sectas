@@ -164,6 +164,53 @@ h1{
     border:0;
     background:transparent;
     cursor:pointer;
+    overflow:hidden;
+}
+
+.window-trigger::after{
+    content:"";
+
+    position:absolute;
+    top:-24%;
+    bottom:-24%;
+    left:-38%;
+
+    width:30%;
+
+    background:linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(255,255,255,.08) 30%,
+        rgba(255,255,255,.38) 50%,
+        rgba(234,82,243,.12) 66%,
+        transparent 100%
+    );
+
+    opacity:0;
+    pointer-events:none;
+    transform:translateX(0) skewX(-10deg);
+    animation:window-glimmer 8.5s ease-in-out infinite;
+}
+
+@keyframes window-glimmer{
+    0%,68%{
+        opacity:0;
+        transform:translateX(0) skewX(-10deg);
+    }
+
+    73%{
+        opacity:.52;
+    }
+
+    84%{
+        opacity:.34;
+        transform:translateX(470%) skewX(-10deg);
+    }
+
+    88%,100%{
+        opacity:0;
+        transform:translateX(470%) skewX(-10deg);
+    }
 }
 
 .window-trigger:focus-visible{
@@ -506,7 +553,9 @@ h1{
 
 @media(prefers-reduced-motion:reduce){
 
-    .archive-session-track.is-scrolling{
+    .archive-session-track.is-scrolling,
+    .live-metadata-track.is-scrolling,
+    .window-trigger::after{
         animation:none;
     }
 
