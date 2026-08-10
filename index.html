@@ -99,7 +99,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=20260809-9">
+    <link rel="stylesheet" href="style.css?v=20260809-10">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -159,11 +159,20 @@
             INHABITED
         </div>
 
-        <img
-            src="images/web1.webp"
-            class="radio-image"
-            alt="The house of ÚGJÜ RADIO"
-        >
+        <div class="radio-visual">
+            <img
+                src="images/web1.webp"
+                class="radio-image"
+                alt="The house of ÚGJÜ RADIO"
+            >
+
+            <button
+                class="window-trigger"
+                id="window-trigger"
+                type="button"
+                aria-label="Open the upstairs window"
+            ></button>
+        </div>
 
         <div class="player">
 
@@ -277,6 +286,28 @@
     </main>
 
     <section
+        class="window-overlay"
+        id="window-overlay"
+        role="dialog"
+        aria-modal="true"
+        aria-label="The upstairs window"
+        hidden
+    >
+        <button
+            class="window-close"
+            id="window-close"
+            type="button"
+            aria-label="Close"
+        >×</button>
+
+        <img
+            class="window-photo"
+            src="images/window-exhibit.jpg?v=20260809-1"
+            alt="Inside the house of ÚGJÜ RADIO"
+        >
+    </section>
+
+    <section
         class="manifesto-overlay"
         id="manifesto-overlay"
         role="dialog"
@@ -304,7 +335,7 @@
         ></iframe>
     </section>
 
-    <script src="script.js?v=20260809-13"></script>
+    <script src="script.js?v=20260809-14"></script>
 
 </body>
 

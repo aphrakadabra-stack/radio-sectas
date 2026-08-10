@@ -125,14 +125,23 @@ h1{
 
 /* CASA */
 
-.radio-image{
-    display:block;
+.radio-visual{
+    position:relative;
 
     width:var(--visual-width);
     max-width:var(--visual-width);
-    height:auto;
 
     margin-top:7px;
+
+    flex:none;
+}
+
+.radio-image{
+    display:block;
+
+    width:100%;
+    max-width:100%;
+    height:auto;
 
     object-fit:contain;
 
@@ -140,6 +149,79 @@ h1{
     user-drag:none;
 
     flex:none;
+}
+
+.window-trigger{
+    position:absolute;
+    top:31.5%;
+    left:54.5%;
+
+    width:21%;
+    height:28%;
+
+    padding:0;
+
+    border:0;
+    background:transparent;
+    cursor:pointer;
+}
+
+.window-trigger:focus-visible{
+    outline:2px dashed #171717;
+    outline-offset:2px;
+}
+
+.window-overlay{
+    position:fixed;
+    inset:0;
+    z-index:50;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:max(22px,env(safe-area-inset-top)) 22px
+        max(22px,env(safe-area-inset-bottom));
+
+    background:rgba(23,23,23,.94);
+}
+
+.window-overlay[hidden]{
+    display:none;
+}
+
+.window-photo{
+    display:block;
+
+    width:auto;
+    max-width:min(92vw,1200px);
+    height:auto;
+    max-height:88vh;
+
+    object-fit:contain;
+}
+
+.window-close{
+    position:fixed;
+    top:max(10px,env(safe-area-inset-top));
+    right:max(12px,env(safe-area-inset-right));
+
+    width:42px;
+    height:42px;
+
+    padding:0;
+
+    border:1px solid #EA52F3;
+    border-radius:0;
+    background:#171717;
+    color:#EA52F3;
+    cursor:pointer;
+    font:400 30px/38px Arial,sans-serif;
+}
+
+.window-close:focus-visible{
+    outline:2px solid #fff;
+    outline-offset:2px;
 }
 
 
@@ -618,6 +700,10 @@ h1{
 
 
     .radio-image{
+        margin-top:0;
+    }
+
+    .radio-visual{
         margin-top:6px;
     }
 

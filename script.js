@@ -19,6 +19,9 @@ const marcoManifiesto = document.getElementById(
 );
 const capaArchivo = document.getElementById("archive-overlay");
 const marcoArchivo = document.getElementById("archive-frame");
+const ventanaDisparador = document.getElementById("window-trigger");
+const ventanaCapa = document.getElementById("window-overlay");
+const ventanaCerrar = document.getElementById("window-close");
 const panelArchivo = document.getElementById("archive-session");
 const botonVolverAlVivo = document.getElementById("live-return");
 const botonPausaArchivo = document.getElementById("archive-session-toggle");
@@ -75,6 +78,25 @@ function cerrarManifiesto(devolverFoco = false) {
     capaManifiesto.setAttribute("aria-hidden","true");
     if (devolverFoco) {
         enlaceManifiesto.focus({preventScroll:true});
+    }
+
+}
+
+
+function abrirVentana() {
+
+    ventanaCapa.hidden = false;
+    ventanaCerrar.focus({preventScroll:true});
+
+}
+
+
+function cerrarVentana(devolverFoco = false) {
+
+    ventanaCapa.hidden = true;
+
+    if (devolverFoco) {
+        ventanaDisparador.focus({preventScroll:true});
     }
 
 }
@@ -623,6 +645,13 @@ window.addEventListener(
 botonVolverAlVivo.addEventListener("click",volverAlVivo);
 botonPausaArchivo.addEventListener("click",alternarPausaArchivo);
 botonVivo.addEventListener("click",alternarVivo);
+ventanaDisparador.addEventListener("click",abrirVentana);
+ventanaCerrar.addEventListener("click",() => cerrarVentana(true));
+ventanaCapa.addEventListener("click",evento => {
+    if (evento.target === ventanaCapa) {
+        cerrarVentana(true);
+    }
+});
 window.addEventListener("resize",ajustarDesplazamientoTituloArchivo);
 
 
@@ -744,6 +773,14 @@ if ("mediaSession" in navigator) {
 document.addEventListener(
     "keydown",
     evento => {
+
+        if (
+            evento.key === "Escape" &&
+            !ventanaCapa.hidden
+        ) {
+            cerrarVentana(true);
+            return;
+        }
 
         if (
             evento.key === "Escape" &&
