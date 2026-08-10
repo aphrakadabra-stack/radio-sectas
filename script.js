@@ -33,6 +33,7 @@ const audioArchivo = document.getElementById("archive-audio");
 const audioVivo = document.getElementById("live-audio");
 const controlesVivo = document.getElementById("live-controls");
 const estadoVivo = document.getElementById("live-status");
+const etiquetaEstadoVivo = document.getElementById("live-status-label");
 const botonVivo = document.getElementById("live-toggle");
 const iconoBotonVivo = document.getElementById("live-toggle-icon");
 const etiquetaBotonVivo = document.getElementById("live-toggle-label");
@@ -414,7 +415,7 @@ function actualizarEstadoRadioVivo(estaHabitada) {
     const estabaHabitada = radioHabitada;
     radioHabitada = estaHabitada;
     estadoVivo.dataset.live = String(radioHabitada);
-    estadoVivo.textContent = radioHabitada
+    etiquetaEstadoVivo.textContent = radioHabitada
         ? textosControlVivo.onAir
         : textosControlVivo.inClouds;
     requestAnimationFrame(ajustarControlesVivo);
@@ -1280,7 +1281,7 @@ cargarIdioma(idioma)
         reconnecting: textos.live_reconnecting
     };
 
-    estadoVivo.textContent = radioHabitada
+    etiquetaEstadoVivo.textContent = radioHabitada
         ? textosControlVivo.onAir
         : textosControlVivo.inClouds;
     actualizarControlVivo();
