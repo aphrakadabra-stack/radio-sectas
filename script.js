@@ -48,6 +48,13 @@ let vivoIniciadoConExito = false;
 let temporizadorReconexionVivo = null;
 let temporizadorEsperaVivo = null;
 let intentoReconexionVivo = 0;
+let textosControlVivo = {
+    onAir: "ON AIR",
+    offline: "OFF LINE",
+    play: "PLAY",
+    pause: "PAUSE",
+    reconnecting: "RECONNECTING"
+};
 
 const URL_VIVO =
     "https://s3.free-shoutcast.com/stream/18210/;stream.mp3";
@@ -155,8 +162,10 @@ function actualizarControlVivo(reconectando = false) {
     botonVivo.dataset.reconnecting = String(reconectando);
     iconoBotonVivo.textContent = reproduciendo ? "Ⅱ" : "▶";
     etiquetaBotonVivo.textContent = reconectando
-        ? "RECONNECTING"
-        : reproduciendo ? "PAUSE" : "PLAY";
+        ? textosControlVivo.reconnecting
+        : reproduciendo
+            ? textosControlVivo.pause
+            : textosControlVivo.play;
 
 }
 
@@ -287,7 +296,9 @@ function actualizarEstadoRadioVivo(estaHabitada) {
     const estabaHabitada = radioHabitada;
     radioHabitada = estaHabitada;
     estadoVivo.dataset.live = String(radioHabitada);
-    estadoVivo.textContent = radioHabitada ? "ON AIR" : "OFF LINE";
+    estadoVivo.textContent = radioHabitada
+        ? textosControlVivo.onAir
+        : textosControlVivo.offline;
 
     if (!radioHabitada) {
         cancelarReconexionVivo(true);
@@ -1140,6 +1151,19 @@ cargarIdioma(idioma)
 })
 
 .then(textos => {
+
+    textosControlVivo = {
+        onAir: textos.live_on_air,
+        offline: textos.live_offline,
+        play: textos.live_play,
+        pause: textos.live_pause,
+        reconnecting: textos.live_reconnecting
+    };
+
+    estadoVivo.textContent = radioHabitada
+        ? textosControlVivo.onAir
+        : textosControlVivo.offline;
+    actualizarControlVivo();
 
     titulo.textContent = textos.title;
 
