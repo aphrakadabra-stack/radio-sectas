@@ -265,7 +265,7 @@ h1{
 .live-metadata{
     color:#f3f3f3;
     flex:0 0 100%;
-    font:400 clamp(.62rem,calc(var(--content-width) * .021),.78rem)/1.15 "Courier New",monospace;
+    font:400 clamp(.68rem,calc(var(--content-width) * .023),.84rem)/1.15 "Courier New",monospace;
     letter-spacing:.045em;
     min-width:0;
     overflow:hidden;
@@ -714,7 +714,7 @@ h1{
         padding:
             max(34px,env(safe-area-inset-top))
             4px
-            max(34px,env(safe-area-inset-bottom));
+            max(54px,calc(env(safe-area-inset-bottom) + 20px));
     }
 
 
@@ -876,7 +876,7 @@ y el resto de la composición se reduce como una sola pieza.
         padding:
             max(30px,env(safe-area-inset-top))
             4px
-            max(30px,env(safe-area-inset-bottom));
+            max(42px,calc(env(safe-area-inset-bottom) + 12px));
     }
 
 
