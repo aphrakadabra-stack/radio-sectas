@@ -265,13 +265,13 @@ h1{
     color:#b8b8b8;
     display:flex;
     font:700 .78rem/1 "Courier New",monospace;
-    gap:8px;
+    gap:11px;
     justify-content:center;
     letter-spacing:.12em;
     min-height:36px;
     min-width:0;
     width:142px;
-    padding:6px 9px;
+    padding:6px 7px;
     border:1px solid currentColor;
     background:#1a1a1a;
     white-space:nowrap;
