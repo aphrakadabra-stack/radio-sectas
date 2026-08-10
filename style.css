@@ -39,7 +39,7 @@ body{
 
 body{
     background:#EA52F3;
-    color:#1a1a1a;
+    color:#222222;
     font-family:"Cormorant Garamond",serif;
 
     -webkit-touch-callout:none;
@@ -691,8 +691,8 @@ h1{
     top:clamp(14px,2vh,24px);
     left:clamp(14px,2vw,28px);
 
-    color:#1a1a1a !important;
-    -webkit-text-fill-color:#1a1a1a;
+    color:#222222 !important;
+    -webkit-text-fill-color:#222222;
 
     font-family:"Courier Prime","Courier New",monospace;
     font-size:clamp(.7rem,calc(var(--content-width) * .026),.9rem);
@@ -700,7 +700,7 @@ h1{
     letter-spacing:.06em;
     line-height:1.1;
     text-decoration:underline;
-    text-decoration-color:#1a1a1a;
+    text-decoration-color:#222222;
     text-decoration-thickness:1px;
     text-underline-offset:4px;
     text-transform:uppercase;
@@ -716,7 +716,7 @@ h1{
 @media (hover:hover) and (pointer:fine){
     .manifesto-link:focus-visible,
     .archive-link:focus-visible{
-        outline:1px solid #1a1a1a;
+        outline:1px solid #222222;
         outline-offset:4px;
     }
 }
@@ -736,9 +736,9 @@ h1{
 .archive-link:focus-visible,
 .archive-link:active,
 .archive-link:visited{
-    color:#1a1a1a !important;
-    -webkit-text-fill-color:#1a1a1a;
-    text-decoration-color:#1a1a1a;
+    color:#222222 !important;
+    -webkit-text-fill-color:#222222;
+    text-decoration-color:#222222;
     opacity:1;
 }
 
