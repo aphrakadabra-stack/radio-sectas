@@ -167,6 +167,42 @@ function actualizarControlVivo(reconectando = false) {
             ? textosControlVivo.pause
             : textosControlVivo.play;
 
+    requestAnimationFrame(ajustarControlesVivo);
+
+}
+
+
+function ajustarControlesVivo() {
+
+    estadoVivo.style.fontSize = "";
+    botonVivo.style.fontSize = "";
+
+    let tamañoEstado = parseFloat(
+        window.getComputedStyle(estadoVivo).fontSize
+    );
+    let tamañoBoton = parseFloat(
+        window.getComputedStyle(botonVivo).fontSize
+    );
+
+    for (let intento = 0; intento < 12; intento += 1) {
+        const desbordaEstado =
+            estadoVivo.scrollWidth > estadoVivo.clientWidth + 1;
+        const desbordaBoton =
+            botonVivo.scrollWidth > botonVivo.clientWidth + 1;
+        const desbordaConjunto =
+            estadoVivo.offsetWidth + botonVivo.offsetWidth + 6 >
+            controlesVivo.clientWidth - 8;
+
+        if (!desbordaEstado && !desbordaBoton && !desbordaConjunto) {
+            break;
+        }
+
+        tamañoEstado *= .94;
+        tamañoBoton *= .94;
+        estadoVivo.style.fontSize = `${Math.max(9,tamañoEstado)}px`;
+        botonVivo.style.fontSize = `${Math.max(9,tamañoBoton)}px`;
+    }
+
 }
 
 
@@ -299,6 +335,7 @@ function actualizarEstadoRadioVivo(estaHabitada) {
     estadoVivo.textContent = radioHabitada
         ? textosControlVivo.onAir
         : textosControlVivo.offline;
+    requestAnimationFrame(ajustarControlesVivo);
 
     if (!radioHabitada) {
         cancelarReconexionVivo(true);
@@ -1104,6 +1141,7 @@ function ajustarInterfaz() {
     ajustarTextoAlAncho(lema);
     ajustarNotaCasa();
     ajustarEstado();
+    ajustarControlesVivo();
 
     requestAnimationFrame(
         () => requestAnimationFrame(
