@@ -719,7 +719,7 @@ h1{
         padding:
             max(34px,env(safe-area-inset-top))
             4px
-            max(54px,calc(env(safe-area-inset-bottom) + 20px));
+            max(62px,calc(env(safe-area-inset-bottom) + 28px));
     }
 
 
@@ -881,7 +881,7 @@ y el resto de la composición se reduce como una sola pieza.
         padding:
             max(30px,env(safe-area-inset-top))
             4px
-            max(42px,calc(env(safe-area-inset-bottom) + 12px));
+            max(48px,calc(env(safe-area-inset-bottom) + 18px));
     }
 
 
