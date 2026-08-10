@@ -413,6 +413,16 @@ async function iniciarVivo(esReconexion = false) {
 
 function programarReconexionVivo(forzar = false) {
 
+    const interrupcionDeFondoSinError = document.hidden &&
+        !audioVivo.ended &&
+        !audioVivo.error;
+
+    if (interrupcionDeFondoSinError) {
+        cancelarReconexionVivo();
+        actualizarControlVivo();
+        return;
+    }
+
     const audioSigueActivo = !audioVivo.paused &&
         !audioVivo.ended &&
         !audioVivo.error &&
