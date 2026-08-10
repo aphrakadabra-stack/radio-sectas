@@ -214,20 +214,20 @@ h1{
 
 .window-close{
     position:absolute;
-    top:-13px;
-    right:-13px;
+    top:7px;
+    right:7px;
 
-    width:42px;
-    height:42px;
+    width:36px;
+    height:36px;
 
     padding:0;
 
-    border:1px solid #EA52F3;
+    border:0;
     border-radius:0;
-    background:#171717;
-    color:#EA52F3;
+    background:rgba(234,82,243,.78);
+    color:#171717;
     cursor:pointer;
-    font:400 30px/38px Arial,sans-serif;
+    font:400 26px/34px Arial,sans-serif;
 }
 
 .window-close:focus-visible{
