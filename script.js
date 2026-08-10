@@ -22,6 +22,7 @@ const marcoArchivo = document.getElementById("archive-frame");
 const ventanaDisparador = document.getElementById("window-trigger");
 const ventanaCapa = document.getElementById("window-overlay");
 const ventanaCerrar = document.getElementById("window-close");
+const ventanaFoto = document.querySelector(".window-photo");
 const panelArchivo = document.getElementById("archive-session");
 const botonVolverAlVivo = document.getElementById("live-return");
 const botonPausaArchivo = document.getElementById("archive-session-toggle");
@@ -85,6 +86,8 @@ function cerrarManifiesto(devolverFoco = false) {
 
 function abrirVentana() {
 
+    ventanaFoto.src =
+        `${ventanaFoto.dataset.src}?v=${Date.now()}`;
     ventanaCapa.hidden = false;
     ventanaCerrar.focus({preventScroll:true});
 
