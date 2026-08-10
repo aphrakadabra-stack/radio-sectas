@@ -242,7 +242,7 @@ h1{
     width:var(--visual-width);
     max-width:var(--visual-width);
 
-    margin-top:8px;
+    margin-top:14px;
 
     flex:none;
 
@@ -750,7 +750,7 @@ h1{
 
 
     .player{
-        margin-top:5px;
+        margin-top:10px;
     }
 
 
@@ -792,7 +792,7 @@ h1{
 
 
     .player{
-        margin-top:4px;
+        margin-top:8px;
     }
 
 
