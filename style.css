@@ -276,21 +276,6 @@ h1{
     background:#1a1a1a;
     white-space:nowrap;
     flex:0 1 142px;
-    position:relative;
-}
-
-.live-status::before{
-    position:absolute;
-    left:7px;
-
-    width:12px;
-    height:12px;
-
-    border:1px solid #b8b8b8;
-    border-radius:50%;
-    background:transparent;
-
-    content:"";
 }
 
 #live-status-label{
@@ -304,12 +289,6 @@ h1{
     color:#fff;
     border-color:#E62506;
     background:#E62506;
-}
-
-.live-status[data-live="true"]::before{
-    border-color:#fff;
-    background:#fff;
-    box-shadow:none;
 }
 
 .live-toggle{
