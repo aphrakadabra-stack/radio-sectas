@@ -50,7 +50,7 @@ let temporizadorEsperaVivo = null;
 let intentoReconexionVivo = 0;
 let textosControlVivo = {
     onAir: "ON AIR",
-    inClouds: "IN THE CLOUDS",
+    inClouds: "IN CLOUDS",
     play: "PLAY",
     pause: "PAUSE",
     reconnecting: "RECONNECTING"
@@ -1163,7 +1163,7 @@ function mostrarEstado(texto) {
 
 function cargarIdioma(codigo) {
 
-    return fetch(`lang/${codigo}.json?v=20260809-4`)
+    return fetch(`lang/${codigo}.json?v=20260809-5`)
 
     .then(respuesta => {
 
