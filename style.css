@@ -272,7 +272,7 @@ h1{
 }
 
 .live-status[data-live="true"]{
-    color:#E62506;
+    color:#EA52F3;
 }
 
 .live-status[data-live="true"]::before{
