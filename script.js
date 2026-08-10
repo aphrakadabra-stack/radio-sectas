@@ -103,6 +103,7 @@ function cerrarManifiesto(devolverFoco = false) {
 
 function cargarFotoVentana() {
 
+    ventanaCapa.classList.remove("photo-ready");
     ventanaCerrar.hidden = true;
 
     const fuente = ventanaFoto.dataset.src;
@@ -203,6 +204,7 @@ function abrirVentana() {
 
     if (ventanaDisparador.disabled) return;
 
+    ventanaCapa.classList.remove("photo-ready");
     ventanaCerrar.hidden = true;
     ventanaCapa.hidden = false;
     cargarFotoVentana();
@@ -216,6 +218,7 @@ ventanaFoto.addEventListener("load", () => {
     if (ventanaCapa.hidden) return;
 
     ventanaCerrar.hidden = false;
+    ventanaCapa.classList.add("photo-ready");
     ventanaCerrar.focus({preventScroll:true});
 
 });
@@ -235,6 +238,7 @@ setInterval(() => {
 function cerrarVentana(devolverFoco = false) {
 
     ventanaCapa.hidden = true;
+    ventanaCapa.classList.remove("photo-ready");
     ventanaCerrar.hidden = true;
 
     if (devolverFoco) {
