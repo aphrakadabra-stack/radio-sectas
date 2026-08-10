@@ -692,12 +692,15 @@ h1{
     left:clamp(14px,2vw,28px);
 
     color:#1a1a1a !important;
+    -webkit-text-fill-color:#1a1a1a;
 
-    font-size:clamp(.68rem,calc(var(--content-width) * .024),.88rem);
-    font-weight:500;
-    letter-spacing:.22em;
-    line-height:1;
+    font-family:"Courier Prime","Courier New",monospace;
+    font-size:clamp(.7rem,calc(var(--content-width) * .026),.9rem);
+    font-weight:400;
+    letter-spacing:.06em;
+    line-height:1.1;
     text-decoration:underline;
+    text-decoration-color:#1a1a1a;
     text-decoration-thickness:1px;
     text-underline-offset:4px;
     text-transform:uppercase;
@@ -727,9 +730,16 @@ h1{
 
 .manifesto-link:hover,
 .manifesto-link:focus-visible,
+.manifesto-link:active,
+.manifesto-link:visited,
 .archive-link:hover,
-.archive-link:focus-visible{
-    opacity:.62;
+.archive-link:focus-visible,
+.archive-link:active,
+.archive-link:visited{
+    color:#1a1a1a !important;
+    -webkit-text-fill-color:#1a1a1a;
+    text-decoration-color:#1a1a1a;
+    opacity:1;
 }
 
 
