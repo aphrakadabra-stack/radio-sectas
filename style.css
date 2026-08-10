@@ -550,6 +550,21 @@ h1{
     opacity:.72;
 }
 
+.live-toggle:disabled{
+    background:#1a1a1a;
+    color:#b8b8b8;
+    cursor:default;
+    opacity:1;
+}
+
+.live-toggle:disabled #live-toggle-icon{
+    display:none;
+}
+
+.live-toggle[aria-busy="true"]{
+    cursor:wait;
+}
+
 #live-audio{
     display:none;
 }
@@ -825,6 +840,8 @@ h1{
 
     text-decoration:none;
 
+    -webkit-tap-highlight-color:transparent;
+
     pointer-events:auto;
 
     transform:translateY(3px);
@@ -852,19 +869,6 @@ h1{
         hue-rotate(72deg)
         brightness(96%)
         contrast(90%);
-}
-
-
-.linktree-link:hover,
-.linktree-link:focus-visible{
-    outline:1px solid #1a1a1a;
-    outline-offset:3px;
-}
-
-
-.linktree-link:hover img,
-.linktree-link:focus-visible img{
-    filter:none;
 }
 
 

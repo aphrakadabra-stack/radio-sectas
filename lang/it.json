@@ -20,6 +20,8 @@
   "live_play": "ASCOLTA",
   "live_pause": "PAUSA",
   "live_reconnecting": "RICONNESSIONE",
+  "live_connecting": "CONNESSIONE",
+  "live_offline": "FUORI LINEA",
   "close_manifesto": "Chiudi il manifesto",
   "notify_me": "AVVISAMI",
   "notify_active": "AVVISI ATTIVI",

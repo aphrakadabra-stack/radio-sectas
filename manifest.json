@@ -8,6 +8,7 @@
   "start_url": "/ugju-radio/",
   "scope": "/ugju-radio/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#EA52F3",
   "theme_color": "#EA52F3",
   "icons": [

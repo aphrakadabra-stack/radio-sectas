@@ -20,6 +20,8 @@
   "live_play": "TOISTA",
   "live_pause": "TAUKO",
   "live_reconnecting": "YHDISTETÄÄN",
+  "live_connecting": "YHDISTYY",
+  "live_offline": "POIS LINJOILTA",
   "close_manifesto": "Sulje manifesti",
   "notify_me": "ILMOITA MINULLE",
   "notify_active": "ILMOITUKSET PÄÄLLÄ",

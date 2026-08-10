@@ -48,6 +48,7 @@ let entradaArchivoActual = null;
 let radioHabitada = false;
 let escuchaVivoIniciadaPorUsuario = false;
 let vivoIniciadoConExito = false;
+let vivoConectando = false;
 let temporizadorReconexionVivo = null;
 let temporizadorEsperaVivo = null;
 let intentoReconexionVivo = 0;
@@ -56,7 +57,9 @@ let textosControlVivo = {
     inClouds: "IN CLOUDS",
     play: "PLAY",
     pause: "PAUSE",
-    reconnecting: "RECONNECTING"
+    reconnecting: "RECONNECTING",
+    connecting: "CONNECTING",
+    offline: "OFFLINE"
 };
 
 const URL_VIVO =
@@ -69,6 +72,8 @@ const ITEM_VENTANA_ARCHIVE = "ugju-radio-window";
 const URL_METADATA_VENTANA =
     `https://archive.org/metadata/${ITEM_VENTANA_ARCHIVE}`;
 const INTERVALO_FOTO_VENTANA = 60000;
+const MAXIMO_FOTO_PRECARGA = 600000;
+let fotoVentanaPrecargada = "";
 
 if (esNavegadorInstagram) {
     document.documentElement.classList.add(
@@ -127,6 +132,57 @@ function cargarFotoVentana() {
 }
 
 
+function obtenerUrlFotoVentana() {
+
+    const fuente = ventanaFoto.dataset.src;
+
+    if (!fuente) return "";
+
+    const version = ventanaFoto.dataset.version || Date.now();
+    const separador = fuente.includes("?") ? "&" : "?";
+
+    return `${fuente}${separador}v=${encodeURIComponent(version)}`;
+
+}
+
+
+function precargarFotoVentana(forzar = false) {
+
+    const url = obtenerUrlFotoVentana();
+    const tamaño = Number(ventanaFoto.dataset.size || 0);
+    const conexion = navigator.connection ||
+        navigator.mozConnection || navigator.webkitConnection;
+
+    if (
+        !url ||
+        url === fotoVentanaPrecargada ||
+        (!forzar && (conexion?.saveData || tamaño > MAXIMO_FOTO_PRECARGA))
+    ) {
+        return;
+    }
+
+    const imagen = new Image();
+    imagen.decoding = "async";
+    imagen.src = url;
+    fotoVentanaPrecargada = url;
+
+}
+
+
+function programarPrecargaFotoVentana() {
+
+    const tarea = () => precargarFotoVentana();
+
+    if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(tarea,{timeout:2500});
+        return;
+    }
+
+    setTimeout(tarea,1200);
+
+}
+
+
 function establecerDisponibilidadVentana(disponible) {
 
     ventanaDisparador.disabled = !disponible;
@@ -140,6 +196,8 @@ function establecerDisponibilidadVentana(disponible) {
     ventanaFoto.removeAttribute("src");
     delete ventanaFoto.dataset.src;
     delete ventanaFoto.dataset.version;
+    delete ventanaFoto.dataset.size;
+    fotoVentanaPrecargada = "";
 
     if (!ventanaCapa.hidden) {
         cerrarVentana();
@@ -197,7 +255,9 @@ async function actualizarFotoVentanaDesdeArchive() {
             `https://archive.org/download/${ITEM_VENTANA_ARCHIVE}/${nombre}`;
         ventanaFoto.dataset.version = fotografia.mtime ||
             datos.item_last_updated || Date.now();
+        ventanaFoto.dataset.size = fotografia.size || "";
         establecerDisponibilidadVentana(true);
+        programarPrecargaFotoVentana();
 
         if (!ventanaCapa.hidden) {
             cargarFotoVentana();
@@ -233,6 +293,20 @@ ventanaFoto.addEventListener("load", () => {
     ventanaCapa.classList.add("photo-ready");
     ventanaCerrar.focus({preventScroll:true});
 
+});
+
+ventanaDisparador.addEventListener(
+    "pointerdown",
+    () => precargarFotoVentana(true),
+    {passive:true}
+);
+ventanaDisparador.addEventListener(
+    "pointerenter",
+    () => precargarFotoVentana(true),
+    {passive:true}
+);
+ventanaDisparador.addEventListener("focus",() => {
+    precargarFotoVentana(true);
 });
 
 
@@ -305,16 +379,26 @@ function detenerVivoParaArchivo() {
 function actualizarControlVivo(reconectando = false) {
 
     const reproduciendo = !audioVivo.paused && !audioVivo.ended;
+    const esperandoReconexion = reconectando ||
+        Boolean(temporizadorReconexionVivo);
+    const fueraDeLinea = !radioHabitada;
+    const iniciando = vivoConectando && !esperandoReconexion;
 
     botonVivo.setAttribute("aria-pressed",String(reproduciendo));
+    botonVivo.setAttribute("aria-busy",String(iniciando || esperandoReconexion));
+    botonVivo.disabled = fueraDeLinea || iniciando || esperandoReconexion;
     controlesVivo.dataset.playing = String(reproduciendo);
-    botonVivo.dataset.reconnecting = String(reconectando);
+    botonVivo.dataset.reconnecting = String(esperandoReconexion);
     iconoBotonVivo.textContent = reproduciendo ? "Ⅱ" : "▶";
-    etiquetaBotonVivo.textContent = reconectando
+    etiquetaBotonVivo.textContent = fueraDeLinea
+        ? textosControlVivo.offline
+        : esperandoReconexion
         ? textosControlVivo.reconnecting
-        : reproduciendo
-            ? textosControlVivo.pause
-            : textosControlVivo.play;
+        : iniciando
+            ? textosControlVivo.connecting
+            : reproduciendo
+                ? textosControlVivo.pause
+                : textosControlVivo.play;
 
     requestAnimationFrame(ajustarControlesVivo);
 
@@ -382,11 +466,17 @@ function puedeReconectarVivo() {
 
 async function iniciarVivo(esReconexion = false) {
 
-    if (!escuchaVivoIniciadaPorUsuario || vivoDetenidoPorArchivo) {
+    if (
+        !escuchaVivoIniciadaPorUsuario ||
+        vivoDetenidoPorArchivo ||
+        !radioHabitada ||
+        vivoConectando
+    ) {
         return;
     }
 
     cancelarReconexionVivo();
+    vivoConectando = true;
 
     if (!audioVivo.src) {
         audioVivo.src = URL_VIVO;
@@ -395,11 +485,14 @@ async function iniciarVivo(esReconexion = false) {
     if (esReconexion) {
         audioVivo.load();
         actualizarControlVivo(true);
+    } else {
+        actualizarControlVivo();
     }
 
     try {
         await audioVivo.play();
     } catch (error) {
+        vivoConectando = false;
         if (vivoIniciadoConExito) {
             programarReconexionVivo();
         } else {
@@ -420,6 +513,11 @@ function programarReconexionVivo(forzar = false) {
     if (interrupcionDeFondoSinError) {
         cancelarReconexionVivo();
         actualizarControlVivo();
+        return;
+    }
+
+    if (vivoConectando) {
+        actualizarControlVivo(true);
         return;
     }
 
@@ -470,6 +568,10 @@ function vigilarEsperaVivo() {
 
 function alternarVivo() {
 
+    if (!radioHabitada || vivoConectando) {
+        return;
+    }
+
     if (!audioVivo.paused) {
         detenerEscuchaVivo();
         return;
@@ -486,6 +588,7 @@ function detenerEscuchaVivo() {
 
     escuchaVivoIniciadaPorUsuario = false;
     vivoIniciadoConExito = false;
+    vivoConectando = false;
     cancelarReconexionVivo(true);
     audioVivo.pause();
     actualizarControlVivo();
@@ -509,6 +612,7 @@ function actualizarEstadoRadioVivo(estaHabitada) {
 
     if (!radioHabitada) {
         ocultarMetadatosVivo();
+        vivoConectando = false;
         cancelarReconexionVivo(true);
         actualizarControlVivo();
         return;
@@ -976,6 +1080,9 @@ window.addEventListener(
 botonVolverAlVivo.addEventListener("click",volverAlVivo);
 botonPausaArchivo.addEventListener("click",alternarPausaArchivo);
 botonVivo.addEventListener("click",alternarVivo);
+enlaceLinktree.addEventListener("click",() => {
+    enlaceLinktree.blur();
+});
 ventanaDisparador.addEventListener("click",abrirVentana);
 ventanaCerrar.addEventListener("click",() => cerrarVentana(true));
 ventanaCapa.addEventListener("click",evento => {
@@ -989,6 +1096,7 @@ window.addEventListener("resize",ajustarDesplazamientoMetadatosVivo);
 
 audioVivo.addEventListener("playing",() => {
     vivoIniciadoConExito = true;
+    vivoConectando = false;
     cancelarReconexionVivo(true);
     actualizarControlVivo();
     comprobarMetadatosVivo();
@@ -1031,6 +1139,25 @@ document.addEventListener("visibilitychange",() => {
         programarReconexionVivo();
     }
 });
+
+
+function solicitarOrientacionVertical() {
+
+    if (!window.matchMedia("(display-mode: standalone)").matches) {
+        return;
+    }
+
+    const bloquear = screen.orientation?.lock;
+
+    if (typeof bloquear === "function") {
+        bloquear.call(screen.orientation,"portrait").catch(() => {});
+    }
+
+}
+
+
+window.addEventListener("pageshow",solicitarOrientacionVertical);
+solicitarOrientacionVertical();
 
 
 ["play","pause","ended","loadedmetadata","timeupdate"]
@@ -1473,7 +1600,9 @@ cargarIdioma(idioma)
         inClouds: textos.live_in_clouds,
         play: textos.live_play,
         pause: textos.live_pause,
-        reconnecting: textos.live_reconnecting
+        reconnecting: textos.live_reconnecting,
+        connecting: textos.live_connecting,
+        offline: textos.live_offline
     };
 
     etiquetaEstadoVivo.textContent = radioHabitada
