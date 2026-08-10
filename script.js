@@ -247,6 +247,7 @@ function actualizarControlVivo(reconectando = false) {
     const reproduciendo = !audioVivo.paused && !audioVivo.ended;
 
     botonVivo.setAttribute("aria-pressed",String(reproduciendo));
+    controlesVivo.dataset.playing = String(reproduciendo);
     botonVivo.dataset.reconnecting = String(reconectando);
     iconoBotonVivo.textContent = reproduciendo ? "Ⅱ" : "▶";
     etiquetaBotonVivo.textContent = reconectando

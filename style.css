@@ -279,6 +279,10 @@ h1{
     display:none;
 }
 
+.live-controls:not([data-playing="true"]) .live-metadata{
+    display:none;
+}
+
 .live-metadata-track{
     display:inline-block;
     min-width:max-content;
