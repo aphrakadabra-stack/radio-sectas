@@ -266,13 +266,16 @@ h1{
     display:flex;
     font:700 .78rem/1 "Courier New",monospace;
     gap:8px;
+    justify-content:center;
     letter-spacing:.12em;
+    min-height:36px;
     min-width:0;
-    padding:7px 9px;
+    width:142px;
+    padding:6px 9px;
     border:1px solid currentColor;
     background:#1a1a1a;
     white-space:nowrap;
-    flex:0 1 auto;
+    flex:0 1 142px;
 }
 
 .live-status::before{
@@ -288,14 +291,14 @@ h1{
 }
 
 .live-status[data-live="true"]{
-    color:#171717;
+    color:#EA52F3;
     border-color:#E62506;
     background:#E62506;
 }
 
 .live-status[data-live="true"]::before{
-    border-color:#171717;
-    background:#171717;
+    border-color:#EA52F3;
+    background:#EA52F3;
     box-shadow:none;
 }
 
