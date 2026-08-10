@@ -326,6 +326,10 @@ h1{
     line-height:1;
 }
 
+#live-toggle-label{
+    font-size:.8rem;
+}
+
 .live-toggle[aria-pressed="false"] #live-toggle-icon{
     font-size:.9rem;
 }
