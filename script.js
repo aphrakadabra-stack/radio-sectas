@@ -411,7 +411,18 @@ async function iniciarVivo(esReconexion = false) {
 }
 
 
-function programarReconexionVivo() {
+function programarReconexionVivo(forzar = false) {
+
+    const audioSigueActivo = !audioVivo.paused &&
+        !audioVivo.ended &&
+        !audioVivo.error &&
+        audioVivo.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA;
+
+    if (!forzar && audioSigueActivo) {
+        cancelarReconexionVivo();
+        actualizarControlVivo();
+        return;
+    }
 
     if (!puedeReconectarVivo() || temporizadorReconexionVivo) {
         actualizarControlVivo();
@@ -441,7 +452,7 @@ function vigilarEsperaVivo() {
 
     temporizadorEsperaVivo = setTimeout(() => {
         temporizadorEsperaVivo = null;
-        programarReconexionVivo();
+        programarReconexionVivo(true);
     },10000);
 
 }
@@ -989,7 +1000,10 @@ audioVivo.addEventListener("pause",() => {
 });
 
 ["error","stalled","abort","ended"].forEach(tipo => {
-    audioVivo.addEventListener(tipo,programarReconexionVivo);
+    audioVivo.addEventListener(
+        tipo,
+        () => programarReconexionVivo(true)
+    );
 });
 
 audioVivo.addEventListener("waiting",vigilarEsperaVivo);
