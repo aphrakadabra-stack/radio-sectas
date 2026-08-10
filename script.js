@@ -59,6 +59,10 @@ let textosControlVivo = {
 const URL_VIVO =
     "https://s3.free-shoutcast.com/stream/18210/;stream.mp3";
 const RETRASOS_RECONEXION_VIVO = [2000,4000,8000,15000,30000,60000];
+const ITEM_VENTANA_ARCHIVE = "ugju-radio-window";
+const URL_METADATA_VENTANA =
+    `https://archive.org/metadata/${ITEM_VENTANA_ARCHIVE}`;
+const URL_FOTO_VENTANA_LOCAL = ventanaFoto.dataset.src;
 
 if (esNavegadorInstagram) {
     document.documentElement.classList.add(
@@ -91,14 +95,92 @@ function cerrarManifiesto(devolverFoco = false) {
 }
 
 
-function abrirVentana() {
+function cargarFotoVentana() {
+
+    const fuente = ventanaFoto.dataset.src ||
+        URL_FOTO_VENTANA_LOCAL;
+    const version = ventanaFoto.dataset.version || Date.now();
+    const separador = fuente.includes("?") ? "&" : "?";
+
+    ventanaFoto.onerror = () => {
+
+        ventanaFoto.onerror = null;
+
+        if (fuente !== URL_FOTO_VENTANA_LOCAL) {
+            ventanaFoto.src =
+                `${URL_FOTO_VENTANA_LOCAL}?v=${Date.now()}`;
+        }
+
+    };
 
     ventanaFoto.src =
-        `${ventanaFoto.dataset.src}?v=${Date.now()}`;
-    ventanaCapa.hidden = false;
-    ventanaCerrar.focus({preventScroll:true});
+        `${fuente}${separador}v=${encodeURIComponent(version)}`;
 
 }
+
+
+async function actualizarFotoVentanaDesdeArchive() {
+
+    try {
+
+        const respuesta = await fetch(
+            `${URL_METADATA_VENTANA}?v=${Date.now()}`,
+            {cache:"no-store"}
+        );
+
+        if (!respuesta.ok) {
+            throw new Error("No se pudo consultar la ventana");
+        }
+
+        const datos = await respuesta.json();
+        const originales = (datos.files || [])
+            .filter(archivo =>
+                archivo.source === "original" &&
+                !archivo.name.startsWith("__") &&
+                /\.(?:avif|gif|jpe?g|png|webp)$/i.test(archivo.name)
+            )
+            .sort(
+                (a,b) => Number(b.mtime || 0) - Number(a.mtime || 0)
+            );
+
+        if (!originales.length) {
+            throw new Error("No hay fotografías originales");
+        }
+
+        const fotografia = originales[0];
+        const nombre = encodeURIComponent(fotografia.name)
+            .replace(/%2F/gi,"/");
+
+        ventanaFoto.dataset.src =
+            `https://archive.org/download/${ITEM_VENTANA_ARCHIVE}/${nombre}`;
+        ventanaFoto.dataset.version = fotografia.mtime ||
+            datos.item_last_updated || Date.now();
+
+        if (!ventanaCapa.hidden) {
+            cargarFotoVentana();
+        }
+
+    } catch (error) {
+
+        ventanaFoto.dataset.src = URL_FOTO_VENTANA_LOCAL;
+        ventanaFoto.dataset.version = Date.now();
+
+    }
+
+}
+
+
+function abrirVentana() {
+
+    cargarFotoVentana();
+    ventanaCapa.hidden = false;
+    ventanaCerrar.focus({preventScroll:true});
+    actualizarFotoVentanaDesdeArchive();
+
+}
+
+
+actualizarFotoVentanaDesdeArchive();
 
 
 function cerrarVentana(devolverFoco = false) {
