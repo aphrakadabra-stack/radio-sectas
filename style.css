@@ -288,13 +288,15 @@ h1{
 }
 
 .live-status[data-live="true"]{
-    color:#EA52F3;
+    color:#171717;
+    border-color:#E62506;
+    background:#E62506;
 }
 
 .live-status[data-live="true"]::before{
-    border-color:#E62506;
-    background:#E62506;
-    box-shadow:0 0 0 2px rgba(230,37,6,.28);
+    border-color:#171717;
+    background:#171717;
+    box-shadow:none;
 }
 
 .live-toggle{
