@@ -287,7 +287,7 @@ function actualizarEstadoRadioVivo(estaHabitada) {
     const estabaHabitada = radioHabitada;
     radioHabitada = estaHabitada;
     estadoVivo.dataset.live = String(radioHabitada);
-    estadoVivo.textContent = radioHabitada ? "● ON AIR" : "OFF LINE";
+    estadoVivo.textContent = radioHabitada ? "ON AIR" : "OFF LINE";
 
     if (!radioHabitada) {
         cancelarReconexionVivo(true);
