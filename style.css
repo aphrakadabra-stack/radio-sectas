@@ -183,11 +183,22 @@ h1{
     padding:max(22px,env(safe-area-inset-top)) 22px
         max(22px,env(safe-area-inset-bottom));
 
-    background:rgba(23,23,23,.94);
+    background:transparent;
 }
 
 .window-overlay[hidden]{
     display:none;
+}
+
+.window-photo-frame{
+    position:relative;
+
+    display:flex;
+
+    max-width:92vw;
+    max-height:88vh;
+
+    box-shadow:0 10px 36px rgba(23,23,23,.42);
 }
 
 .window-photo{
@@ -202,9 +213,9 @@ h1{
 }
 
 .window-close{
-    position:fixed;
-    top:max(10px,env(safe-area-inset-top));
-    right:max(12px,env(safe-area-inset-right));
+    position:absolute;
+    top:-13px;
+    right:-13px;
 
     width:42px;
     height:42px;
