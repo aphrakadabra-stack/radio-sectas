@@ -250,14 +250,14 @@ h1{
 
 .live-status{
     color:#b8b8b8;
-    font:700 .68rem/1 "Courier New",monospace;
+    font:700 .78rem/1 "Courier New",monospace;
     letter-spacing:.12em;
     padding-left:8px;
     white-space:nowrap;
 }
 
 .live-status[data-live="true"]{
-    color:#EA52F3;
+    color:#E62506;
 }
 
 .live-toggle{
