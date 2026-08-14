@@ -66,7 +66,7 @@ function dibujar() {
     });
     if (puntosTrazo.length < 2) return;
     contexto.strokeStyle = "#222";
-    contexto.lineWidth = 2;
+    contexto.lineWidth = esTactil() ? 3.5 : 2;
     contexto.lineCap = "round";
     contexto.lineJoin = "round";
     contexto.beginPath();
@@ -124,9 +124,16 @@ function reiniciar(evento) {
     dibujar();
 }
 
+function limpiarResultado() {
+    completado = false;
+    final.hidden = true;
+    koan.classList.remove("is-complete");
+}
+
 function comenzar(evento) {
-    if (completado || evento.button > 0) return;
+    if (evento.button > 0) return;
     evento.preventDefault();
+    if (completado) limpiarResultado();
     puntosTrazo = [puntoDelEvento(evento)];
     dibujando = true;
     lienzo.setPointerCapture(evento.pointerId);
@@ -172,6 +179,10 @@ volver.addEventListener("click",evento => {
     evento.preventDefault();
     window.parent.postMessage({type:"close-stay"},window.location.origin);
 });
-window.addEventListener("resize",() => { if (!dibujando && !completado) prepararLienzo(); });
+window.addEventListener("resize",() => {
+    if (dibujando) return;
+    if (completado) limpiarResultado();
+    prepararLienzo();
+});
 
 cargarTextos().catch(() => {}).finally(prepararLienzo);
