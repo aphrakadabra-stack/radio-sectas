@@ -47,6 +47,7 @@ let vivoDetenidoPorArchivo = false;
 let entradaArchivoActual = null;
 let radioHabitada = false;
 let escuchaVivoIniciadaPorUsuario = false;
+let vivoEscuchadoEnEstaSesion = false;
 let vivoIniciadoConExito = false;
 let vivoConectando = false;
 let temporizadorReconexionVivo = null;
@@ -58,7 +59,9 @@ let textosControlVivo = {
     play: "PLAY",
     pause: "PAUSE",
     reconnecting: "RECONNECTING",
-    listening: "LISTENING"
+    listening: "LISTENING",
+    goToLive: "GO TO LIVE RADIO",
+    returnToLive: "RETURN TO LIVE RADIO"
 };
 
 const URL_VIVO =
@@ -568,6 +571,16 @@ function vigilarEsperaVivo() {
 
     temporizadorEsperaVivo = setTimeout(() => {
         temporizadorEsperaVivo = null;
+
+        // La primera conexión de FreeSHOUTcast puede tardar varios segundos.
+        // No la convertimos en una falsa reconexión ni iniciamos otra carga en
+        // paralelo: el mismo play sigue esperando y la interfaz conserva
+        // ESCUCHANDO... hasta que llega el evento playing.
+        if (!vivoIniciadoConExito) {
+            actualizarControlVivo();
+            return;
+        }
+
         programarReconexionVivo(true);
     },10000);
 
@@ -754,6 +767,9 @@ function actualizarPanelArchivo() {
 
     panelArchivo.hidden = false;
     botonVolverAlVivo.hidden = !radioHabitada;
+    botonVolverAlVivo.textContent = vivoEscuchadoEnEstaSesion
+        ? textosControlVivo.returnToLive
+        : textosControlVivo.goToLive;
 
     const fechaYTitulo = `${formatearFechaArchivo(
         entradaArchivoActual.date
@@ -936,7 +952,12 @@ function volverAlVivo() {
     restaurarControlesVivo();
     escuchaVivoIniciadaPorUsuario = true;
     intentoReconexionVivo = 0;
-    audioVivo.load();
+    // Una recarga descarta cualquier búfer viejo si el vivo ya se escuchó.
+    // En el primer ingreso, iniciarVivo asigna la URL y reproduce sin una
+    // carga preliminar redundante.
+    if (audioVivo.src) {
+        audioVivo.load();
+    }
     iniciarVivo();
 
 }
@@ -1127,6 +1148,7 @@ window.addEventListener("resize",ajustarDesplazamientoMetadatosVivo);
 
 
 audioVivo.addEventListener("playing",() => {
+    vivoEscuchadoEnEstaSesion = true;
     vivoIniciadoConExito = true;
     vivoConectando = false;
     cancelarReconexionVivo(true);
@@ -1635,7 +1657,9 @@ cargarIdioma(idioma)
         play: textos.live_play,
         pause: textos.live_pause,
         reconnecting: textos.live_reconnecting,
-        listening: textos.listening
+        listening: textos.listening,
+        goToLive: textos.live_go,
+        returnToLive: textos.live_return
     };
 
     etiquetaEstadoVivo.textContent = radioHabitada
@@ -1658,9 +1682,6 @@ cargarIdioma(idioma)
 
     enlaceArchivo.textContent =
         textos.archive;
-
-    botonVolverAlVivo.textContent =
-        textos.live_return;
 
     etiquetaSesionArchivo.textContent =
         textos.archive_playing;

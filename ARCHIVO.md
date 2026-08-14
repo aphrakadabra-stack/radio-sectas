@@ -35,5 +35,7 @@ en el navegador. En una primera visita sin conexión utiliza
 - Mientras suena un archivo, el estado del vivo se sigue comprobando. Si no hay
   transmisión, no se muestra ningún aviso del vivo; si comienza una, aparece el
   cartel EN EL AIRE sin interrumpir el archivo.
-- Si hay una transmisión activa, VOLVER A LA RADIO EN VIVO detiene el archivo,
-  restaura los controles e inicia el vivo de FreeSHOUTcast en la misma acción.
+- Si hay una transmisión activa, IR A LA RADIO EN VIVO aparece cuando todavía
+  no se escuchó el vivo en esa sesión; después aparece VOLVER A LA RADIO EN
+  VIVO. Ambas acciones detienen el archivo, restauran los controles e inician
+  el vivo de FreeSHOUTcast en el mismo gesto.
