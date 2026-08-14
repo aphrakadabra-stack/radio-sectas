@@ -72,7 +72,7 @@ h1{
 }
 
 .drawing{
-    width:min(72vw,390px);
+    width:min(78vw,440px);
     aspect-ratio:1;
     margin-top:clamp(24px,5vh,48px);
     touch-action:none;
@@ -99,7 +99,7 @@ canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
 
 @media(max-width:700px){
     .koan{width:92vw;padding-top:max(58px,calc(env(safe-area-inset-top) + 46px))}
-    .drawing{width:min(82vw,360px);margin-top:clamp(18px,4vh,34px)}
+    .drawing{width:min(90vw,410px);margin-top:clamp(18px,4vh,34px)}
     #koan-instruction{max-width:340px}
 }
 

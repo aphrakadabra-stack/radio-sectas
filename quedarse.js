@@ -66,7 +66,7 @@ function dibujar() {
     });
     if (puntosTrazo.length < 2) return;
     contexto.strokeStyle = "#222";
-    contexto.lineWidth = 1.45;
+    contexto.lineWidth = 2;
     contexto.lineCap = "round";
     contexto.lineJoin = "round";
     contexto.beginPath();

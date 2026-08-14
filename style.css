@@ -810,13 +810,13 @@ h1{
 }
 
 .archive-link{
-    top:calc(clamp(14px,2vh,24px) + 25px);
+    top:calc(clamp(14px,2vh,24px) + 50px);
     right:auto;
     left:clamp(14px,2vw,28px);
 }
 
 .stay-link{
-    top:calc(clamp(14px,2vh,24px) + 50px);
+    top:calc(clamp(14px,2vh,24px) + 25px);
 }
 
 
@@ -976,19 +976,19 @@ h1{
     .archive-link{
         position:fixed;
 
-        top:max(8px,env(safe-area-inset-top));
-        right:10px;
+        top:calc(max(8px,env(safe-area-inset-top)) + 50px);
+        right:auto;
         bottom:auto;
-        left:auto;
+        left:10px;
 
         transform:none;
     }
 
     .stay-link{
         position:fixed;
-        top:auto;
+        top:calc(max(8px,env(safe-area-inset-top)) + 25px);
         right:auto;
-        bottom:max(8px,env(safe-area-inset-bottom));
+        bottom:auto;
         left:10px;
         transform:none;
     }

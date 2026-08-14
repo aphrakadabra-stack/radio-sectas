@@ -99,7 +99,7 @@
     }
     </script>
 
-    <link rel="stylesheet" href="style.css?v=20260814-1">
+    <link rel="stylesheet" href="style.css?v=20260814-2">
 
     <script
         src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
@@ -272,17 +272,19 @@
         </a>
 
         <a
+            class="room-link stay-link"
+            href="https://ugjusectas.github.io/ugju-radio/quedarse.html"
+            data-room-id="nine-dots"
+            data-room-src="quedarse.html?inside=radio"
+        >
+            STAY
+        </a>
+
+        <a
             class="archive-link"
             href="https://ugjusectas.github.io/ugju-radio/archivo.html"
         >
             ARCHIVE
-        </a>
-
-        <a
-            class="stay-link"
-            href="https://ugjusectas.github.io/ugju-radio/quedarse.html"
-        >
-            STAY
         </a>
 
         <a
@@ -355,8 +357,9 @@
     </section>
 
     <section
-        class="stay-overlay"
+        class="room-overlay stay-overlay"
         id="stay-overlay"
+        data-room-id="nine-dots"
         role="dialog"
         aria-modal="true"
         aria-label="ÚGJÜ RADIO — Stay"
@@ -368,7 +371,7 @@
         ></iframe>
     </section>
 
-    <script src="script.js?v=20260814-6"></script>
+    <script src="script.js?v=20260814-7"></script>
 
 </body>
 

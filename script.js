@@ -354,7 +354,7 @@ function abrirArchivo() {
 
 function abrirQuedarse() {
     if (!quedarseCargado) {
-        marcoQuedarse.src = "quedarse.html?inside=radio";
+        marcoQuedarse.src = enlaceQuedarse.dataset.roomSrc;
         quedarseCargado = true;
     }
     capaQuedarse.hidden = false;
