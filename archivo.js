@@ -148,7 +148,7 @@ async function reproducirIndependiente(entrada) {
         audioIndependiente.setAttribute("playsinline","");
         audioIndependiente.addEventListener("play",informarSesionIndependiente);
         audioIndependiente.addEventListener("pause",informarSesionIndependiente);
-        audioIndependiente.addEventListener("ended",informarSesionIndependiente);
+        audioIndependiente.addEventListener("ended",detenerIndependiente);
         document.body.appendChild(audioIndependiente);
     }
 

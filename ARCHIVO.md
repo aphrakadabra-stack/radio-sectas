@@ -30,5 +30,7 @@ en el navegador. En una primera visita sin conexión utiliza
   pausarlo o reanudarlo.
 - DETENER descarta por completo el archivo actual. Si se elige otra emisión, la
   anterior se detiene y es reemplazada; nunca quedan dos archivos activos.
+- Al terminar una emisión, el reproductor de ARCHIVO se cierra y descarta el
+  audio finalizado.
 - VOLVER A LA RADIO EN VIVO detiene el archivo y restaura el reproductor Caster
   para que el oyente lo inicie manualmente.

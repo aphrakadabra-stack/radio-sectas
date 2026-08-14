@@ -930,6 +930,17 @@ function volverAlVivo() {
 }
 
 
+function finalizarArchivo() {
+
+    audioArchivo.removeAttribute("src");
+    audioArchivo.load();
+    entradaArchivoActual = null;
+    actualizarSesionMultimedia();
+    informarEstadoArchivo();
+
+}
+
+
 function alternarPausaArchivo() {
 
     if (!entradaArchivoActual) {
@@ -1167,10 +1178,12 @@ window.addEventListener("pageshow",solicitarOrientacionVertical);
 solicitarOrientacionVertical();
 
 
-["play","pause","ended","loadedmetadata","timeupdate"]
+["play","pause","loadedmetadata","timeupdate"]
 .forEach(tipo => {
     audioArchivo.addEventListener(tipo,informarEstadoArchivo);
 });
+
+audioArchivo.addEventListener("ended",finalizarArchivo);
 
 
 if ("mediaSession" in navigator) {
