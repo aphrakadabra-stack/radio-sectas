@@ -44,12 +44,14 @@ function prepararLienzo() {
     lienzo.width = Math.round(rect.width * escala);
     lienzo.height = Math.round(rect.height * escala);
     contexto.setTransform(escala,0,0,escala,0,0);
-    const margen = rect.width * .29;
-    const paso = (rect.width - margen * 2) / 2;
+    const lado = Math.min(rect.width,rect.height);
+    const margenX = (rect.width - lado) / 2 + lado * .23;
+    const margenY = (rect.height - lado) / 2 + lado * .23;
+    const paso = lado * .27;
     puntosObjetivo = [];
     for (let fila = 0; fila < 3; fila += 1) {
         for (let columna = 0; columna < 3; columna += 1) {
-            puntosObjetivo.push({x:margen + columna * paso,y:margen + fila * paso});
+            puntosObjetivo.push({x:margenX + columna * paso,y:margenY + fila * paso});
         }
     }
     dibujar();
