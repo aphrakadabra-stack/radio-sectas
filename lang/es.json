@@ -30,5 +30,6 @@
   "notify_loading": "El sistema de avisos todavía está despertando. Probá nuevamente en unos segundos.",
   "notify_unsupported": "Este navegador no permite recibir avisos.",
   "notify_error": "No pudimos activar los avisos. Revisá los permisos de notificaciones del navegador.",
+  "notify_disabled": "Avisos desactivados. Podés volver a activarlos cuando quieras.",
   "linktree_label": "Abrir Linktree de ÚGJÜ SECTAS"
 }

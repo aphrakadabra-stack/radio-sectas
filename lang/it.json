@@ -30,5 +30,6 @@
   "notify_loading": "Il sistema di avvisi si sta ancora svegliando. Riprova tra qualche secondo.",
   "notify_unsupported": "Questo browser non supporta gli avvisi.",
   "notify_error": "Non è stato possibile attivare gli avvisi. Controlla i permessi di notifica del browser.",
+  "notify_disabled": "Avvisi disattivati. Puoi riattivarli quando vuoi.",
   "linktree_label": "Apri ÚGJÜ SECTAS su Linktree"
 }

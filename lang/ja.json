@@ -30,5 +30,6 @@
   "notify_loading": "通知システムはまだ目覚めている途中です。数秒後にもう一度お試しください。",
   "notify_unsupported": "このブラウザは通知に対応していません。",
   "notify_error": "通知を有効にできませんでした。ブラウザの通知設定を確認してください。",
+  "notify_disabled": "通知をオフにしました。いつでも再びオンにできます。",
   "linktree_label": "LinktreeでÚGJÜ SECTASを開く"
 }

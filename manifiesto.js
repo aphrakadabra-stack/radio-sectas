@@ -243,7 +243,7 @@ function actualizarAvisame() {
 }
 
 
-async function solicitarAviso() {
+async function alternarAviso() {
 
     if (!textosActuales) {
         return;
@@ -294,23 +294,38 @@ async function solicitarAviso() {
 
     try {
 
-        await OneSignal.User.PushSubscription.optIn();
+        const estaSuscrito =
+            Boolean(
+                OneSignal.User.PushSubscription.optedIn
+            );
+
+        botonAviso.disabled = true;
+        botonAviso.setAttribute("aria-busy", "true");
+
+        if (estaSuscrito) {
+            await OneSignal.User.PushSubscription.optOut();
+        } else {
+            await OneSignal.User.PushSubscription.optIn();
+        }
 
         actualizarAvisame();
 
-        if (OneSignal.User.PushSubscription.optedIn) {
-
-            window.alert(
-                textosActuales.notify_success
-            );
-
-        }
+        window.alert(
+            OneSignal.User.PushSubscription.optedIn
+                ? textosActuales.notify_success
+                : textosActuales.notify_disabled
+        );
 
     } catch (error) {
 
         window.alert(
             textosActuales.notify_error
         );
+
+    } finally {
+
+        botonAviso.disabled = false;
+        botonAviso.removeAttribute("aria-busy");
 
     }
 
@@ -319,7 +334,7 @@ async function solicitarAviso() {
 
 botonAviso.addEventListener(
     "click",
-    solicitarAviso
+    alternarAviso
 );
 
 

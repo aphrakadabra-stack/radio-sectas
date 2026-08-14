@@ -30,5 +30,6 @@
   "notify_loading": "Das Benachrichtigungssystem wacht noch auf. Versuche es in einigen Sekunden erneut.",
   "notify_unsupported": "Dieser Browser unterstützt keine Benachrichtigungen.",
   "notify_error": "Benachrichtigungen konnten nicht aktiviert werden. Prüfe die Benachrichtigungsberechtigungen des Browsers.",
+  "notify_disabled": "Hinweise aus. Du kannst sie jederzeit wieder einschalten.",
   "linktree_label": "ÚGJÜ SECTAS auf Linktree öffnen"
 }

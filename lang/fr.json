@@ -30,5 +30,6 @@
   "notify_loading": "Le système de notifications se réveille encore. Réessayez dans quelques secondes.",
   "notify_unsupported": "Ce navigateur ne prend pas en charge les notifications.",
   "notify_error": "Impossible d’activer les notifications. Vérifiez les autorisations de notification du navigateur.",
+  "notify_disabled": "Notifications désactivées. Vous pouvez les réactiver à tout moment.",
   "linktree_label": "Ouvrir ÚGJÜ SECTAS sur Linktree"
 }

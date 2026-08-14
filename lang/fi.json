@@ -30,5 +30,6 @@
   "notify_loading": "Ilmoitusjärjestelmä on vielä heräämässä. Yritä muutaman sekunnin kuluttua uudelleen.",
   "notify_unsupported": "Tämä selain ei tue ilmoituksia.",
   "notify_error": "Ilmoituksia ei voitu ottaa käyttöön. Tarkista selaimen ilmoitusluvat.",
+  "notify_disabled": "Ilmoitukset pois. Voit ottaa ne takaisin käyttöön milloin tahansa.",
   "linktree_label": "Avaa ÚGJÜ SECTAS Linktreessä"
 }

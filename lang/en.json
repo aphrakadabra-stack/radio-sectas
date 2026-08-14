@@ -30,5 +30,6 @@
   "notify_loading": "The notification system is still waking up. Try again in a few seconds.",
   "notify_unsupported": "This browser does not support notifications.",
   "notify_error": "Notifications could not be enabled. Check your browser notification permissions.",
+  "notify_disabled": "Notifications off. You can turn them on again whenever you like.",
   "linktree_label": "Open ÚGJÜ SECTAS on Linktree"
 }
