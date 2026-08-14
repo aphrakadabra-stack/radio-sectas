@@ -1,6 +1,7 @@
 # Automatización de ÚGJÜ RADIO
 
-Este Worker consulta el estado público de Free-ShoutCast cada minuto.
+Este Worker consulta cada minuto el estado explícito `online` publicado por el
+Worker de metadatos de ÚGJÜ, cuya fuente es Free-ShoutCast.
 
 - Exige dos comprobaciones positivas consecutivas antes de anunciar una transmisión.
 - Envía una sola notificación cuando la radio pasa de dormida a habitada.
@@ -24,4 +25,5 @@ El Worker de producción se llama `ugju-radio-automation` y está configurado co
 
 Antes de un cambio futuro, validar que el Worker conserve el secreto y el enlace KV. Después del despliegue, encender la radio y comprobar que, tras dos comprobaciones, llegue una sola notificación.
 
-La detección consulta Free-ShoutCast, no Caster.
+La detección no usa la respuesta del stream: ese endpoint puede entregar audio
+aunque no haya una transmisión activa y dejar el estado atascado en `live`.

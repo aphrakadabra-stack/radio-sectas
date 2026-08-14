@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="#EA52F3">
     <title>QUEDARSE — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="quedarse.css?v=20260814-5">
+    <link rel="stylesheet" href="quedarse.css?v=20260814-6">
 </head>
 <body>
     <main class="house">
@@ -16,51 +16,58 @@
             <h1 id="title-nine" data-text="stay_nine_dots_title">THE NINE DOTS</h1>
             <div class="drawing square-drawing"><canvas id="nine-canvas"></canvas></div>
             <p class="instruction" id="nine-instruction"></p>
-            <p class="ending" id="nine-ending" aria-live="polite" hidden></p>
+            <div class="resolution" id="nine-resolution" hidden><p class="ending" id="nine-ending" aria-live="polite"></p><button class="reset" type="button" data-reset="nine" aria-label="Reiniciar">↺</button></div>
         </section>
 
         <section class="room" data-room="maze" aria-labelledby="title-maze" hidden>
             <h1 id="title-maze" data-text="stay_maze_title">THE IMPOSSIBLE MAZE</h1>
-            <div class="instrument maze-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="instrument maze-field" data-game="maze"><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><svg aria-hidden="true"></svg></div>
             <p class="instruction" data-text="stay_maze_instruction"></p>
+            <p class="game-status" data-status="maze" aria-live="polite"></p>
         </section>
 
         <section class="room" data-room="line" aria-labelledby="title-line" hidden>
             <h1 id="title-line" data-text="stay_line_title">THE SINGLE LINE</h1>
-            <div class="instrument single-line" aria-hidden="true"><svg viewBox="0 0 600 360"><path d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/></svg></div>
+            <div class="instrument single-line" data-game="line"><svg viewBox="0 0 600 360"><path class="line-guide" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/><path class="line-progress" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/></svg></div>
             <p class="instruction" data-text="stay_line_instruction"></p>
+            <p class="game-status" data-status="line" aria-live="polite"></p>
         </section>
 
         <section class="room" data-room="squares" aria-labelledby="title-squares" hidden>
             <h1 id="title-squares" data-text="stay_squares_title">THE THREE SQUARES</h1>
-            <div class="instrument three-squares" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="instrument three-squares" data-game="squares"><button type="button" aria-label="Cuadrado 1"></button><button type="button" aria-label="Cuadrado 2"></button><button type="button" aria-label="Cuadrado 3"></button></div>
             <p class="instruction" data-text="stay_squares_instruction"></p>
+            <p class="game-status" data-status="squares" aria-live="polite"></p>
         </section>
 
         <section class="room" data-room="point" aria-labelledby="title-point" hidden>
             <h1 id="title-point" data-text="stay_point_title">THE DOT AND THE LINE</h1>
-            <div class="instrument point-line" aria-hidden="true"><i></i><b></b></div>
+            <div class="instrument point-line" data-game="point"><i></i><button type="button" aria-label="Mover la línea"></button></div>
             <p class="instruction" data-text="stay_point_instruction"></p>
+            <p class="game-status" data-status="point" aria-live="polite"></p>
         </section>
 
         <section class="room" data-room="hanoi" aria-labelledby="title-hanoi" hidden>
             <h1 id="title-hanoi" data-text="stay_hanoi_title">THE TOWER OF HANOI</h1>
-            <div class="instrument hanoi" aria-hidden="true"><span><i></i><i></i><i></i></span><span></span><span></span></div>
+            <div class="instrument hanoi" data-game="hanoi"><button type="button" data-rod="0" aria-label="Torre 1"></button><button type="button" data-rod="1" aria-label="Torre 2"></button><button type="button" data-rod="2" aria-label="Torre 3"></button></div>
             <p class="instruction" data-text="stay_hanoi_instruction"></p>
+            <p class="game-status" data-status="hanoi" aria-live="polite"></p>
         </section>
 
         <section class="room" data-room="colour" aria-labelledby="title-colour" hidden>
             <h1 id="title-colour" data-text="stay_colour_title">THE ABSENT COLOUR</h1>
-            <div class="instrument absent-colour" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="instrument absent-colour" data-game="colour"><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button" data-missing="true"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button></div>
             <p class="instruction" data-text="stay_colour_instruction"></p>
+            <p class="game-status" data-status="colour" aria-live="polite"></p>
         </section>
 
         <section class="room" data-room="order" aria-labelledby="title-order" hidden>
             <h1 id="title-order" data-text="stay_order_title">THE INVISIBLE ORDER</h1>
-            <div class="instrument invisible-order" aria-hidden="true"><i>○</i><i>△</i><i>□</i><i>△</i><i>□</i><i>○</i><i>□</i><i>○</i><i>?</i></div>
+            <div class="instrument invisible-order" data-game="order"><i>○</i><i>△</i><i>□</i><i>△</i><i>□</i><i>○</i><i>□</i><i>○</i><button type="button" aria-label="Completar la secuencia">?</button></div>
             <p class="instruction" data-text="stay_order_instruction"></p>
+            <p class="game-status" data-status="order" aria-live="polite"></p>
         </section>
     </main>
-    <script src="quedarse.js?v=20260814-8"></script>
+    <script src="quedarse.js?v=20260814-9"></script>
 </body>
 </html>

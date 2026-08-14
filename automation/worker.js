@@ -1,5 +1,5 @@
-const RADIO_STREAM_URL =
-    "https://s3.free-shoutcast.com/stream/18210/;stream.mp3";
+const RADIO_STATUS_URL =
+    "https://ugju-radio-metadata.ugjusectas.workers.dev/metadata";
 
 const RADIO_URL =
     "https://ugjusectas.github.io/ugju-radio/";
@@ -227,10 +227,10 @@ async function checkRadio(env) {
 async function readRadioStatus() {
 
     const response = await fetch(
-        RADIO_STREAM_URL,
+        RADIO_STATUS_URL,
         {
             headers: {
-                "range": "bytes=0-1"
+                "accept": "application/json"
             },
             cf: {
                 cacheTtl: 0,
@@ -239,13 +239,19 @@ async function readRadioStatus() {
         }
     );
 
-    const isAudio = response.ok &&
-        response.headers.get("content-type")
-            ?.startsWith("audio/");
+    if (!response.ok) {
+        throw new Error(
+            `Radio status returned ${response.status}`
+        );
+    }
 
-    response.body?.cancel();
+    const data = await response.json();
 
-    return isAudio;
+    if (typeof data?.online !== "boolean") {
+        throw new Error("Radio status did not include online state");
+    }
+
+    return data.online;
 
 }
 
