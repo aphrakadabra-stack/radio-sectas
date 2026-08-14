@@ -367,11 +367,9 @@ function detenerVivoParaArchivo() {
     vivoConectando = false;
     escuchaVivoIniciadaPorUsuario = false;
     vivoIniciadoConExito = false;
-    actualizarControlVivo();
-
     vivoDetenidoPorArchivo = true;
-    controlesVivo.hidden = true;
     panelArchivo.hidden = false;
+    actualizarControlVivo();
 
 }
 
@@ -384,9 +382,13 @@ function actualizarControlVivo(reconectando = false) {
     const fueraDeLinea = !radioHabitada;
     const iniciando = vivoConectando && !esperandoReconexion;
 
+    if (vivoDetenidoPorArchivo) {
+        controlesVivo.hidden = fueraDeLinea;
+    }
+
     botonVivo.setAttribute("aria-pressed",String(reproduciendo));
     botonVivo.setAttribute("aria-busy",String(iniciando || esperandoReconexion));
-    botonVivo.hidden = fueraDeLinea;
+    botonVivo.hidden = fueraDeLinea || vivoDetenidoPorArchivo;
     botonVivo.disabled = fueraDeLinea || iniciando || esperandoReconexion;
     controlesVivo.dataset.playing = String(reproduciendo);
     botonVivo.dataset.reconnecting = String(esperandoReconexion);
@@ -947,6 +949,7 @@ function finalizarArchivo() {
     entradaArchivoActual = null;
     actualizarSesionMultimedia();
     informarEstadoArchivo();
+    restaurarControlesVivo();
 
 }
 

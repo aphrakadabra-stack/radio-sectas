@@ -32,5 +32,8 @@ en el navegador. En una primera visita sin conexión utiliza
   anterior se detiene y es reemplazada; nunca quedan dos archivos activos.
 - Al terminar una emisión, el reproductor de ARCHIVO se cierra y descarta el
   audio finalizado.
+- Mientras suena un archivo, el estado del vivo se sigue comprobando. Si no hay
+  transmisión, no se muestra ningún aviso del vivo; si comienza una, aparece el
+  cartel EN EL AIRE sin interrumpir el archivo.
 - Si hay una transmisión activa, VOLVER A LA RADIO EN VIVO detiene el archivo,
   restaura los controles e inicia el vivo de FreeSHOUTcast en la misma acción.
