@@ -33,8 +33,8 @@
   "linktree_label": "在Linktree上打开ÚGJÜ SECTAS",
   "stay": "停留",
   "stay_nine_dots_title": "九个点",
-  "stay_nine_dots_instruction_pointer": "一个想象中的正方形。九个点。四条线。不要抬起光标，穿过所有点。",
-  "stay_nine_dots_instruction_touch": "一个想象中的正方形。九个点。四条线。不要抬起手指，穿过所有点。",
+  "stay_nine_dots_instruction_pointer": "一个想象中的正方形。九个点。四条直线。不要抬起光标，穿过所有点。",
+  "stay_nine_dots_instruction_touch": "一个想象中的正方形。九个点。四条直线。不要抬起手指，穿过所有点。",
   "stay_nine_dots_complete": "心找到了出口。",
   "stay_back_to_radio": "返回ÚGJÜ RADIO"
 }

@@ -33,8 +33,8 @@
   "linktree_label": "ÚGJÜ SECTAS auf Linktree öffnen",
   "stay": "BLEIBEN",
   "stay_nine_dots_title": "DIE NEUN PUNKTE",
-  "stay_nine_dots_instruction_pointer": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Cursor anzuheben.",
-  "stay_nine_dots_instruction_touch": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Finger anzuheben.",
+  "stay_nine_dots_instruction_pointer": "Ein imaginäres Quadrat. Neun Punkte. Vier gerade Linien. Durchquere sie, ohne den Cursor anzuheben.",
+  "stay_nine_dots_instruction_touch": "Ein imaginäres Quadrat. Neun Punkte. Vier gerade Linien. Durchquere sie, ohne den Finger anzuheben.",
   "stay_nine_dots_complete": "Der Geist fand einen Ausweg.",
   "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO"
 }

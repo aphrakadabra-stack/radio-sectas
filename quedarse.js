@@ -23,10 +23,10 @@ function esTactil() {
 
 async function cargarTextos() {
     let codigo = idioma;
-    let respuesta = await fetch(`lang/${codigo}.json?v=20260814-6`);
+    let respuesta = await fetch(`lang/${codigo}.json?v=20260814-7`);
     if (!respuesta.ok) {
         codigo = "en";
-        respuesta = await fetch("lang/en.json?v=20260814-6");
+        respuesta = await fetch("lang/en.json?v=20260814-7");
     }
     const textos = await respuesta.json();
     document.documentElement.lang = codigo;
@@ -102,21 +102,26 @@ function simplificar(puntos,tolerancia) {
     return izquierda.slice(0,-1).concat(derecha);
 }
 
-function obtenerCuatroLineas() {
+function obtenerLineas() {
     const ancho = contenedor.getBoundingClientRect().width;
-    for (const proporcion of [.035,.045,.055,.065,.08]) {
-        const vertices = simplificar(puntosTrazo,ancho * proporcion);
-        if (vertices.length === 5) return vertices;
-    }
-    return null;
+    return simplificar(puntosTrazo,ancho * .035);
 }
 
 function esSolucion(vertices) {
-    if (!vertices) return false;
+    if (vertices.length !== 5) return false;
     const tolerancia = contenedor.getBoundingClientRect().width * .045;
     return puntosObjetivo.every(punto => vertices.slice(0,-1).some(
         (inicio,indice) => distanciaAlSegmento(punto,inicio,vertices[indice+1]) <= tolerancia
     ));
+}
+
+function reiniciar(evento) {
+    dibujando = false;
+    puntosTrazo = [];
+    if (evento && lienzo.hasPointerCapture(evento.pointerId)) {
+        lienzo.releasePointerCapture(evento.pointerId);
+    }
+    dibujar();
 }
 
 function comenzar(evento) {
@@ -135,14 +140,24 @@ function continuar(evento) {
     const ultimo = puntosTrazo[puntosTrazo.length-1];
     if (Math.hypot(punto.x-ultimo.x,punto.y-ultimo.y) < 2) return;
     puntosTrazo.push(punto);
+    if (obtenerLineas().length > 5) {
+        reiniciar(evento);
+        return;
+    }
     dibujar();
 }
 
 function terminar(evento) {
     if (!dibujando) return;
+    const vertices = obtenerLineas();
+    if (!esSolucion(vertices)) {
+        reiniciar(evento);
+        return;
+    }
     dibujando = false;
     if (lienzo.hasPointerCapture(evento.pointerId)) lienzo.releasePointerCapture(evento.pointerId);
-    if (!esSolucion(obtenerCuatroLineas())) return;
+    puntosTrazo = vertices;
+    dibujar();
     completado = true;
     final.hidden = false;
     requestAnimationFrame(() => koan.classList.add("is-complete"));
@@ -151,7 +166,7 @@ function terminar(evento) {
 lienzo.addEventListener("pointerdown",comenzar);
 lienzo.addEventListener("pointermove",continuar);
 lienzo.addEventListener("pointerup",terminar);
-lienzo.addEventListener("pointercancel",terminar);
+lienzo.addEventListener("pointercancel",reiniciar);
 volver.addEventListener("click",evento => {
     if (window.parent === window) return;
     evento.preventDefault();
