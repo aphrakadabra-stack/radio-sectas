@@ -38,11 +38,11 @@
   "stay_nine_dots_complete": "The mind found a way out.",
   "stay_back_to_radio": "Return to ÚGJÜ RADIO",
   "stay_rooms_label": "Rooms of perception",
-  "stay_line_title": "THE STRAIGHT LINE", "stay_line_instruction": "Draw a straight line. Follow it.",
-  "stay_circle_title": "THE INCOMPLETE CIRCLE", "stay_circle_instruction": "Complete the circle. Leave it as it is.",
-  "stay_empty_title": "THE EMPTY ROOM", "stay_empty_instruction": "Stay for a moment.",
-  "stay_maze_title": "THE MAZE WITHOUT AN EXIT", "stay_maze_instruction": "Move through without seeking an exit.",
-  "stay_sound_title": "THE INVISIBLE SOUND", "stay_sound_instruction": "Look where listening leaves space.",
-  "stay_stone_title": "THE STONE", "stay_stone_instruction": "Touch it. Wait.",
-  "stay_perspective_title": "CHANGE PERSPECTIVE", "stay_perspective_instruction": "Look again."
+  "stay_maze_title": "THE IMPOSSIBLE MAZE", "stay_maze_instruction": "Visit each point only once.",
+  "stay_line_title": "THE SINGLE LINE", "stay_line_instruction": "Travel the line without passing through the same place twice.",
+  "stay_squares_title": "THE THREE SQUARES", "stay_squares_instruction": "Turn the three squares into one.",
+  "stay_point_title": "THE DOT AND THE LINE", "stay_point_instruction": "Make the dot disappear without touching it.",
+  "stay_hanoi_title": "THE TOWER OF HANOI", "stay_hanoi_instruction": "Move one disc at a time. Never place a larger one on a smaller one.",
+  "stay_colour_title": "THE ABSENT COLOUR", "stay_colour_instruction": "Which colour is missing? Look again.",
+  "stay_order_title": "THE INVISIBLE ORDER", "stay_order_instruction": "What order are you assuming?"
 }
