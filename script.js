@@ -925,6 +925,9 @@ function volverAlVivo() {
     actualizarSesionMultimedia();
     informarEstadoArchivo();
     restaurarCaster();
+    escuchaVivoIniciadaPorUsuario = true;
+    intentoReconexionVivo = 0;
+    iniciarVivo();
 
 }
 
@@ -1087,7 +1090,8 @@ window.addEventListener(
             evento.source === marcoArchivo.contentWindow &&
             evento.data?.type === "ugju-archive-stop"
         ) {
-            volverAlVivo();
+            finalizarArchivo();
+            restaurarCaster();
         }
 
     }

@@ -32,5 +32,5 @@ en el navegador. En una primera visita sin conexión utiliza
   anterior se detiene y es reemplazada; nunca quedan dos archivos activos.
 - Al terminar una emisión, el reproductor de ARCHIVO se cierra y descarta el
   audio finalizado.
-- VOLVER A LA RADIO EN VIVO detiene el archivo y restaura el reproductor Caster
-  para que el oyente lo inicie manualmente.
+- Si hay una transmisión activa, VOLVER A LA RADIO EN VIVO detiene el archivo,
+  restaura el reproductor Caster e inicia el vivo en la misma acción.
