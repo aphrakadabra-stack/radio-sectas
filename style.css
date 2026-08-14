@@ -542,7 +542,10 @@ h1{
 }
 
 .live-toggle[aria-pressed="false"] #live-toggle-icon{
-    font-size:.9rem;
+    background:none;
+    border:0;
+    color:#171717;
+    font-size:1.125rem;
 }
 
 .live-toggle:focus-visible{
