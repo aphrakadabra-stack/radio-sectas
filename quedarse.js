@@ -23,10 +23,10 @@ function esTactil() {
 
 async function cargarTextos() {
     let codigo = idioma;
-    let respuesta = await fetch(`lang/${codigo}.json?v=20260814-7`);
+    let respuesta = await fetch(`lang/${codigo}.json?v=20260814-8`);
     if (!respuesta.ok) {
         codigo = "en";
-        respuesta = await fetch("lang/en.json?v=20260814-7");
+        respuesta = await fetch("lang/en.json?v=20260814-8");
     }
     const textos = await respuesta.json();
     document.documentElement.lang = codigo;
