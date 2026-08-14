@@ -39,9 +39,9 @@
   "stay_back_to_radio": "返回ÚGJÜ RADIO", "stay_rooms_label": "火", "stay_fires_label": "火",
   "stay_maze_title": "不可能的迷宫", "stay_maze_instruction": "每个点只经过一次。",
   "stay_line_title": "唯一的线", "stay_line_instruction": "沿着线走，不要两次经过同一处。",
-  "stay_squares_title": "三个正方形", "stay_squares_instruction": "把三个正方形拖到中央，直到它们形成一个图形。",
-  "stay_point_title": "点与线", "stay_point_instruction": "不触碰点，让它消失。",
+  "stay_tictactoe_title": "井字棋", "stay_tictactoe_instruction": "你是圆圈，机器是点。连成三个一线。",
+  "stay_tictactoe_human": "你找到了这条线。", "stay_tictactoe_machine": "机器闭合了形状。", "stay_tictactoe_draw": "谁也没有让步。",
   "stay_hanoi_title": "河内塔", "stay_hanoi_instruction": "每次移动一个圆盘。不要把大圆盘放在小圆盘上。",
-  "stay_stone_title": "石头", "stay_stone_instruction": "触摸它。放开它。",
+  "stay_stone_title": "石头", "stay_stone_instruction": "握住它片刻。", "stay_stone_warm": "石头留住了你的温度。",
   "stay_object_title": "不可能物体", "stay_object_instruction": "转动它，寻找一个似乎说得通的角度。"
 }

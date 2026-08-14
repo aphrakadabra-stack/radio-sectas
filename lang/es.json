@@ -38,11 +38,11 @@
   "stay_nine_dots_complete": "La mente encontró una salida.",
   "stay_back_to_radio": "Volver a ÚGJÜ RADIO",
   "stay_rooms_label": "Fuegos", "stay_fires_label": "FUEGOS",
-  "stay_maze_title": "EL LABERINTO IMPOSIBLE", "stay_maze_instruction": "Visita cada punto una sola vez.",
-  "stay_line_title": "LA LÍNEA ÚNICA", "stay_line_instruction": "Recorre la línea sin pasar dos veces por el mismo lugar.",
-  "stay_squares_title": "LOS TRES CUADRADOS", "stay_squares_instruction": "Arrastra los tres cuadrados hacia el centro hasta que formen una sola figura.",
-  "stay_point_title": "EL PUNTO Y LA LÍNEA", "stay_point_instruction": "Haz que el punto desaparezca sin tocarlo.",
-  "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Mueve un disco cada vez. Nunca pongas uno grande sobre uno pequeño.",
-  "stay_stone_title": "LA PIEDRA", "stay_stone_instruction": "Tócala. Déjala.",
+  "stay_maze_title": "EL LABERINTO IMPOSIBLE", "stay_maze_instruction": "Empieza en el punto lleno. Sigue las líneas sin repetir ningún punto hasta llegar al círculo vacío.",
+  "stay_line_title": "LA LÍNEA ÚNICA", "stay_line_instruction": "Desde el punto lleno, recorre lentamente la línea hasta el círculo vacío sin soltarla.",
+  "stay_tictactoe_title": "TRES EN RAYA", "stay_tictactoe_instruction": "Tú eres el círculo. La máquina, el punto. Forma una línea de tres.",
+  "stay_tictactoe_human": "Encontraste la línea.", "stay_tictactoe_machine": "La máquina cerró la forma.", "stay_tictactoe_draw": "Nadie cedió.",
+  "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los tres discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
+  "stay_stone_title": "LA PIEDRA", "stay_stone_instruction": "Sostenla un momento.", "stay_stone_warm": "La piedra guarda tu calor.",
   "stay_object_title": "EL OBJETO IMPOSIBLE", "stay_object_instruction": "Gíralo. Busca el ángulo en que podría tener sentido."
 }

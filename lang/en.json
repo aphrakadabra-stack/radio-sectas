@@ -38,11 +38,11 @@
   "stay_nine_dots_complete": "The mind found a way out.",
   "stay_back_to_radio": "Return to ÚGJÜ RADIO",
   "stay_rooms_label": "Fires", "stay_fires_label": "FIRES",
-  "stay_maze_title": "THE IMPOSSIBLE MAZE", "stay_maze_instruction": "Visit each point only once.",
-  "stay_line_title": "THE SINGLE LINE", "stay_line_instruction": "Travel the line without passing through the same place twice.",
-  "stay_squares_title": "THE THREE SQUARES", "stay_squares_instruction": "Drag the three squares to the centre until they form a single figure.",
-  "stay_point_title": "THE DOT AND THE LINE", "stay_point_instruction": "Make the dot disappear without touching it.",
-  "stay_hanoi_title": "THE TOWER OF HANOI", "stay_hanoi_instruction": "Move one disc at a time. Never place a larger one on a smaller one.",
-  "stay_stone_title": "THE STONE", "stay_stone_instruction": "Touch it. Leave it.",
+  "stay_maze_title": "THE IMPOSSIBLE MAZE", "stay_maze_instruction": "Begin at the solid dot. Follow the lines without repeating a point until you reach the empty circle.",
+  "stay_line_title": "THE SINGLE LINE", "stay_line_instruction": "From the solid dot, slowly follow the line to the empty circle without letting go.",
+  "stay_tictactoe_title": "THREE IN A ROW", "stay_tictactoe_instruction": "You are the circle. The machine is the dot. Form a line of three.",
+  "stay_tictactoe_human": "You found the line.", "stay_tictactoe_machine": "The machine closed the shape.", "stay_tictactoe_draw": "Neither yielded.",
+  "stay_hanoi_title": "THE TOWER OF HANOI", "stay_hanoi_instruction": "Carry the three discs from the left rod to the right. Move one at a time, never placing a larger one on a smaller one.",
+  "stay_stone_title": "THE STONE", "stay_stone_instruction": "Hold it for a moment.", "stay_stone_warm": "The stone keeps your warmth.",
   "stay_object_title": "THE IMPOSSIBLE OBJECT", "stay_object_instruction": "Turn it. Seek the angle at which it might make sense."
 }

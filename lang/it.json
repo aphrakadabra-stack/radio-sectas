@@ -39,9 +39,9 @@
   "stay_back_to_radio": "Torna a ÚGJÜ RADIO", "stay_rooms_label": "Fuochi", "stay_fires_label": "FUOCHI",
   "stay_maze_title": "IL LABIRINTO IMPOSSIBILE", "stay_maze_instruction": "Visita ogni punto una volta sola.",
   "stay_line_title": "LA LINEA UNICA", "stay_line_instruction": "Percorri la linea senza passare due volte dallo stesso punto.",
-  "stay_squares_title": "I TRE QUADRATI", "stay_squares_instruction": "Trascina i tre quadrati verso il centro finché formano un’unica figura.",
-  "stay_point_title": "IL PUNTO E LA LINEA", "stay_point_instruction": "Fai sparire il punto senza toccarlo.",
+  "stay_tictactoe_title": "TRIS", "stay_tictactoe_instruction": "Tu sei il cerchio. La macchina è il punto. Forma una linea di tre.",
+  "stay_tictactoe_human": "Hai trovato la linea.", "stay_tictactoe_machine": "La macchina ha chiuso la forma.", "stay_tictactoe_draw": "Nessuno ha ceduto.",
   "stay_hanoi_title": "LA TORRE DI HANOI", "stay_hanoi_instruction": "Sposta un disco alla volta. Non mettere mai il grande sul piccolo.",
-  "stay_stone_title": "LA PIETRA", "stay_stone_instruction": "Toccala. Lasciala.",
+  "stay_stone_title": "LA PIETRA", "stay_stone_instruction": "Tienila per un momento.", "stay_stone_warm": "La pietra conserva il tuo calore.",
   "stay_object_title": "L’OGGETTO IMPOSSIBILE", "stay_object_instruction": "Ruotalo. Cerca l’angolo in cui potrebbe avere senso."
 }

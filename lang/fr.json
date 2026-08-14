@@ -39,9 +39,9 @@
   "stay_back_to_radio": "Retourner à ÚGJÜ RADIO", "stay_rooms_label": "Feux", "stay_fires_label": "FEUX",
   "stay_maze_title": "LE LABYRINTHE IMPOSSIBLE", "stay_maze_instruction": "Visitez chaque point une seule fois.",
   "stay_line_title": "LA LIGNE UNIQUE", "stay_line_instruction": "Parcourez la ligne sans passer deux fois au même endroit.",
-  "stay_squares_title": "LES TROIS CARRÉS", "stay_squares_instruction": "Faites glisser les trois carrés vers le centre jusqu’à ce qu’ils forment une seule figure.",
-  "stay_point_title": "LE POINT ET LA LIGNE", "stay_point_instruction": "Faites disparaître le point sans le toucher.",
+  "stay_tictactoe_title": "MORPION", "stay_tictactoe_instruction": "Vous êtes le cercle. La machine est le point. Formez une ligne de trois.",
+  "stay_tictactoe_human": "Vous avez trouvé la ligne.", "stay_tictactoe_machine": "La machine a fermé la forme.", "stay_tictactoe_draw": "Personne n’a cédé.",
   "stay_hanoi_title": "LA TOUR DE HANOÏ", "stay_hanoi_instruction": "Déplacez un disque à la fois. Ne posez jamais un grand sur un petit.",
-  "stay_stone_title": "LA PIERRE", "stay_stone_instruction": "Touchez-la. Laissez-la.",
+  "stay_stone_title": "LA PIERRE", "stay_stone_instruction": "Tenez-la un instant.", "stay_stone_warm": "La pierre garde votre chaleur.",
   "stay_object_title": "L’OBJET IMPOSSIBLE", "stay_object_instruction": "Tournez-le. Cherchez l’angle où il pourrait avoir un sens."
 }

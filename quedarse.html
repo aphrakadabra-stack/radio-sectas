@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="#EA52F3">
     <title>FUEGOS — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="quedarse.css?v=20260814-8">
+    <link rel="stylesheet" href="quedarse.css?v=20260814-9">
 </head>
 <body>
     <main class="house">
@@ -34,16 +34,10 @@
             <p class="instruction" data-text="stay_line_instruction"></p><p class="fire-status" data-status="line" aria-live="polite"></p>
         </section>
 
-        <section class="fire" data-fire="squares" aria-labelledby="title-squares" hidden>
-            <h1 id="title-squares" data-text="stay_squares_title">THE THREE SQUARES</h1>
-            <div class="instrument three-squares" data-firepiece="squares"><button type="button" aria-label="Square 1"></button><button type="button" aria-label="Square 2"></button><button type="button" aria-label="Square 3"></button><i aria-hidden="true"></i></div>
-            <p class="instruction" data-text="stay_squares_instruction"></p><p class="fire-status" data-status="squares" aria-live="polite"></p>
-        </section>
-
-        <section class="fire" data-fire="point" aria-labelledby="title-point" hidden>
-            <h1 id="title-point" data-text="stay_point_title">THE DOT AND THE LINE</h1>
-            <div class="instrument point-line" data-firepiece="point"><i></i><button type="button" aria-label="Move the line"></button></div>
-            <p class="instruction" data-text="stay_point_instruction"></p><p class="fire-status" data-status="point" aria-live="polite"></p>
+        <section class="fire" data-fire="tictactoe" aria-labelledby="title-tictactoe" hidden>
+            <h1 id="title-tictactoe" data-text="stay_tictactoe_title">THREE IN A ROW</h1>
+            <div class="instrument tictactoe" data-firepiece="tictactoe" role="grid" aria-label="Three in a row board"></div>
+            <p class="instruction" data-text="stay_tictactoe_instruction"></p><p class="fire-status" data-status="tictactoe" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="hanoi" aria-labelledby="title-hanoi" hidden>
@@ -64,6 +58,6 @@
             <p class="instruction" data-text="stay_object_instruction"></p><p class="fire-status" data-status="object" aria-live="polite"></p>
         </section>
     </main>
-    <script src="quedarse.js?v=20260814-11"></script>
+    <script src="quedarse.js?v=20260814-12"></script>
 </body>
 </html>

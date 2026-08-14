@@ -39,9 +39,9 @@
   "stay_back_to_radio": "Palaa ÚGJÜ RADIOON", "stay_rooms_label": "Tulet", "stay_fires_label": "TULET",
   "stay_maze_title": "MAHDOTON LABYRINTTI", "stay_maze_instruction": "Käy jokaisessa pisteessä vain kerran.",
   "stay_line_title": "YHTENÄINEN VIIVA", "stay_line_instruction": "Kulje viiva kulkematta kahdesti saman kohdan kautta.",
-  "stay_squares_title": "KOLME NELIÖTÄ", "stay_squares_instruction": "Vedä kolme neliötä keskelle, kunnes ne muodostavat yhden kuvion.",
-  "stay_point_title": "PISTE JA VIIVA", "stay_point_instruction": "Hävitä piste koskematta siihen.",
+  "stay_tictactoe_title": "RISTINOLLA", "stay_tictactoe_instruction": "Sinä olet ympyrä. Kone on piste. Muodosta kolmen suora.",
+  "stay_tictactoe_human": "Löysit suoran.", "stay_tictactoe_machine": "Kone sulki muodon.", "stay_tictactoe_draw": "Kumpikaan ei antanut periksi.",
   "stay_hanoi_title": "HANOI’N TORNI", "stay_hanoi_instruction": "Siirrä yksi kiekko kerrallaan. Älä aseta suurempaa pienemmän päälle.",
-  "stay_stone_title": "KIVI", "stay_stone_instruction": "Kosketa sitä. Jätä se.",
+  "stay_stone_title": "KIVI", "stay_stone_instruction": "Pidä sitä hetki.", "stay_stone_warm": "Kivi säilyttää lämpösi.",
   "stay_object_title": "MAHDOTON ESINE", "stay_object_instruction": "Käännä sitä. Etsi kulma, jossa se voisi käydä järkeen."
 }
