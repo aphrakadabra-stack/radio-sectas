@@ -37,12 +37,12 @@
   "stay_nine_dots_instruction_touch": "Un cuadrado imaginario. Nueve puntos. Cuatro líneas. Atraviésalos sin levantar el dedo.",
   "stay_nine_dots_complete": "La mente encontró una salida.",
   "stay_back_to_radio": "Volver a ÚGJÜ RADIO",
-  "stay_rooms_label": "Habitaciones de percepción",
+  "stay_rooms_label": "Fuegos", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "EL LABERINTO IMPOSIBLE", "stay_maze_instruction": "Visita cada punto una sola vez.",
   "stay_line_title": "LA LÍNEA ÚNICA", "stay_line_instruction": "Recorre la línea sin pasar dos veces por el mismo lugar.",
-  "stay_squares_title": "LOS TRES CUADRADOS", "stay_squares_instruction": "Convierte los tres cuadrados en uno solo.",
+  "stay_squares_title": "LOS TRES CUADRADOS", "stay_squares_instruction": "Arrastra los tres cuadrados hacia el centro hasta que formen una sola figura.",
   "stay_point_title": "EL PUNTO Y LA LÍNEA", "stay_point_instruction": "Haz que el punto desaparezca sin tocarlo.",
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Mueve un disco cada vez. Nunca pongas uno grande sobre uno pequeño.",
-  "stay_colour_title": "EL COLOR AUSENTE", "stay_colour_instruction": "¿Qué color falta? Mira otra vez.",
-  "stay_order_title": "EL ORDEN INVISIBLE", "stay_order_instruction": "¿Qué orden estás suponiendo?"
+  "stay_stone_title": "LA PIEDRA", "stay_stone_instruction": "Tócala. Déjala.",
+  "stay_object_title": "EL OBJETO IMPOSIBLE", "stay_object_instruction": "Gíralo. Busca el ángulo en que podría tener sentido."
 }

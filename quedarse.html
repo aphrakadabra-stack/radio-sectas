@@ -4,70 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="#EA52F3">
-    <title>QUEDARSE — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="quedarse.css?v=20260814-6">
+    <title>FUEGOS — ÚGJÜ RADIO</title>
+    <link rel="stylesheet" href="quedarse.css?v=20260814-7">
 </head>
 <body>
     <main class="house">
         <a class="back-link" id="back-link" href="index.html">ÚGJÜ RADIO</a>
-        <nav class="room-nav" id="room-nav" aria-label="Rooms"></nav>
+        <p class="section-name" data-text="stay_fires_label">FIRES</p>
+        <nav class="fire-nav" id="fire-nav" aria-label="Fires"></nav>
 
-        <section class="room is-active" data-room="nine" aria-labelledby="title-nine">
+        <section class="fire is-active" data-fire="nine" aria-labelledby="title-nine">
             <h1 id="title-nine" data-text="stay_nine_dots_title">THE NINE DOTS</h1>
-            <div class="drawing square-drawing"><canvas id="nine-canvas"></canvas></div>
+            <div class="drawing square-drawing" id="nine-drawing"><canvas id="nine-canvas"></canvas></div>
             <p class="instruction" id="nine-instruction"></p>
-            <div class="resolution" id="nine-resolution" hidden><p class="ending" id="nine-ending" aria-live="polite"></p><button class="reset" type="button" data-reset="nine" aria-label="Reiniciar">↺</button></div>
+            <p class="ending" id="nine-ending" aria-live="polite"></p>
         </section>
 
-        <section class="room" data-room="maze" aria-labelledby="title-maze" hidden>
+        <section class="fire" data-fire="maze" aria-labelledby="title-maze" hidden>
             <h1 id="title-maze" data-text="stay_maze_title">THE IMPOSSIBLE MAZE</h1>
-            <div class="instrument maze-field" data-game="maze"><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><svg aria-hidden="true"></svg></div>
-            <p class="instruction" data-text="stay_maze_instruction"></p>
-            <p class="game-status" data-status="maze" aria-live="polite"></p>
+            <div class="instrument maze-field" data-firepiece="maze"><svg class="maze-map" viewBox="0 0 300 300" aria-hidden="true"><path d="M50 50H150H250V150V250H150H50V150H150"/></svg><svg class="maze-trace" viewBox="0 0 300 300" aria-hidden="true"></svg></div>
+            <p class="instruction" data-text="stay_maze_instruction"></p><p class="fire-status" data-status="maze" aria-live="polite"></p>
         </section>
 
-        <section class="room" data-room="line" aria-labelledby="title-line" hidden>
+        <section class="fire" data-fire="line" aria-labelledby="title-line" hidden>
             <h1 id="title-line" data-text="stay_line_title">THE SINGLE LINE</h1>
-            <div class="instrument single-line" data-game="line"><svg viewBox="0 0 600 360"><path class="line-guide" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/><path class="line-progress" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/></svg></div>
-            <p class="instruction" data-text="stay_line_instruction"></p>
-            <p class="game-status" data-status="line" aria-live="polite"></p>
+            <div class="instrument single-line" data-firepiece="line"><svg viewBox="0 0 600 360"><path class="line-guide" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/><path class="line-progress" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/><circle class="line-start" cx="52" cy="254" r="11"/><circle class="line-end" cx="557" cy="113" r="7"/></svg></div>
+            <p class="instruction" data-text="stay_line_instruction"></p><p class="fire-status" data-status="line" aria-live="polite"></p>
         </section>
 
-        <section class="room" data-room="squares" aria-labelledby="title-squares" hidden>
+        <section class="fire" data-fire="squares" aria-labelledby="title-squares" hidden>
             <h1 id="title-squares" data-text="stay_squares_title">THE THREE SQUARES</h1>
-            <div class="instrument three-squares" data-game="squares"><button type="button" aria-label="Cuadrado 1"></button><button type="button" aria-label="Cuadrado 2"></button><button type="button" aria-label="Cuadrado 3"></button></div>
-            <p class="instruction" data-text="stay_squares_instruction"></p>
-            <p class="game-status" data-status="squares" aria-live="polite"></p>
+            <div class="instrument three-squares" data-firepiece="squares"><button type="button" aria-label="Square 1"></button><button type="button" aria-label="Square 2"></button><button type="button" aria-label="Square 3"></button><i aria-hidden="true"></i></div>
+            <p class="instruction" data-text="stay_squares_instruction"></p><p class="fire-status" data-status="squares" aria-live="polite"></p>
         </section>
 
-        <section class="room" data-room="point" aria-labelledby="title-point" hidden>
+        <section class="fire" data-fire="point" aria-labelledby="title-point" hidden>
             <h1 id="title-point" data-text="stay_point_title">THE DOT AND THE LINE</h1>
-            <div class="instrument point-line" data-game="point"><i></i><button type="button" aria-label="Mover la línea"></button></div>
-            <p class="instruction" data-text="stay_point_instruction"></p>
-            <p class="game-status" data-status="point" aria-live="polite"></p>
+            <div class="instrument point-line" data-firepiece="point"><i></i><button type="button" aria-label="Move the line"></button></div>
+            <p class="instruction" data-text="stay_point_instruction"></p><p class="fire-status" data-status="point" aria-live="polite"></p>
         </section>
 
-        <section class="room" data-room="hanoi" aria-labelledby="title-hanoi" hidden>
+        <section class="fire" data-fire="hanoi" aria-labelledby="title-hanoi" hidden>
             <h1 id="title-hanoi" data-text="stay_hanoi_title">THE TOWER OF HANOI</h1>
-            <div class="instrument hanoi" data-game="hanoi"><button type="button" data-rod="0" aria-label="Torre 1"></button><button type="button" data-rod="1" aria-label="Torre 2"></button><button type="button" data-rod="2" aria-label="Torre 3"></button></div>
-            <p class="instruction" data-text="stay_hanoi_instruction"></p>
-            <p class="game-status" data-status="hanoi" aria-live="polite"></p>
+            <div class="instrument hanoi" data-firepiece="hanoi"><button type="button" data-rod="0" aria-label="Rod 1"></button><button type="button" data-rod="1" aria-label="Rod 2"></button><button type="button" data-rod="2" aria-label="Rod 3"></button></div>
+            <p class="instruction" data-text="stay_hanoi_instruction"></p><p class="fire-status" data-status="hanoi" aria-live="polite"></p>
         </section>
 
-        <section class="room" data-room="colour" aria-labelledby="title-colour" hidden>
-            <h1 id="title-colour" data-text="stay_colour_title">THE ABSENT COLOUR</h1>
-            <div class="instrument absent-colour" data-game="colour"><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button" data-missing="true"></button><button type="button"></button><button type="button"></button><button type="button"></button><button type="button"></button></div>
-            <p class="instruction" data-text="stay_colour_instruction"></p>
-            <p class="game-status" data-status="colour" aria-live="polite"></p>
+        <section class="fire" data-fire="stone" aria-labelledby="title-stone" hidden>
+            <h1 id="title-stone" data-text="stay_stone_title">THE STONE</h1>
+            <div class="instrument stone-field" data-firepiece="stone"><button type="button" aria-label="Stone"><i></i></button></div>
+            <p class="instruction" data-text="stay_stone_instruction"></p><p class="fire-status" data-status="stone" aria-live="polite"></p>
         </section>
 
-        <section class="room" data-room="order" aria-labelledby="title-order" hidden>
-            <h1 id="title-order" data-text="stay_order_title">THE INVISIBLE ORDER</h1>
-            <div class="instrument invisible-order" data-game="order"><i>○</i><i>△</i><i>□</i><i>△</i><i>□</i><i>○</i><i>□</i><i>○</i><button type="button" aria-label="Completar la secuencia">?</button></div>
-            <p class="instruction" data-text="stay_order_instruction"></p>
-            <p class="game-status" data-status="order" aria-live="polite"></p>
+        <section class="fire" data-fire="object" aria-labelledby="title-object" hidden>
+            <h1 id="title-object" data-text="stay_object_title">THE IMPOSSIBLE OBJECT</h1>
+            <div class="instrument impossible-field" data-firepiece="object"><button type="button" aria-label="Turn the impossible object"><span></span></button></div>
+            <p class="instruction" data-text="stay_object_instruction"></p><p class="fire-status" data-status="object" aria-live="polite"></p>
         </section>
     </main>
-    <script src="quedarse.js?v=20260814-9"></script>
+    <script src="quedarse.js?v=20260814-10"></script>
 </body>
 </html>

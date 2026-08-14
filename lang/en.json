@@ -37,12 +37,12 @@
   "stay_nine_dots_instruction_touch": "An imaginary square. Nine dots. Four lines. Pass through them without lifting your finger.",
   "stay_nine_dots_complete": "The mind found a way out.",
   "stay_back_to_radio": "Return to ÚGJÜ RADIO",
-  "stay_rooms_label": "Rooms of perception",
+  "stay_rooms_label": "Fires", "stay_fires_label": "FIRES",
   "stay_maze_title": "THE IMPOSSIBLE MAZE", "stay_maze_instruction": "Visit each point only once.",
   "stay_line_title": "THE SINGLE LINE", "stay_line_instruction": "Travel the line without passing through the same place twice.",
-  "stay_squares_title": "THE THREE SQUARES", "stay_squares_instruction": "Turn the three squares into one.",
+  "stay_squares_title": "THE THREE SQUARES", "stay_squares_instruction": "Drag the three squares to the centre until they form a single figure.",
   "stay_point_title": "THE DOT AND THE LINE", "stay_point_instruction": "Make the dot disappear without touching it.",
   "stay_hanoi_title": "THE TOWER OF HANOI", "stay_hanoi_instruction": "Move one disc at a time. Never place a larger one on a smaller one.",
-  "stay_colour_title": "THE ABSENT COLOUR", "stay_colour_instruction": "Which colour is missing? Look again.",
-  "stay_order_title": "THE INVISIBLE ORDER", "stay_order_instruction": "What order are you assuming?"
+  "stay_stone_title": "THE STONE", "stay_stone_instruction": "Touch it. Leave it.",
+  "stay_object_title": "THE IMPOSSIBLE OBJECT", "stay_object_instruction": "Turn it. Seek the angle at which it might make sense."
 }

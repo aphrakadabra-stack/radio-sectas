@@ -36,12 +36,12 @@
   "stay_nine_dots_instruction_pointer": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Cursor anzuheben.",
   "stay_nine_dots_instruction_touch": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Finger anzuheben.",
   "stay_nine_dots_complete": "Der Geist fand einen Ausweg.",
-  "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO", "stay_rooms_label": "Räume der Wahrnehmung",
+  "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO", "stay_rooms_label": "Feuer", "stay_fires_label": "FEUER",
   "stay_maze_title": "DAS UNMÖGLICHE LABYRINTH", "stay_maze_instruction": "Besuche jeden Punkt nur einmal.",
   "stay_line_title": "DIE EINZIGE LINIE", "stay_line_instruction": "Folge der Linie, ohne dieselbe Stelle zweimal zu berühren.",
-  "stay_squares_title": "DIE DREI QUADRATE", "stay_squares_instruction": "Verwandle die drei Quadrate in eines.",
+  "stay_squares_title": "DIE DREI QUADRATE", "stay_squares_instruction": "Ziehe die drei Quadrate zur Mitte, bis sie eine einzige Figur bilden.",
   "stay_point_title": "DER PUNKT UND DIE LINIE", "stay_point_instruction": "Lass den Punkt verschwinden, ohne ihn zu berühren.",
   "stay_hanoi_title": "DER TURM VON HANOI", "stay_hanoi_instruction": "Bewege jeweils eine Scheibe. Lege nie eine größere auf eine kleinere.",
-  "stay_colour_title": "DIE FEHLENDE FARBE", "stay_colour_instruction": "Welche Farbe fehlt? Sieh noch einmal hin.",
-  "stay_order_title": "DIE UNSICHTBARE ORDNUNG", "stay_order_instruction": "Welche Ordnung setzt du voraus?"
+  "stay_stone_title": "DER STEIN", "stay_stone_instruction": "Berühre ihn. Lass ihn.",
+  "stay_object_title": "DAS UNMÖGLICHE OBJEKT", "stay_object_instruction": "Drehe es. Suche den Winkel, in dem es Sinn ergeben könnte."
 }

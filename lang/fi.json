@@ -36,12 +36,12 @@
   "stay_nine_dots_instruction_pointer": "Kuvitteellinen neliö. Yhdeksän pistettä. Neljä viivaa. Kulje niiden läpi nostamatta osoitinta.",
   "stay_nine_dots_instruction_touch": "Kuvitteellinen neliö. Yhdeksän pistettä. Neljä viivaa. Kulje niiden läpi nostamatta sormea.",
   "stay_nine_dots_complete": "Mieli löysi ulospääsyn.",
-  "stay_back_to_radio": "Palaa ÚGJÜ RADIOON", "stay_rooms_label": "Havainnon huoneet",
+  "stay_back_to_radio": "Palaa ÚGJÜ RADIOON", "stay_rooms_label": "Tulet", "stay_fires_label": "TULET",
   "stay_maze_title": "MAHDOTON LABYRINTTI", "stay_maze_instruction": "Käy jokaisessa pisteessä vain kerran.",
   "stay_line_title": "YHTENÄINEN VIIVA", "stay_line_instruction": "Kulje viiva kulkematta kahdesti saman kohdan kautta.",
-  "stay_squares_title": "KOLME NELIÖTÄ", "stay_squares_instruction": "Muuta kolme neliötä yhdeksi.",
+  "stay_squares_title": "KOLME NELIÖTÄ", "stay_squares_instruction": "Vedä kolme neliötä keskelle, kunnes ne muodostavat yhden kuvion.",
   "stay_point_title": "PISTE JA VIIVA", "stay_point_instruction": "Hävitä piste koskematta siihen.",
   "stay_hanoi_title": "HANOI’N TORNI", "stay_hanoi_instruction": "Siirrä yksi kiekko kerrallaan. Älä aseta suurempaa pienemmän päälle.",
-  "stay_colour_title": "PUUTTUVA VÄRI", "stay_colour_instruction": "Mikä väri puuttuu? Katso uudelleen.",
-  "stay_order_title": "NÄKYMÄTÖN JÄRJESTYS", "stay_order_instruction": "Minkä järjestyksen oletat?"
+  "stay_stone_title": "KIVI", "stay_stone_instruction": "Kosketa sitä. Jätä se.",
+  "stay_object_title": "MAHDOTON ESINE", "stay_object_instruction": "Käännä sitä. Etsi kulma, jossa se voisi käydä järkeen."
 }

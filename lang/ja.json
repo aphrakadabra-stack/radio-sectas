@@ -36,12 +36,12 @@
   "stay_nine_dots_instruction_pointer": "想像上の正方形。九つの点。四本の線。カーソルを離さず、すべてを通り抜けてください。",
   "stay_nine_dots_instruction_touch": "想像上の正方形。九つの点。四本の線。指を離さず、すべてを通り抜けてください。",
   "stay_nine_dots_complete": "心は出口を見つけた。",
-  "stay_back_to_radio": "ÚGJÜ RADIOに戻る", "stay_rooms_label": "知覚の部屋",
+  "stay_back_to_radio": "ÚGJÜ RADIOに戻る", "stay_rooms_label": "火", "stay_fires_label": "火",
   "stay_maze_title": "不可能な迷路", "stay_maze_instruction": "すべての点を一度ずつ訪れる。",
   "stay_line_title": "一本の線", "stay_line_instruction": "同じ場所を二度通らずに線をたどる。",
-  "stay_squares_title": "三つの正方形", "stay_squares_instruction": "三つの正方形を一つにする。",
+  "stay_squares_title": "三つの正方形", "stay_squares_instruction": "三つの正方形を中央へ動かし、一つの形にする。",
   "stay_point_title": "点と線", "stay_point_instruction": "点に触れずに消す。",
   "stay_hanoi_title": "ハノイの塔", "stay_hanoi_instruction": "円盤を一枚ずつ動かす。大きい円盤を小さい円盤の上に置かない。",
-  "stay_colour_title": "不在の色", "stay_colour_instruction": "何色が欠けている？ もう一度見る。",
-  "stay_order_title": "見えない秩序", "stay_order_instruction": "どんな秩序を前提にしている？"
+  "stay_stone_title": "石", "stay_stone_instruction": "触れる。離れる。",
+  "stay_object_title": "不可能な物体", "stay_object_instruction": "回して、意味を持ちそうな角度を探す。"
 }

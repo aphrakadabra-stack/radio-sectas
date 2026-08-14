@@ -36,12 +36,12 @@
   "stay_nine_dots_instruction_pointer": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le curseur.",
   "stay_nine_dots_instruction_touch": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le doigt.",
   "stay_nine_dots_complete": "L’esprit a trouvé une issue.",
-  "stay_back_to_radio": "Retourner à ÚGJÜ RADIO", "stay_rooms_label": "Chambres de perception",
+  "stay_back_to_radio": "Retourner à ÚGJÜ RADIO", "stay_rooms_label": "Feux", "stay_fires_label": "FEUX",
   "stay_maze_title": "LE LABYRINTHE IMPOSSIBLE", "stay_maze_instruction": "Visitez chaque point une seule fois.",
   "stay_line_title": "LA LIGNE UNIQUE", "stay_line_instruction": "Parcourez la ligne sans passer deux fois au même endroit.",
-  "stay_squares_title": "LES TROIS CARRÉS", "stay_squares_instruction": "Transformez les trois carrés en un seul.",
+  "stay_squares_title": "LES TROIS CARRÉS", "stay_squares_instruction": "Faites glisser les trois carrés vers le centre jusqu’à ce qu’ils forment une seule figure.",
   "stay_point_title": "LE POINT ET LA LIGNE", "stay_point_instruction": "Faites disparaître le point sans le toucher.",
   "stay_hanoi_title": "LA TOUR DE HANOÏ", "stay_hanoi_instruction": "Déplacez un disque à la fois. Ne posez jamais un grand sur un petit.",
-  "stay_colour_title": "LA COULEUR ABSENTE", "stay_colour_instruction": "Quelle couleur manque ? Regardez encore.",
-  "stay_order_title": "L’ORDRE INVISIBLE", "stay_order_instruction": "Quel ordre supposez-vous ?"
+  "stay_stone_title": "LA PIERRE", "stay_stone_instruction": "Touchez-la. Laissez-la.",
+  "stay_object_title": "L’OBJET IMPOSSIBLE", "stay_object_instruction": "Tournez-le. Cherchez l’angle où il pourrait avoir un sens."
 }
