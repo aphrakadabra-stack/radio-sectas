@@ -58,8 +58,7 @@ let textosControlVivo = {
     play: "PLAY",
     pause: "PAUSE",
     reconnecting: "RECONNECTING",
-    connecting: "CONNECTING",
-    offline: "OFFLINE"
+    connecting: "CONNECTING"
 };
 
 const URL_VIVO =
@@ -386,19 +385,19 @@ function actualizarControlVivo(reconectando = false) {
 
     botonVivo.setAttribute("aria-pressed",String(reproduciendo));
     botonVivo.setAttribute("aria-busy",String(iniciando || esperandoReconexion));
+    botonVivo.hidden = fueraDeLinea;
     botonVivo.disabled = fueraDeLinea || iniciando || esperandoReconexion;
     controlesVivo.dataset.playing = String(reproduciendo);
     botonVivo.dataset.reconnecting = String(esperandoReconexion);
     iconoBotonVivo.textContent = reproduciendo ? "Ⅱ" : "▶";
-    etiquetaBotonVivo.textContent = fueraDeLinea
-        ? textosControlVivo.offline
-        : esperandoReconexion
+    etiquetaBotonVivo.textContent = esperandoReconexion
         ? textosControlVivo.reconnecting
         : iniciando
             ? textosControlVivo.connecting
             : reproduciendo
                 ? textosControlVivo.pause
                 : textosControlVivo.play;
+    botonVivo.setAttribute("aria-label",etiquetaBotonVivo.textContent);
 
     requestAnimationFrame(ajustarControlesVivo);
 
@@ -1621,8 +1620,7 @@ cargarIdioma(idioma)
         play: textos.live_play,
         pause: textos.live_pause,
         reconnecting: textos.live_reconnecting,
-        connecting: textos.live_connecting,
-        offline: textos.live_offline
+        connecting: textos.live_connecting
     };
 
     etiquetaEstadoVivo.textContent = radioHabitada
@@ -1686,7 +1684,7 @@ cargarIdioma(idioma)
             } else {
 
                 actualizarEstadoRadioVivo(false);
-                mostrarEstado(textos.state_sleeping);
+                mostrarEstado("");
 
             }
 
@@ -1695,7 +1693,7 @@ cargarIdioma(idioma)
         .catch(() => {
 
             actualizarEstadoRadioVivo(false);
-            mostrarEstado(textos.state_sleeping);
+            mostrarEstado("");
 
         });
 

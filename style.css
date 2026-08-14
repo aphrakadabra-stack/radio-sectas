@@ -529,6 +529,10 @@ h1{
     flex:0 1 142px;
 }
 
+.live-toggle[hidden]{
+    display:none;
+}
+
 #live-toggle-icon{
     line-height:1;
 }

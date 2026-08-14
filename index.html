@@ -155,9 +155,7 @@
             The ear that listens to the house...
         </p>
 
-        <div id="state">
-            INHABITED
-        </div>
+        <div id="state"></div>
 
         <div class="radio-visual">
             <img
@@ -192,10 +190,11 @@
                     id="live-toggle"
                     type="button"
                     aria-pressed="false"
+                    hidden
                     disabled
                 >
                     <span aria-hidden="true" id="live-toggle-icon">▶</span>
-                    <span id="live-toggle-label">OFFLINE</span>
+                    <span id="live-toggle-label" hidden>PLAY</span>
                 </button>
 
                 <p class="live-metadata" id="live-metadata" hidden>
