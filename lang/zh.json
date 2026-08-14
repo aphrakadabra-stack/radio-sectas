@@ -30,5 +30,11 @@
   "notify_unsupported": "此浏览器不支持通知。",
   "notify_error": "无法开启通知，请检查浏览器的通知权限。",
   "notify_disabled": "通知已关闭，您可以随时重新开启。",
-  "linktree_label": "在Linktree上打开ÚGJÜ SECTAS"
+  "linktree_label": "在Linktree上打开ÚGJÜ SECTAS",
+  "stay": "停留",
+  "stay_nine_dots_title": "九个点",
+  "stay_nine_dots_instruction_pointer": "一个想象中的正方形。九个点。四条线。不要抬起光标，穿过所有点。",
+  "stay_nine_dots_instruction_touch": "一个想象中的正方形。九个点。四条线。不要抬起手指，穿过所有点。",
+  "stay_nine_dots_complete": "心找到了出口。",
+  "stay_back_to_radio": "返回ÚGJÜ RADIO"
 }

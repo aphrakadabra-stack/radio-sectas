@@ -30,5 +30,11 @@
   "notify_unsupported": "Tämä selain ei tue ilmoituksia.",
   "notify_error": "Ilmoituksia ei voitu ottaa käyttöön. Tarkista selaimen ilmoitusluvat.",
   "notify_disabled": "Ilmoitukset pois. Voit ottaa ne takaisin käyttöön milloin tahansa.",
-  "linktree_label": "Avaa ÚGJÜ SECTAS Linktreessä"
+  "linktree_label": "Avaa ÚGJÜ SECTAS Linktreessä",
+  "stay": "JÄÄ",
+  "stay_nine_dots_title": "YHDEKSÄN PISTETTÄ",
+  "stay_nine_dots_instruction_pointer": "Kuvitteellinen neliö. Yhdeksän pistettä. Neljä viivaa. Kulje niiden läpi nostamatta osoitinta.",
+  "stay_nine_dots_instruction_touch": "Kuvitteellinen neliö. Yhdeksän pistettä. Neljä viivaa. Kulje niiden läpi nostamatta sormea.",
+  "stay_nine_dots_complete": "Mieli löysi ulospääsyn.",
+  "stay_back_to_radio": "Palaa ÚGJÜ RADIOON"
 }

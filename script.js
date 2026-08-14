@@ -10,6 +10,7 @@ const notaCasaLineaDos = document.querySelector(
 const notaCasa = document.querySelector(".house-note");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
 const enlaceArchivo = document.querySelector(".archive-link");
+const enlaceQuedarse = document.querySelector(".stay-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
 const capaManifiesto = document.getElementById(
     "manifesto-overlay"
@@ -19,6 +20,8 @@ const marcoManifiesto = document.getElementById(
 );
 const capaArchivo = document.getElementById("archive-overlay");
 const marcoArchivo = document.getElementById("archive-frame");
+const capaQuedarse = document.getElementById("stay-overlay");
+const marcoQuedarse = document.getElementById("stay-frame");
 const ventanaDisparador = document.getElementById("window-trigger");
 const ventanaCapa = document.getElementById("window-overlay");
 const ventanaCerrar = document.getElementById("window-close");
@@ -43,6 +46,7 @@ const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let manifiestoCargado = false;
 let archivoCargado = false;
+let quedarseCargado = false;
 let vivoDetenidoPorArchivo = false;
 let entradaArchivoActual = null;
 let radioHabitada = false;
@@ -346,6 +350,15 @@ function abrirArchivo() {
     capaArchivo.hidden = false;
     capaArchivo.setAttribute("aria-hidden","false");
 
+}
+
+function abrirQuedarse() {
+    if (!quedarseCargado) {
+        marcoQuedarse.src = "quedarse.html?inside=radio";
+        quedarseCargado = true;
+    }
+    capaQuedarse.hidden = false;
+    capaQuedarse.setAttribute("aria-hidden","false");
 }
 
 
@@ -1000,6 +1013,12 @@ function cerrarArchivo(devolverFoco = false) {
 
 }
 
+function cerrarQuedarse(devolverFoco = false) {
+    capaQuedarse.hidden = true;
+    capaQuedarse.setAttribute("aria-hidden","true");
+    if (devolverFoco) enlaceQuedarse.focus({preventScroll:true});
+}
+
 
 enlaceManifiesto.addEventListener(
     "click",
@@ -1023,6 +1042,12 @@ enlaceArchivo.addEventListener(
 
     }
 );
+
+enlaceQuedarse.addEventListener("click",evento => {
+    evento.preventDefault();
+    enlaceQuedarse.blur();
+    abrirQuedarse();
+});
 
 
 marcoManifiesto.addEventListener(
@@ -1102,6 +1127,15 @@ marcoArchivo.addEventListener(
 window.addEventListener(
     "message",
     evento => {
+
+        if (
+            evento.origin === window.location.origin &&
+            evento.source === marcoQuedarse.contentWindow &&
+            evento.data?.type === "close-stay"
+        ) {
+            cerrarQuedarse(true);
+            return;
+        }
 
         if (
             evento.origin === window.location.origin &&
@@ -1299,6 +1333,14 @@ document.addEventListener(
             !capaManifiesto.hidden
         ) {
             cerrarManifiesto(true);
+            return;
+        }
+
+        if (
+            evento.key === "Escape" &&
+            !capaQuedarse.hidden
+        ) {
+            cerrarQuedarse(true);
             return;
         }
 
@@ -1682,6 +1724,9 @@ cargarIdioma(idioma)
 
     enlaceArchivo.textContent =
         textos.archive;
+
+    enlaceQuedarse.textContent =
+        textos.stay;
 
     etiquetaSesionArchivo.textContent =
         textos.archive_playing;

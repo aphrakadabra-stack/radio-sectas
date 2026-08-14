@@ -30,5 +30,11 @@
   "notify_unsupported": "Ce navigateur ne prend pas en charge les notifications.",
   "notify_error": "Impossible d’activer les notifications. Vérifiez les autorisations de notification du navigateur.",
   "notify_disabled": "Notifications désactivées. Vous pouvez les réactiver à tout moment.",
-  "linktree_label": "Ouvrir ÚGJÜ SECTAS sur Linktree"
+  "linktree_label": "Ouvrir ÚGJÜ SECTAS sur Linktree",
+  "stay": "RESTER",
+  "stay_nine_dots_title": "LES NEUF POINTS",
+  "stay_nine_dots_instruction_pointer": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le curseur.",
+  "stay_nine_dots_instruction_touch": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le doigt.",
+  "stay_nine_dots_complete": "L’esprit a trouvé une issue.",
+  "stay_back_to_radio": "Retourner à ÚGJÜ RADIO"
 }

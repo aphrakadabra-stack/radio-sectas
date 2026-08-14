@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400&display=swap");
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{color:#222;background:#EA52F3;font-family:"Cormorant Garamond",serif}
+
+html,body{width:100%;min-height:100%;overflow:hidden}
+
+body{
+    min-height:100vh;
+    min-height:100dvh;
+    background:#EA52F3;
+    color:#222;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:-18vmax;
+    background:
+        radial-gradient(ellipse at 28% 38%,rgba(255,255,255,.1),transparent 51%),
+        radial-gradient(ellipse at 72% 64%,rgba(87,0,94,.07),transparent 54%);
+    pointer-events:none;
+}
+
+.room{position:relative;z-index:1;min-height:100vh;min-height:100dvh}
+
+.back-link{
+    position:fixed;
+    top:max(14px,env(safe-area-inset-top));
+    left:max(14px,env(safe-area-inset-left));
+    color:#222;
+    font-family:"Courier Prime","Courier New",monospace;
+    font-size:.78rem;
+    letter-spacing:.06em;
+    text-underline-offset:4px;
+    text-transform:uppercase;
+}
+
+.koan{
+    width:min(88vw,620px);
+    min-height:100vh;
+    min-height:100dvh;
+    margin:auto;
+    padding:clamp(68px,10vh,108px) 0 clamp(38px,7vh,70px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.koan-copy{transition:opacity 1.8s ease}
+
+h1{
+    font-size:clamp(1.7rem,5vw,2.55rem);
+    font-weight:400;
+    letter-spacing:.12em;
+    line-height:1;
+}
+
+#koan-instruction{
+    max-width:490px;
+    margin:clamp(18px,3vh,30px) auto 0;
+    font-size:clamp(1.05rem,2.8vw,1.35rem);
+    line-height:1.48;
+}
+
+.drawing{
+    width:min(72vw,390px);
+    aspect-ratio:1;
+    margin-top:clamp(24px,5vh,48px);
+    touch-action:none;
+    transition:opacity 2.2s ease;
+}
+
+canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
+
+.koan-ending{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:min(86vw,540px);
+    transform:translate(-50%,-50%);
+    font-size:clamp(1.4rem,4vw,2rem);
+    line-height:1.25;
+    opacity:0;
+    transition:opacity 2.2s ease .6s;
+}
+
+.koan.is-complete .koan-copy,
+.koan.is-complete .drawing{opacity:0;pointer-events:none}
+.koan.is-complete .koan-ending{opacity:1}
+
+@media(max-width:700px){
+    .koan{width:92vw;padding-top:max(58px,calc(env(safe-area-inset-top) + 46px))}
+    .drawing{width:min(82vw,360px);margin-top:clamp(18px,4vh,34px)}
+    #koan-instruction{max-width:340px}
+}
+
+@media(prefers-reduced-motion:reduce){
+    .koan-copy,.drawing,.koan-ending{transition-duration:.01ms}
+}

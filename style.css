@@ -770,7 +770,8 @@ h1{
 /* PUERTAS */
 
 .manifesto-link,
-.archive-link{
+.archive-link,
+.stay-link{
     position:fixed;
     z-index:8;
 
@@ -801,7 +802,8 @@ h1{
 
 @media (hover:hover) and (pointer:fine){
     .manifesto-link:focus-visible,
-    .archive-link:focus-visible{
+    .archive-link:focus-visible,
+    .stay-link:focus-visible{
         outline:1px solid #222222;
         outline-offset:4px;
     }
@@ -813,6 +815,10 @@ h1{
     left:clamp(14px,2vw,28px);
 }
 
+.stay-link{
+    top:calc(clamp(14px,2vh,24px) + 50px);
+}
+
 
 .manifesto-link:hover,
 .manifesto-link:focus-visible,
@@ -821,7 +827,11 @@ h1{
 .archive-link:hover,
 .archive-link:focus-visible,
 .archive-link:active,
-.archive-link:visited{
+.archive-link:visited,
+.stay-link:hover,
+.stay-link:focus-visible,
+.stay-link:active,
+.stay-link:visited{
     color:#222222 !important;
     -webkit-text-fill-color:#222222;
     text-decoration-color:#222222;
@@ -886,7 +896,8 @@ h1{
 /* MANIFIESTO SIN INTERRUMPIR LA RADIO */
 
 .manifesto-overlay,
-.archive-overlay{
+.archive-overlay,
+.stay-overlay{
     position:fixed;
     inset:0;
     z-index:40;
@@ -900,13 +911,15 @@ h1{
 
 
 .manifesto-overlay[hidden],
-.archive-overlay[hidden]{
+.archive-overlay[hidden],
+.stay-overlay[hidden]{
     display:none;
 }
 
 
 .manifesto-overlay iframe,
-.archive-overlay iframe{
+.archive-overlay iframe,
+.stay-overlay iframe{
     display:block;
 
     width:100%;
@@ -968,6 +981,15 @@ h1{
         bottom:auto;
         left:auto;
 
+        transform:none;
+    }
+
+    .stay-link{
+        position:fixed;
+        top:auto;
+        right:auto;
+        bottom:max(8px,env(safe-area-inset-bottom));
+        left:10px;
         transform:none;
     }
 
