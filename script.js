@@ -58,7 +58,7 @@ let textosControlVivo = {
     play: "PLAY",
     pause: "PAUSE",
     reconnecting: "RECONNECTING",
-    connecting: "CONNECTING"
+    listening: "LISTENING"
 };
 
 const URL_VIVO =
@@ -346,7 +346,7 @@ function abrirArchivo() {
 }
 
 
-function restaurarCaster() {
+function restaurarControlesVivo() {
 
     if (!vivoDetenidoPorArchivo) {
         return;
@@ -390,10 +390,11 @@ function actualizarControlVivo(reconectando = false) {
     controlesVivo.dataset.playing = String(reproduciendo);
     botonVivo.dataset.reconnecting = String(esperandoReconexion);
     iconoBotonVivo.textContent = reproduciendo ? "Ⅱ" : "▶";
+    etiquetaBotonVivo.hidden = !iniciando && !esperandoReconexion;
     etiquetaBotonVivo.textContent = esperandoReconexion
         ? textosControlVivo.reconnecting
         : iniciando
-            ? textosControlVivo.connecting
+            ? `${textosControlVivo.listening}...`
             : reproduciendo
                 ? textosControlVivo.pause
                 : textosControlVivo.play;
@@ -924,7 +925,7 @@ function volverAlVivo() {
     entradaArchivoActual = null;
     actualizarSesionMultimedia();
     informarEstadoArchivo();
-    restaurarCaster();
+    restaurarControlesVivo();
     escuchaVivoIniciadaPorUsuario = true;
     intentoReconexionVivo = 0;
     iniciarVivo();
@@ -1091,7 +1092,7 @@ window.addEventListener(
             evento.data?.type === "ugju-archive-stop"
         ) {
             finalizarArchivo();
-            restaurarCaster();
+            restaurarControlesVivo();
         }
 
     }
@@ -1624,7 +1625,7 @@ cargarIdioma(idioma)
         play: textos.live_play,
         pause: textos.live_pause,
         reconnecting: textos.live_reconnecting,
-        connecting: textos.live_connecting
+        listening: textos.listening
     };
 
     etiquetaEstadoVivo.textContent = radioHabitada

@@ -33,4 +33,4 @@ en el navegador. En una primera visita sin conexión utiliza
 - Al terminar una emisión, el reproductor de ARCHIVO se cierra y descarta el
   audio finalizado.
 - Si hay una transmisión activa, VOLVER A LA RADIO EN VIVO detiene el archivo,
-  restaura el reproductor Caster e inicia el vivo en la misma acción.
+  restaura los controles e inicia el vivo de FreeSHOUTcast en la misma acción.
