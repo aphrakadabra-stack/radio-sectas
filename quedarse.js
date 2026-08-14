@@ -2,13 +2,14 @@ const idiomasDisponibles=["es","en","de","fi","fr","it","ja","zh"];
 const idioma=(navigator.languages||[navigator.language]).map(v=>v.toLowerCase().split("-")[0]).find(v=>idiomasDisponibles.includes(v))||"en";
 const fuegos=["nine","maze","line","squares","point","hanoi","stone","object"];
 const claves={nine:"stay_nine_dots_title",maze:"stay_maze_title",line:"stay_line_title",squares:"stay_squares_title",point:"stay_point_title",hanoi:"stay_hanoi_title",stone:"stay_stone_title",object:"stay_object_title"};
-const volver=document.getElementById("back-link"),navegacion=document.getElementById("fire-nav");
+const volver=document.getElementById("back-link"),navegacion=document.getElementById("fire-nav"),revelacionNueve=document.getElementById("nine-revelation");
 let textos={},fuegoActual="nine";
 
 function esTactil(){return matchMedia("(hover:none), (pointer:coarse)").matches}
 function estado(nombre,texto=""){const salida=document.querySelector(`[data-status="${nombre}"]`);if(salida)salida.textContent=texto}
 function exito(nombre){estado(nombre,"·  ✓  ·")}
 function mostrarFuego(nombre){
+    reiniciarRevelacionNueve();
     fuegoActual=nombre;
     document.querySelectorAll(".fire").forEach(fuego=>{const activo=fuego.dataset.fire===nombre;fuego.hidden=!activo;fuego.classList.toggle("is-active",activo)});
     navegacion.querySelectorAll("i").forEach(i=>i.setAttribute("aria-current",String(i.dataset.fire===nombre)));
@@ -28,7 +29,7 @@ async function cargarTextos(){
 }
 
 const lienzoNueve=document.getElementById("nine-canvas"),contenedorNueve=document.getElementById("nine-drawing"),ctxNueve=lienzoNueve.getContext("2d"),finalNueve=document.getElementById("nine-ending");
-let puntosTrazo=[],dibujando=false,completado=false,puntosObjetivo=[],repeticionNueve=0;
+let puntosTrazo=[],dibujando=false,completado=false,puntosObjetivo=[],repeticionNueve=0,desvanecerNueve=0;
 function prepararCanvas(){const r=contenedorNueve.getBoundingClientRect(),e=Math.min(devicePixelRatio||1,2);lienzoNueve.width=Math.round(r.width*e);lienzoNueve.height=Math.round(r.height*e);ctxNueve.setTransform(e,0,0,e,0,0);return r}
 function prepararNueve(){const r=prepararCanvas(),m=r.width*.27,p=(r.width-m*2)/2;puntosObjetivo=[];for(let f=0;f<3;f++)for(let c=0;c<3;c++)puntosObjetivo.push({x:m+c*p,y:m+f*p});dibujarNueve()}
 function dibujarNueve(){const r=contenedorNueve.getBoundingClientRect();ctxNueve.clearRect(0,0,r.width,r.height);ctxNueve.fillStyle="#222";puntosObjetivo.forEach(p=>{ctxNueve.beginPath();ctxNueve.arc(p.x,p.y,esTactil()?5.8:4.6,0,Math.PI*2);ctxNueve.fill()});if(puntosTrazo.length<2)return;ctxNueve.strokeStyle="#222";ctxNueve.lineWidth=esTactil()?12:3.2;ctxNueve.lineCap="round";ctxNueve.lineJoin="round";ctxNueve.beginPath();ctxNueve.moveTo(puntosTrazo[0].x,puntosTrazo[0].y);puntosTrazo.slice(1).forEach(p=>ctxNueve.lineTo(p.x,p.y));ctxNueve.stroke()}
@@ -37,11 +38,13 @@ function distanciaSegmento(p,a,b){const dx=b.x-a.x,dy=b.y-a.y;if(!dx&&!dy)return
 function simplificar(ps,t){if(ps.length<=2)return ps;let m=0,i=0;for(let n=1;n<ps.length-1;n++){const d=distanciaSegmento(ps[n],ps[0],ps[ps.length-1]);if(d>m){m=d;i=n}}if(m<=t)return[ps[0],ps[ps.length-1]];return simplificar(ps.slice(0,i+1),t).slice(0,-1).concat(simplificar(ps.slice(i),t))}
 function lineas(){const v=simplificar(puntosTrazo,contenedorNueve.getBoundingClientRect().width*.025);while(v.length>5){let menor=Infinity,indice=1;for(let i=1;i<v.length-1;i++){const d=distanciaSegmento(v[i],v[i-1],v[i+1]);if(d<menor){menor=d;indice=i}}v.splice(indice,1)}return v}
 function solucion(v){if(v.length!==5)return false;const t=contenedorNueve.getBoundingClientRect().width*.05;return puntosObjetivo.every(p=>v.slice(0,-1).some((a,i)=>distanciaSegmento(p,a,v[i+1])<=t))}
-function reiniciarNueve(e){dibujando=false;completado=false;puntosTrazo=[];clearTimeout(repeticionNueve);contenedorNueve.classList.remove("is-vanishing");finalNueve.textContent="";if(e&&lienzoNueve.hasPointerCapture(e.pointerId))lienzoNueve.releasePointerCapture(e.pointerId);dibujarNueve()}
+function reiniciarRevelacionNueve(){clearTimeout(repeticionNueve);clearTimeout(desvanecerNueve);const fuego=document.querySelector('[data-fire="nine"]');fuego.classList.remove("is-vanishing");revelacionNueve.classList.remove("is-visible");revelacionNueve.hidden=true;finalNueve.textContent=""}
+function reiniciarNueve(e){dibujando=false;completado=false;puntosTrazo=[];reiniciarRevelacionNueve();contenedorNueve.classList.remove("is-vanishing");if(e&&lienzoNueve.hasPointerCapture(e.pointerId))lienzoNueve.releasePointerCapture(e.pointerId);dibujarNueve()}
+function revelarSalida(){const fuego=document.querySelector('[data-fire="nine"]');fuego.classList.add("is-vanishing");setTimeout(()=>{if(fuegoActual!=="nine")return;fuego.hidden=true;finalNueve.textContent=textos.stay_nine_dots_complete||"La mente encontró una salida.";revelacionNueve.hidden=false;requestAnimationFrame(()=>revelacionNueve.classList.add("is-visible"));desvanecerNueve=setTimeout(()=>revelacionNueve.classList.remove("is-visible"),3000);repeticionNueve=setTimeout(()=>{fuego.hidden=false;reiniciarNueve()},4400)},1050)}
 function registrarMovimiento(e){const eventos=typeof e.getCoalescedEvents==="function"?e.getCoalescedEvents():[e];eventos.forEach(evento=>{const p=punto(evento),u=puntosTrazo.at(-1);if(!u||Math.hypot(p.x-u.x,p.y-u.y)>=2)puntosTrazo.push(p)})}
 lienzoNueve.addEventListener("pointerdown",e=>{if(e.button>0||completado)return;e.preventDefault();puntosTrazo=[punto(e)];dibujando=true;lienzoNueve.setPointerCapture(e.pointerId);dibujarNueve()});
 lienzoNueve.addEventListener("pointermove",e=>{if(!dibujando)return;e.preventDefault();registrarMovimiento(e);dibujarNueve()});
-lienzoNueve.addEventListener("pointerup",e=>{if(!dibujando)return;e.preventDefault();registrarMovimiento(e);const v=lineas();if(!solucion(v)){reiniciarNueve(e);return}dibujando=false;if(lienzoNueve.hasPointerCapture(e.pointerId))lienzoNueve.releasePointerCapture(e.pointerId);puntosTrazo=v;dibujarNueve();completado=true;requestAnimationFrame(()=>contenedorNueve.classList.add("is-vanishing"));setTimeout(()=>{finalNueve.textContent=textos.stay_nine_dots_complete||"La mente encontró una salida."},700);repeticionNueve=setTimeout(reiniciarNueve,3200)});
+lienzoNueve.addEventListener("pointerup",e=>{if(!dibujando)return;e.preventDefault();registrarMovimiento(e);const v=lineas();if(!solucion(v)){reiniciarNueve(e);return}dibujando=false;if(lienzoNueve.hasPointerCapture(e.pointerId))lienzoNueve.releasePointerCapture(e.pointerId);puntosTrazo=v;dibujarNueve();completado=true;revelarSalida()});
 lienzoNueve.addEventListener("pointercancel",reiniciarNueve);
 
 const laberinto=document.querySelector('[data-firepiece="maze"]'),trazoLaberinto=laberinto.querySelector(".maze-trace");
@@ -76,8 +79,10 @@ const objeto=document.querySelector('[data-firepiece="object"] button'),formaObj
 objeto.addEventListener("pointerdown",e=>{girandoObjeto=true;ultimoX=e.clientX;objeto.setPointerCapture(e.pointerId);e.preventDefault()});objeto.addEventListener("pointermove",e=>{if(!girandoObjeto)return;anguloObjeto+=(e.clientX-ultimoX)*.7;ultimoX=e.clientX;formaObjeto.style.transform=`rotate(${anguloObjeto}deg) skewY(-18deg)`;e.preventDefault()});["pointerup","pointercancel"].forEach(tipo=>objeto.addEventListener(tipo,()=>{girandoObjeto=false}));
 
 let inicioSwipe=null;
-document.addEventListener("pointerdown",e=>{if(e.pointerType!=="touch"||e.target.closest("button,canvas,svg"))return;inicioSwipe={x:e.clientX,y:e.clientY}});
-document.addEventListener("pointerup",e=>{if(!inicioSwipe)return;const dx=e.clientX-inicioSwipe.x,dy=e.clientY-inicioSwipe.y;inicioSwipe=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.35)moverFuego(dx<0?1:-1)});
+document.addEventListener("pointerdown",e=>{if(e.pointerType!=="touch")return;inicioSwipe={id:e.pointerId,x:e.clientX,y:e.clientY,dx:0,dy:0}},{capture:true});
+document.addEventListener("pointermove",e=>{if(!inicioSwipe||e.pointerId!==inicioSwipe.id)return;inicioSwipe.dx=e.clientX-inicioSwipe.x;inicioSwipe.dy=e.clientY-inicioSwipe.y;if(Math.abs(inicioSwipe.dx)>18&&Math.abs(inicioSwipe.dx)>Math.abs(inicioSwipe.dy)*1.2)e.preventDefault()},{capture:true,passive:false});
+document.addEventListener("pointerup",e=>{if(!inicioSwipe||e.pointerId!==inicioSwipe.id)return;const {dx,dy}=inicioSwipe;inicioSwipe=null;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.25)moverFuego(dx<0?1:-1)},{capture:true});
+document.addEventListener("pointercancel",()=>{inicioSwipe=null},{capture:true});
 document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")moverFuego(1);if(e.key==="ArrowLeft")moverFuego(-1)});
 volver.addEventListener("click",e=>{if(parent===window)return;e.preventDefault();parent.postMessage({type:"close-stay"},location.origin)});window.addEventListener("resize",()=>{if(fuegoActual==="nine")prepararNueve()});
 cargarTextos().catch(()=>{}).finally(()=>{prepararLinea();dibujarHanoi();mostrarFuego(fuegos.includes(location.hash.slice(1))?location.hash.slice(1):"nine")});

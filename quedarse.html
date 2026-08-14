@@ -5,20 +5,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="#EA52F3">
     <title>FUEGOS — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="quedarse.css?v=20260814-7">
+    <link rel="stylesheet" href="quedarse.css?v=20260814-8">
 </head>
 <body>
     <main class="house">
         <a class="back-link" id="back-link" href="index.html">ÚGJÜ RADIO</a>
-        <p class="section-name" data-text="stay_fires_label">FIRES</p>
         <nav class="fire-nav" id="fire-nav" aria-label="Fires"></nav>
 
         <section class="fire is-active" data-fire="nine" aria-labelledby="title-nine">
             <h1 id="title-nine" data-text="stay_nine_dots_title">THE NINE DOTS</h1>
             <div class="drawing square-drawing" id="nine-drawing"><canvas id="nine-canvas"></canvas></div>
             <p class="instruction" id="nine-instruction"></p>
-            <p class="ending" id="nine-ending" aria-live="polite"></p>
         </section>
+
+        <div class="nine-revelation" id="nine-revelation" aria-live="polite" hidden>
+            <p id="nine-ending"></p>
+        </div>
 
         <section class="fire" data-fire="maze" aria-labelledby="title-maze" hidden>
             <h1 id="title-maze" data-text="stay_maze_title">THE IMPOSSIBLE MAZE</h1>
@@ -62,6 +64,6 @@
             <p class="instruction" data-text="stay_object_instruction"></p><p class="fire-status" data-status="object" aria-live="polite"></p>
         </section>
     </main>
-    <script src="quedarse.js?v=20260814-10"></script>
+    <script src="quedarse.js?v=20260814-11"></script>
 </body>
 </html>

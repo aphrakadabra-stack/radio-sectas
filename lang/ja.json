@@ -31,7 +31,7 @@
   "notify_error": "通知を有効にできませんでした。ブラウザの通知設定を確認してください。",
   "notify_disabled": "通知をオフにしました。いつでも再びオンにできます。",
   "linktree_label": "LinktreeでÚGJÜ SECTASを開く",
-  "stay": "留まる",
+  "stay": "火",
   "stay_nine_dots_title": "九つの点",
   "stay_nine_dots_instruction_pointer": "想像上の正方形。九つの点。四本の線。カーソルを離さず、すべてを通り抜けてください。",
   "stay_nine_dots_instruction_touch": "想像上の正方形。九つの点。四本の線。指を離さず、すべてを通り抜けてください。",
