@@ -391,15 +391,20 @@ function actualizarControlVivo(reconectando = false) {
     controlesVivo.dataset.playing = String(reproduciendo);
     botonVivo.dataset.reconnecting = String(esperandoReconexion);
     iconoBotonVivo.textContent = reproduciendo ? "Ⅱ" : "▶";
-    etiquetaBotonVivo.hidden = !iniciando && !esperandoReconexion;
+    iconoBotonVivo.hidden = reproduciendo;
+    etiquetaBotonVivo.hidden =
+        !reproduciendo && !iniciando && !esperandoReconexion;
     etiquetaBotonVivo.textContent = esperandoReconexion
         ? textosControlVivo.reconnecting
-        : iniciando
+        : iniciando || reproduciendo
             ? `${textosControlVivo.listening}...`
-            : reproduciendo
-                ? textosControlVivo.pause
-                : textosControlVivo.play;
-    botonVivo.setAttribute("aria-label",etiquetaBotonVivo.textContent);
+            : textosControlVivo.play;
+    botonVivo.setAttribute(
+        "aria-label",
+        reproduciendo
+            ? textosControlVivo.pause
+            : etiquetaBotonVivo.textContent
+    );
 
     requestAnimationFrame(ajustarControlesVivo);
 
