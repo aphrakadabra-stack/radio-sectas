@@ -36,5 +36,13 @@
   "stay_nine_dots_instruction_pointer": "An imaginary square. Nine dots. Four lines. Pass through them without lifting the cursor.",
   "stay_nine_dots_instruction_touch": "An imaginary square. Nine dots. Four lines. Pass through them without lifting your finger.",
   "stay_nine_dots_complete": "The mind found a way out.",
-  "stay_back_to_radio": "Return to ÚGJÜ RADIO"
+  "stay_back_to_radio": "Return to ÚGJÜ RADIO",
+  "stay_rooms_label": "Rooms of perception",
+  "stay_line_title": "THE STRAIGHT LINE", "stay_line_instruction": "Draw a straight line. Follow it.",
+  "stay_circle_title": "THE INCOMPLETE CIRCLE", "stay_circle_instruction": "Complete the circle. Leave it as it is.",
+  "stay_empty_title": "THE EMPTY ROOM", "stay_empty_instruction": "Stay for a moment.",
+  "stay_maze_title": "THE MAZE WITHOUT AN EXIT", "stay_maze_instruction": "Move through without seeking an exit.",
+  "stay_sound_title": "THE INVISIBLE SOUND", "stay_sound_instruction": "Look where listening leaves space.",
+  "stay_stone_title": "THE STONE", "stay_stone_instruction": "Touch it. Wait.",
+  "stay_perspective_title": "CHANGE PERSPECTIVE", "stay_perspective_instruction": "Look again."
 }

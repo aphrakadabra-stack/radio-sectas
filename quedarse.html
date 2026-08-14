@@ -4,30 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="#EA52F3">
-    <title>LOS NUEVE PUNTOS — ÚGJÜ RADIO</title>
+    <title>QUEDARSE — ÚGJÜ RADIO</title>
     <link rel="stylesheet" href="quedarse.css?v=20260814-4">
 </head>
 <body>
-    <main class="room">
+    <main class="house">
         <a class="back-link" id="back-link" href="index.html">ÚGJÜ RADIO</a>
+        <nav class="room-nav" id="room-nav" aria-label="Rooms"></nav>
 
-        <section class="koan" aria-labelledby="koan-title">
-            <header class="koan-copy" id="koan-copy">
-                <h1 id="koan-title">THE NINE DOTS</h1>
-            </header>
+        <section class="room is-active" data-room="nine" aria-labelledby="title-nine">
+            <h1 id="title-nine" data-text="stay_nine_dots_title">THE NINE DOTS</h1>
+            <div class="drawing square-drawing"><canvas id="nine-canvas"></canvas></div>
+            <p class="instruction" id="nine-instruction"></p>
+            <p class="ending" id="nine-ending" aria-live="polite" hidden></p>
+        </section>
 
-            <div class="drawing" id="drawing">
-                <canvas id="koan-canvas"></canvas>
-            </div>
+        <section class="room" data-room="line" aria-labelledby="title-line" hidden>
+            <h1 id="title-line" data-text="stay_line_title">THE STRAIGHT LINE</h1>
+            <div class="drawing line-drawing"><canvas id="line-canvas"></canvas></div>
+            <p class="instruction" data-text="stay_line_instruction"></p>
+        </section>
 
-            <p id="koan-instruction">
-                An imaginary square. Nine dots. Four lines.
-                Pass through them without lifting the cursor.
-            </p>
+        <section class="room" data-room="circle" aria-labelledby="title-circle" hidden>
+            <h1 id="title-circle" data-text="stay_circle_title">THE INCOMPLETE CIRCLE</h1>
+            <div class="drawing circle-drawing"><canvas id="circle-canvas"></canvas></div>
+            <p class="instruction" data-text="stay_circle_instruction"></p>
+        </section>
 
-            <p class="koan-ending" id="koan-ending" aria-live="polite" hidden>
-                The mind found a way out.
-            </p>
+        <section class="room empty-room" data-room="empty" aria-labelledby="title-empty" hidden>
+            <h1 id="title-empty" data-text="stay_empty_title">THE EMPTY ROOM</h1>
+            <div class="empty-space" aria-hidden="true"></div>
+            <p class="instruction" data-text="stay_empty_instruction"></p>
+        </section>
+
+        <section class="room" data-room="maze" aria-labelledby="title-maze" hidden>
+            <h1 id="title-maze" data-text="stay_maze_title">THE MAZE WITHOUT AN EXIT</h1>
+            <div class="maze" id="maze" tabindex="0"><i class="maze-mark" id="maze-mark"></i></div>
+            <p class="instruction" data-text="stay_maze_instruction"></p>
+        </section>
+
+        <section class="room" data-room="sound" aria-labelledby="title-sound" hidden>
+            <h1 id="title-sound" data-text="stay_sound_title">THE INVISIBLE SOUND</h1>
+            <div class="sound-field" id="sound-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="instruction" data-text="stay_sound_instruction"></p>
+        </section>
+
+        <section class="room" data-room="stone" aria-labelledby="title-stone" hidden>
+            <h1 id="title-stone" data-text="stay_stone_title">THE STONE</h1>
+            <button class="stone-field" id="stone" type="button"><i aria-hidden="true"></i></button>
+            <p class="instruction" data-text="stay_stone_instruction"></p>
+        </section>
+
+        <section class="room" data-room="perspective" aria-labelledby="title-perspective" hidden>
+            <h1 id="title-perspective" data-text="stay_perspective_title">CHANGE PERSPECTIVE</h1>
+            <button class="perspective" id="perspective" type="button" aria-label="Change perspective"><i></i><i></i><i></i></button>
+            <p class="instruction" data-text="stay_perspective_instruction"></p>
         </section>
     </main>
     <script src="quedarse.js?v=20260814-6"></script>

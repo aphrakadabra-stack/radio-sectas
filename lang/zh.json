@@ -36,5 +36,12 @@
   "stay_nine_dots_instruction_pointer": "一个想象中的正方形。九个点。四条线。不要抬起光标，穿过所有点。",
   "stay_nine_dots_instruction_touch": "一个想象中的正方形。九个点。四条线。不要抬起手指，穿过所有点。",
   "stay_nine_dots_complete": "心找到了出口。",
-  "stay_back_to_radio": "返回ÚGJÜ RADIO"
+  "stay_back_to_radio": "返回ÚGJÜ RADIO", "stay_rooms_label": "感知房间",
+  "stay_line_title": "直线", "stay_line_instruction": "画一条直线。沿着它。",
+  "stay_circle_title": "未完成的圆", "stay_circle_instruction": "完成这个圆。让它保持原样。",
+  "stay_empty_title": "空房间", "stay_empty_instruction": "停留片刻。",
+  "stay_maze_title": "没有出口的迷宫", "stay_maze_instruction": "行走，不寻找出口。",
+  "stay_sound_title": "看不见的声音", "stay_sound_instruction": "看向聆听留下空间的地方。",
+  "stay_stone_title": "石头", "stay_stone_instruction": "触摸它。等待。",
+  "stay_perspective_title": "改变视角", "stay_perspective_instruction": "再看一次。"
 }

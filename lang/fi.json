@@ -36,5 +36,12 @@
   "stay_nine_dots_instruction_pointer": "Kuvitteellinen neliö. Yhdeksän pistettä. Neljä viivaa. Kulje niiden läpi nostamatta osoitinta.",
   "stay_nine_dots_instruction_touch": "Kuvitteellinen neliö. Yhdeksän pistettä. Neljä viivaa. Kulje niiden läpi nostamatta sormea.",
   "stay_nine_dots_complete": "Mieli löysi ulospääsyn.",
-  "stay_back_to_radio": "Palaa ÚGJÜ RADIOON"
+  "stay_back_to_radio": "Palaa ÚGJÜ RADIOON", "stay_rooms_label": "Havainnon huoneet",
+  "stay_line_title": "SUORA VIIVA", "stay_line_instruction": "Piirrä suora viiva. Seuraa sitä.",
+  "stay_circle_title": "KESKENERÄINEN YMPYRÄ", "stay_circle_instruction": "Täydennä ympyrä. Jätä se sellaiseksi.",
+  "stay_empty_title": "TYHJÄ HUONE", "stay_empty_instruction": "Jää hetkeksi.",
+  "stay_maze_title": "LABYRINTTI ILMAN ULOSKÄYNTIÄ", "stay_maze_instruction": "Kulje etsimättä ulospääsyä.",
+  "stay_sound_title": "NÄKYMÄTÖN ÄÄNI", "stay_sound_instruction": "Katso, mihin kuuntelu jättää tilaa.",
+  "stay_stone_title": "KIVI", "stay_stone_instruction": "Kosketa sitä. Odota.",
+  "stay_perspective_title": "VAIHDA NÄKÖKULMAA", "stay_perspective_instruction": "Katso uudelleen."
 }

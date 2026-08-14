@@ -36,5 +36,12 @@
   "stay_nine_dots_instruction_pointer": "Un quadrato immaginario. Nove punti. Quattro linee. Attraversali senza sollevare il cursore.",
   "stay_nine_dots_instruction_touch": "Un quadrato immaginario. Nove punti. Quattro linee. Attraversali senza sollevare il dito.",
   "stay_nine_dots_complete": "La mente ha trovato una via d’uscita.",
-  "stay_back_to_radio": "Torna a ÚGJÜ RADIO"
+  "stay_back_to_radio": "Torna a ÚGJÜ RADIO", "stay_rooms_label": "Stanze della percezione",
+  "stay_line_title": "LA LINEA RETTA", "stay_line_instruction": "Traccia una linea retta. Seguila.",
+  "stay_circle_title": "IL CERCHIO INCOMPLETO", "stay_circle_instruction": "Completa il cerchio. Lascialo così com’è.",
+  "stay_empty_title": "LA STANZA VUOTA", "stay_empty_instruction": "Resta un momento.",
+  "stay_maze_title": "IL LABIRINTO SENZA USCITA", "stay_maze_instruction": "Percorrilo senza cercare un’uscita.",
+  "stay_sound_title": "IL SUONO INVISIBILE", "stay_sound_instruction": "Guarda dove l’ascolto lascia spazio.",
+  "stay_stone_title": "LA PIETRA", "stay_stone_instruction": "Toccala. Aspetta.",
+  "stay_perspective_title": "CAMBIARE PROSPETTIVA", "stay_perspective_instruction": "Guarda di nuovo."
 }

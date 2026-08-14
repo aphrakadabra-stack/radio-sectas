@@ -36,5 +36,12 @@
   "stay_nine_dots_instruction_pointer": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Cursor anzuheben.",
   "stay_nine_dots_instruction_touch": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Finger anzuheben.",
   "stay_nine_dots_complete": "Der Geist fand einen Ausweg.",
-  "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO"
+  "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO", "stay_rooms_label": "Räume der Wahrnehmung",
+  "stay_line_title": "DIE GERADE LINIE", "stay_line_instruction": "Zeichne eine gerade Linie. Folge ihr.",
+  "stay_circle_title": "DER UNVOLLSTÄNDIGE KREIS", "stay_circle_instruction": "Vervollständige den Kreis. Lass ihn, wie er ist.",
+  "stay_empty_title": "DER LEERE RAUM", "stay_empty_instruction": "Bleib einen Moment.",
+  "stay_maze_title": "DAS LABYRINTH OHNE AUSGANG", "stay_maze_instruction": "Geh hindurch, ohne einen Ausgang zu suchen.",
+  "stay_sound_title": "DER UNSICHTBARE KLANG", "stay_sound_instruction": "Schau dorthin, wo das Hören Raum lässt.",
+  "stay_stone_title": "DER STEIN", "stay_stone_instruction": "Berühre ihn. Warte.",
+  "stay_perspective_title": "DIE PERSPEKTIVE WECHSELN", "stay_perspective_instruction": "Schau noch einmal."
 }

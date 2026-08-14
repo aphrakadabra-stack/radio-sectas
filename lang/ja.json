@@ -36,5 +36,12 @@
   "stay_nine_dots_instruction_pointer": "想像上の正方形。九つの点。四本の線。カーソルを離さず、すべてを通り抜けてください。",
   "stay_nine_dots_instruction_touch": "想像上の正方形。九つの点。四本の線。指を離さず、すべてを通り抜けてください。",
   "stay_nine_dots_complete": "心は出口を見つけた。",
-  "stay_back_to_radio": "ÚGJÜ RADIOに戻る"
+  "stay_back_to_radio": "ÚGJÜ RADIOに戻る", "stay_rooms_label": "知覚の部屋",
+  "stay_line_title": "直線", "stay_line_instruction": "直線を引く。それをたどる。",
+  "stay_circle_title": "未完の円", "stay_circle_instruction": "円を閉じる。そのままにする。",
+  "stay_empty_title": "空の部屋", "stay_empty_instruction": "しばらく留まる。",
+  "stay_maze_title": "出口のない迷路", "stay_maze_instruction": "出口を探さずに進む。",
+  "stay_sound_title": "見えない音", "stay_sound_instruction": "聴くことが残す空間を見る。",
+  "stay_stone_title": "石", "stay_stone_instruction": "触れる。待つ。",
+  "stay_perspective_title": "視点を変える", "stay_perspective_instruction": "もう一度見る。"
 }

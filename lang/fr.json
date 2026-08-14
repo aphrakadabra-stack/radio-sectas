@@ -36,5 +36,12 @@
   "stay_nine_dots_instruction_pointer": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le curseur.",
   "stay_nine_dots_instruction_touch": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le doigt.",
   "stay_nine_dots_complete": "L’esprit a trouvé une issue.",
-  "stay_back_to_radio": "Retourner à ÚGJÜ RADIO"
+  "stay_back_to_radio": "Retourner à ÚGJÜ RADIO", "stay_rooms_label": "Chambres de perception",
+  "stay_line_title": "LA LIGNE DROITE", "stay_line_instruction": "Tracez une ligne droite. Suivez-la.",
+  "stay_circle_title": "LE CERCLE INCOMPLET", "stay_circle_instruction": "Complétez le cercle. Laissez-le ainsi.",
+  "stay_empty_title": "LA CHAMBRE VIDE", "stay_empty_instruction": "Restez un instant.",
+  "stay_maze_title": "LE LABYRINTHE SANS ISSUE", "stay_maze_instruction": "Parcourez-le sans chercher d’issue.",
+  "stay_sound_title": "LE SON INVISIBLE", "stay_sound_instruction": "Regardez où l’écoute laisse de l’espace.",
+  "stay_stone_title": "LA PIERRE", "stay_stone_instruction": "Touchez-la. Attendez.",
+  "stay_perspective_title": "CHANGER DE PERSPECTIVE", "stay_perspective_instruction": "Regardez encore."
 }
