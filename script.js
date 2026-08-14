@@ -609,6 +609,7 @@ function actualizarEstadoRadioVivo(estaHabitada) {
         ? textosControlVivo.onAir
         : textosControlVivo.inClouds;
     actualizarControlVivo();
+    actualizarPanelArchivo();
     requestAnimationFrame(ajustarControlesVivo);
 
     if (!radioHabitada) {
@@ -744,6 +745,7 @@ function actualizarPanelArchivo() {
     }
 
     panelArchivo.hidden = false;
+    botonVolverAlVivo.hidden = !radioHabitada;
 
     const fechaYTitulo = `${formatearFechaArchivo(
         entradaArchivoActual.date
@@ -912,6 +914,10 @@ async function reproducirEntradaArchivo(entrada) {
 
 
 function volverAlVivo() {
+
+    if (!radioHabitada) {
+        return;
+    }
 
     audioArchivo.pause();
     audioArchivo.removeAttribute("src");

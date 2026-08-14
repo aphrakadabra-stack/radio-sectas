@@ -21,7 +21,7 @@
   "live_pause": "PAUSE",
   "live_reconnecting": "RECONNEXION",
   "live_connecting": "CONNEXION",
-  "live_offline": "HORS LIGNE",
+  "live_offline": "SILENCE",
   "close_manifesto": "Fermer le manifeste",
   "notify_me": "PRÉVENEZ-MOI",
   "notify_active": "NOTIFICATIONS ACTIVES",

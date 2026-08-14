@@ -21,7 +21,7 @@
   "live_pause": "暂停",
   "live_reconnecting": "重新连接中",
   "live_connecting": "连接中",
-  "live_offline": "离线",
+  "live_offline": "静默",
   "close_manifesto": "关闭宣言",
   "notify_me": "通知我",
   "notify_active": "通知已开启",
