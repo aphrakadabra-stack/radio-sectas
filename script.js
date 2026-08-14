@@ -364,6 +364,7 @@ function detenerVivoParaArchivo() {
 
     cancelarReconexionVivo(true);
     audioVivo.pause();
+    vivoConectando = false;
     escuchaVivoIniciadaPorUsuario = false;
     vivoIniciadoConExito = false;
     actualizarControlVivo();
@@ -928,6 +929,7 @@ function volverAlVivo() {
     restaurarControlesVivo();
     escuchaVivoIniciadaPorUsuario = true;
     intentoReconexionVivo = 0;
+    audioVivo.load();
     iniciarVivo();
 
 }

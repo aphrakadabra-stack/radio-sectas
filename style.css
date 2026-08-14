@@ -433,6 +433,10 @@ h1{
     width:100%;
 }
 
+.live-controls[hidden]{
+    display:none;
+}
+
 .live-metadata{
     color:#f3f3f3;
     flex:0 0 100%;
