@@ -38,7 +38,7 @@
   "stay_level": "レベル",
   "stay_back_to_radio": "ÚGJÜ RADIOに戻る", "stay_rooms_label": "火", "stay_fires_label": "火",
   "stay_maze_title": "迷路", "stay_maze_instruction": "道に触れずに輪を反対側まで運ぶ。",
-  "stay_klotski_title": "クロツキ", "stay_klotski_instruction": "形を滑らせ、暗いピースを出口から解放する。",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "形を滑らせ、暗いピースを出口から解放する。",
   "stay_tictactoe_title": "三目並べ", "stay_tictactoe_instruction": "あなたは円、機械は点。三つを一列に並べる。",
   "stay_tictactoe_human": "線を見つけた。", "stay_tictactoe_machine": "機械が形を閉じた。", "stay_tictactoe_draw": "どちらも譲らなかった。",
   "stay_hanoi_title": "ハノイの塔", "stay_hanoi_instruction": "円盤を一枚ずつ動かす。大きい円盤を小さい円盤の上に置かない。",

@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#EA52F3">
     <meta name="ugju-observatory" content="">
     <title>FUEGOS — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="quedarse.css?v=20260815-1">
+    <link rel="stylesheet" href="quedarse.css?v=20260815-2">
 </head>
 <body>
     <main class="house">
@@ -21,12 +21,12 @@
 
         <section class="fire" data-fire="maze" aria-labelledby="title-maze" hidden>
             <h1 id="title-maze" data-text="stay_maze_title">THE MAZE</h1>
-            <div class="instrument maze-field" data-firepiece="maze"><svg viewBox="0 0 300 300" aria-hidden="true"><path class="maze-path"/><circle class="maze-goal" r="12"/><circle class="maze-ring" r="13"/></svg></div>
+            <div class="instrument maze-field" data-firepiece="maze"><svg viewBox="0 0 300 300" aria-hidden="true"><path class="maze-path"/><circle class="maze-goal" r="16"/><circle class="maze-ring-hit" r="28"/><circle class="maze-ring" r="20"/></svg></div>
             <p class="instruction" data-text="stay_maze_instruction"></p><p class="fire-status" data-status="maze" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="klotski" aria-labelledby="title-klotski" hidden>
-            <h1 id="title-klotski" data-text="stay_klotski_title">KLOTSKI</h1>
+            <h1 id="title-klotski" data-text="stay_klotski_title">MUDRAS</h1>
             <div class="instrument klotski" data-firepiece="klotski" role="application"></div>
             <p class="instruction" data-text="stay_klotski_instruction"></p><p class="fire-status" data-status="klotski" aria-live="polite"></p>
         </section>
@@ -45,17 +45,24 @@
 
         <section class="fire" data-fire="stone" aria-labelledby="title-stone" hidden>
             <h1 id="title-stone" data-text="stay_stone_title">THE STONE</h1>
-            <div class="instrument stone-field" data-firepiece="stone"><button type="button" aria-label="Stone"><i></i></button></div>
+            <div class="instrument stone-field" data-firepiece="stone"><button type="button" aria-label="Stone"><i><span class="stone-aperture"></span></i></button></div>
             <p class="instruction" data-text="stay_stone_instruction"></p><p class="fire-status" data-status="stone" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="object" aria-labelledby="title-object" hidden>
             <h1 id="title-object" data-text="stay_object_title">THE IMPOSSIBLE OBJECT</h1>
-            <div class="instrument impossible-field" data-firepiece="object"><button type="button" aria-label="Turn the impossible object"><svg viewBox="0 0 300 300" aria-hidden="true"><path class="penrose" d="M150 30 275 244H230L150 108 91 210h116l23 34H28L150 30Z"/><path class="object-door" d="M135 136h30v47h-30z"/><circle class="object-eye" cx="150" cy="157" r="5"/></svg></button></div>
+            <div class="instrument impossible-field" data-firepiece="object">
+                <svg class="impossible-world" viewBox="0 0 300 300" aria-hidden="true">
+                    <path class="world-block world-block-a" d="M30 205 112 157l48 28-82 48z"/><path class="world-block world-block-b" d="m190 75 78 45-48 28-78-45z"/>
+                    <path class="world-stairs" d="m63 202 11-6m2 0 11-6m2 0 11-6m2 0 11-6M190 108l12 7m-22-13 12 7m-22-13 12 7"/>
+                    <path class="world-bridge" d="M105 160h90v28h-90z"/><circle class="world-pilgrim" cx="73" cy="200" r="8"/><path class="world-door" d="M218 103v34h22v-21z"/>
+                </svg>
+                <button class="world-turn" type="button" aria-label="Turn the bridge"><span></span></button><button class="world-walk" type="button" aria-label="Move through the impossible architecture"><span></span></button>
+            </div>
             <p class="instruction" data-text="stay_object_instruction"></p><p class="fire-status" data-status="object" aria-live="polite"></p>
         </section>
     </main>
     <script src="observatory.js?v=20260814-1"></script>
-    <script src="quedarse.js?v=20260815-1"></script>
+    <script src="quedarse.js?v=20260815-2"></script>
 </body>
 </html>

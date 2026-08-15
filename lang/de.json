@@ -38,7 +38,7 @@
   "stay_level": "Stufe",
   "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO", "stay_rooms_label": "Feuer", "stay_fires_label": "FEUER",
   "stay_maze_title": "DAS LABYRINTH", "stay_maze_instruction": "Führe den Ring zum anderen Ende, ohne den Weg zu berühren.",
-  "stay_klotski_title": "KLOTSKI", "stay_klotski_instruction": "Verschiebe die Formen. Befreie das dunkle Teil durch die Öffnung.",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Verschiebe die Formen. Befreie das dunkle Teil durch die Öffnung.",
   "stay_tictactoe_title": "DREI IN EINER REIHE", "stay_tictactoe_instruction": "Du bist der Kreis. Die Maschine ist der Punkt. Bilde eine Dreierlinie.",
   "stay_tictactoe_human": "Du hast die Linie gefunden.", "stay_tictactoe_machine": "Die Maschine schloss die Form.", "stay_tictactoe_draw": "Niemand gab nach.",
   "stay_hanoi_title": "DER TURM VON HANOI", "stay_hanoi_instruction": "Bewege jeweils eine Scheibe. Lege nie eine größere auf eine kleinere.",

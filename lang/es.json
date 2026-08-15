@@ -39,10 +39,10 @@
   "stay_back_to_radio": "Volver a ÚGJÜ RADIO",
   "stay_rooms_label": "Fuegos", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "EL LABERINTO", "stay_maze_instruction": "Lleva el aro hasta el otro extremo sin tocar el recorrido.",
-  "stay_klotski_title": "KLOTSKI", "stay_klotski_instruction": "Desliza las formas. Libera la pieza oscura por la abertura.",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Desliza las formas. Libera la pieza oscura por la abertura.",
   "stay_tictactoe_title": "TA-TE-TI", "stay_tictactoe_instruction": "Tú eres la X. La máquina, el círculo. Forma una línea de tres.",
   "stay_tictactoe_human": "Encontraste la línea.", "stay_tictactoe_machine": "La máquina cerró la forma.", "stay_tictactoe_draw": "Nadie cedió.",
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
-  "stay_stone_title": "LA PIEDRA", "stay_stone_instruction": "Gírala. Toca sus caras. Modula su forma.", "stay_stone_warm": "La piedra guarda tu calor.",
-  "stay_object_title": "EL OBJETO IMPOSIBLE", "stay_object_instruction": "Gíralo. Hay algo dentro de la contradicción."
+  "stay_stone_title": "LA PIEDRA", "stay_stone_instruction": "Gírala hasta encontrar la abertura que guarda dentro.", "stay_stone_warm": "La piedra guarda tu calor.",
+  "stay_object_title": "EL OBJETO IMPOSIBLE", "stay_object_instruction": "Gira el puente. Cuando los caminos coincidan, haz avanzar a la figura."
 }
