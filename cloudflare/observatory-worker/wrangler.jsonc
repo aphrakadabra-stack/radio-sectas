@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ugju-radio-observatory",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-14",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "ALLOWED_ORIGIN": "https://ugjusectas.github.io",
+    "ACCOUNT_ID": "SET_WITH_YOUR_CLOUDFLARE_ACCOUNT_ID"
+  },
+  "analytics_engine_datasets": [
+    {
+      "binding": "OBSERVATORY",
+      "dataset": "ugju_radio_observatory"
+    }
+  ]
+}

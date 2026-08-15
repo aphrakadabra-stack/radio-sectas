@@ -349,6 +349,7 @@ function abrirArchivo() {
 
     capaArchivo.hidden = false;
     capaArchivo.setAttribute("aria-hidden","false");
+    window.observarUgju?.("archive_open");
 
 }
 
@@ -613,6 +614,7 @@ function alternarVivo() {
 
     escuchaVivoIniciadaPorUsuario = true;
     intentoReconexionVivo = 0;
+    window.observarUgju?.("live_play");
     iniciarVivo();
 
 }
@@ -942,6 +944,11 @@ async function reproducirEntradaArchivo(entrada) {
 
     try {
         await audioArchivo.play();
+        const detalle = String(entrada.identifier || "session")
+            .toLowerCase()
+            .replace(/[^a-z0-9_-]/g,"_")
+            .slice(0,64);
+        window.observarUgju?.("archive_play",detalle);
     } catch (error) {
         informarEstadoArchivo();
         throw error;
@@ -1745,38 +1752,56 @@ cargarIdioma(idioma)
     );
 
 
-    function comprobarRadio() {
+    let comprobacionRadioEnCurso = false;
 
-        fetch(URL_VIVO,{cache:"no-store"})
 
-        .then(respuesta => {
+    async function comprobarRadio() {
 
-            const esAudio = respuesta.ok &&
-                respuesta.headers.get("content-type")
-                    ?.startsWith("audio/");
+        if (comprobacionRadioEnCurso) return;
 
-            respuesta.body?.cancel();
+        comprobacionRadioEnCurso = true;
+        const controlador = new AbortController();
+        const espera = setTimeout(
+            () => controlador.abort(),
+            10000
+        );
 
-            if (esAudio) {
+        try {
+            const separador = URL_METADATA_VIVO.includes("?")
+                ? "&"
+                : "?";
+            const respuesta = await fetch(
+                `${URL_METADATA_VIVO}${separador}v=${Date.now()}`,
+                {
+                    cache: "no-store",
+                    signal: controlador.signal
+                }
+            );
 
-                actualizarEstadoRadioVivo(true);
-                mostrarEstado(textos.state_living);
-
-            } else {
-
-                actualizarEstadoRadioVivo(false);
-                mostrarEstado("");
-
+            if (!respuesta.ok) {
+                throw new Error("Radio status unavailable");
             }
 
-        })
+            const datos = await respuesta.json();
 
-        .catch(() => {
+            if (typeof datos.online !== "boolean") {
+                throw new Error("Radio status was incomplete");
+            }
 
-            actualizarEstadoRadioVivo(false);
-            mostrarEstado("");
-
-        });
+            actualizarEstadoRadioVivo(datos.online);
+            mostrarEstado(
+                datos.online ? textos.state_living : ""
+            );
+        } catch (error) {
+            /*
+             * Una pérdida momentánea de red no debe convertir una emisión
+             * confirmada en dormida. La próxima señal del ciclo corrige el
+             * estado, incluso después de reanudar una PWA suspendida.
+             */
+        } finally {
+            clearTimeout(espera);
+            comprobacionRadioEnCurso = false;
+        }
 
     }
 
@@ -1784,8 +1809,15 @@ cargarIdioma(idioma)
     comprobarRadio();
     comprobarMetadatosVivo();
 
-    setInterval(comprobarRadio,60000);
+    setInterval(comprobarRadio,30000);
     setInterval(comprobarMetadatosVivo,INTERVALO_METADATA_VIVO);
+
+    window.addEventListener("pageshow",comprobarRadio);
+    window.addEventListener("focus",comprobarRadio);
+    window.addEventListener("online",comprobarRadio);
+    document.addEventListener("visibilitychange",() => {
+        if (!document.hidden) comprobarRadio();
+    });
 
     window.addEventListener(
         "resize",

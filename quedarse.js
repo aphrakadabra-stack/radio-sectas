@@ -3,23 +3,27 @@ const idioma=(navigator.languages||[navigator.language]).map(v=>v.toLowerCase().
 const fuegos=["nine","maze","line","tictactoe","hanoi","stone","object"];
 const claves={nine:"stay_nine_dots_title",maze:"stay_maze_title",line:"stay_line_title",tictactoe:"stay_tictactoe_title",hanoi:"stay_hanoi_title",stone:"stay_stone_title",object:"stay_object_title"};
 const volver=document.getElementById("back-link"),navegacion=document.getElementById("fire-nav"),revelacionNueve=document.getElementById("nine-revelation");
-let textos={},fuegoActual="nine";
+let textos={},fuegoActual="nine",entradaFuego=performance.now(),fuegoIniciado=false;
 
 function esTactil(){return matchMedia("(hover:none), (pointer:coarse)").matches}
 function estado(nombre,texto=""){const salida=document.querySelector(`[data-status="${nombre}"]`);if(salida)salida.textContent=texto}
 function exito(nombre){estado(nombre,"·  ✓  ·")}
 function mostrarFuego(nombre){
+    if(fuegoIniciado)window.observarUgju?.("fire_dwell",fuegoActual,(performance.now()-entradaFuego)/1000);
     if(fuegoActual==="nine"&&nombre!=="nine")reiniciarNueve();
     reiniciarRevelacionNueve();
     fuegoActual=nombre;
+    entradaFuego=performance.now();
+    fuegoIniciado=true;
+    window.observarUgju?.("fire_open",nombre);
     document.querySelectorAll(".fire").forEach(fuego=>{const activo=fuego.dataset.fire===nombre;fuego.hidden=!activo;fuego.classList.toggle("is-active",activo)});
-    navegacion.querySelectorAll("i").forEach(i=>i.setAttribute("aria-current",String(i.dataset.fire===nombre)));
+    navegacion.querySelectorAll("button").forEach(i=>i.setAttribute("aria-current",String(i.dataset.fire===nombre)));
     history.replaceState(null,"",`#${nombre}`);
     if(nombre==="nine")prepararNueve();
     if(nombre==="line")prepararLinea();
 }
 function moverFuego(direccion){const i=fuegos.indexOf(fuegoActual),siguiente=i+direccion;if(siguiente>=0&&siguiente<fuegos.length)mostrarFuego(fuegos[siguiente])}
-function crearNavegacion(){fuegos.forEach(nombre=>{const indicador=document.createElement("i");indicador.dataset.fire=nombre;indicador.setAttribute("aria-label",textos[claves[nombre]]||nombre);navegacion.appendChild(indicador)})}
+function crearNavegacion(){fuegos.forEach(nombre=>{const indicador=document.createElement("button");indicador.type="button";indicador.dataset.fire=nombre;indicador.setAttribute("aria-label",textos[claves[nombre]]||nombre);indicador.addEventListener("click",()=>mostrarFuego(nombre));navegacion.appendChild(indicador)})}
 async function cargarTextos(){
     let codigo=idioma,respuesta=await fetch(`lang/${codigo}.json?v=20260814-13`);
     if(!respuesta.ok){codigo="en";respuesta=await fetch("lang/en.json?v=20260814-13")}
@@ -88,6 +92,7 @@ document.addEventListener("touchstart",comenzarSwipe,{capture:true,passive:true}
 document.addEventListener("touchmove",moverSwipe,{capture:true,passive:false});
 document.addEventListener("touchend",terminarSwipe,{capture:true,passive:true});
 document.addEventListener("touchcancel",()=>{inicioSwipe=null},{capture:true,passive:true});
+window.addEventListener("pagehide",()=>window.observarUgju?.("fire_dwell",fuegoActual,(performance.now()-entradaFuego)/1000));
 document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")moverFuego(1);if(e.key==="ArrowLeft")moverFuego(-1)});
 volver.addEventListener("click",e=>{if(parent===window)return;e.preventDefault();parent.postMessage({type:"close-stay"},location.origin)});window.addEventListener("resize",()=>{if(fuegoActual==="nine")prepararNueve()});
 cargarTextos().catch(()=>{}).finally(()=>{prepararLinea();dibujarHanoi();mostrarFuego(fuegos.includes(location.hash.slice(1))?location.hash.slice(1):"nine")});
