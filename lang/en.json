@@ -35,14 +35,14 @@
   "stay_nine_dots_title": "THE NINE DOTS",
   "stay_nine_dots_instruction_pointer": "An imaginary square. Nine dots. Four lines. Pass through them without lifting the cursor.",
   "stay_nine_dots_instruction_touch": "An imaginary square. Nine dots. Four lines. Pass through them without lifting your finger.",
-  "stay_nine_dots_complete": "The door was dreaming behind the wall.",
+  "stay_level": "Level",
   "stay_back_to_radio": "Return to ÚGJÜ RADIO",
   "stay_rooms_label": "Fires", "stay_fires_label": "FIRES",
-  "stay_maze_title": "THE IMPOSSIBLE MAZE", "stay_maze_instruction": "Begin at the solid dot. Follow the lines without repeating a point until you reach the empty circle.",
-  "stay_line_title": "THE SINGLE LINE", "stay_line_instruction": "From the solid dot, slowly follow the line to the empty circle without letting go.",
-  "stay_tictactoe_title": "THREE IN A ROW", "stay_tictactoe_instruction": "You are the circle. The machine is the dot. Form a line of three.",
+  "stay_maze_title": "THE MAZE", "stay_maze_instruction": "Carry the ring to the other end without touching the path.",
+  "stay_klotski_title": "KLOTSKI", "stay_klotski_instruction": "Slide the forms. Free the dark piece through the opening.",
+  "stay_tictactoe_title": "TIC-TAC-TOE", "stay_tictactoe_instruction": "You are X. The machine is the circle. Form a line of three.",
   "stay_tictactoe_human": "You found the line.", "stay_tictactoe_machine": "The machine closed the shape.", "stay_tictactoe_draw": "Neither yielded.",
-  "stay_hanoi_title": "THE TOWER OF HANOI", "stay_hanoi_instruction": "Carry the three discs from the left rod to the right. Move one at a time, never placing a larger one on a smaller one.",
-  "stay_stone_title": "THE STONE", "stay_stone_instruction": "Hold it for a moment.", "stay_stone_warm": "The stone keeps your warmth.",
-  "stay_object_title": "THE IMPOSSIBLE OBJECT", "stay_object_instruction": "Turn it. Seek the angle at which it might make sense."
+  "stay_hanoi_title": "THE TOWER OF HANOI", "stay_hanoi_instruction": "Carry the discs from the left rod to the right. Move one at a time, never placing a larger one on a smaller one.",
+  "stay_stone_title": "THE STONE", "stay_stone_instruction": "Turn it. Touch its faces. Modulate its form.", "stay_stone_warm": "The stone keeps your warmth.",
+  "stay_object_title": "THE IMPOSSIBLE OBJECT", "stay_object_instruction": "Turn it. Something lives inside the contradiction."
 }

@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#EA52F3">
     <meta name="ugju-observatory" content="">
     <title>FUEGOS — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="quedarse.css?v=20260814-10">
+    <link rel="stylesheet" href="quedarse.css?v=20260815-1">
 </head>
 <body>
     <main class="house">
@@ -19,20 +19,16 @@
             <p class="instruction" id="nine-instruction"></p>
         </section>
 
-        <div class="nine-revelation" id="nine-revelation" aria-live="polite" hidden>
-            <p id="nine-ending"></p>
-        </div>
-
         <section class="fire" data-fire="maze" aria-labelledby="title-maze" hidden>
-            <h1 id="title-maze" data-text="stay_maze_title">THE IMPOSSIBLE MAZE</h1>
-            <div class="instrument maze-field" data-firepiece="maze"><svg class="maze-map" viewBox="0 0 300 300" aria-hidden="true"><path d="M50 50H150H250V150V250H150H50V150H150"/></svg><svg class="maze-trace" viewBox="0 0 300 300" aria-hidden="true"></svg></div>
+            <h1 id="title-maze" data-text="stay_maze_title">THE MAZE</h1>
+            <div class="instrument maze-field" data-firepiece="maze"><svg viewBox="0 0 300 300" aria-hidden="true"><path class="maze-path"/><circle class="maze-goal" r="12"/><circle class="maze-ring" r="13"/></svg></div>
             <p class="instruction" data-text="stay_maze_instruction"></p><p class="fire-status" data-status="maze" aria-live="polite"></p>
         </section>
 
-        <section class="fire" data-fire="line" aria-labelledby="title-line" hidden>
-            <h1 id="title-line" data-text="stay_line_title">THE SINGLE LINE</h1>
-            <div class="instrument single-line" data-firepiece="line"><svg viewBox="0 0 600 360"><path class="line-guide" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/><path class="line-progress" d="M52 254 C116 86 185 310 259 142 S407 61 462 218 S540 282 557 113"/><circle class="line-start" cx="52" cy="254" r="11"/><circle class="line-end" cx="557" cy="113" r="7"/></svg></div>
-            <p class="instruction" data-text="stay_line_instruction"></p><p class="fire-status" data-status="line" aria-live="polite"></p>
+        <section class="fire" data-fire="klotski" aria-labelledby="title-klotski" hidden>
+            <h1 id="title-klotski" data-text="stay_klotski_title">KLOTSKI</h1>
+            <div class="instrument klotski" data-firepiece="klotski" role="application"></div>
+            <p class="instruction" data-text="stay_klotski_instruction"></p><p class="fire-status" data-status="klotski" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="tictactoe" aria-labelledby="title-tictactoe" hidden>
@@ -55,11 +51,11 @@
 
         <section class="fire" data-fire="object" aria-labelledby="title-object" hidden>
             <h1 id="title-object" data-text="stay_object_title">THE IMPOSSIBLE OBJECT</h1>
-            <div class="instrument impossible-field" data-firepiece="object"><button type="button" aria-label="Turn the impossible object"><span></span></button></div>
+            <div class="instrument impossible-field" data-firepiece="object"><button type="button" aria-label="Turn the impossible object"><svg viewBox="0 0 300 300" aria-hidden="true"><path class="penrose" d="M150 30 275 244H230L150 108 91 210h116l23 34H28L150 30Z"/><path class="object-door" d="M135 136h30v47h-30z"/><circle class="object-eye" cx="150" cy="157" r="5"/></svg></button></div>
             <p class="instruction" data-text="stay_object_instruction"></p><p class="fire-status" data-status="object" aria-live="polite"></p>
         </section>
     </main>
     <script src="observatory.js?v=20260814-1"></script>
-    <script src="quedarse.js?v=20260814-15"></script>
+    <script src="quedarse.js?v=20260815-1"></script>
 </body>
 </html>

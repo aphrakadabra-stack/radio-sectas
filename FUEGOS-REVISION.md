@@ -6,25 +6,23 @@ Un fuego permanece si la acción cambia una forma de percibir; no alcanza con
 ser un rompecabezas conocido. La resolución debe dejar una imagen o un silencio,
 no una felicitación.
 
-## Estado
+## Estado implementado — 15 de agosto de 2026
 
-- **Los Nueve Puntos — conservar.** Ya une gesto, límite imaginario,
-  desaparición y la ceniza “La puerta estaba soñando detrás del muro”. Debe ser
-  la medida conceptual de los demás.
-- **La Línea — revisar.** El seguimiento corporal es claro, pero hoy premia
-  precisión motriz. Necesita una transformación que no sea simplemente llegar.
-- **La Piedra — conservar y profundizar.** Esperar y sostener cambia el ritmo;
-  es el fuego más distante de la lógica de ganar. La frase final aún puede ser
-  menos explicativa.
-- **El Laberinto Imposible — reformular.** En su estado actual sigue siendo un
-  camino correcto con reinicio. Debe revelar por qué es imposible o quemar la
-  expectativa de salida.
-- **Tres en Raya — retirar o transformar.** La competencia humano/máquina es una
-  idea legible, pero no produce todavía una purificación perceptiva.
-- **Torre de Hanoi — retirar o transformar.** Funciona como acertijo clásico;
-  su éxito no deja una percepción distinta.
-- **Objeto Imposible — profundizar.** Girarlo tiene potencial perceptivo, pero
-  necesita un momento donde la forma contradiga realmente la mirada.
+- **Los Nueve Puntos.** Al completar las cuatro líneas, el dibujo se consume y
+  desaparece. No queda figura, frase ni mensaje de victoria.
+- **El Laberinto.** Un aro se arrastra sobre un recorrido continuo. Tiene tres
+  trazados progresivos; tocar el borde sólo produce vibración háptica compatible.
+- **Klotski.** Reemplaza a La Línea Única. Incluye tres disposiciones de piezas
+  grandes y pequeñas y una salida física para la pieza principal.
+- **Ta-te-ti.** Recupera las marcas clásicas: persona X, máquina O.
+- **Torre de Hanoi.** Avanza de tres a cinco discos al resolverse.
+- **La Piedra.** Se puede rotar, cambiar de cara y modular visualmente; el gesto
+  acumulado completa su ciclo.
+- **Objeto Imposible.** Es una forma Penrose que, al girar, revela una abertura
+  dentro de su contradicción.
+
+Todos los fuegos comparten un cierre silencioso: quietud, desintegración,
+ceniza ascendente y regreso. No interrumpen el audio de la radio.
 
 ## Navegación
 
