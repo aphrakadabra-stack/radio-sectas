@@ -13,6 +13,7 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 .fire.is-dissolving{opacity:0;filter:blur(7px);transform:scale(.992);pointer-events:none}
 .fire[hidden]{display:none}h1{font-size:clamp(1.35rem,4.2vw,2.35rem);font-weight:400;letter-spacing:.12em;line-height:1.05;text-transform:uppercase}
 .instruction{max-width:540px;padding:0 12px;font-size:clamp(1rem,2.6vw,1.3rem);line-height:1.42;white-space:pre-line}.fire-status{min-height:1.25em;margin-top:7px;font-size:clamp(1.05rem,2.8vw,1.42rem);opacity:.76}
+.pending-instance{display:grid;place-items:center}
 .drawing,.instrument{align-self:center;touch-action:none}.drawing canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}.square-drawing{width:min(88vw,56dvh,560px);aspect-ratio:1;margin:clamp(10px,2vh,24px) 0}
 .nine-revelation{position:fixed;z-index:2;inset:0;display:grid;place-items:center;padding:15vw;text-align:center;pointer-events:none;opacity:0;filter:blur(10px);transform:scale(.985);transition:opacity 2.1s cubic-bezier(.22,.61,.36,1),filter 2.1s ease,transform 2.1s ease}
 .nine-revelation[hidden]{display:none}.nine-revelation.is-visible{opacity:.82;filter:blur(0);transform:scale(1)}.nine-revelation p{max-width:680px;font-size:clamp(1.65rem,5vw,3.15rem);font-weight:400;line-height:1.25;letter-spacing:.018em;text-shadow:0 0 18px rgba(34,34,34,.14)}

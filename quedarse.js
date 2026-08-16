@@ -1,6 +1,6 @@
 const idiomasDisponibles=["es","en","de","fi","fr","it","ja","zh"];
 const idioma=(navigator.languages||[navigator.language]).map(v=>v.toLowerCase().split("-")[0]).find(v=>idiomasDisponibles.includes(v))||"en";
-const fuegos=["nine","maze","klotski","tictactoe","hanoi","stone","object"];
+const fuegos=["nine","maze","klotski","tictactoe","hanoi","stone","object","void","uri","dissolution"];
 const claves=Object.fromEntries(fuegos.map(n=>[n,`stay_${n==="nine"?"nine_dots":n}_title`]));
 const volver=document.getElementById("back-link"),navegacion=document.getElementById("fire-nav");
 let textos={},fuegoActual="nine",entradaFuego=performance.now(),fuegoIniciado=false,quemando=false;
