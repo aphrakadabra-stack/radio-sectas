@@ -43,6 +43,6 @@
   "stay_tictactoe_title": "TA-TE-TI", "stay_tictactoe_instruction": "Tú eres la X. La máquina, el círculo. Forma una línea de tres.",
   "stay_tictactoe_human": "Encontraste la línea.", "stay_tictactoe_machine": "La máquina cerró la forma.", "stay_tictactoe_draw": "Nadie cedió.",
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
-  "stay_stone_title": "LA PIEDRA", "stay_stone_instruction": "Gírala hasta encontrar la abertura que guarda dentro.", "stay_stone_warm": "La piedra guarda tu calor.",
-  "stay_object_title": "EL OBJETO IMPOSIBLE", "stay_object_instruction": "Gira el puente. Cuando los caminos coincidan, haz avanzar a la figura."
+  "stay_stone_title": "EL BUCLE", "stay_stone_instruction": "Gira las piezas. Cierra el circuito sin dejar cabos sueltos.", "stay_stone_warm": "El circuito está completo.",
+  "stay_object_title": "LA ARQUITECTURA IMPOSIBLE", "stay_object_instruction": "Gira la arquitectura. Cuando los planos coincidan, haz avanzar a la figura."
 }

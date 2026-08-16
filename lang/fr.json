@@ -42,6 +42,6 @@
   "stay_tictactoe_title": "MORPION", "stay_tictactoe_instruction": "Vous êtes le cercle. La machine est le point. Formez une ligne de trois.",
   "stay_tictactoe_human": "Vous avez trouvé la ligne.", "stay_tictactoe_machine": "La machine a fermé la forme.", "stay_tictactoe_draw": "Personne n’a cédé.",
   "stay_hanoi_title": "LA TOUR DE HANOÏ", "stay_hanoi_instruction": "Déplacez un disque à la fois. Ne posez jamais un grand sur un petit.",
-  "stay_stone_title": "LA PIERRE", "stay_stone_instruction": "Tenez-la un instant.", "stay_stone_warm": "La pierre garde votre chaleur.",
+  "stay_stone_title": "LA BOUCLE", "stay_stone_instruction": "Tournez les pièces. Fermez le circuit sans extrémités libres.", "stay_stone_warm": "Le circuit est fermé.",
   "stay_object_title": "L’OBJET IMPOSSIBLE", "stay_object_instruction": "Tournez-le. Cherchez l’angle où il pourrait avoir un sens."
 }

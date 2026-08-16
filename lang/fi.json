@@ -42,6 +42,6 @@
   "stay_tictactoe_title": "RISTINOLLA", "stay_tictactoe_instruction": "Sinä olet ympyrä. Kone on piste. Muodosta kolmen suora.",
   "stay_tictactoe_human": "Löysit suoran.", "stay_tictactoe_machine": "Kone sulki muodon.", "stay_tictactoe_draw": "Kumpikaan ei antanut periksi.",
   "stay_hanoi_title": "HANOI’N TORNI", "stay_hanoi_instruction": "Siirrä yksi kiekko kerrallaan. Älä aseta suurempaa pienemmän päälle.",
-  "stay_stone_title": "KIVI", "stay_stone_instruction": "Pidä sitä hetki.", "stay_stone_warm": "Kivi säilyttää lämpösi.",
+  "stay_stone_title": "SILMUKKA", "stay_stone_instruction": "Kierrä paloja. Sulje piiri ilman avoimia päitä.", "stay_stone_warm": "Piiri on valmis.",
   "stay_object_title": "MAHDOTON ESINE", "stay_object_instruction": "Käännä sitä. Etsi kulma, jossa se voisi käydä järkeen."
 }

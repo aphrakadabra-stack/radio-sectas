@@ -42,6 +42,6 @@
   "stay_tictactoe_title": "TRIS", "stay_tictactoe_instruction": "Tu sei il cerchio. La macchina è il punto. Forma una linea di tre.",
   "stay_tictactoe_human": "Hai trovato la linea.", "stay_tictactoe_machine": "La macchina ha chiuso la forma.", "stay_tictactoe_draw": "Nessuno ha ceduto.",
   "stay_hanoi_title": "LA TORRE DI HANOI", "stay_hanoi_instruction": "Sposta un disco alla volta. Non mettere mai il grande sul piccolo.",
-  "stay_stone_title": "LA PIETRA", "stay_stone_instruction": "Tienila per un momento.", "stay_stone_warm": "La pietra conserva il tuo calore.",
+  "stay_stone_title": "IL CIRCUITO", "stay_stone_instruction": "Ruota i pezzi. Chiudi il circuito senza estremità libere.", "stay_stone_warm": "Il circuito è completo.",
   "stay_object_title": "L’OGGETTO IMPOSSIBILE", "stay_object_instruction": "Ruotalo. Cerca l’angolo in cui potrebbe avere senso."
 }

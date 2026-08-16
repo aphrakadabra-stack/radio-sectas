@@ -42,6 +42,6 @@
   "stay_tictactoe_title": "DREI IN EINER REIHE", "stay_tictactoe_instruction": "Du bist der Kreis. Die Maschine ist der Punkt. Bilde eine Dreierlinie.",
   "stay_tictactoe_human": "Du hast die Linie gefunden.", "stay_tictactoe_machine": "Die Maschine schloss die Form.", "stay_tictactoe_draw": "Niemand gab nach.",
   "stay_hanoi_title": "DER TURM VON HANOI", "stay_hanoi_instruction": "Bewege jeweils eine Scheibe. Lege nie eine größere auf eine kleinere.",
-  "stay_stone_title": "DER STEIN", "stay_stone_instruction": "Halte ihn einen Moment.", "stay_stone_warm": "Der Stein bewahrt deine Wärme.",
+  "stay_stone_title": "DIE SCHLEIFE", "stay_stone_instruction": "Drehe die Teile. Schließe den Kreislauf ohne lose Enden.", "stay_stone_warm": "Der Kreislauf ist geschlossen.",
   "stay_object_title": "DAS UNMÖGLICHE OBJEKT", "stay_object_instruction": "Drehe es. Suche den Winkel, in dem es Sinn ergeben könnte."
 }
