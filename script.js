@@ -34,6 +34,7 @@ const tituloSesionArchivo = document.getElementById("archive-session-title");
 const pistaSesionArchivo = document.getElementById("archive-session-track");
 const audioArchivo = document.getElementById("archive-audio");
 const audioVivo = document.getElementById("live-audio");
+let volumenAntesFuegos = null;
 const controlesVivo = document.getElementById("live-controls");
 const estadoVivo = document.getElementById("live-status");
 const etiquetaEstadoVivo = document.getElementById("live-status-label");
@@ -1023,6 +1024,11 @@ function cerrarArchivo(devolverFoco = false) {
 function cerrarFuegos(devolverFoco = false) {
     capaFuegos.hidden = true;
     capaFuegos.setAttribute("aria-hidden","true");
+    if (volumenAntesFuegos) {
+        audioVivo.volume = volumenAntesFuegos.vivo;
+        audioArchivo.volume = volumenAntesFuegos.archivo;
+        volumenAntesFuegos = null;
+    }
     if (devolverFoco) enlaceFuegos.focus({preventScroll:true});
 }
 
@@ -1141,6 +1147,26 @@ window.addEventListener(
             evento.data?.type === "close-stay"
         ) {
             cerrarFuegos(true);
+            return;
+        }
+
+        if (
+            evento.origin === window.location.origin &&
+            evento.source === marcoFuegos.contentWindow &&
+            evento.data?.type === "ugju-fire-volume"
+        ) {
+            const factor = Math.max(0,Math.min(1,Number(evento.data.factor)));
+            if (!Number.isFinite(factor)) return;
+            if (!volumenAntesFuegos && factor < 1) {
+                volumenAntesFuegos = {
+                    vivo: audioVivo.volume,
+                    archivo: audioArchivo.volume
+                };
+            }
+            const base = volumenAntesFuegos || {vivo:1,archivo:1};
+            audioVivo.volume = base.vivo * factor;
+            audioArchivo.volume = base.archivo * factor;
+            if (factor === 1) volumenAntesFuegos = null;
             return;
         }
 
