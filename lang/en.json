@@ -43,6 +43,6 @@
   "stay_tictactoe_title": "TIC-TAC-TOE", "stay_tictactoe_instruction": "You are X. The machine is the circle. Form a line of three.",
   "stay_tictactoe_human": "You found the line.", "stay_tictactoe_machine": "The machine closed the shape.", "stay_tictactoe_draw": "Neither yielded.",
   "stay_hanoi_title": "THE TOWER OF HANOI", "stay_hanoi_instruction": "Carry the discs from the left rod to the right. Move one at a time, never placing a larger one on a smaller one.",
-  "stay_stone_title": "THE LOOP", "stay_stone_instruction": "Turn the pieces. Close the circuit without loose ends.", "stay_stone_warm": "The circuit is complete.",
-  "stay_object_title": "IMPOSSIBLE ARCHITECTURE", "stay_object_instruction": "Turn the architecture. When the planes coincide, move the figure."
+  "stay_stone_title": "MANTRAS", "stay_stone_instruction": "Turn each fragment until the form breathes without interruption.", "stay_stone_warm": "The mantra continues.",
+  "stay_object_title": "OP-ART", "stay_object_instruction": "Touch the perspectives. The architecture changes when your gaze changes."
 }

@@ -21,7 +21,7 @@
 
         <section class="fire" data-fire="maze" aria-labelledby="title-maze" hidden>
             <h1 id="title-maze" data-text="stay_maze_title">THE MAZE</h1>
-            <div class="instrument maze-field" data-firepiece="maze"><svg viewBox="0 0 300 300" aria-hidden="true"><path class="maze-path"/><circle class="maze-goal" r="18"/><circle class="maze-ring-hit" r="40"/><circle class="maze-ring" r="27"/></svg></div>
+            <div class="instrument maze-field" data-firepiece="maze"><svg viewBox="0 0 300 300" aria-hidden="true"><g class="maze-corridors"></g><path class="maze-travelled"/><circle class="maze-goal" r="17"/><circle class="maze-ring-hit" r="31"/><circle class="maze-ring" r="22"/></svg></div>
             <p class="instruction" data-text="stay_maze_instruction"></p><p class="fire-status" data-status="maze" aria-live="polite"></p>
         </section>
 
@@ -44,22 +44,16 @@
         </section>
 
         <section class="fire" data-fire="stone" aria-labelledby="title-stone" hidden>
-            <h1 id="title-stone" data-text="stay_stone_title">THE LOOP</h1>
-            <div class="instrument loop-field" data-firepiece="stone" role="grid" aria-label="Loop circuit"></div>
+            <h1 id="title-stone" data-text="stay_stone_title">MANTRAS</h1>
+            <div class="instrument mantra-field" data-firepiece="stone" role="application" aria-label="Visual mantra"><svg class="mantra-world" viewBox="0 0 300 300" aria-hidden="true"></svg></div>
             <p class="instruction" data-text="stay_stone_instruction"></p><p class="fire-status" data-status="stone" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="object" aria-labelledby="title-object" hidden>
-            <h1 id="title-object" data-text="stay_object_title">THE IMPOSSIBLE OBJECT</h1>
-            <div class="instrument impossible-field" data-firepiece="object">
-                <svg class="impossible-world" viewBox="0 0 300 300" aria-hidden="true">
-                    <path class="world-block" d="M24 218 96 176l54 31-73 42zM204 44l72 42-48 28-73-42z"/>
-                    <path class="world-tower" d="m42 207 54-31 54 31-54 32zm113-135 49-28 72 42-48 28z"/>
-                    <path class="world-stairs" d="m54 208 12-7m2 0 12-7m2 0 12-7m2 0 12-7m84-108 12 7m-22-13 12 7m-22-13 12 7"/>
-                    <path class="world-bridge" d="M101 170h98v30h-98z"/><path class="world-shadow-bridge" d="M130 127h86v24h-86z"/>
-                    <circle class="world-pilgrim" cx="59" cy="207" r="8"/><path class="world-door" d="M225 72v37h24V86z"/>
-                </svg>
-                <button class="world-turn" type="button" aria-label="Turn the bridge"><span></span></button><button class="world-walk" type="button" aria-label="Move through the impossible architecture"><span></span></button>
+            <h1 id="title-object" data-text="stay_object_title">OP-ART</h1>
+            <div class="instrument opart-field" data-firepiece="object" role="application">
+                <svg class="opart-world" viewBox="0 0 300 300" aria-hidden="true"></svg>
+                <button class="opart-turn" type="button" aria-label="Change perspective"><span></span></button>
             </div>
             <p class="instruction" data-text="stay_object_instruction"></p><p class="fire-status" data-status="object" aria-live="polite"></p>
         </section>

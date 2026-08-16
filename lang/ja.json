@@ -42,6 +42,6 @@
   "stay_tictactoe_title": "三目並べ", "stay_tictactoe_instruction": "あなたは円、機械は点。三つを一列に並べる。",
   "stay_tictactoe_human": "線を見つけた。", "stay_tictactoe_machine": "機械が形を閉じた。", "stay_tictactoe_draw": "どちらも譲らなかった。",
   "stay_hanoi_title": "ハノイの塔", "stay_hanoi_instruction": "円盤を一枚ずつ動かす。大きい円盤を小さい円盤の上に置かない。",
-  "stay_stone_title": "ループ", "stay_stone_instruction": "ピースを回し、端を残さず回路を閉じる。", "stay_stone_warm": "回路が完成した。",
-  "stay_object_title": "不可能な物体", "stay_object_instruction": "回して、意味を持ちそうな角度を探す。"
+  "stay_stone_title": "マントラ", "stay_stone_instruction": "形が途切れず呼吸するまで、断片を回す。", "stay_stone_warm": "マントラは続く。",
+  "stay_object_title": "OP-ART", "stay_object_instruction": "視点に触れる。まなざしが変わると建築も変わる。"
 }
