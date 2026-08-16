@@ -2,6 +2,7 @@
   "state_living": "ASUTTU",
   "state_broadcasting": "ASUTTU",
   "state_sleeping": "NUKKUU",
+  "state_silence": "HILJAISUUDESSA",
   "title": "ÚGJÜ RADIO",
   "subtitle": "Korva, joka kuuntelee taloa...",
   "enter": "ASTU SISÄÄN",

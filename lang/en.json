@@ -2,6 +2,7 @@
   "state_living": "INHABITED",
   "state_broadcasting": "INHABITED",
   "state_sleeping": "SLEEPING",
+  "state_silence": "IN SILENCE",
   "title": "ÚGJÜ RADIO",
   "subtitle": "The ear that listens to the house...",
   "enter": "ENTER",

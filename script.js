@@ -1816,14 +1816,13 @@ cargarIdioma(idioma)
 
             actualizarEstadoRadioVivo(datos.online);
             mostrarEstado(
-                datos.online ? textos.state_living : ""
+                datos.online
+                    ? textos.state_living
+                    : textos.state_sleeping
             );
         } catch (error) {
-            /*
-             * Una pérdida momentánea de red no debe convertir una emisión
-             * confirmada en dormida. La próxima señal del ciclo corrige el
-             * estado, incluso después de reanudar una PWA suspendida.
-             */
+            actualizarEstadoRadioVivo(false);
+            mostrarEstado(textos.state_sleeping);
         } finally {
             clearTimeout(espera);
             comprobacionRadioEnCurso = false;

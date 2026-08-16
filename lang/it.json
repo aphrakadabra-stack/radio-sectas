@@ -2,6 +2,7 @@
   "state_living": "ABITATA",
   "state_broadcasting": "ABITATA",
   "state_sleeping": "DORMIENTE",
+  "state_silence": "IN SILENZIO",
   "title": "ÚGJÜ RADIO",
   "subtitle": "L'orecchio che ascolta la casa...",
   "enter": "ENTRA",
