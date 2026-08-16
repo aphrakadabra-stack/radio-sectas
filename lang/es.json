@@ -40,8 +40,8 @@
   "stay_rooms_label": "Fuegos", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "EL LABERINTO", "stay_maze_instruction": "Lleva el aro hasta el otro extremo sin tocar el recorrido.",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Desliza las formas. Libera la pieza oscura por la abertura.",
-  "stay_tictactoe_title": "TA-TE-TI", "stay_tictactoe_instruction": "Tú eres la X. La máquina, el círculo. Forma una línea de tres.",
-  "stay_tictactoe_human": "Encontraste la línea.", "stay_tictactoe_machine": "La máquina cerró la forma.", "stay_tictactoe_draw": "Nadie cedió.",
+  "stay_connectfour_title": "PERSIA", "stay_connectfour_instruction": "Tú eres la X. La muerte es el círculo. Forma una línea de cuatro.",
+  "stay_connectfour_human": "Encontraste la línea.", "stay_connectfour_machine": "La muerte cerró la forma.", "stay_connectfour_draw": "Nadie cedió.",
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
   "stay_stone_title": "MANTRAS", "stay_stone_instruction": "Gira cada fragmento hasta que la forma respire sin interrupción.", "stay_stone_warm": "El mantra continúa.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Toca las perspectivas. La arquitectura cambia cuando cambia tu mirada."

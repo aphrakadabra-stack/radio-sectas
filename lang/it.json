@@ -39,8 +39,8 @@
   "stay_back_to_radio": "Torna a ÚGJÜ RADIO", "stay_rooms_label": "Fuochi", "stay_fires_label": "FUOCHI",
   "stay_maze_title": "IL LABIRINTO", "stay_maze_instruction": "Porta l’anello all’altra estremità senza toccare il percorso.",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Fai scorrere le forme. Libera il pezzo scuro dall’apertura.",
-  "stay_tictactoe_title": "TRIS", "stay_tictactoe_instruction": "Tu sei il cerchio. La macchina è il punto. Forma una linea di tre.",
-  "stay_tictactoe_human": "Hai trovato la linea.", "stay_tictactoe_machine": "La macchina ha chiuso la forma.", "stay_tictactoe_draw": "Nessuno ha ceduto.",
+  "stay_connectfour_title": "PERSIA", "stay_connectfour_instruction": "Tu sei la X. La morte è il cerchio. Forma una linea di quattro.",
+  "stay_connectfour_human": "Hai trovato la linea.", "stay_connectfour_machine": "La morte ha chiuso la forma.", "stay_connectfour_draw": "Nessuno ha ceduto.",
   "stay_hanoi_title": "LA TORRE DI HANOI", "stay_hanoi_instruction": "Sposta un disco alla volta. Non mettere mai il grande sul piccolo.",
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Ruota ogni frammento finché la forma respira senza interruzioni.", "stay_stone_warm": "Il mantra continua.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Tocca le prospettive. L’architettura cambia con il tuo sguardo."

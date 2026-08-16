@@ -39,8 +39,8 @@
   "stay_back_to_radio": "Palaa ÚGJÜ RADIOON", "stay_rooms_label": "Tulet", "stay_fires_label": "TULET",
   "stay_maze_title": "LABYRINTTI", "stay_maze_instruction": "Vie rengas toiseen päähän koskematta reittiin.",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Liu'uta muotoja. Vapauta tumma pala aukosta.",
-  "stay_tictactoe_title": "RISTINOLLA", "stay_tictactoe_instruction": "Sinä olet ympyrä. Kone on piste. Muodosta kolmen suora.",
-  "stay_tictactoe_human": "Löysit suoran.", "stay_tictactoe_machine": "Kone sulki muodon.", "stay_tictactoe_draw": "Kumpikaan ei antanut periksi.",
+  "stay_connectfour_title": "PERSIA", "stay_connectfour_instruction": "Sinä olet X. Kuolema on ympyrä. Muodosta neljän suora.",
+  "stay_connectfour_human": "Löysit suoran.", "stay_connectfour_machine": "Kuolema sulki muodon.", "stay_connectfour_draw": "Kumpikaan ei antanut periksi.",
   "stay_hanoi_title": "HANOI’N TORNI", "stay_hanoi_instruction": "Siirrä yksi kiekko kerrallaan. Älä aseta suurempaa pienemmän päälle.",
   "stay_stone_title": "MANTRAT", "stay_stone_instruction": "Käännä jokaista osaa, kunnes muoto hengittää katkeamatta.", "stay_stone_warm": "Mantra jatkuu.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Kosketa näkökulmia. Arkkitehtuuri muuttuu katseesi mukana."

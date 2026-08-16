@@ -4,11 +4,11 @@ const estructuraFuegos=[
 {id:"nine",nombre:"Numero 9"},
 {id:"maze",nombre:"El Jardín"},
 {id:"klotski",nombre:"Mudras"},
-{id:"tictactoe",nombre:"Persia"},
+{id:"connectfour",nombre:"Persia"},
 {id:"hanoi",nombre:"Hanoi"},
 {id:"stone",nombre:"Mantras"},
 {id:"object",nombre:"Op-Art"},
-{id:"void",nombre:"Torre"},
+{id:"tower",nombre:"La Torre"},
 {id:"uri",nombre:"Uri"},
 {id:"dissolution",nombre:"Disolución"}
 ];
@@ -60,13 +60,28 @@ function libre(p,nx,ny){if(nx<0||ny<0||nx+p.w>4||ny+p.h>5)return false;return !p
 function dibujarKlotski(){klotski.replaceChildren();piezas.forEach((p,i)=>{const b=document.createElement("button");b.type="button";b.className=p.key?"is-key":"";b.style.cssText=`--x:${p.x};--y:${p.y};--w:${p.w};--h:${p.h}`;b.setAttribute("aria-label",p.key?"Pieza principal":`Pieza ${i+1}`);let sx=0,sy=0,dx=0,dy=0;b.onpointerdown=e=>{sx=e.clientX;sy=e.clientY;dx=dy=0;b.classList.add("is-dragging");b.setPointerCapture(e.pointerId)};b.onpointermove=e=>{if(!b.hasPointerCapture(e.pointerId))return;dx=e.clientX-sx;dy=e.clientY-sy;const celda=klotski.clientWidth/4,vertical=Math.abs(dy)>Math.abs(dx);if(vertical)dx=0;else dy=0;dx=Math.max(-p.x*celda,Math.min((4-p.x-p.w)*celda,dx));dy=Math.max(-p.y*celda,Math.min((5-p.y-p.h)*celda,dy));b.style.transform=`translate(${dx}px,${dy}px)`};b.onpointerup=e=>{b.classList.remove("is-dragging");const celda=klotski.clientWidth/4,mx=Math.round(dx/celda),my=Math.round(dy/celda),pasos=Math.max(Math.abs(mx),Math.abs(my)),sxPaso=Math.sign(mx),syPaso=Math.sign(my);for(let n=0;n<pasos&&libre(p,p.x+sxPaso,p.y+syPaso);n++){p.x+=sxPaso;p.y+=syPaso}dibujarKlotski();if(p.key&&p.x===1&&p.y+p.h===5){nivelKlotski=(nivelKlotski+1)%esquemas.length;consumir("klotski",prepararKlotski)}};b.onpointercancel=()=>dibujarKlotski();klotski.appendChild(b)})}
 function prepararKlotski(){piezas=esquemas[nivelKlotski].map(([x,y,w,h,key])=>({x,y,w,h,key:!!key}));estado("klotski");dibujarKlotski()}
 
-// Ta-te-ti clásico: X contra O.
-const tresEnRaya=document.querySelector('[data-firepiece="tictactoe"]');let tableroRaya=Array(9).fill(""),finRaya=false;const lineasRaya=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-const ganador=m=>lineasRaya.some(l=>l.every(i=>tableroRaya[i]===m));
-function reiniciarRaya(){tableroRaya=Array(9).fill("");finRaya=false;tresEnRaya.classList.remove("is-thinking");[...tresEnRaya.children].forEach(c=>delete c.dataset.mark);estado("tictactoe")}
-function terminarRaya(){finRaya=true;consumir("tictactoe",reiniciarRaya)}
-function maquina(){if(finRaya)return;const libres=tableroRaya.map((v,i)=>v?null:i).filter(i=>i!==null);let n=libres.find(i=>{tableroRaya[i]="machine";const g=ganador("machine");tableroRaya[i]="";return g});if(n===undefined)n=libres.find(i=>{tableroRaya[i]="human";const g=ganador("human");tableroRaya[i]="";return g});if(n===undefined&&libres.includes(4))n=4;if(n===undefined)n=libres[Math.floor(Math.random()*libres.length)];tableroRaya[n]="machine";tresEnRaya.children[n].dataset.mark="machine";tresEnRaya.classList.remove("is-thinking");if(ganador("machine")||tableroRaya.every(Boolean))terminarRaya()}
-for(let i=0;i<9;i++){const c=document.createElement("button");c.type="button";c.setAttribute("role","gridcell");c.setAttribute("aria-label",`Casilla ${i+1}`);c.onclick=()=>{if(finRaya||tableroRaya[i]||quemando)return;tableroRaya[i]="human";c.dataset.mark="human";if(ganador("human")||tableroRaya.every(Boolean))return terminarRaya();tresEnRaya.classList.add("is-thinking");setTimeout(maquina,420)};tresEnRaya.appendChild(c)}
+// Persia: cuatro en raya, X contra el círculo de la muerte.
+const cuatroEnRaya=document.querySelector('[data-firepiece="connectfour"]'),filasRaya=6,columnasRaya=7;let tableroRaya=Array(filasRaya*columnasRaya).fill(""),finRaya=false;
+const indiceRaya=(fila,columna)=>fila*columnasRaya+columna;
+function filaLibre(columna){for(let fila=filasRaya-1;fila>=0;fila--)if(!tableroRaya[indiceRaya(fila,columna)])return fila;return-1}
+function ganadorRaya(marca){for(let fila=0;fila<filasRaya;fila++)for(let columna=0;columna<columnasRaya;columna++)for(const[dr,dc]of[[0,1],[1,0],[1,1],[1,-1]]){let n=0;for(;n<4;n++){const f=fila+dr*n,c=columna+dc*n;if(f<0||f>=filasRaya||c<0||c>=columnasRaya||tableroRaya[indiceRaya(f,c)]!==marca)break}if(n===4)return true}return false}
+function dibujarRaya(){[...cuatroEnRaya.children].forEach((celda,i)=>{const marca=tableroRaya[i];marca?celda.dataset.mark=marca:delete celda.dataset.mark;celda.setAttribute("aria-label",`Fila ${Math.floor(i/columnasRaya)+1}, columna ${i%columnasRaya+1}${marca?marca==="human"?", X":", círculo":""}`)})}
+function reiniciarRaya(){tableroRaya=Array(filasRaya*columnasRaya).fill("");finRaya=false;cuatroEnRaya.classList.remove("is-thinking");dibujarRaya();estado("connectfour")}
+function terminarRaya(){finRaya=true;consumir("connectfour",reiniciarRaya)}
+function soltarFicha(columna,marca){const fila=filaLibre(columna);if(fila<0)return false;tableroRaya[indiceRaya(fila,columna)]=marca;dibujarRaya();return true}
+function probarColumna(columna,marca){const fila=filaLibre(columna);if(fila<0)return false;const i=indiceRaya(fila,columna);tableroRaya[i]=marca;const gana=ganadorRaya(marca);tableroRaya[i]="";return gana}
+function turnoMuerte(){if(finRaya)return;const disponibles=[0,1,2,3,4,5,6].filter(c=>filaLibre(c)>=0);let columna=disponibles.find(c=>probarColumna(c,"machine"));if(columna===undefined)columna=disponibles.find(c=>probarColumna(c,"human"));if(columna===undefined){const preferencia=[3,2,4,1,5,0,6].filter(c=>disponibles.includes(c));columna=preferencia[Math.floor(Math.random()*Math.min(3,preferencia.length))]}soltarFicha(columna,"machine");cuatroEnRaya.classList.remove("is-thinking");if(ganadorRaya("machine")||tableroRaya.every(Boolean))terminarRaya()}
+for(let i=0;i<filasRaya*columnasRaya;i++){const celda=document.createElement("button"),columna=i%columnasRaya;celda.type="button";celda.setAttribute("role","gridcell");celda.onclick=()=>{if(finRaya||quemando||cuatroEnRaya.classList.contains("is-thinking")||!soltarFicha(columna,"human"))return;if(ganadorRaya("human")||tableroRaya.every(Boolean))return terminarRaya();cuatroEnRaya.classList.add("is-thinking");setTimeout(turnoMuerte,420)};cuatroEnRaya.appendChild(celda)}
+
+// La Torre: Peg Solitaire inglés. Una selección salta en línea sobre otra pieza.
+const torre=document.querySelector('[data-firepiece="tower"]');let tableroTorre=[],seleccionTorre=null;
+const existeTorre=(fila,columna)=>(fila>=2&&fila<=4)||(columna>=2&&columna<=4);
+const posicionTorre=(fila,columna)=>fila*7+columna;
+function movimientosTorre(){const movimientos=[];for(let fila=0;fila<7;fila++)for(let columna=0;columna<7;columna++){const origen=posicionTorre(fila,columna);if(tableroTorre[origen]!==1)continue;for(const[df,dc]of[[0,2],[0,-2],[2,0],[-2,0]]){const destinoFila=fila+df,destinoColumna=columna+dc,medio=posicionTorre(fila+df/2,columna+dc/2),destino=posicionTorre(destinoFila,destinoColumna);if(existeTorre(destinoFila,destinoColumna)&&tableroTorre[medio]===1&&tableroTorre[destino]===0)movimientos.push([origen,medio,destino])}}return movimientos}
+function dibujarTorre(){[...torre.children].forEach((celda,i)=>{if(tableroTorre[i]===null)return;celda.dataset.peg=String(tableroTorre[i]);celda.classList.toggle("is-selected",i===seleccionTorre);celda.setAttribute("aria-pressed",String(i===seleccionTorre))})}
+function reiniciarTorre(){tableroTorre=Array.from({length:49},(_,i)=>{const fila=Math.floor(i/7),columna=i%7;return existeTorre(fila,columna)?1:null});tableroTorre[posicionTorre(3,3)]=0;seleccionTorre=null;estado("tower");dibujarTorre()}
+function jugarTorre(i){if(quemando||tableroTorre[i]===null)return;if(tableroTorre[i]===1){seleccionTorre=seleccionTorre===i?null:i;dibujarTorre();return}if(seleccionTorre===null)return;const movimiento=movimientosTorre().find(m=>m[0]===seleccionTorre&&m[2]===i);if(!movimiento){seleccionTorre=null;navigator.vibrate?.(25);dibujarTorre();return}tableroTorre[movimiento[0]]=0;tableroTorre[movimiento[1]]=0;tableroTorre[movimiento[2]]=1;seleccionTorre=null;dibujarTorre();const piezas=tableroTorre.filter(v=>v===1).length;if(piezas===1&&tableroTorre[posicionTorre(3,3)]===1)consumir("tower",reiniciarTorre);else if(!movimientosTorre().length)estado("tower","la torre permanece")}
+for(let i=0;i<49;i++){const fila=Math.floor(i/7),columna=i%7,celda=document.createElement("button");celda.type="button";celda.setAttribute("role","gridcell");celda.setAttribute("aria-label",`Fila ${fila+1}, columna ${columna+1}`);if(!existeTorre(fila,columna)){celda.disabled=true;celda.className="is-void"}else celda.onclick=()=>jugarTorre(i);torre.appendChild(celda)}
 
 // Hanoi aumenta de tres a cinco discos.
 const hanoi=document.querySelector('[data-firepiece="hanoi"]'),varillas=[...hanoi.querySelectorAll("button")];let nivelHanoi=0,torres=[],seleccionHanoi=null;
@@ -103,4 +118,4 @@ campoDisolucion.onpointerdown=e=>{if(quemando)return;e.preventDefault();toquesDi
 
 let inicioSwipe=null;function interactivo(e){return e.closest("[data-firepiece],canvas,button,a")};document.addEventListener("touchstart",e=>{if(e.touches.length!==1||interactivo(e.target))return;const t=e.touches[0];inicioSwipe={x:t.clientX,y:t.clientY}},{passive:true});document.addEventListener("touchend",e=>{if(!inicioSwipe)return;const t=e.changedTouches[0],dx=t.clientX-inicioSwipe.x,dy=t.clientY-inicioSwipe.y;inicioSwipe=null;if(Math.abs(dx)>96&&Math.abs(dx)>Math.abs(dy)*1.4)moverFuego(dx<0?1:-1)},{passive:true});
 document.addEventListener("keydown",e=>{if(e.key==="ArrowRight")moverFuego(1);if(e.key==="ArrowLeft")moverFuego(-1)});window.addEventListener("pagehide",()=>window.observarUgju?.("fire_dwell",fuegoActual,(performance.now()-entradaFuego)/1000));volver.onclick=e=>{if(parent===window)return;e.preventDefault();parent.postMessage({type:"close-stay"},location.origin)};window.addEventListener("resize",()=>{if(fuegoActual==="nine")prepararNueve()});
-cargarTextos().catch(()=>{}).finally(()=>{prepararKlotski();reiniciarHanoi();prepararMantra();prepararObjeto();mostrarFuego(fuegos.includes(location.hash.slice(1))?location.hash.slice(1):"nine")});
+cargarTextos().catch(()=>{}).finally(()=>{prepararKlotski();reiniciarRaya();reiniciarHanoi();prepararMantra();prepararObjeto();reiniciarTorre();mostrarFuego(fuegos.includes(location.hash.slice(1))?location.hash.slice(1):"nine")});

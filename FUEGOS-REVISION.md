@@ -14,7 +14,8 @@ no una felicitación.
   trazados progresivos; tocar el borde sólo produce vibración háptica compatible.
 - **Klotski.** Reemplaza a La Línea Única. Incluye tres disposiciones de piezas
   grandes y pequeñas y una salida física para la pieza principal.
-- **Ta-te-ti.** Recupera las marcas clásicas: persona X, máquina O.
+- **Persia.** Cuatro en raya: la persona juega con X y la muerte con círculos.
+- **La Torre.** Peg Solitaire: las piezas desaparecen mediante saltos hasta dejar una en el centro.
 - **Torre de Hanoi.** Avanza de tres a cinco discos al resolverse.
 - **La Piedra.** Se puede rotar, cambiar de cara y modular visualmente; el gesto
   acumulado completa su ciclo.
