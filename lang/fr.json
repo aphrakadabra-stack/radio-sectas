@@ -42,6 +42,7 @@
   "stay_connectfour_title": "PERSE", "stay_connectfour_instruction": "Vous êtes X. La mort est le cercle. Formez une ligne de quatre.",
   "stay_connectfour_human": "Vous avez trouvé la ligne.", "stay_connectfour_machine": "La mort a fermé la forme.", "stay_connectfour_draw": "Personne n’a cédé.",
   "stay_hanoi_title": "LA TOUR DE HANOÏ", "stay_hanoi_instruction": "Déplacez un disque à la fois. Ne posez jamais un grand sur un petit.",
-  "stay_stone_title": "MANTRAS", "stay_stone_instruction": "Tournez chaque fragment jusqu’à ce que la forme respire sans interruption.", "stay_stone_warm": "Le mantra continue.",
-  "stay_object_title": "OP-ART", "stay_object_instruction": "Touchez les perspectives. L’architecture change avec votre regard."
+  "stay_stone_title": "MANTRA", "stay_stone_instruction": "Tournez chaque fragment jusqu’à fermer le circuit et faire revenir le mantra.", "stay_stone_warm": "Le mantra continue.",
+  "stay_object_title": "OP-ART", "stay_object_instruction": "Touchez les perspectives. L’architecture change avec votre regard.",
+  "stay_tower_blocked": "Aucun autre saut n’est possible.", "stay_tower_restart": "recommencer", "stay_dissolution_return": "reviens à la maison"
 }

@@ -43,6 +43,7 @@
   "stay_connectfour_title": "PERSIA", "stay_connectfour_instruction": "Tú eres la X. La muerte es el círculo. Forma una linea de cuatro y avanza",
   "stay_connectfour_human": "Encontraste la línea.", "stay_connectfour_machine": "La muerte cerró la forma.", "stay_connectfour_draw": "Nadie cedió.",
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
-  "stay_stone_title": "MANTRAS", "stay_stone_instruction": "Gira cada fragmento hasta que la forma respire sin interrupción.", "stay_stone_warm": "El mantra continúa.",
-  "stay_object_title": "OP-ART", "stay_object_instruction": "Toca las perspectivas. La arquitectura cambia cuando cambia tu mirada."
+  "stay_stone_title": "MANTRA", "stay_stone_instruction": "Gira cada fragmento hasta cerrar el circuito y hacer volver al mantra.", "stay_stone_warm": "El mantra continúa.",
+  "stay_object_title": "OP-ART", "stay_object_instruction": "Toca las perspectivas. La arquitectura cambia cuando cambia tu mirada.",
+  "stay_tower_blocked": "Ya no hay ningún salto posible.", "stay_tower_restart": "comenzar de nuevo", "stay_dissolution_return": "vuelve a la casa"
 }

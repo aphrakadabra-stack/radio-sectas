@@ -43,5 +43,6 @@
   "stay_connectfour_human": "線を見つけた。", "stay_connectfour_machine": "死が形を閉じた。", "stay_connectfour_draw": "どちらも譲らなかった。",
   "stay_hanoi_title": "ハノイの塔", "stay_hanoi_instruction": "円盤を一枚ずつ動かす。大きい円盤を小さい円盤の上に置かない。",
   "stay_stone_title": "マントラ", "stay_stone_instruction": "形が途切れず呼吸するまで、断片を回す。", "stay_stone_warm": "マントラは続く。",
-  "stay_object_title": "OP-ART", "stay_object_instruction": "視点に触れる。まなざしが変わると建築も変わる。"
+  "stay_object_title": "OP-ART", "stay_object_instruction": "視点に触れる。まなざしが変わると建築も変わる。",
+  "stay_tower_blocked": "もう跳べる場所はない。", "stay_tower_restart": "もう一度始める", "stay_dissolution_return": "家へ戻る"
 }

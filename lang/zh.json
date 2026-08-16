@@ -43,5 +43,6 @@
   "stay_connectfour_human": "你找到了这条线。", "stay_connectfour_machine": "死亡闭合了形状。", "stay_connectfour_draw": "谁也没有让步。",
   "stay_hanoi_title": "河内塔", "stay_hanoi_instruction": "每次移动一个圆盘。不要把大圆盘放在小圆盘上。",
   "stay_stone_title": "曼陀罗", "stay_stone_instruction": "旋转每个片段，直到形态不间断地呼吸。", "stay_stone_warm": "曼陀罗继续。",
-  "stay_object_title": "OP-ART", "stay_object_instruction": "触碰不同视角。目光改变时，建筑也随之改变。"
+  "stay_object_title": "OP-ART", "stay_object_instruction": "触碰不同视角。目光改变时，建筑也随之改变。",
+  "stay_tower_blocked": "已经没有可以跳跃的步骤。", "stay_tower_restart": "重新开始", "stay_dissolution_return": "回到屋里"
 }

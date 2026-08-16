@@ -42,6 +42,7 @@
   "stay_connectfour_title": "PERSIA", "stay_connectfour_instruction": "Sinä olet X. Kuolema on ympyrä. Muodosta neljän suora.",
   "stay_connectfour_human": "Löysit suoran.", "stay_connectfour_machine": "Kuolema sulki muodon.", "stay_connectfour_draw": "Kumpikaan ei antanut periksi.",
   "stay_hanoi_title": "HANOI’N TORNI", "stay_hanoi_instruction": "Siirrä yksi kiekko kerrallaan. Älä aseta suurempaa pienemmän päälle.",
-  "stay_stone_title": "MANTRAT", "stay_stone_instruction": "Käännä jokaista osaa, kunnes muoto hengittää katkeamatta.", "stay_stone_warm": "Mantra jatkuu.",
-  "stay_object_title": "OP-ART", "stay_object_instruction": "Kosketa näkökulmia. Arkkitehtuuri muuttuu katseesi mukana."
+  "stay_stone_title": "MANTRA", "stay_stone_instruction": "Käännä osia, kunnes piiri sulkeutuu ja mantra palaa.", "stay_stone_warm": "Mantra jatkuu.",
+  "stay_object_title": "OP-ART", "stay_object_instruction": "Kosketa näkökulmia. Arkkitehtuuri muuttuu katseesi mukana.",
+  "stay_tower_blocked": "Yhtään hyppyä ei ole enää mahdollista.", "stay_tower_restart": "aloita uudelleen", "stay_dissolution_return": "palaa taloon"
 }
