@@ -25,6 +25,18 @@ no una felicitación.
 Todos los fuegos comparten un cierre silencioso: quietud, desintegración,
 ceniza ascendente y regreso. No interrumpen el audio de la radio.
 
+## Fuego 10 — sin nombre
+
+No hay oscurecimiento automático. La disolución ocurre únicamente mediante la
+interacción de la persona: cada toque en pantalla o clic de mouse deja una
+marca o mancha de vacío negro exactamente en el punto intervenido. Las marcas
+se acumulan, se expanden y se funden entre sí hasta cubrir por completo la
+realidad visible.
+
+Si la radio está sonando, cada nueva interacción reduce su volumen de manera
+progresiva. Al completarse la cobertura quedan oscuridad total, silencio e
+inacción. Sólo entonces aparece, de forma sutil, la frase «vuelve a la casa».
+
 ## Navegación
 
 El swipe sólo comienza fuera de instrumentos y lejos de los bordes del sistema,
