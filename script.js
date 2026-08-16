@@ -10,7 +10,7 @@ const notaCasaLineaDos = document.querySelector(
 const notaCasa = document.querySelector(".house-note");
 const enlaceManifiesto = document.querySelector(".manifesto-link");
 const enlaceArchivo = document.querySelector(".archive-link");
-const enlaceQuedarse = document.querySelector(".stay-link");
+const enlaceFuegos = document.querySelector(".stay-link");
 const enlaceLinktree = document.querySelector(".linktree-link");
 const capaManifiesto = document.getElementById(
     "manifesto-overlay"
@@ -20,8 +20,8 @@ const marcoManifiesto = document.getElementById(
 );
 const capaArchivo = document.getElementById("archive-overlay");
 const marcoArchivo = document.getElementById("archive-frame");
-const capaQuedarse = document.getElementById("stay-overlay");
-const marcoQuedarse = document.getElementById("stay-frame");
+const capaFuegos = document.getElementById("stay-overlay");
+const marcoFuegos = document.getElementById("stay-frame");
 const ventanaDisparador = document.getElementById("window-trigger");
 const ventanaCapa = document.getElementById("window-overlay");
 const ventanaCerrar = document.getElementById("window-close");
@@ -46,7 +46,7 @@ const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
 let manifiestoCargado = false;
 let archivoCargado = false;
-let quedarseCargado = false;
+let fuegosCargado = false;
 let vivoDetenidoPorArchivo = false;
 let entradaArchivoActual = null;
 let radioHabitada = false;
@@ -353,13 +353,13 @@ function abrirArchivo() {
 
 }
 
-function abrirQuedarse() {
-    if (!quedarseCargado) {
-        marcoQuedarse.src = enlaceQuedarse.dataset.roomSrc;
-        quedarseCargado = true;
+function abrirFuegos() {
+    if (!fuegosCargado) {
+        marcoFuegos.src = enlaceFuegos.dataset.roomSrc;
+        fuegosCargado = true;
     }
-    capaQuedarse.hidden = false;
-    capaQuedarse.setAttribute("aria-hidden","false");
+    capaFuegos.hidden = false;
+    capaFuegos.setAttribute("aria-hidden","false");
 }
 
 
@@ -1020,10 +1020,10 @@ function cerrarArchivo(devolverFoco = false) {
 
 }
 
-function cerrarQuedarse(devolverFoco = false) {
-    capaQuedarse.hidden = true;
-    capaQuedarse.setAttribute("aria-hidden","true");
-    if (devolverFoco) enlaceQuedarse.focus({preventScroll:true});
+function cerrarFuegos(devolverFoco = false) {
+    capaFuegos.hidden = true;
+    capaFuegos.setAttribute("aria-hidden","true");
+    if (devolverFoco) enlaceFuegos.focus({preventScroll:true});
 }
 
 
@@ -1050,10 +1050,10 @@ enlaceArchivo.addEventListener(
     }
 );
 
-enlaceQuedarse.addEventListener("click",evento => {
+enlaceFuegos.addEventListener("click",evento => {
     evento.preventDefault();
-    enlaceQuedarse.blur();
-    abrirQuedarse();
+    enlaceFuegos.blur();
+    abrirFuegos();
 });
 
 
@@ -1137,10 +1137,10 @@ window.addEventListener(
 
         if (
             evento.origin === window.location.origin &&
-            evento.source === marcoQuedarse.contentWindow &&
+            evento.source === marcoFuegos.contentWindow &&
             evento.data?.type === "close-stay"
         ) {
-            cerrarQuedarse(true);
+            cerrarFuegos(true);
             return;
         }
 
@@ -1345,9 +1345,9 @@ document.addEventListener(
 
         if (
             evento.key === "Escape" &&
-            !capaQuedarse.hidden
+            !capaFuegos.hidden
         ) {
-            cerrarQuedarse(true);
+            cerrarFuegos(true);
             return;
         }
 
@@ -1732,7 +1732,7 @@ cargarIdioma(idioma)
     enlaceArchivo.textContent =
         textos.archive;
 
-    enlaceQuedarse.textContent =
+    enlaceFuegos.textContent =
         textos.stay;
 
     etiquetaSesionArchivo.textContent =

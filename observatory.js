@@ -24,7 +24,7 @@
         const cuerpo = JSON.stringify({
             event,
             detail: String(detail).slice(0,64),
-            path: location.pathname.endsWith("quedarse.html")
+            path: location.pathname.endsWith("fuegos.html")
                 ? "fuegos"
                 : "radio",
             duration: Math.min(
