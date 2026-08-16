@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#EA52F3">
     <meta name="ugju-observatory" content="">
     <title>FUEGOS — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="quedarse.css?v=20260815-3">
+    <link rel="stylesheet" href="quedarse.css?v=20260816-1">
 </head>
 <body>
     <main class="house">
@@ -14,43 +14,43 @@
         <nav class="fire-nav" id="fire-nav" aria-label="Fires"></nav>
 
         <section class="fire is-active" data-fire="nine" aria-labelledby="title-nine">
-            <h1 id="title-nine" data-text="stay_nine_dots_title">THE NINE DOTS</h1>
+            <h1 id="title-nine"><span class="fire-number">1</span>Numero 9</h1>
             <div class="drawing square-drawing" id="nine-drawing"><canvas id="nine-canvas"></canvas></div>
             <p class="instruction" id="nine-instruction"></p>
         </section>
 
         <section class="fire" data-fire="maze" aria-labelledby="title-maze" hidden>
-            <h1 id="title-maze" data-text="stay_maze_title">THE MAZE</h1>
+            <h1 id="title-maze"><span class="fire-number">2</span>El Jardín</h1>
             <div class="instrument maze-field" data-firepiece="maze"><svg viewBox="0 0 300 300" aria-hidden="true"><g class="maze-corridors"></g><path class="maze-travelled"/><circle class="maze-goal" r="17"/><circle class="maze-ring-hit" r="31"/><circle class="maze-ring" r="22"/></svg></div>
             <p class="instruction" data-text="stay_maze_instruction"></p><p class="fire-status" data-status="maze" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="klotski" aria-labelledby="title-klotski" hidden>
-            <h1 id="title-klotski" data-text="stay_klotski_title">MUDRAS</h1>
+            <h1 id="title-klotski"><span class="fire-number">3</span>Mudras</h1>
             <div class="instrument klotski" data-firepiece="klotski" role="application"></div>
             <p class="instruction" data-text="stay_klotski_instruction"></p><p class="fire-status" data-status="klotski" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="tictactoe" aria-labelledby="title-tictactoe" hidden>
-            <h1 id="title-tictactoe" data-text="stay_tictactoe_title">THREE IN A ROW</h1>
+            <h1 id="title-tictactoe"><span class="fire-number">4</span>At-Et-It</h1>
             <div class="instrument tictactoe" data-firepiece="tictactoe" role="grid" aria-label="Three in a row board"></div>
             <p class="instruction" data-text="stay_tictactoe_instruction"></p><p class="fire-status" data-status="tictactoe" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="hanoi" aria-labelledby="title-hanoi" hidden>
-            <h1 id="title-hanoi" data-text="stay_hanoi_title">THE TOWER OF HANOI</h1>
+            <h1 id="title-hanoi"><span class="fire-number">5</span>Hanoi</h1>
             <div class="instrument hanoi" data-firepiece="hanoi"><button type="button" data-rod="0" aria-label="Rod 1"></button><button type="button" data-rod="1" aria-label="Rod 2"></button><button type="button" data-rod="2" aria-label="Rod 3"></button></div>
             <p class="instruction" data-text="stay_hanoi_instruction"></p><p class="fire-status" data-status="hanoi" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="stone" aria-labelledby="title-stone" hidden>
-            <h1 id="title-stone" data-text="stay_stone_title">MANTRAS</h1>
+            <h1 id="title-stone"><span class="fire-number">6</span>Mantras</h1>
             <div class="instrument mantra-field" data-firepiece="stone" role="application" aria-label="Visual mantra"><svg class="mantra-world" viewBox="0 0 300 300" aria-hidden="true"></svg></div>
             <p class="instruction" data-text="stay_stone_instruction"></p><p class="fire-status" data-status="stone" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="object" aria-labelledby="title-object" hidden>
-            <h1 id="title-object" data-text="stay_object_title">OP-ART</h1>
+            <h1 id="title-object"><span class="fire-number">7</span>Op-Art 1</h1>
             <div class="instrument opart-field" data-firepiece="object" role="application">
                 <svg class="opart-world" viewBox="0 0 300 300" aria-hidden="true"></svg>
                 <button class="opart-turn" type="button" aria-label="Change perspective"><span></span></button>
@@ -59,24 +59,24 @@
         </section>
 
         <section class="fire fire-pending" data-fire="void" aria-labelledby="title-void" hidden>
-            <h1 id="title-void" data-text="stay_void_title">VOID</h1>
-            <div class="instrument pending-instance" data-firepiece="void" aria-hidden="true"></div>
-            <p class="instruction" data-text="stay_void_instruction"></p><p class="fire-status" data-status="void" aria-live="polite"></p>
+            <h1 id="title-void"><span class="fire-number">8</span>Pendiente</h1>
+            <div class="instrument pending-instance pending-eight" data-firepiece="void" aria-hidden="true"><span></span></div>
+            <p class="instruction">Instancia todavía sin definir.</p><p class="fire-status" data-status="void" aria-live="polite"></p>
         </section>
 
         <section class="fire fire-pending" data-fire="uri" aria-labelledby="title-uri" hidden>
-            <h1 id="title-uri" data-text="stay_uri_title">URI</h1>
-            <div class="instrument pending-instance" data-firepiece="uri" aria-hidden="true"></div>
-            <p class="instruction" data-text="stay_uri_instruction"></p><p class="fire-status" data-status="uri" aria-live="polite"></p>
+            <h1 id="title-uri"><span class="fire-number">9</span>Uri</h1>
+            <div class="instrument pending-instance uri-base" data-firepiece="uri" aria-hidden="true"><span></span><span></span><span></span></div>
+            <p class="instruction">Base de la instancia.</p><p class="fire-status" data-status="uri" aria-live="polite"></p>
         </section>
 
         <section class="fire fire-pending" data-fire="dissolution" aria-labelledby="title-dissolution" hidden>
-            <h1 id="title-dissolution" data-text="stay_dissolution_title">DISSOLUTION</h1>
-            <div class="instrument pending-instance" data-firepiece="dissolution" aria-hidden="true"></div>
-            <p class="instruction" data-text="stay_dissolution_instruction"></p><p class="fire-status" data-status="dissolution" aria-live="polite"></p>
+            <h1 id="title-dissolution"><span class="fire-number">10</span>Disolución</h1>
+            <div class="instrument pending-instance dissolution-base" data-firepiece="dissolution" aria-hidden="true"><span></span><span></span><span></span></div>
+            <p class="instruction">Base de la instancia.</p><p class="fire-status" data-status="dissolution" aria-live="polite"></p>
         </section>
     </main>
     <script src="observatory.js?v=20260814-1"></script>
-    <script src="quedarse.js?v=20260815-3"></script>
+    <script src="quedarse.js?v=20260816-1"></script>
 </body>
 </html>

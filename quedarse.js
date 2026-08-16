@@ -1,7 +1,18 @@
 const idiomasDisponibles=["es","en","de","fi","fr","it","ja","zh"];
 const idioma=(navigator.languages||[navigator.language]).map(v=>v.toLowerCase().split("-")[0]).find(v=>idiomasDisponibles.includes(v))||"en";
-const fuegos=["nine","maze","klotski","tictactoe","hanoi","stone","object","void","uri","dissolution"];
-const claves=Object.fromEntries(fuegos.map(n=>[n,`stay_${n==="nine"?"nine_dots":n}_title`]));
+const estructuraFuegos=[
+{id:"nine",nombre:"Numero 9"},
+{id:"maze",nombre:"El Jardín"},
+{id:"klotski",nombre:"Mudras"},
+{id:"tictactoe",nombre:"At-Et-It"},
+{id:"hanoi",nombre:"Hanoi"},
+{id:"stone",nombre:"Mantras"},
+{id:"object",nombre:"Op-Art 1"},
+{id:"void",nombre:"Pendiente"},
+{id:"uri",nombre:"Uri"},
+{id:"dissolution",nombre:"Disolución"}
+];
+const fuegos=estructuraFuegos.map(({id})=>id);
 const volver=document.getElementById("back-link"),navegacion=document.getElementById("fire-nav");
 let textos={},fuegoActual="nine",entradaFuego=performance.now(),fuegoIniciado=false,quemando=false;
 const seccion=n=>document.querySelector(`[data-fire="${n}"]`);
@@ -13,7 +24,7 @@ function consumir(nombre,reiniciar,{permanecer=false}={}){if(quemando)return;que
 function completarNueve(){if(quemando)return;quemando=true;const casa=document.querySelector(".house"),final=puntosObjetivo[7]||puntosObjetivo.at(-1);ceniza({getBoundingClientRect:()=>{const r=contenedorNueve.getBoundingClientRect();return{left:r.left+final.x-14,top:r.top+final.y-14,width:28,height:28}}});window.observarUgju?.("fire_complete","nine");setTimeout(()=>casa.classList.add("is-extinguished"),420);setTimeout(()=>{reiniciarNueve();quemando=false;mostrarFuego("maze");casa.classList.add("is-restoring");casa.classList.remove("is-extinguished");requestAnimationFrame(()=>requestAnimationFrame(()=>casa.classList.remove("is-restoring")))},1900)}
 function mostrarFuego(nombre){if(quemando)return;if(fuegoIniciado)window.observarUgju?.("fire_dwell",fuegoActual,(performance.now()-entradaFuego)/1000);if(nombre!==fuegoActual)seccion(nombre)?.classList.remove("is-consumed");fuegoActual=nombre;entradaFuego=performance.now();fuegoIniciado=true;window.observarUgju?.("fire_open",nombre);document.querySelectorAll(".fire").forEach(f=>{const a=f.dataset.fire===nombre;f.hidden=!a;f.classList.toggle("is-active",a)});navegacion.querySelectorAll("button").forEach(i=>i.setAttribute("aria-current",String(i.dataset.fire===nombre)));history.replaceState(null,"",`#${nombre}`);({nine:prepararNueve,maze:prepararLaberinto,klotski:prepararKlotski,hanoi:dibujarHanoi}[nombre]||(()=>{}))()}
 function moverFuego(d){const i=fuegos.indexOf(fuegoActual),s=i+d;if(s>=0&&s<fuegos.length)mostrarFuego(fuegos[s])}
-function crearNavegacion(){fuegos.forEach(n=>{const b=document.createElement("button");b.type="button";b.dataset.fire=n;b.setAttribute("aria-label",textos[claves[n]]||n);b.onclick=()=>mostrarFuego(n);navegacion.appendChild(b)})}
+function crearNavegacion(){estructuraFuegos.forEach(({id,nombre},indice)=>{const b=document.createElement("button");b.type="button";b.dataset.fire=id;b.setAttribute("aria-label",`${indice+1}. ${nombre}`);b.title=`${indice+1}. ${nombre}`;b.onclick=()=>mostrarFuego(id);navegacion.appendChild(b)})}
 async function cargarTextos(){let codigo=idioma,r=await fetch(`lang/${codigo}.json?v=20260815-3`);if(!r.ok){codigo="en";r=await fetch("lang/en.json?v=20260815-3")}textos=await r.json();document.documentElement.lang=codigo;document.querySelectorAll("[data-text]").forEach(n=>n.textContent=textos[n.dataset.text]||n.textContent);document.getElementById("nine-instruction").textContent=esTactil()?textos.stay_nine_dots_instruction_touch:textos.stay_nine_dots_instruction_pointer;volver.setAttribute("aria-label",textos.stay_back_to_radio);navegacion.setAttribute("aria-label",textos.stay_fires_label||"Fuegos");crearNavegacion()}
 
 // Nueve puntos
