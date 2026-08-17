@@ -40,7 +40,7 @@
   "stay_back_to_radio": "ÚGJÜ RADIOに戻る", "stay_rooms_label": "火", "stay_fires_label": "火",
   "stay_maze_title": "迷路", "stay_maze_instruction": "道に触れずに輪を反対側まで運ぶ。",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "形を滑らせ、暗いピースを出口から解放する。",
-  "stay_connectfour_title": "ペルシャ", "stay_connectfour_instruction": "あなたはX、死は円。四つを一列に並べる。",
+  "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "死との対局。あなたは白抜きの円、彼女は黒く塗りつぶされた円。四つを一列に並べて先へ進み、彼女を惑わせる。", "stay_connectfour_board_label": "四目並べの盤", "stay_connectfour_row": "行", "stay_connectfour_column": "列", "stay_connectfour_open_circle": "白抜きの円", "stay_connectfour_closed_circle": "黒く塗りつぶされた円",
   "stay_connectfour_human": "線を見つけた。", "stay_connectfour_machine": "死が形を閉じた。", "stay_connectfour_draw": "どちらも譲らなかった。",
   "stay_hanoi_title": "ハノイの塔", "stay_hanoi_instruction": "円盤を一枚ずつ動かす。大きい円盤を小さい円盤の上に置かない。",
   "stay_stone_title": "マントラ", "stay_stone_instruction": "形が途切れず呼吸するまで、断片を回す。", "stay_stone_warm": "マントラは続く。",
