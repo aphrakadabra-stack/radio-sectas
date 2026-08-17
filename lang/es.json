@@ -40,7 +40,7 @@
   "stay_back_to_radio": "Volver a ÚGJÜ RADIO",
   "stay_rooms_label": "Fuegos", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "EL JARDÍN", "stay_maze_instruction": "Lleva el aro hasta el otro extremo sin salirte del camino.",
-  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Desliza las formas. Libera la pieza oscura por la abertura.",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Desliza las formas. Purifica la oscuridad por la ventana",
   "stay_connectfour_title": "PERSIA", "stay_connectfour_instruction": "Tú eres la X. La muerte es el círculo. Forma una linea de cuatro y avanza",
   "stay_connectfour_human": "Encontraste la línea.", "stay_connectfour_machine": "La muerte cerró la forma.", "stay_connectfour_draw": "Nadie cedió.",
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
