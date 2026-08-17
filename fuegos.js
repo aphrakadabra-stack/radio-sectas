@@ -160,6 +160,7 @@ function moverUri(){if(fuegoActual!=="uri")return;const x=18+Math.random()*64,y=
 function prepararUri(){clearTimeout(esperaUri);gatoUri.classList.remove("is-vanishing","is-petted");moverUri()}
 function acariciarUri(e){if(e)e.preventDefault();clearTimeout(esperaUri);gatoUri.classList.remove("is-vanishing");gatoUri.classList.add("is-petted");estado("uri",textos.stay_uri_purr||"Uri ronronea.");navigator.vibrate?.([12,30,12]);esperaUri=setTimeout(()=>{gatoUri.classList.remove("is-petted");estado("uri");moverUri()},1800)}
 gatoUri.onpointerdown=acariciarUri;gatoUri.onpointermove=e=>{if(e.buttons||e.pointerType==="touch")acariciarUri(e)};
+gatoUri.onpointerenter=e=>{if(e.pointerType==="mouse"&&!e.buttons)acariciarUri(e)};
 
 // Sin nombre: cada toque apaga luz, sonido y acción hasta que sólo queda el regreso.
 const campoDisolucion=document.querySelector('[data-firepiece="dissolution"]'),veloDisolucion=campoDisolucion.querySelector(".dissolution-veil"),marcasDisolucion=campoDisolucion.querySelector(".dissolution-marks");let toquesDisolucion=0,terminoDisolucion=false,esperaRenacer=[];
