@@ -52,6 +52,8 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 
 /* Tercera ronda: jugabilidad, caricia y disolución táctil. */
 .maze-corridors line{stroke:rgba(34,34,34,.24);stroke-width:30}.maze-travelled{stroke-width:4}.maze-ring{r:10px;stroke-width:3}.maze-ring-hit{r:24px}.maze-goal{r:11px}
+.fire[data-fire="maze"] .maze-field{border-radius:7%;background:radial-gradient(circle at 48% 42%,rgba(34,34,34,.08),rgba(34,34,34,.16) 72%,rgba(34,34,34,.22));box-shadow:inset 0 0 0 1px rgba(34,34,34,.2),inset 0 0 58px rgba(34,34,34,.13),0 18px 42px rgba(34,34,34,.14)}
+.fire[data-fire="maze"] .instruction{max-width:calc(100vw - 24px);font-size:clamp(.82rem,2.25vw,1.2rem);white-space:nowrap;text-wrap:nowrap}
 .mantra-tile .mantra-stroke{stroke-width:clamp(5.5px,1.7vw,7px)}.mantra-field:not(.is-complete) .mantra-world{filter:drop-shadow(0 7px 9px rgba(0,0,0,.32))}.fire[data-fire="stone"] .fire-status{font:400 clamp(.82rem,2vw,1rem) "Courier Prime",monospace;letter-spacing:.18em;opacity:.58}.op-mark{fill:#EA52F3;stroke:#222;stroke-width:2;pointer-events:none}.op-layer .op-hit{fill:none;stroke:transparent;stroke-width:28;pointer-events:stroke}
 .connect-four.result-human{filter:drop-shadow(0 0 14px rgba(234,82,243,.85))}.connect-four.result-machine{opacity:.45}.tower-reset{display:none;padding:.4em .9em;border:1px solid rgba(34,34,34,.55);background:transparent;color:#222;font:inherit;cursor:pointer}.peg-solitaire.is-stalled{opacity:.5}.peg-solitaire.is-stalled~.tower-reset{display:block}
 .hanoi i{will-change:transform}.hanoi button[data-selected="true"] i:last-child{animation:hanoi-hover 1.2s ease-in-out infinite}@keyframes hanoi-hover{50%{transform:translateY(-8px) rotate(1deg)}}
