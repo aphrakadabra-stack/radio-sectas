@@ -103,9 +103,11 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 .rubik-cube.turn-counterclockwise{animation-direction:reverse}
 @keyframes rubik-pulse{50%{filter:drop-shadow(0 0 11px rgba(234,82,243,.78))}}
 
-/* Pac-Man reemplaza al Rubik sin alterar el orden ni el cierre del Fuego. */
-.pacman-field{display:grid;place-items:center;overflow:hidden;border:3px solid #222;background:#111;box-shadow:0 16px 38px rgba(34,34,34,.14);touch-action:none}
-.pacman-canvas{display:block;width:auto;height:auto;max-width:92%;max-height:92%;aspect-ratio:19/21;image-rendering:auto}
+/* Tetris reemplaza a Pac-Man sin alterar el orden ni el cuadrante del Fuego. */
+.tetris-field{display:grid;place-items:center;overflow:hidden;border:3px solid #222;background:#111;box-shadow:0 16px 38px rgba(34,34,34,.14);touch-action:none;cursor:grab;outline:none}
+.tetris-field:focus-visible{box-shadow:0 0 0 3px #EA52F3,0 16px 38px rgba(34,34,34,.14)}
+.tetris-field.is-dragging{cursor:grabbing}
+.tetris-canvas{display:block;width:auto;height:92%;max-width:92%;aspect-ratio:1/2;image-rendering:auto}
 
 /* Los assets aprobados aparecen como figuras, nunca como rectángulos. */
 .uri-cat-image{background:transparent}
@@ -115,14 +117,15 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 /* Cuadrantes: los tableros comparten la escala visual de Mantra y El Jardín. */
 .fire[data-fire="klotski"] .klotski,
 .fire[data-fire="connectfour"] .connect-four,
-.fire[data-fire="object"] .pacman-field,
-.fire[data-fire="tower"] .peg-solitaire{width:min(84vw,54dvh,560px)}
-.pacman-canvas{width:auto;height:100%;max-width:100%;max-height:none}
+.fire[data-fire="object"] .tetris-field,
+.fire[data-fire="tower"] .peg-solitaire,
+.fire[data-fire="hanoi"] .hanoi{width:min(84vw,54dvh,560px)}
+.tetris-canvas{width:auto;height:92%;max-width:92%;max-height:none}
 
-/* Hanoi conserva su lógica austera, con una presencia más ceremonial. */
-.hanoi{border-width:3px;border-radius:2%;background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.13),rgba(34,34,34,.035) 64%,rgba(34,34,34,.1));box-shadow:inset 0 0 0 1px rgba(34,34,34,.18),inset 0 0 54px rgba(34,34,34,.08),0 18px 42px rgba(34,34,34,.14)}
-.hanoi::before{content:"";position:absolute;inset:6%;border:1px solid rgba(34,34,34,.2);border-radius:50%;pointer-events:none}
-.hanoi::after{height:5px;border-radius:50%;box-shadow:0 5px 0 rgba(34,34,34,.12)}
+/* Hanoi conserva su lógica austera: sólo la base tiene presencia material. */
+.hanoi{border:3px solid #222;border-radius:2%;background:transparent;box-shadow:none}
+.hanoi::before{content:none}
+.hanoi::after{left:4%;right:4%;bottom:calc(29.5% - 12px);height:16px;border:2px solid #171317;border-radius:2px;background:linear-gradient(180deg,#4a303f 0 18%,#2f202a 19% 45%,#171317 46% 72%,#0c090b 73% 100%);box-shadow:inset 0 2px 0 rgba(234,82,243,.14),0 5px 0 rgba(34,34,34,.15),0 9px 12px rgba(34,34,34,.12);pointer-events:none}
 .hanoi button::before{width:4px;border-radius:4px 4px 0 0;background:linear-gradient(90deg,#171317,#3a2735 48%,#171317)}
 .hanoi button[data-selected=true]::before{box-shadow:0 0 12px rgba(34,34,34,.42)}
 .hanoi i{height:8.5%;border-radius:50%/28%;background:linear-gradient(180deg,#3b2837 0 18%,#171317 20% 72%,#050405 74%);box-shadow:inset 0 2px 0 rgba(234,82,243,.22),0 4px 0 rgba(34,34,34,.16)}
@@ -133,5 +136,5 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 .uri-cat:hover:not(.is-vanishing){filter:drop-shadow(0 0 13px rgba(234,82,243,.78))}
 @keyframes uri-touch-pulse{50%{transform:translate(-50%,-50%) scale(calc(var(--uri-scale,1)*1.34));filter:drop-shadow(0 0 27px #EA52F3)}}
 
-@media(max-width:700px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .pacman-field,.fire[data-fire="tower"] .peg-solitaire{width:min(90vw,52dvh,500px)}}
-@media(max-height:650px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .pacman-field,.fire[data-fire="tower"] .peg-solitaire{width:min(82vw,46dvh)}}
+@media(max-width:700px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .tetris-field,.fire[data-fire="tower"] .peg-solitaire,.fire[data-fire="hanoi"] .hanoi{width:min(90vw,52dvh,500px)}.hanoi::after{bottom:calc(14% - 12px)}}
+@media(max-height:650px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .tetris-field,.fire[data-fire="tower"] .peg-solitaire,.fire[data-fire="hanoi"] .hanoi{width:min(82vw,46dvh)}}
