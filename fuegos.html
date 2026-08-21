@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#EA52F3">
     <meta name="ugju-observatory" content="">
     <title>FUEGOS — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="fuegos.css?v=20260817-2">
+    <link rel="stylesheet" href="fuegos.css?v=20260821-3">
 </head>
 <body>
     <main class="house">
@@ -44,11 +44,11 @@
         </section>
 
         <section class="fire" data-fire="object" aria-labelledby="title-object" hidden>
-            <h1 id="title-object">Rubik</h1>
-            <div class="instrument rubik-field" data-firepiece="object" role="application" aria-label="Cubo Rubik tridimensional. Arrastra para girarlo y toca una cara para moverla.">
-                <div class="rubik-scene"><div class="rubik-cube" aria-live="polite"></div></div>
+            <h1 id="title-object">Pac-Man</h1>
+            <div class="instrument pacman-field" data-firepiece="object" role="application" aria-label="Laberinto Pac-Man. Usa las flechas o desliza para recoger todos los puntos y evitar los fantasmas.">
+                <canvas class="pacman-canvas" width="456" height="504" aria-label="Tablero de Pac-Man"></canvas>
             </div>
-            <p class="instruction">arrastra el cubo. toca una cara para girarla.</p><p class="fire-status" data-status="object" aria-live="polite"></p>
+            <p class="instruction">come todos los puntos. evita a los fantasmas. flechas o desliza para moverte.</p><p class="fire-status" data-status="object" aria-live="polite"></p>
         </section>
 
         <section class="fire" data-fire="tower" aria-labelledby="title-tower" hidden>
@@ -61,22 +61,23 @@
             <h1 id="title-uri">Uri</h1>
             <div class="instrument uri-field" data-firepiece="uri" role="application" aria-label="Uri, gato en movimiento">
                 <button class="uri-cat" type="button" aria-label="Acariciar a Uri">
-                    <svg class="uri-cat-silhouette" viewBox="0 0 300 300" aria-hidden="true" focusable="false">
+                    <img class="uri-cat-image" src="images/uri-gato-transparente.png" alt="" draggable="false">
+                    <svg class="uri-cat-silhouette" viewBox="0 0 360 360" aria-hidden="true" focusable="false">
                         <g class="uri-tail">
-                            <path d="M190 242c35-7 65-29 67-61 2-27-18-46-42-41-18 4-27 20-23 35 4 13 18 18 28 11-14 1-19-14-10-23 12-12 31-2 29 17-3 27-34 41-64 41Z"/>
-                            <path class="uri-fur-line" d="M199 226c28-8 47-25 47-45m-48 25c22-8 35-20 38-35"/>
+                            <path d="M252 318c24 7 52 1 66-18-12 8-25 9-35 5 31-8 45-30 39-59-2 17-9 28-21 34 17-27 14-57 4-80-7-16-5-30 6-44 18-24 19-58 3-80-17-23-51-26-68-6-16 18-14 48 3 62 12 10 31 8 38-5-12 5-25-2-26-14-2-13 11-22 23-17 15 6 17 26 10 43-6 15-18 24-25 39-12 26-4 55 2 79 8 31 6 72-19 91Z"/>
+                            <path class="uri-cut" d="M276 74c18 0 34 12 39 30M295 143c15-13 21-31 18-50m-34 82c17 19 24 43 21 70m-12-58c-10 29-9 59 4 86m-24-67c-13 29-14 58-3 87m17 8c16-4 28-14 37-30"/>
                         </g>
-                        <path class="uri-body" d="M73 258c-12-21-10-56 2-83 10-22 25-39 44-47l-8-24 7-49 32 24 32-24 8 49-8 24c19 8 34 25 44 47 12 27 14 62 2 83-35 16-120 16-155 0Z"/>
-                        <path class="uri-ruff" d="M107 127c-25 10-39 35-35 62 5-10 12-17 22-21-11 26-5 55 14 75-1-17 4-33 15-44 0 30 10 53 27 68 17-15 27-38 27-68 11 11 16 27 15 44 19-20 25-49 14-75 10 4 17 11 22 21 4-27-10-52-35-62-23 15-63 15-86 0Z"/>
-                        <path class="uri-face" d="M112 88c9-16 22-24 38-24s29 8 38 24l-4 35c-7 17-19 27-34 27s-27-10-34-27Z"/>
-                        <path class="uri-brow" d="M124 101c7-5 14-5 21 0m10 0c7-5 14-5 21 0"/>
-                        <path class="uri-eye" d="M125 106c5-5 12-5 17 0-4 7-13 7-17 0Zm33 0c5-5 12-5 17 0-4 7-13 7-17 0Z"/>
-                        <path class="uri-nose" d="m144 119 12 0-6 6Z"/>
-                        <path class="uri-mouth" d="M150 125c0 7-7 9-12 7m12-7c0 7 7 9 12 7"/>
-                        <g class="uri-whiskers">
-                            <path d="M137 125C113 118 92 119 70 125M138 132c-25-1-48 5-67 16M163 125c24-7 45-6 67 0m-68 7c25-1 48 5 67 16"/>
+                        <path d="M91 316c-10-7-6-18 6-24 4-28 0-57-4-82-4-22-1-43 7-61-11 6-18 17-20 31-8-16-4-34 9-46l-13 4c1-14 7-26 18-34l-12 1c4-13 13-23 25-29l-12-3c10-8 21-12 34-12-10-8-20-11-31-10 8-7 20-8 33-3-7-8-14-13-23-16 16-3 31 3 43 14 9-3 20-5 31-5s22 2 31 5c12-11 27-17 43-14-9 3-16 8-23 16 13-5 25-4 33 3-11-1-21 2-31 10 13 0 24 4 34 12l-12 3c12 6 21 16 25 29l-12-1c11 8 17 20 18 34l-13-4c9 8 14 19 15 31 24 8 44 25 55 50 15 35 15 74-3 103-12 19-32 29-58 30-16 1-33-4-47-13-13 9-27 13-43 12-20 0-31-4-31-13 0-6 4-11 12-15-14-2-27-2-39 0-2 13-13 19-32 18-10 0-17-3-22-10Z"/>
+                        <g class="uri-cut">
+                            <path d="M122 63c13 2 25 8 34 18m86-18c-13 2-25 8-34 18M143 66c-1 12 2 23 9 31m45-31c1 12-2 23-9 31"/>
+                            <path d="M111 92c12-4 23-2 32 6m76 0c9-8 20-10 32-6"/>
+                            <path d="M116 103c8-7 19-7 27 0-3 12-18 15-25 6m96-6c8-7 19-7 27 0-3 12-18 15-25 6"/>
+                            <path d="M174 112c-3 7-2 13 3 17m-18-1c8 5 15 5 22 0m-22 0c-4 7-11 10-20 9m42-9c4 7 11 10 20 9"/>
+                            <path d="M147 123c-26-12-49-15-70-10m72 21c-29-1-54 6-73 21m128-32c26-12 49-15 70-10m-72 21c29-1 54 6 73 21"/>
+                            <path d="M113 123c10 15 23 23 39 25m-45-6c15 13 28 19 41 20m-44-1c14 10 24 19 29 28m-27-9c11 7 19 16 23 28m-15-3c5 9 7 19 5 31m46-93c-5 16-15 29-29 40m46-39c-8 22-20 39-37 51m44-38c-7 24-18 43-34 58m47-40c-6 22-16 40-30 53m-29-27c-8 16-9 32-4 48m24-64c-5 20-4 39 4 56"/>
+                            <path d="M208 154c23 2 43 11 59 27m-48-8c21 9 37 24 47 45m-37-26c16 17 25 38 26 62m-62-52c18-13 38-17 59-12m-69 33c18-16 38-22 59-18m-67 43c15-18 34-27 55-27m-57 50c10-18 25-28 45-30m-49 53c11-17 26-25 45-24"/>
+                            <path d="M105 294c-8 9-8 17 0 24m23-22c-5 8-5 15 0 22m74-22c-5 8-5 15 0 22m23-24c8 9 8 17 0 24"/>
                         </g>
-                        <path class="uri-fur-line" d="M99 166c15 6 25 18 30 34m72-34c-15 6-25 18-30 34M91 217c14 0 25 6 33 17m85-17c-14 0-25 6-33 17"/>
                     </svg>
                 </button>
             </div>
@@ -90,10 +91,48 @@
         </section>
 
         <section class="fire fire-dissolution" data-fire="dissolution" aria-label="Disolución" hidden>
-            <div class="instrument dissolution-field" data-firepiece="dissolution" role="application" aria-label="Toca para disolver"><div class="dissolution-marks" aria-hidden="true"></div><div class="rebirth" aria-hidden="true"><svg viewBox="0 0 240 260" role="img" aria-label="Silueta de un Buda sentado en posición de loto"><circle cx="120" cy="47" r="25"/><path d="M96 78c7-8 15-12 24-12s17 4 24 12l12 59c2 9 8 17 17 22l39 24c10 6 8 22-4 25l-55 13c-11 3-22 4-33 4s-22-1-33-4l-55-13c-12-3-14-19-4-25l39-24c9-5 15-13 17-22l12-59Z"/><path d="M64 173c20 8 37 13 56 13s36-5 56-13l22 14c-22 30-50 44-78 44s-56-14-78-44l22-14Z"/></svg></div><div class="dissolution-light" aria-hidden="true"></div><div class="dissolution-veil"></div></div>
+            <div class="instrument dissolution-field" data-firepiece="dissolution" role="application" aria-label="Toca para disolver"><div class="dissolution-marks" aria-hidden="true"></div><div class="rebirth" aria-hidden="true"><img class="buddha-image" src="images/buda-renacer.png" alt="Buda frontal sentado sobre un loto, con la esvástica budista visible"><svg viewBox="0 0 320 380" role="img" aria-label="Buda frontal sentado sobre un loto, con túnica, mano elevada y esvástica budista en el pecho">
+                <g class="buddha-fill">
+                    <path d="M141 39c-5-12 3-25 19-25s24 13 19 25c19 8 30 25 30 47 0 32-22 59-49 59s-49-27-49-59c0-22 11-39 30-47Z"/>
+                    <path d="M119 137c-19 8-30 28-33 60l-5 63c-18 6-35 17-48 34l45 22h164l45-22c-13-17-30-28-48-34l-5-63c-3-32-14-52-33-60-13 12-26 18-41 18s-28-6-41-18Z"/>
+                    <path d="M72 259c-23 2-39 16-48 39 22 11 47 15 76 10l60-13 60 13c29 5 54 1 76-10-9-23-25-37-48-39l-40-3-48 20-48-20Z"/>
+                    <path d="M48 307h224l-4 51H52Z"/>
+                </g>
+                <g class="buddha-line">
+                    <path d="M141 39c-5-12 3-25 19-25s24 13 19 25c19 8 30 25 30 47 0 32-22 59-49 59s-49-27-49-59c0-22 11-39 30-47Z"/>
+                    <path d="M119 137c-19 8-30 28-33 60l-5 63m120-123c19 8 30 28 33 60l5 63"/>
+                    <path d="M119 137c13 12 26 18 41 18s28-6 41-18M125 127c2 9 13 15 35 15s33-6 35-15m-68 5c2 7 13 11 33 11s31-4 33-11"/>
+                    <path d="M123 139c-8 31-7 66 5 104m70-104c-2 32-10 62-25 90m-50-75c16 13 39 18 69 13m-72 22c20 14 43 18 69 12m-65 26c20 11 42 13 65 6"/>
+                    <path d="M88 174c-8 19-12 47-12 83m27-93c-4 35-3 65 3 90m111-90c4 35 3 65-3 90"/>
+                    <path d="M24 298c9-23 25-37 48-39l40-3 48 20 48-20 40 3c23 2 39 16 48 39-22 11-47 15-76 10l-60-13-60 13c-29 5-54 1-76-10Z"/>
+                    <path d="M48 307h224l-4 51H52Z"/>
+                </g>
+                <g class="buddha-hair" fill="#111">
+                    <circle cx="126" cy="49" r="6"/><circle cx="136" cy="41" r="6"/><circle cx="148" cy="37" r="6"/><circle cx="160" cy="35" r="6"/><circle cx="172" cy="37" r="6"/><circle cx="184" cy="41" r="6"/><circle cx="194" cy="49" r="6"/>
+                    <circle cx="121" cy="60" r="6"/><circle cx="133" cy="53" r="6"/><circle cx="146" cy="49" r="6"/><circle cx="160" cy="47" r="6"/><circle cx="174" cy="49" r="6"/><circle cx="187" cy="53" r="6"/><circle cx="199" cy="60" r="6"/>
+                </g>
+                <g class="buddha-face">
+                    <path d="M112 77c-8-3-13 2-11 14 2 10 7 16 14 16m93-30c8-3 13 2 11 14-2 10-7 16-14 16"/>
+                    <path d="M126 78c9-7 18-7 27 0-9 8-18 8-27 0Zm41 0c9-7 18-7 27 0-9 8-18 8-27 0ZM160 80v19l-7 6 7 3m-17 14c11 8 23 8 34 0m-29-3h24M139 68c8-5 16-5 23-1m19 1c-8-5-16-5-23-1"/>
+                </g>
+                <g class="buddha-palm">
+                    <path d="M87 176c0-18 3-34 8-47 5 0 8 11 8 30 0-25 4-40 10-43 6 4 7 18 4 42 5-23 10-35 16-35 6 6 4 21-2 43 8-15 15-22 21-17 3 8-3 22-18 41-10 13-22 18-32 13-10-5-15-14-15-27Z"/>
+                    <path class="buddha-finger" d="M103 159v25m14-26-3 27m17-19-8 24m-29-10c8 5 18 7 30 5"/>
+                </g>
+                <g class="buddha-line">
+                    <path d="M207 250c17-4 31 0 43 12-9 10-22 15-39 15-14 0-26-5-35-14 8-7 18-12 31-13Z"/>
+                    <path d="M225 250c-1 8 1 14 7 18m-17-17c-1 8 2 15 8 20m-18-18c0 8 3 14 9 18"/>
+                </g>
+                <g class="buddha-lotus">
+                    <path d="M62 284c6-18 16-25 29-20 5-17 15-22 28-12 8-16 19-17 32-2 3-16 10-24 19-24s16 8 19 24c13-15 24-14 32 2 13-10 23-5 28 12 13-5 23 2 29 20"/>
+                    <path d="M67 306c8-19 20-25 36-17 5-19 16-24 31-13 7-16 16-18 26-5 10-13 19-11 26 5 15-11 26-6 31 13 16-8 28-2 36 17"/>
+                    <path d="M91 264c4 8 8 15 12 25m16-37c3 9 8 17 15 24m17-26 9 21m29-21-3 26m35-24-4 37m32-25-12 25"/>
+                </g>
+                <path d="M160 168v24m-12-12h24m-12-8h8v-6m-8 22h-8v6m0-14v-8h-6m22 8v8h6" fill="none" stroke="#EA52F3" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>
+            </svg></div><div class="dissolution-light" aria-hidden="true"></div><div class="dissolution-veil"></div></div>
         </section>
     </main>
     <script src="observatory.js?v=20260814-1"></script>
-    <script src="fuegos.js?v=20260817-2"></script>
+    <script src="fuegos.js?v=20260821-3"></script>
 </body>
 </html>

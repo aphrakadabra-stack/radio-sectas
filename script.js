@@ -361,6 +361,7 @@ function abrirFuegos() {
     }
     capaFuegos.hidden = false;
     capaFuegos.setAttribute("aria-hidden","false");
+    marcoFuegos.contentWindow?.postMessage({type:"ugju-reset-dissolution"},location.origin);
 }
 
 
