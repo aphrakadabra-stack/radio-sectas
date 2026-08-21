@@ -111,3 +111,27 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 .uri-cat-image{background:transparent}
 .rebirth .buddha-image{display:block}
 .rebirth .buddha-image+svg{display:none}
+
+/* Cuadrantes: los tableros comparten la escala visual de Mantra y El Jardín. */
+.fire[data-fire="klotski"] .klotski,
+.fire[data-fire="connectfour"] .connect-four,
+.fire[data-fire="object"] .pacman-field,
+.fire[data-fire="tower"] .peg-solitaire{width:min(84vw,54dvh,560px)}
+.pacman-canvas{width:auto;height:100%;max-width:100%;max-height:none}
+
+/* Hanoi conserva su lógica austera, con una presencia más ceremonial. */
+.hanoi{border-width:3px;border-radius:2%;background:radial-gradient(circle at 50% 38%,rgba(255,255,255,.13),rgba(34,34,34,.035) 64%,rgba(34,34,34,.1));box-shadow:inset 0 0 0 1px rgba(34,34,34,.18),inset 0 0 54px rgba(34,34,34,.08),0 18px 42px rgba(34,34,34,.14)}
+.hanoi::before{content:"";position:absolute;inset:6%;border:1px solid rgba(34,34,34,.2);border-radius:50%;pointer-events:none}
+.hanoi::after{height:5px;border-radius:50%;box-shadow:0 5px 0 rgba(34,34,34,.12)}
+.hanoi button::before{width:4px;border-radius:4px 4px 0 0;background:linear-gradient(90deg,#171317,#3a2735 48%,#171317)}
+.hanoi button[data-selected=true]::before{box-shadow:0 0 12px rgba(34,34,34,.42)}
+.hanoi i{height:8.5%;border-radius:50%/28%;background:linear-gradient(180deg,#3b2837 0 18%,#171317 20% 72%,#050405 74%);box-shadow:inset 0 2px 0 rgba(234,82,243,.22),0 4px 0 rgba(34,34,34,.16)}
+
+/* URI responde tanto a la caricia táctil como a la presencia del puntero. */
+.uri-cat{transform-origin:center;will-change:transform,filter}
+.uri-cat.is-touching{animation:uri-touch-pulse .34s ease-out}
+.uri-cat:hover:not(.is-vanishing){filter:drop-shadow(0 0 13px rgba(234,82,243,.78))}
+@keyframes uri-touch-pulse{50%{transform:translate(-50%,-50%) scale(calc(var(--uri-scale,1)*1.34));filter:drop-shadow(0 0 27px #EA52F3)}}
+
+@media(max-width:700px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .pacman-field,.fire[data-fire="tower"] .peg-solitaire{width:min(90vw,52dvh,500px)}}
+@media(max-height:650px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .pacman-field,.fire[data-fire="tower"] .peg-solitaire{width:min(82vw,46dvh)}}
