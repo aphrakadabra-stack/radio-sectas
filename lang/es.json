@@ -40,11 +40,12 @@
   "stay_back_to_radio": "Volver a ÚGJÜ RADIO",
   "stay_rooms_label": "Fuegos", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "EL JARDÍN", "stay_maze_instruction": "Lleva el aro hasta el otro extremo sin salirte del camino.",
-  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Desliza las formas. Purifica la oscuridad por la ventana",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Desliza las formas. Sal por la ventana y así purifica la oscuridad.",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "Una partida con la muerte. Tú eres el círculo abierto, ella es el círculo cerrado. Forma una línea de cuatro para avanzar y despistarla", "stay_connectfour_board_label": "Tablero de cuatro en raya", "stay_connectfour_row": "Fila", "stay_connectfour_column": "columna", "stay_connectfour_open_circle": "círculo abierto", "stay_connectfour_closed_circle": "círculo cerrado",
   "stay_connectfour_human": "Encontraste la línea.", "stay_connectfour_machine": "La muerte cerró la forma.", "stay_connectfour_draw": "Nadie cedió.",
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Gira cada fragmento hasta cerrar el circuito y hacer volver al mantra.", "stay_stone_warm": "El mantra continúa.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Toca las perspectivas. La arquitectura cambia cuando cambia tu mirada.",
-  "stay_tower_blocked": "Ya no hay ningún salto posible.", "stay_tower_restart": "comenzar de nuevo", "stay_dissolution_return": "vuelve a la casa"
+  "stay_uri_purr": "Uri ronronea", "stay_uri_instruction": "Aparece, Desaparece. Sigue estando... Siempre", "stay_uri_field_label": "Uri, gato en movimiento", "stay_uri_pet_label": "Acariciar a Uri",
+  "stay_tower_instruction": "Salta sobre una pieza para hacerla desaparecer. Deja solo una en el centro.", "stay_tower_blocked": "Ya no hay ningún duelo posible", "stay_tower_restart": "comenzar de nuevo", "stay_dissolution_return": "vuelve a la casa"
 }

@@ -6,6 +6,9 @@ html,body{width:100%;height:100%;overflow:hidden}
 body{min-height:100vh;min-height:100dvh;background:#EA52F3;color:#222;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;transition:background .9s ease,color .9s ease}
 body.uri-inverted{background:#111;color:#EA52F3}body.uri-inverted::before{background:radial-gradient(ellipse at 28% 38%,rgba(234,82,243,.12),transparent 51%),radial-gradient(ellipse at 72% 64%,rgba(234,82,243,.06),transparent 54%)}body.uri-inverted .back-link{color:#EA52F3}body.uri-inverted .fire-nav button::after{border-color:#EA52F3}body.uri-inverted .fire-nav button[aria-current=true]::after{background:#EA52F3}
 body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(ellipse at 28% 38%,rgba(255,255,255,.1),transparent 51%),radial-gradient(ellipse at 72% 64%,rgba(87,0,94,.07),transparent 54%);pointer-events:none}
+body.uri-inverted::after{content:"";position:fixed;z-index:0;inset:0;background:#fff;opacity:0;pointer-events:none}
+body.uri-inverted.uri-memory::after{animation:uri-memory-light 1.05s linear}
+@keyframes uri-memory-light{0%,100%{opacity:0}7%{opacity:.96}13%{opacity:0}28%{opacity:.78}35%{opacity:0}57%{opacity:.9}65%{opacity:0}82%{opacity:.52}88%{opacity:0}}
 .house{position:relative;z-index:1;height:100vh;height:100dvh;overflow:hidden;overscroll-behavior-x:none;touch-action:pan-y}
 .back-link{position:fixed;z-index:3;top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left));color:#222;font:400 .74rem "Courier Prime",monospace;letter-spacing:.08em;text-transform:uppercase;text-underline-offset:4px}
 .fire-nav{position:fixed;z-index:3;left:50%;bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:2px;transform:translateX(-50%)}
@@ -49,7 +52,7 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 .opart-field{display:grid;place-items:center;perspective:680px;transform:rotateX(var(--perspective,0deg));transition:transform .7s ease}.opart-world{grid-area:1/1;width:100%;height:100%;overflow:visible}.op-stripe{fill:none;stroke:#222;stroke-width:1;opacity:.24}.op-stripe:nth-child(2n){stroke-width:5;opacity:.12}.op-stripe:nth-child(3n){stroke-width:2;opacity:.55}.op-layer{transform-box:view-box;transform-origin:150px 150px;transition:transform .72s cubic-bezier(.18,.82,.2,1);cursor:pointer;filter:drop-shadow(8px 11px 0 rgba(34,34,34,.18))}.op-layer path{fill:rgba(234,82,243,.35);stroke:#222;stroke-width:12;stroke-linejoin:bevel;paint-order:stroke fill;pointer-events:stroke}.op-layer:nth-of-type(2) path{stroke-width:7}.op-layer:nth-of-type(3) path{stroke-width:3}.op-layer.is-aligned .op-mark{filter:drop-shadow(0 0 8px #EA52F3);stroke-width:4}.op-layer:focus-visible{outline:none;filter:drop-shadow(0 0 5px #222)}.op-pilgrim{fill:#222;transition:transform .8s ease}.opart-turn{position:absolute;left:50%;bottom:3%;width:62px;height:62px;border:1px solid rgba(34,34,34,.55)!important;border-radius:50%;transform:translateX(-50%);cursor:pointer}.opart-turn span{display:block;width:24px;height:24px;margin:auto;border:2px solid #222;border-radius:50%;border-top-color:transparent}.opart-field.is-revealed .opart-world{animation:op-reveal 1.55s ease}.opart-field.is-revealed .op-pilgrim{transform:scale(8);opacity:0}@keyframes op-reveal{45%{filter:contrast(3);transform:scale(1.08)}100%{transform:scale(.97)}}
 
 .klotski button{transition:left .18s ease,top .18s ease,transform .12s ease}.klotski button.is-dragging{z-index:4;cursor:grabbing;transition:none;box-shadow:0 10px 24px rgba(34,34,34,.18)}.klotski button.is-resisting{box-shadow:0 3px 8px rgba(34,34,34,.16),inset 0 0 0 1px rgba(34,34,34,.1)}.mantra-petal path{fill:none}
-.uri-field{overflow:visible}.uri-cat{position:absolute!important;left:var(--uri-x,50%);top:var(--uri-y,48%);width:31%!important;height:31%!important;transition:left var(--uri-speed,4s) cubic-bezier(.35,.02,.2,1),top var(--uri-speed,4s) cubic-bezier(.35,.02,.2,1),opacity 1.25s ease,filter 1.25s ease,transform 1.25s ease;transform:translate(-50%,-50%) scale(var(--uri-scale,1));cursor:pointer}.uri-cat-silhouette{display:block;width:100%;height:100%;overflow:visible;fill:#EA52F3;background:transparent}.uri-cut{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.uri-tail{transform-box:fill-box;transform-origin:18% 78%;animation:uri-purr 4.8s ease-in-out infinite}.uri-face,.uri-cheeks,.uri-paws{fill:#EA52F3}.uri-ruff{fill:#EA52F3;opacity:.97}.uri-eye,.uri-nose{fill:#111}.uri-brow,.uri-mouth{fill:none;stroke:#111;stroke-width:3;stroke-linecap:round}.uri-whiskers,.uri-fur-line{fill:none;stroke-linecap:round}.uri-whiskers{stroke:#111;stroke-width:2.5}.uri-fur-line{stroke:#111;stroke-width:2.2;opacity:.3}.uri-cat.is-vanishing{opacity:0;filter:blur(15px);transform:translate(-50%,-50%) scale(var(--uri-scale,1)) scale(.82)}.uri-cat.is-found{filter:drop-shadow(0 0 18px #EA52F3);transform:translate(-50%,-50%) scale(var(--uri-scale,1)) scale(1.08)}@keyframes uri-purr{50%{transform:rotate(8deg) scaleY(.96)}}
+.uri-field{overflow:visible}.uri-cat{position:absolute!important;left:var(--uri-x,50%);top:var(--uri-y,48%);width:31%!important;height:31%!important;transition:left var(--uri-speed,4s) cubic-bezier(.35,.02,.2,1),top var(--uri-speed,4s) cubic-bezier(.35,.02,.2,1),opacity 1.25s ease,filter 1.25s ease,transform 1.25s ease;transform:translate(-50%,-50%) scale(var(--uri-scale,1));cursor:pointer}.uri-cat-silhouette{display:block;width:100%;height:100%;overflow:visible;fill:#EA52F3;background:transparent}.uri-cut{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.uri-tail{transform-box:fill-box;transform-origin:18% 78%;animation:uri-purr 4.8s ease-in-out infinite}.uri-face,.uri-cheeks,.uri-paws{fill:#EA52F3}.uri-ruff{fill:#EA52F3;opacity:.97}.uri-eye,.uri-nose{fill:#111}.uri-brow,.uri-mouth{fill:none;stroke:#111;stroke-width:3;stroke-linecap:round}.uri-whiskers,.uri-fur-line{fill:none;stroke-linecap:round}.uri-whiskers{stroke:#111;stroke-width:2.5}.uri-fur-line{stroke:#111;stroke-width:2.2;opacity:.3}.uri-cat.is-vanishing{opacity:.32;filter:none;transform:translate(-50%,-50%) scale(var(--uri-scale,1)) scale(.94)}.uri-cat.is-found{filter:drop-shadow(0 0 18px #EA52F3);transform:translate(-50%,-50%) scale(var(--uri-scale,1)) scale(1.08)}@keyframes uri-purr{50%{transform:rotate(8deg) scaleY(.96)}}
 .uri-cat-image{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none;-webkit-user-drag:none}.uri-cat .uri-cat-silhouette{display:none}
 .fire-dissolution{position:fixed;inset:0;width:100%;max-width:none;height:100vh;height:100dvh;margin:0;padding:0;display:block;transform:none}.dissolution-field{position:fixed;z-index:20;left:0;top:0;width:100vw;height:100vh;height:100dvh;aspect-ratio:auto;margin:0;overflow:hidden;cursor:crosshair;background:transparent}.dissolution-veil{position:absolute;z-index:1;inset:0;background:#030303;opacity:0;transition:opacity .7s ease;pointer-events:none}.ego{position:absolute;z-index:3;left:50%;top:50%;transform:translate(-50%,-50%);color:#EA52F3;font-size:clamp(.8rem,2vw,1.05rem);font-style:italic;letter-spacing:.18em;opacity:0;white-space:nowrap}.dissolution-field.is-black{cursor:none}.dissolution-field.is-reborn .ego{opacity:.5;transition:opacity 3s ease;text-shadow:0 0 15px rgba(234,82,243,.45);animation:reborn-pulse 5s ease-in-out infinite}@keyframes reborn-pulse{50%{opacity:.2;filter:blur(1px)}}body.world-dissolving .back-link,body.world-dissolving .fire-nav{opacity:calc(1 - var(--dissolve,0));transition:opacity .7s ease}
 
@@ -104,10 +107,10 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 @keyframes rubik-pulse{50%{filter:drop-shadow(0 0 11px rgba(234,82,243,.78))}}
 
 /* Tetris reemplaza a Pac-Man sin alterar el orden ni el cuadrante del Fuego. */
-.tetris-field{display:grid;place-items:center;overflow:hidden;border:3px solid #222;background:#111;box-shadow:0 16px 38px rgba(34,34,34,.14);touch-action:none;cursor:grab;outline:none}
+.tetris-field{display:grid;place-items:center;overflow:hidden;border:3px solid #222;background:#111;box-shadow:0 16px 38px rgba(34,34,34,.14);touch-action:none;cursor:grab;outline:none;aspect-ratio:1}
 .tetris-field:focus-visible{box-shadow:0 0 0 3px #EA52F3,0 16px 38px rgba(34,34,34,.14)}
 .tetris-field.is-dragging{cursor:grabbing}
-.tetris-canvas{display:block;width:auto;height:92%;max-width:92%;aspect-ratio:1/2;image-rendering:auto}
+.tetris-canvas{display:block;width:100%;height:100%;max-width:none;max-height:none;aspect-ratio:1;image-rendering:auto}
 
 /* Los assets aprobados aparecen como figuras, nunca como rectángulos. */
 .uri-cat-image{background:transparent}
@@ -117,24 +120,24 @@ body::before{content:"";position:fixed;inset:-18vmax;background:radial-gradient(
 /* Cuadrantes: los tableros comparten la escala visual de Mantra y El Jardín. */
 .fire[data-fire="klotski"] .klotski,
 .fire[data-fire="connectfour"] .connect-four,
-.fire[data-fire="object"] .tetris-field,
 .fire[data-fire="tower"] .peg-solitaire,
 .fire[data-fire="hanoi"] .hanoi{width:min(84vw,54dvh,560px)}
-.tetris-canvas{width:auto;height:92%;max-width:92%;max-height:none}
+.fire[data-fire="object"] .tetris-field{width:min(84vw,54dvh,560px)}
 
 /* Hanoi conserva su lógica austera: sólo la base tiene presencia material. */
 .hanoi{border:3px solid #222;border-radius:2%;background:transparent;box-shadow:none}
 .hanoi::before{content:none}
-.hanoi::after{left:4%;right:4%;bottom:calc(29.5% - 12px);height:16px;border:2px solid #171317;border-radius:2px;background:linear-gradient(180deg,#4a303f 0 18%,#2f202a 19% 45%,#171317 46% 72%,#0c090b 73% 100%);box-shadow:inset 0 2px 0 rgba(234,82,243,.14),0 5px 0 rgba(34,34,34,.15),0 9px 12px rgba(34,34,34,.12);pointer-events:none}
+.hanoi::after{left:4%;right:4%;bottom:calc(14% - 12px);height:16px;border:2px solid #171317;border-radius:2px;background:linear-gradient(180deg,#4a303f 0 18%,#2f202a 19% 45%,#171317 46% 72%,#0c090b 73% 100%);box-shadow:inset 0 2px 0 rgba(234,82,243,.14),0 5px 0 rgba(34,34,34,.15),0 9px 12px rgba(34,34,34,.12);pointer-events:none}
 .hanoi button::before{width:4px;border-radius:4px 4px 0 0;background:linear-gradient(90deg,#171317,#3a2735 48%,#171317)}
 .hanoi button[data-selected=true]::before{box-shadow:0 0 12px rgba(34,34,34,.42)}
 .hanoi i{height:8.5%;border-radius:50%/28%;background:linear-gradient(180deg,#3b2837 0 18%,#171317 20% 72%,#050405 74%);box-shadow:inset 0 2px 0 rgba(234,82,243,.22),0 4px 0 rgba(34,34,34,.16)}
 
 /* URI responde tanto a la caricia táctil como a la presencia del puntero. */
-.uri-cat{transform-origin:center;will-change:transform,filter}
+.uri-cat{filter:none;transform-origin:center;will-change:transform,filter;-webkit-tap-highlight-color:transparent}
 .uri-cat.is-touching{animation:uri-touch-pulse .34s ease-out}
-.uri-cat:hover:not(.is-vanishing){filter:drop-shadow(0 0 13px rgba(234,82,243,.78))}
+@media(hover:hover) and (pointer:fine){.uri-cat:hover:not(.is-vanishing){filter:drop-shadow(0 0 13px rgba(234,82,243,.78))}}
+.uri-text{align-self:center;display:grid;justify-items:center;gap:.38rem}.uri-text .instruction,.uri-text .uri-purr{margin:0}.uri-text .uri-purr{font-size:.86em;opacity:0;visibility:hidden;transition:opacity .18s ease;min-height:1em}.uri-text .uri-purr.is-visible{opacity:.68;visibility:visible}
 @keyframes uri-touch-pulse{50%{transform:translate(-50%,-50%) scale(var(--uri-scale,1)) scale(1.34);filter:drop-shadow(0 0 27px #EA52F3)}}
 
-@media(max-width:700px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .tetris-field,.fire[data-fire="tower"] .peg-solitaire,.fire[data-fire="hanoi"] .hanoi{width:min(90vw,52dvh,500px)}.hanoi::after{bottom:calc(14% - 12px)}}
+@media(max-width:700px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .tetris-field,.fire[data-fire="tower"] .peg-solitaire,.fire[data-fire="hanoi"] .hanoi{width:min(90vw,52dvh,500px)}}
 @media(max-height:650px){.fire[data-fire="klotski"] .klotski,.fire[data-fire="connectfour"] .connect-four,.fire[data-fire="object"] .tetris-field,.fire[data-fire="tower"] .peg-solitaire,.fire[data-fire="hanoi"] .hanoi{width:min(82vw,46dvh)}}

@@ -39,11 +39,12 @@
   "stay_level": "Niveau",
   "stay_back_to_radio": "Retourner à ÚGJÜ RADIO", "stay_rooms_label": "Feux", "stay_fires_label": "FEUX",
   "stay_maze_title": "LE LABYRINTHE", "stay_maze_instruction": "Menez l’anneau à l’autre extrémité sans toucher le parcours.",
-  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Faites glisser les formes. Libérez la pièce sombre par l’ouverture.",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Faites glisser les formes. Sortez par la fenêtre et purifiez ainsi l’obscurité.",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "Une partie avec la mort. Vous êtes le cercle ouvert, elle est le cercle fermé. Formez une ligne de quatre pour avancer et la semer.", "stay_connectfour_board_label": "Plateau de puissance quatre", "stay_connectfour_row": "Ligne", "stay_connectfour_column": "colonne", "stay_connectfour_open_circle": "cercle ouvert", "stay_connectfour_closed_circle": "cercle fermé",
   "stay_connectfour_human": "Vous avez trouvé la ligne.", "stay_connectfour_machine": "La mort a fermé la forme.", "stay_connectfour_draw": "Personne n’a cédé.",
   "stay_hanoi_title": "LA TOUR DE HANOÏ", "stay_hanoi_instruction": "Déplacez un disque à la fois. Ne posez jamais un grand sur un petit.",
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Tournez chaque fragment jusqu’à fermer le circuit et faire revenir le mantra.", "stay_stone_warm": "Le mantra continue.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Touchez les perspectives. L’architecture change avec votre regard.",
-  "stay_tower_blocked": "Aucun autre saut n’est possible.", "stay_tower_restart": "recommencer", "stay_dissolution_return": "reviens à la maison"
+  "stay_uri_purr": "Uri ronronne", "stay_uri_instruction": "Apparaît, disparaît. Toujours là... Toujours", "stay_uri_field_label": "Uri, un chat en mouvement", "stay_uri_pet_label": "Caresser Uri",
+  "stay_tower_instruction": "Sautez par-dessus une pièce pour la faire disparaître. N’en laissez qu’une au centre.", "stay_tower_blocked": "Plus aucun duel n’est possible", "stay_tower_restart": "recommencer", "stay_dissolution_return": "reviens à la maison"
 }

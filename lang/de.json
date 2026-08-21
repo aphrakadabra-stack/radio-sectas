@@ -39,11 +39,12 @@
   "stay_level": "Stufe",
   "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO", "stay_rooms_label": "Feuer", "stay_fires_label": "FEUER",
   "stay_maze_title": "DAS LABYRINTH", "stay_maze_instruction": "Führe den Ring zum anderen Ende, ohne den Weg zu berühren.",
-  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Verschiebe die Formen. Befreie das dunkle Teil durch die Öffnung.",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Verschiebe die Formen. Geh durch das Fenster hinaus und reinige so die Dunkelheit.",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "Eine Partie mit dem Tod. Du bist der offene Kreis, sie ist der geschlossene Kreis. Bilde eine Viererlinie, um voranzukommen und sie abzulenken.", "stay_connectfour_board_label": "Vier-gewinnt-Spielfeld", "stay_connectfour_row": "Reihe", "stay_connectfour_column": "Spalte", "stay_connectfour_open_circle": "offener Kreis", "stay_connectfour_closed_circle": "geschlossener Kreis",
   "stay_connectfour_human": "Du hast die Linie gefunden.", "stay_connectfour_machine": "Der Tod schloss die Form.", "stay_connectfour_draw": "Niemand gab nach.",
   "stay_hanoi_title": "DER TURM VON HANOI", "stay_hanoi_instruction": "Bewege jeweils eine Scheibe. Lege nie eine größere auf eine kleinere.",
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Drehe jedes Fragment, bis sich der Kreis schließt und das Mantra zurückkehrt.", "stay_stone_warm": "Das Mantra geht weiter.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Berühre die Perspektiven. Die Architektur verändert sich mit deinem Blick.",
-  "stay_tower_blocked": "Es ist kein weiterer Sprung möglich.", "stay_tower_restart": "neu beginnen", "stay_dissolution_return": "kehr zum Haus zurück"
+  "stay_uri_purr": "Uri schnurrt", "stay_uri_instruction": "Erscheint, verschwindet. Ist immer noch da... Immer", "stay_uri_field_label": "Uri, eine Katze in Bewegung", "stay_uri_pet_label": "Uri streicheln",
+  "stay_tower_instruction": "Spring über eine Figur, damit sie verschwindet. Lass nur eine in der Mitte übrig.", "stay_tower_blocked": "Kein Duell ist mehr möglich", "stay_tower_restart": "neu beginnen", "stay_dissolution_return": "kehr zum Haus zurück"
 }

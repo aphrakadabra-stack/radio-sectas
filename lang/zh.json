@@ -39,11 +39,12 @@
   "stay_level": "级别",
   "stay_back_to_radio": "返回ÚGJÜ RADIO", "stay_rooms_label": "火", "stay_fires_label": "火",
   "stay_maze_title": "迷宫", "stay_maze_instruction": "将圆环带到另一端，不要碰到路径。",
-  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "滑动形状，让深色方块从开口出去。",
+  "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "滑动这些形状。从窗口出去，从而净化黑暗。",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "与死亡对弈。你是空心圆，她是实心黑圆。将四个连成一线，以便前进并迷惑她。", "stay_connectfour_board_label": "四子连线棋盘", "stay_connectfour_row": "行", "stay_connectfour_column": "列", "stay_connectfour_open_circle": "空心圆", "stay_connectfour_closed_circle": "实心黑圆",
   "stay_connectfour_human": "你找到了这条线。", "stay_connectfour_machine": "死亡闭合了形状。", "stay_connectfour_draw": "谁也没有让步。",
   "stay_hanoi_title": "河内塔", "stay_hanoi_instruction": "每次移动一个圆盘。不要把大圆盘放在小圆盘上。",
   "stay_stone_title": "曼陀罗", "stay_stone_instruction": "旋转每个片段，直到形态不间断地呼吸。", "stay_stone_warm": "曼陀罗继续。",
   "stay_object_title": "OP-ART", "stay_object_instruction": "触碰不同视角。目光改变时，建筑也随之改变。",
-  "stay_tower_blocked": "已经没有可以跳跃的步骤。", "stay_tower_restart": "重新开始", "stay_dissolution_return": "回到屋里"
+  "stay_uri_purr": "Uri在呼噜", "stay_uri_instruction": "出现，消失。依然还在……永远", "stay_uri_field_label": "移动中的猫 Uri", "stay_uri_pet_label": "抚摸 Uri",
+  "stay_tower_instruction": "跳过一个棋子，使其消失。最后只在中心留下一个。", "stay_tower_blocked": "已经不可能再进行任何决斗", "stay_tower_restart": "重新开始", "stay_dissolution_return": "回到屋里"
 }
