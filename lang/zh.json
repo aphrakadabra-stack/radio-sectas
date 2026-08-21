@@ -45,6 +45,6 @@
   "stay_hanoi_title": "河内塔", "stay_hanoi_instruction": "每次移动一个圆盘。不要把大圆盘放在小圆盘上。",
   "stay_stone_title": "曼陀罗", "stay_stone_instruction": "旋转每个片段，直到形态不间断地呼吸。", "stay_stone_warm": "曼陀罗继续。",
   "stay_object_title": "OP-ART", "stay_object_instruction": "触碰不同视角。目光改变时，建筑也随之改变。",
-  "stay_uri_purr": "Uri在呼噜", "stay_uri_instruction": "出现，消失。依然还在……永远", "stay_uri_field_label": "移动中的猫 Uri", "stay_uri_pet_label": "抚摸 Uri",
+  "stay_uri_purr": "Uri呼噜着……将魔力注入你体内", "stay_uri_instruction": "出现，消失。依然还在……永远", "stay_uri_field_label": "移动中的猫 Uri", "stay_uri_pet_label": "抚摸 Uri",
   "stay_tower_instruction": "跳过一个棋子，使其消失。最后只在中心留下一个。", "stay_tower_blocked": "已经不可能再进行任何决斗", "stay_tower_restart": "重新开始", "stay_dissolution_return": "回到屋里"
 }

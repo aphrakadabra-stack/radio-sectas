@@ -45,6 +45,6 @@
   "stay_hanoi_title": "LA TORRE DI HANOI", "stay_hanoi_instruction": "Sposta un disco alla volta. Non mettere mai il grande sul piccolo.",
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Ruota ogni frammento finché la forma respira senza interruzioni.", "stay_stone_warm": "Il mantra continua.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Tocca le prospettive. L’architettura cambia con il tuo sguardo.",
-  "stay_uri_purr": "Uri fa le fusa", "stay_uri_instruction": "Appare, scompare. È ancora qui... Sempre", "stay_uri_field_label": "Uri, un gatto in movimento", "stay_uri_pet_label": "Accarezza Uri",
+  "stay_uri_purr": "Uri fa le fusa... e ti carica della sua magia", "stay_uri_instruction": "Appare, scompare. È ancora qui... Sempre", "stay_uri_field_label": "Uri, un gatto in movimento", "stay_uri_pet_label": "Accarezza Uri",
   "stay_tower_instruction": "Salta sopra un pezzo per farlo scomparire. Lasciane solo uno al centro.", "stay_tower_blocked": "Non è più possibile alcun duello", "stay_tower_restart": "ricomincia", "stay_dissolution_return": "torna alla casa"
 }

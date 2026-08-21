@@ -166,23 +166,26 @@ campoObjeto.onpointerup=()=>{if(!gestoTetris)return;if(finTetris)prepararObjeto(
 campoObjeto.onpointercancel=()=>{gestoTetris=null;campoObjeto.classList.remove("is-dragging")};
 
 // Uri: cabeza y cola, presencia guardiana que aparece y se desvanece.
-const campoUri=document.querySelector('[data-firepiece="uri"]'),gatoUri=campoUri.querySelector(".uri-cat"),ronroneoUri=document.querySelector('[data-fire="uri"] .uri-purr');let esperaUri,ultimoFeedbackUri=0,ultimaMemoriaUri=0,contactoUri=false,vibracionUri=null;
+const campoUri=document.querySelector('[data-firepiece="uri"]'),gatoUri=campoUri.querySelector(".uri-cat"),ronroneoUri=document.querySelector('[data-fire="uri"] .uri-purr');let esperaUri,esperaRonroneoUri,ultimoFeedbackUri=0,ultimaMemoriaUri=0,ultimaInteraccionUri=0,contactoUri=false,vibracionUri=null;
 function escalaAleatoriaUri(){const azar=Math.random();if(azar<.18)return 1.85+Math.random()*.8;if(azar<.48)return .5+Math.random()*.34;return .92+Math.random()*.58}
 function moverUri(){if(fuegoActual!=="uri")return;const x=18+Math.random()*64,y=20+Math.random()*58,rapido=Math.random()<.2,escala=escalaAleatoriaUri();gatoUri.style.setProperty("--uri-x",`${x}%`);gatoUri.style.setProperty("--uri-y",`${y}%`);gatoUri.style.setProperty("--uri-scale",escala.toFixed(2));gatoUri.style.setProperty("--uri-speed",rapido?".55s":`${2.8+Math.random()*2.2}s`);gatoUri.classList.add("is-vanishing");clearTimeout(esperaUri);esperaUri=setTimeout(()=>{gatoUri.classList.remove("is-vanishing");esperaUri=setTimeout(moverUri,rapido?900:3000+Math.random()*4200)},rapido?300:1100+Math.random()*900)}
-function ocultarRonroneoUri(){ronroneoUri.classList.remove("is-visible");ronroneoUri.setAttribute("aria-hidden","true")}
-function mostrarRonroneoUri(){ronroneoUri.classList.add("is-visible");ronroneoUri.setAttribute("aria-hidden","false")}
+function ocultarRonroneoUri(){clearTimeout(esperaRonroneoUri);ronroneoUri.classList.remove("is-visible");ronroneoUri.setAttribute("aria-hidden","true")}
+function mostrarRonroneoUri(){clearTimeout(esperaRonroneoUri);ronroneoUri.classList.add("is-visible");ronroneoUri.setAttribute("aria-hidden","false")}
+function prolongarRonroneoUri(){clearTimeout(esperaRonroneoUri);esperaRonroneoUri=setTimeout(ocultarRonroneoUri,1800)}
 function detenerVibracionUri(){clearInterval(vibracionUri);vibracionUri=null;navigator.vibrate?.(0)}
 function sostenerVibracionUri(e){if(e?.pointerType==="mouse"||vibracionUri)return;const pulso=()=>navigator.vibrate?.([55,30,55,30,75]);pulso();vibracionUri=setInterval(pulso,270)}
-function prepararUri(){clearTimeout(esperaUri);detenerVibracionUri();contactoUri=false;ocultarRonroneoUri();document.body.classList.remove("uri-memory");gatoUri.classList.remove("is-vanishing","is-petted","is-touching","is-purring");moverUri()}
+function finalizarCariciaUri(e){contactoUri=false;detenerVibracionUri();gatoUri.classList.remove("is-purring");prolongarRonroneoUri();if(e&&gatoUri.hasPointerCapture?.(e.pointerId))gatoUri.releasePointerCapture(e.pointerId)}
+function prepararUri(){clearTimeout(esperaUri);clearTimeout(esperaRonroneoUri);detenerVibracionUri();contactoUri=false;ocultarRonroneoUri();document.body.classList.remove("uri-memory");gatoUri.classList.remove("is-vanishing","is-petted","is-touching","is-purring");moverUri()}
 function feedbackUri(e){const ahora=performance.now();gatoUri.classList.remove("is-touching");void gatoUri.offsetWidth;gatoUri.classList.add("is-touching");if(e?.pointerType!=="mouse"&&ahora-ultimoFeedbackUri>140){navigator.vibrate?.([18,24,18]);ultimoFeedbackUri=ahora}}
 function iluminarMemoriaUri(){const ahora=performance.now();if(ahora-ultimaMemoriaUri<900)return;ultimaMemoriaUri=ahora;document.body.classList.remove("uri-memory");void document.body.offsetWidth;document.body.classList.add("uri-memory")}
-function acariciarUri(e){if(e)e.preventDefault();feedbackUri(e);iluminarMemoriaUri();mostrarRonroneoUri();clearTimeout(esperaUri);gatoUri.classList.remove("is-vanishing");gatoUri.classList.add("is-petted");esperaUri=setTimeout(()=>{gatoUri.classList.remove("is-petted","is-touching");moverUri()},1800)}
+function acariciarUri(e){if(e)e.preventDefault();ultimaInteraccionUri=performance.now();feedbackUri(e);iluminarMemoriaUri();mostrarRonroneoUri();clearTimeout(esperaUri);gatoUri.classList.remove("is-vanishing");gatoUri.classList.add("is-petted");esperaUri=setTimeout(()=>{gatoUri.classList.remove("is-petted","is-touching");moverUri()},1800)}
 gatoUri.onanimationend=e=>{if(e.animationName==="uri-touch-pulse")gatoUri.classList.remove("is-touching")};
 document.body.addEventListener("animationend",e=>{if(e.animationName==="uri-memory-light")document.body.classList.remove("uri-memory")});
-gatoUri.onpointerdown=e=>{contactoUri=true;gatoUri.classList.add("is-purring");gatoUri.setPointerCapture?.(e.pointerId);sostenerVibracionUri(e);acariciarUri(e)};
-gatoUri.onpointermove=e=>{if(contactoUri&&e.buttons)acariciarUri(e)};
-gatoUri.onpointerup=gatoUri.onpointercancel=e=>{contactoUri=false;detenerVibracionUri();gatoUri.classList.remove("is-purring");ocultarRonroneoUri();if(gatoUri.hasPointerCapture?.(e.pointerId))gatoUri.releasePointerCapture(e.pointerId)};
-gatoUri.onpointerleave=e=>{if(e.pointerType==="mouse"&&!contactoUri)ocultarRonroneoUri()};
+// Pointer Events unifica pantalla táctil, mouse y trackpad (estos dos últimos llegan como "mouse").
+gatoUri.onpointerdown=e=>{if(e.isPrimary===false||e.button>0)return;contactoUri=true;gatoUri.classList.add("is-purring");gatoUri.setPointerCapture?.(e.pointerId);sostenerVibracionUri(e);acariciarUri(e)};
+gatoUri.onpointermove=e=>{if(contactoUri&&(e.buttons!==0||e.pointerType==="touch"))acariciarUri(e)};
+gatoUri.onpointerup=gatoUri.onpointercancel=finalizarCariciaUri;
+gatoUri.onclick=e=>{if(performance.now()-ultimaInteraccionUri>500){acariciarUri(e);prolongarRonroneoUri()}};
 
 // Sin nombre: cada toque apaga luz, sonido y acción hasta que sólo queda el regreso.
 const campoDisolucion=document.querySelector('[data-firepiece="dissolution"]'),veloDisolucion=campoDisolucion.querySelector(".dissolution-veil"),marcasDisolucion=campoDisolucion.querySelector(".dissolution-marks");let toquesDisolucion=0,terminoDisolucion=false,esperaRenacer=[];

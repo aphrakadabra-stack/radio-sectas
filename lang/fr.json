@@ -45,6 +45,6 @@
   "stay_hanoi_title": "LA TOUR DE HANOÏ", "stay_hanoi_instruction": "Déplacez un disque à la fois. Ne posez jamais un grand sur un petit.",
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Tournez chaque fragment jusqu’à fermer le circuit et faire revenir le mantra.", "stay_stone_warm": "Le mantra continue.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Touchez les perspectives. L’architecture change avec votre regard.",
-  "stay_uri_purr": "Uri ronronne", "stay_uri_instruction": "Apparaît, disparaît. Toujours là... Toujours", "stay_uri_field_label": "Uri, un chat en mouvement", "stay_uri_pet_label": "Caresser Uri",
+  "stay_uri_purr": "Uri ronronne... et te charge de sa magie", "stay_uri_instruction": "Apparaît, disparaît. Toujours là... Toujours", "stay_uri_field_label": "Uri, un chat en mouvement", "stay_uri_pet_label": "Caresser Uri",
   "stay_tower_instruction": "Sautez par-dessus une pièce pour la faire disparaître. N’en laissez qu’une au centre.", "stay_tower_blocked": "Plus aucun duel n’est possible", "stay_tower_restart": "recommencer", "stay_dissolution_return": "reviens à la maison"
 }

@@ -46,6 +46,6 @@
   "stay_hanoi_title": "LA TORRE DE HANOI", "stay_hanoi_instruction": "Lleva los discos de la varilla izquierda a la derecha. Mueve uno cada vez, sin poner uno grande sobre uno pequeño.",
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Gira cada fragmento hasta cerrar el circuito y hacer volver al mantra.", "stay_stone_warm": "El mantra continúa.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Toca las perspectivas. La arquitectura cambia cuando cambia tu mirada.",
-  "stay_uri_purr": "Uri ronronea", "stay_uri_instruction": "Aparece, Desaparece. Sigue estando... Siempre", "stay_uri_field_label": "Uri, gato en movimiento", "stay_uri_pet_label": "Acariciar a Uri",
+  "stay_uri_purr": "Uri ronronea... y carga su magia en ti", "stay_uri_instruction": "Aparece, Desaparece. Sigue estando... Siempre", "stay_uri_field_label": "Uri, gato en movimiento", "stay_uri_pet_label": "Acariciar a Uri",
   "stay_tower_instruction": "Salta sobre una pieza para hacerla desaparecer. Deja solo una en el centro.", "stay_tower_blocked": "Ya no hay ningún duelo posible", "stay_tower_restart": "comenzar de nuevo", "stay_dissolution_return": "vuelve a la casa"
 }
