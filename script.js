@@ -92,7 +92,7 @@ if (esNavegadorInstagram) {
 function abrirManifiesto() {
 
     if (!manifiestoCargado) {
-        marcoManifiesto.src = "manifiesto.html?inside=radio";
+        marcoManifiesto.src = "manifiesto.html?inside=radio&v=20260822-2";
         manifiestoCargado = true;
     }
 

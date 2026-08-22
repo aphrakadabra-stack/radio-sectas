@@ -62,6 +62,15 @@
                     return;
                 }
 
+                /*
+                Dentro de la Casa, OneSignal pertenece a la página principal.
+                Evitar una segunda instancia en el iframe mantiene la solicitud
+                de permiso en el contexto superior del navegador.
+                */
+                if (window.parent !== window) {
+                    return;
+                }
+
                 await OneSignal.init({
                     appId:
                         "e4712649-ca34-49e6-a2b4-f2ca6c5c7460",
@@ -277,7 +286,7 @@
     </main>
 
     <script src="observatory.js?v=20260821-2"></script>
-    <script src="manifiesto.js?v=20260822-1"></script>
+    <script src="manifiesto.js?v=20260822-2"></script>
 
 </body>
 
