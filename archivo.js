@@ -147,6 +147,11 @@ async function reproducirIndependiente(entrada) {
         audioIndependiente.preload = "metadata";
         audioIndependiente.setAttribute("playsinline","");
         audioIndependiente.addEventListener("play",informarSesionIndependiente);
+        audioIndependiente.addEventListener("playing",() => {
+            const detalle = String(audioIndependiente.dataset.identifier || "session")
+                .toLowerCase().replace(/[^a-z0-9_-]/g,"_").slice(0,64);
+            window.observarUgju?.("archive_play",detalle);
+        });
         audioIndependiente.addEventListener("pause",informarSesionIndependiente);
         audioIndependiente.addEventListener("ended",detenerIndependiente);
         document.body.appendChild(audioIndependiente);
@@ -302,23 +307,36 @@ async function consultarInternetArchive() {
 
 
 async function cargarCatalogo() {
-    try {
-        catalogo = await consultarInternetArchive();
-        localStorage.setItem(cacheKey,JSON.stringify(catalogo));
-    } catch (error) {
-        try {
-            catalogo = JSON.parse(localStorage.getItem(cacheKey) || "null");
-        } catch (cacheError) {
-            catalogo = null;
-        }
+    let catalogoGuardado = null;
 
-        if (!Array.isArray(catalogo)) {
+    try {
+        catalogoGuardado = JSON.parse(localStorage.getItem(cacheKey) || "null");
+    } catch (cacheError) {
+        catalogoGuardado = null;
+    }
+
+    if (Array.isArray(catalogoGuardado)) {
+        catalogo = catalogoGuardado;
+        renderizarCatalogo(catalogo);
+    } else {
+        try {
             const respuesta = await fetch("archive-fallback.json?v=20260808-1");
             catalogo = respuesta.ok ? await respuesta.json() : [];
+            renderizarCatalogo(catalogo);
+        } catch (error) {
+            catalogo = [];
+            renderizarCatalogo(catalogo);
         }
     }
 
-    renderizarCatalogo(catalogo);
+    try {
+        const catalogoActualizado = await consultarInternetArchive();
+        catalogo = catalogoActualizado;
+        localStorage.setItem(cacheKey,JSON.stringify(catalogoActualizado));
+        renderizarCatalogo(catalogoActualizado);
+    } catch (error) {
+        /* La lista inmediata ya visible sigue disponible sin red. */
+    }
 }
 
 

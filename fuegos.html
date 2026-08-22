@@ -6,7 +6,9 @@
     <meta name="theme-color" content="#EA52F3">
     <meta name="ugju-observatory" content="">
     <title>FUEGOS — ÚGJÜ RADIO</title>
-    <link rel="stylesheet" href="fuegos.css?v=20260821-11">
+    <link rel="stylesheet" href="fuegos.css?v=20260821-12">
+    <link rel="stylesheet" href="house-actions.css?v=20260821-2">
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 </head>
 <body>
     <main class="house">
@@ -134,8 +136,16 @@
                 <path d="M160 168v24m-12-12h24m-12-8h8v-6m-8 22h-8v6m0-14v-8h-6m22 8v8h6" fill="none" stroke="#EA52F3" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter"/>
             </svg></div><div class="dissolution-light" aria-hidden="true"></div><div class="dissolution-veil"></div></div>
         </section>
+        <div class="house-actions house-actions-fixed">
+            <button class="manifesto-notify" id="notify-link" type="button" aria-label="Notify me" title="Notify me"><svg viewBox="0 0 24 18" aria-hidden="true"><path d="M18 7a6 6 0 0 0-12 0c0 5-3 6-3 8h18c0-2-3-3-3-8"></path><path d="M10 17h4"></path></svg></button>
+            <button class="radio-email" id="email-link" type="button" aria-label="Email ÚGJÜ RADIO" title="Email ÚGJÜ RADIO"><svg viewBox="0 0 24 18" aria-hidden="true"><rect x="1" y="1" width="22" height="16"></rect><path d="M2 2L12 10L22 2"></path></svg></button>
+            <button class="manifesto-support" id="support-link" type="button">SUPPORT</button>
+        </div>
+        <section class="support-panel" id="support-panel" role="dialog" aria-modal="true" aria-labelledby="support-title" hidden><div class="support-card"><h2 id="support-title">SUPPORT ÚGJÜ RADIO</h2><button class="support-option" id="support-argentina" type="button">ARGENTINA — COPY ALIAS</button><a class="support-option" id="support-paypal" href="https://paypal.me/chromemoon" target="_blank" rel="noopener noreferrer">OTHER COUNTRIES — PAYPAL</a><p class="support-status" id="support-status" aria-live="polite"></p><button class="support-close" id="support-close" type="button">CLOSE</button></div></section>
+        <section class="notification-install-panel" id="notification-install-panel" role="dialog" aria-modal="true" aria-labelledby="notification-install-title" hidden><div class="notification-install-card"><h2 id="notification-install-title">NOTIFICATIONS ON IPHONE OR IPAD</h2><p>Share → Add to Home Screen → open ÚGJÜ RADIO from the icon → tap the bell again.</p><button class="notification-install-close" id="notification-install-close" type="button">CLOSE</button></div></section>
     </main>
-    <script src="observatory.js?v=20260814-1"></script>
-    <script src="fuegos.js?v=20260821-13"></script>
+    <script src="observatory.js?v=20260821-2"></script>
+    <script src="house-actions.js?v=20260821-1"></script>
+    <script src="fuegos.js?v=20260821-15"></script>
 </body>
 </html>

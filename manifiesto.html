@@ -24,6 +24,7 @@
     <meta name="robots" content="index,follow">
 
     <meta name="theme-color" content="#EA52F3">
+    <meta name="ugju-observatory" content="">
 
     <link rel="manifest" href="manifest.json?v=20260809-2">
 
@@ -50,6 +51,10 @@
 
         OneSignalDeferred.push(
             async function(OneSignal) {
+
+                if (location.hostname !== "ugjusectas.github.io") {
+                    return;
+                }
 
                 await OneSignal.init({
                     appId:
@@ -265,6 +270,7 @@
 
     </main>
 
+    <script src="observatory.js?v=20260821-2"></script>
     <script src="manifiesto.js?v=20260807-1"></script>
 
 </body>

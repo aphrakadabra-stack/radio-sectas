@@ -1,0 +1,77 @@
+(() => {
+    const notify = document.getElementById("notify-link");
+    const email = document.getElementById("email-link");
+    const support = document.getElementById("support-link");
+    const supportPanel = document.getElementById("support-panel");
+    const installPanel = document.getElementById("notification-install-panel");
+    if (!notify || !email || !support || !supportPanel || !installPanel) return;
+
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    if (location.hostname === "ugjusectas.github.io") window.OneSignalDeferred.push(async OneSignal => {
+        if (parent !== window) {
+            actualizarAviso();
+            return;
+        }
+        if (!window.ugjuOneSignal) {
+            await OneSignal.init({appId:"e4712649-ca34-49e6-a2b4-f2ca6c5c7460",safari_web_id:"web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",serviceWorkerPath:"ugju-radio/OneSignalSDKWorker.js",serviceWorkerParam:{scope:"/ugju-radio/"},notifyButton:{enable:false}});
+            window.ugjuOneSignal = OneSignal;
+            document.dispatchEvent(new CustomEvent("ugju-onesignal-ready"));
+        }
+        actualizarAviso();
+        OneSignal.User.PushSubscription.addEventListener("change",actualizarAviso);
+    });
+
+    const argentina = document.getElementById("support-argentina");
+    const paypal = document.getElementById("support-paypal");
+    const supportStatus = document.getElementById("support-status");
+    const supportClose = document.getElementById("support-close");
+    const installClose = document.getElementById("notification-install-close");
+    const pareceArgentina = (navigator.languages || [navigator.language]).some(c => /^es[-_]AR$/i.test(c)) || (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("America/Argentina/");
+    const oneSignal = () => window.ugjuOneSignal || (parent !== window ? parent.ugjuOneSignal : null);
+    const instalada = () => navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+
+    async function localizar() {
+        const disponibles = ["es","en","de","fi","fr","it","ja","zh"];
+        const codigo = (navigator.languages || [navigator.language])
+            .map(valor => valor.toLowerCase().split("-")[0])
+            .find(valor => disponibles.includes(valor)) || "en";
+        try {
+            const respuesta = await fetch(`manifiestos/${codigo}.json?v=20260807-2`);
+            if (!respuesta.ok) return;
+            const textos = await respuesta.json();
+            notify.setAttribute("aria-label",textos.notify_label);
+            notify.title = textos.notify_label;
+            support.textContent = textos.support;
+            document.getElementById("support-title").textContent = textos.support_title;
+            argentina.textContent = textos.support_argentina;
+            paypal.textContent = textos.support_international;
+            supportClose.textContent = textos.support_close;
+            document.getElementById("notification-install-title").textContent = textos.notify_ios_title;
+            installPanel.querySelector("p").textContent = textos.notify_ios_install;
+            installClose.textContent = textos.support_close;
+        } catch {}
+    }
+
+    email.addEventListener("click",() => { location.href = `mailto:${String.fromCharCode(117,103,106,117,115,101,99,116,97,115,64,103,109,97,105,108,46,99,111,109)}`; });
+    function actualizarAviso(){notify.setAttribute("aria-pressed",String(Boolean(oneSignal()?.User.PushSubscription.optedIn)))}
+    notify.addEventListener("click",async() => {
+        if (/Instagram/i.test(navigator.userAgent)){alert("Open this page in your browser to enable notifications.");return}
+        if ((/iPad|iPhone|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) && !instalada()){installPanel.hidden=false;installClose.focus();return}
+        const sdk=oneSignal();if(!sdk){alert("Notifications are still loading.");return}
+        if(!sdk.Notifications.isPushSupported()){alert("Notifications are not supported in this browser.");return}
+        try{notify.disabled=true;sdk.User.PushSubscription.optedIn?await sdk.User.PushSubscription.optOut():await sdk.User.PushSubscription.optIn();actualizarAviso()}catch{alert("Notifications could not be updated.")}finally{notify.disabled=false}
+    });
+    support.addEventListener("click",() => {supportPanel.querySelector(".support-card").insertBefore(pareceArgentina?argentina:paypal,pareceArgentina?paypal:argentina);supportPanel.hidden=false;(pareceArgentina?argentina:paypal).focus()});
+    async function copiar(){const alias="muriscia.mp";try{await navigator.clipboard.writeText(alias)}catch{const t=document.createElement("textarea");t.value=alias;t.style.position="fixed";t.style.opacity="0";document.body.append(t);t.select();document.execCommand("copy");t.remove()}supportStatus.textContent=`ALIAS COPIED: ${alias}`}
+    const cerrar=(panel,foco)=>{panel.hidden=true;supportStatus.textContent="";foco.focus()};
+    argentina.addEventListener("click",copiar);supportClose.addEventListener("click",()=>cerrar(supportPanel,support));installClose.addEventListener("click",()=>cerrar(installPanel,notify));
+    supportPanel.addEventListener("click",e=>{if(e.target===supportPanel)cerrar(supportPanel,support)});installPanel.addEventListener("click",e=>{if(e.target===installPanel)cerrar(installPanel,notify)});
+    document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(!installPanel.hidden)cerrar(installPanel,notify);else if(!supportPanel.hidden)cerrar(supportPanel,support)});
+    if (parent !== window) {
+        try {
+            parent.document.addEventListener("ugju-onesignal-ready",actualizarAviso);
+        } catch {}
+    }
+    localizar();
+    actualizarAviso();
+})();

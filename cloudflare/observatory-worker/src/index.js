@@ -4,11 +4,13 @@ const EVENTS = new Set([
     "archive_open",
     "archive_play",
     "fire_open",
-    "fire_dwell"
+    "fire_dwell",
+    "fire_complete",
+    "uri_pet"
 ]);
 
 const DETAILS = /^[a-z0-9_-]{0,64}$/;
-const PATHS = new Set(["radio","fuegos"]);
+const PATHS = new Set(["radio","fuegos","archivo","manifiesto"]);
 
 export default {
     async fetch(request,env) {
@@ -132,6 +134,14 @@ async function summary(request,env) {
             AND blob1 = 'fire_dwell'
         GROUP BY fire ORDER BY dwell_seconds DESC FORMAT JSON
     `);
+    const fireActions = await query(env,`
+        SELECT blob2 AS fire, blob1 AS event,
+            SUM(_sample_interval) AS total
+        FROM ugju_radio_observatory
+        WHERE timestamp > NOW() - INTERVAL '1' DAY
+            AND blob1 IN ('fire_complete','uri_pet')
+        GROUP BY fire,event ORDER BY total DESC FORMAT JSON
+    `);
 
     return Response.json(
         {
@@ -139,6 +149,7 @@ async function summary(request,env) {
             events: events.data || [],
             fireOpens: fireOpens.data || [],
             fireDwell: fireDwell.data || [],
+            fireActions: fireActions.data || [],
             generatedAt: new Date().toISOString()
         },
         {headers:{"cache-control":"no-store"}}

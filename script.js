@@ -45,9 +45,9 @@ const metadatosVivo = document.getElementById("live-metadata");
 const pistaMetadatosVivo = document.getElementById("live-metadata-track");
 const esNavegadorInstagram =
     /Instagram/i.test(navigator.userAgent);
-let manifiestoCargado = false;
-let archivoCargado = false;
-let fuegosCargado = false;
+let manifiestoCargado = Boolean(marcoManifiesto.src);
+let archivoCargado = Boolean(marcoArchivo.src);
+let fuegosCargado = Boolean(marcoFuegos.src);
 let vivoDetenidoPorArchivo = false;
 let entradaArchivoActual = null;
 let radioHabitada = false;
@@ -98,6 +98,10 @@ function abrirManifiesto() {
 
     capaManifiesto.hidden = false;
     capaManifiesto.setAttribute("aria-hidden","false");
+    marcoManifiesto.contentWindow?.postMessage(
+        {type:"ugju-observatory-activate"},
+        location.origin
+    );
 
 }
 
@@ -350,6 +354,10 @@ function abrirArchivo() {
 
     capaArchivo.hidden = false;
     capaArchivo.setAttribute("aria-hidden","false");
+    marcoArchivo.contentWindow?.postMessage(
+        {type:"ugju-observatory-activate"},
+        location.origin
+    );
     window.observarUgju?.("archive_open");
 
 }
@@ -361,8 +369,27 @@ function abrirFuegos() {
     }
     capaFuegos.hidden = false;
     capaFuegos.setAttribute("aria-hidden","false");
+    marcoFuegos.contentWindow?.postMessage(
+        {type:"ugju-observatory-activate"},
+        location.origin
+    );
     marcoFuegos.contentWindow?.postMessage({type:"ugju-reset-dissolution"},location.origin);
 }
+
+[
+    [marcoManifiesto,capaManifiesto],
+    [marcoArchivo,capaArchivo],
+    [marcoFuegos,capaFuegos]
+].forEach(([marco,capa]) => {
+    marco.addEventListener("load",() => {
+        if (!capa.hidden) {
+            marco.contentWindow?.postMessage(
+                {type:"ugju-observatory-activate"},
+                location.origin
+            );
+        }
+    });
+});
 
 
 function restaurarControlesVivo() {
@@ -616,7 +643,6 @@ function alternarVivo() {
 
     escuchaVivoIniciadaPorUsuario = true;
     intentoReconexionVivo = 0;
-    window.observarUgju?.("live_play");
     iniciarVivo();
 
 }
@@ -1147,7 +1173,7 @@ window.addEventListener(
             evento.source === marcoFuegos.contentWindow &&
             evento.data?.type === "close-stay"
         ) {
-            cerrarFuegos(true);
+            cerrarFuegos(false);
             return;
         }
 
@@ -1216,6 +1242,9 @@ window.addEventListener("resize",ajustarDesplazamientoMetadatosVivo);
 
 
 audioVivo.addEventListener("playing",() => {
+    if (!vivoIniciadoConExito) {
+        window.observarUgju?.("live_play");
+    }
     vivoEscuchadoEnEstaSesion = true;
     vivoIniciadoConExito = true;
     vivoConectando = false;

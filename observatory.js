@@ -15,18 +15,30 @@
         "archive_open",
         "archive_play",
         "fire_open",
-        "fire_dwell"
+        "fire_dwell",
+        "fire_complete",
+        "uri_pet"
     ]);
 
+    const rutas = {
+        "archivo.html": "archivo",
+        "fuegos.html": "fuegos",
+        "manifiesto.html": "manifiesto"
+    };
+
+    const pagina = location.pathname.split("/").pop() || "index.html";
+    const estaPrecargadaEnRadio =
+        new URLSearchParams(location.search).get("inside") === "radio";
+    let observatorioActivo = !estaPrecargadaEnRadio;
+
     window.observarUgju = (event,detail = "",duration = 0) => {
+        if (!observatorioActivo) return;
         if (!eventosPermitidos.has(event)) return;
 
         const cuerpo = JSON.stringify({
             event,
             detail: String(detail).slice(0,64),
-            path: location.pathname.endsWith("fuegos.html")
-                ? "fuegos"
-                : "radio",
+            path: rutas[pagina] || "radio",
             duration: Math.min(
                 3600,
                 Math.max(0,Math.round(Number(duration) / 15) * 15)
@@ -49,5 +61,19 @@
         }).catch(() => {});
     };
 
-    window.observarUgju("visit");
+    if (estaPrecargadaEnRadio) {
+        window.addEventListener("message",evento => {
+            if (
+                evento.origin !== location.origin ||
+                evento.source !== parent ||
+                evento.data?.type !== "ugju-observatory-activate" ||
+                observatorioActivo
+            ) return;
+
+            observatorioActivo = true;
+            window.observarUgju("visit");
+        });
+    } else {
+        window.observarUgju("visit");
+    }
 })();

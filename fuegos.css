@@ -10,6 +10,7 @@ body.uri-inverted::after{content:"";position:fixed;z-index:0;inset:0;background:
 body.uri-inverted.uri-memory::after{animation:uri-memory-light 1.05s linear}
 @keyframes uri-memory-light{0%,100%{opacity:0}7%{opacity:.96}13%{opacity:0}28%{opacity:.78}35%{opacity:0}57%{opacity:.9}65%{opacity:0}82%{opacity:.52}88%{opacity:0}}
 .house{position:relative;z-index:1;height:100vh;height:100dvh;overflow:hidden;overscroll-behavior-x:none;touch-action:pan-y}
+.house .house-actions-fixed{left:max(28px,calc(env(safe-area-inset-left) + 14px))}
 .back-link{position:fixed;z-index:3;top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left));color:#222;font:400 .74rem "Courier Prime",monospace;letter-spacing:.08em;text-transform:uppercase;text-underline-offset:4px}
 .fire-nav{position:fixed;z-index:3;left:50%;bottom:max(10px,env(safe-area-inset-bottom));display:flex;gap:2px;transform:translateX(-50%)}
 .fire-nav button{display:grid;width:28px;height:28px;padding:0;border:0;background:transparent;place-items:center;cursor:pointer}.fire-nav button::after{content:"";display:block;width:7px;height:7px;border:1px solid rgba(34,34,34,.66);border-radius:50%}.fire-nav button[aria-current=true]::after{background:#222;border-color:#222}.fire-nav button:focus-visible{outline:1px solid #222;outline-offset:-4px}

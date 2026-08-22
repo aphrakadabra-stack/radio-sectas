@@ -21,13 +21,16 @@ body{
 }
 
 .archive-sheet{
+    --sheet-padding-inline:clamp(12px,2vw,26px);
+    --sheet-padding-block:clamp(12px,2vw,26px);
     width:min(94vw,900px);
     height:min(calc(100dvh - 32px),780px);
     display:grid;
     grid-template-rows:auto minmax(0,1fr) auto auto;
-    padding:clamp(12px,2vw,26px);
+    padding:var(--sheet-padding-block) var(--sheet-padding-inline);
     border:1px solid #111;
     background:#EA52F3;
+    position:relative;
 }
 
 .archive-header{
@@ -140,12 +143,23 @@ h1{
 }
 
 .archive-footer{
-    padding-top:clamp(7px,1vh,12px);
+    margin-top:clamp(7px,1vh,12px);
+    margin-bottom:calc(5px - var(--sheet-padding-block));
+    padding-top:clamp(6px,.9vh,10px);
     border-top:1px solid #111;
-    text-align:right;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+    min-height:clamp(36px,5.5vh,46px);
 }
 
 #back-link{
+    height:16px;
+    display:inline-flex;
+    align-items:center;
+    justify-self:end;
+    transform:translateY(4px);
     color:#111;
     font-size:clamp(.62rem,1vw,.78rem);
     font-weight:700;
@@ -158,7 +172,7 @@ h1{
 
 @media(max-width:600px){
     .archive-page{padding:8px 4px}
-    .archive-sheet{width:calc(100vw - 8px);height:calc(100dvh - 16px);padding:9px 8px}
+    .archive-sheet{--sheet-padding-inline:8px;--sheet-padding-block:9px;width:calc(100vw - 8px);height:calc(100dvh - 16px)}
     .archive-header{grid-template-columns:64px 1fr;column-gap:9px;padding-bottom:7px}
     .radio-name{
         width:60px;

@@ -2,11 +2,13 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ugju-radio-observatory",
   "main": "src/index.js",
-  "compatibility_date": "2026-08-14",
+  "compatibility_date": "2026-08-21",
+  "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": false,
   "observability": {
-    "enabled": true
+    "enabled": true,
+    "head_sampling_rate": 1
   },
   "vars": {
     "ALLOWED_ORIGIN": "https://ugjusectas.github.io",
