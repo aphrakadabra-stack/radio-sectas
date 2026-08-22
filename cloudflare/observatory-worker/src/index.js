@@ -63,7 +63,11 @@ async function collect(request,env) {
 
     let data;
     try {
-        data = await request.json();
+        const body = await request.text();
+        if (new TextEncoder().encode(body).byteLength > 2048) {
+            return Response.json({error:"Too large"},{status:413});
+        }
+        data = JSON.parse(body);
     } catch (error) {
         return Response.json({error:"Invalid JSON"},{status:400});
     }
@@ -152,7 +156,13 @@ async function summary(request,env) {
             fireActions: fireActions.data || [],
             generatedAt: new Date().toISOString()
         },
-        {headers:{"cache-control":"no-store"}}
+        {
+            headers:{
+                "cache-control":"no-store",
+                "x-content-type-options":"nosniff",
+                "referrer-policy":"no-referrer"
+            }
+        }
     );
 }
 

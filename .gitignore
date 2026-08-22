@@ -1,4 +1,14 @@
 backups/
-.DS_Store.DS_Store
-backups/
 .DS_Store
+
+# Credenciales y configuración local: nunca deben publicarse.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+wrangler.toml.local
+.dev.vars
+.dev.vars.*

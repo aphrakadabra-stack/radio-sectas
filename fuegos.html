@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://paypal.me; script-src 'self' https://cdn.onesignal.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https://archive.org https://*.archive.org; connect-src 'self' https://*.workers.dev https://*.onesignal.com; frame-src 'self'; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="#EA52F3">
     <meta name="ugju-observatory" content="">
@@ -56,7 +58,7 @@
         <section class="fire" data-fire="tower" aria-labelledby="title-tower" hidden>
             <h1 id="title-tower">Persia</h1>
             <div class="instrument peg-solitaire" data-firepiece="tower" role="grid" aria-label="Tablero de solitario de clavijas"></div>
-            <p class="instruction" data-text="stay_tower_instruction">Salta sobre una pieza para hacerla desaparecer. Deja solo una en el centro.</p><p class="fire-status" data-status="tower" aria-live="polite"></p><button class="tower-reset" type="button" onclick="reiniciarTorre()" data-text="stay_tower_restart">comenzar de nuevo</button>
+            <p class="instruction" data-text="stay_tower_instruction">Salta sobre una pieza para hacerla desaparecer. Deja solo una en el centro.</p><p class="fire-status" data-status="tower" aria-live="polite"></p><button class="tower-reset" type="button" data-text="stay_tower_restart">comenzar de nuevo</button>
         </section>
 
         <section class="fire fire-uri" data-fire="uri" aria-labelledby="title-uri" hidden>

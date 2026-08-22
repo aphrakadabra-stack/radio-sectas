@@ -21,9 +21,12 @@ El Worker de producción se llama `ugju-radio-automation` y está configurado co
 
 1. El espacio KV `ugju-radio-state`, enlazado como `RADIO_STATE`.
 2. El secreto cifrado `ONESIGNAL_API_KEY` (nunca se guarda aquí).
-3. Un Cron Trigger cada minuto: `*/1 * * * *`.
+3. El secreto cifrado `MANUAL_CHECK_TOKEN`, usado para proteger la ejecución
+   manual mediante `POST /check`. Enviar la cabecera
+   `Authorization: Bearer <token>`.
+4. Un Cron Trigger cada minuto: `*/1 * * * *`.
 
-Antes de un cambio futuro, validar que el Worker conserve el secreto y el enlace KV. Después del despliegue, encender la radio y comprobar que, tras dos comprobaciones, llegue una sola notificación.
+Antes de un cambio futuro, validar que el Worker conserve ambos secretos y el enlace KV. Después del despliegue, encender la radio y comprobar que, tras dos comprobaciones, llegue una sola notificación.
 
 La detección no usa la respuesta del stream: ese endpoint puede entregar audio
 aunque no haya una transmisión activa y dejar el estado atascado en `live`.

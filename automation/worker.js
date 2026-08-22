@@ -27,12 +27,32 @@ export default {
 
         const url = new URL(request.url);
 
-        if (url.pathname === "/check") {
+        if (url.pathname === "/check" && request.method === "POST") {
+
+            if (!await authorized(request,env)) {
+                return Response.json(
+                    {error:"Unauthorized"},
+                    {
+                        status:401,
+                        headers:{
+                            "Cache-Control":"no-store",
+                            "WWW-Authenticate":"Bearer"
+                        }
+                    }
+                );
+            }
 
             const result = await checkRadio(env);
 
             return Response.json(result);
 
+        }
+
+        if (url.pathname === "/check") {
+            return new Response("Method Not Allowed",{
+                status:405,
+                headers:{"Allow":"POST"}
+            });
         }
 
         return new Response(
@@ -48,6 +68,28 @@ export default {
     }
 
 };
+
+
+async function authorized(request,env) {
+
+    if (!env.MANUAL_CHECK_TOKEN) return false;
+
+    const supplied = request.headers.get("Authorization") || "";
+    const expected = `Bearer ${env.MANUAL_CHECK_TOKEN}`;
+    const encoder = new TextEncoder();
+    const [left,right] = await Promise.all([
+        crypto.subtle.digest("SHA-256",encoder.encode(supplied)),
+        crypto.subtle.digest("SHA-256",encoder.encode(expected))
+    ]);
+    const a = new Uint8Array(left);
+    const b = new Uint8Array(right);
+    let difference = 0;
+    for (let index = 0;index < a.length;index += 1) {
+        difference |= a[index] ^ b[index];
+    }
+    return difference === 0;
+
+}
 
 
 async function checkRadio(env) {
