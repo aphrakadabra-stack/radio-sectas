@@ -104,6 +104,19 @@ function mostrarAvisoCasa(mensaje) {
 }
 
 
+enlaceEmail.addEventListener("click", evento => {
+
+    evento.preventDefault();
+
+    try {
+        window.top.location.href = enlaceEmail.href;
+    } catch (error) {
+        window.location.href = enlaceEmail.href;
+    }
+
+});
+
+
 function obtenerOneSignal() {
 
     if (window.ugjuOneSignal) {
