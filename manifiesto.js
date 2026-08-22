@@ -289,12 +289,62 @@ async function alternarAviso() {
 
     }
 
+    /*
+    Dentro de la Casa, OneSignal pertenece al documento superior. Ejecutar
+    también allí el cambio de suscripción conserva el gesto del usuario y evita
+    que el navegador trate el permiso como una solicitud nacida del iframe.
+    */
+    if (
+        window.parent !== window &&
+        typeof window.parent.ugjuToggleNotifications === "function"
+    ) {
+
+        try {
+
+            botonAviso.disabled = true;
+            botonAviso.setAttribute("aria-busy", "true");
+
+            const resultado =
+                await window.parent.ugjuToggleNotifications();
+
+            if (!resultado.supported) {
+                mostrarAvisoCasa(
+                    textosActuales.notify_unsupported
+                );
+                return;
+            }
+
+            actualizarAvisame();
+
+            mostrarAvisoCasa(
+                resultado.optedIn
+                    ? textosActuales.notify_success
+                    : textosActuales.notify_disabled
+            );
+
+        } catch (error) {
+
+            mostrarAvisoCasa(
+                textosActuales.notify_error
+            );
+
+        } finally {
+
+            botonAviso.disabled = false;
+            botonAviso.removeAttribute("aria-busy");
+
+        }
+
+        return;
+
+    }
+
     const OneSignal = await esperarOneSignal();
 
     if (!OneSignal) {
 
         mostrarAvisoCasa(
-            textosActuales.notify_unavailable || textosActuales.notify_error
+            textosActuales.notify_error
         );
 
         return;

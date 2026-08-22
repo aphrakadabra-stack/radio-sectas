@@ -145,6 +145,33 @@
 
                 window.ugjuOneSignal = OneSignal;
 
+                /*
+                La campana se muestra dentro del manifiesto, que en la Casa
+                vive en un iframe. La suscripción debe ejecutarse aquí, en el
+                documento superior que registró OneSignal y su service worker.
+                */
+                window.ugjuToggleNotifications = async function() {
+                    if (!OneSignal.Notifications.isPushSupported()) {
+                        return {
+                            supported: false,
+                            optedIn: false
+                        };
+                    }
+
+                    if (OneSignal.User.PushSubscription.optedIn) {
+                        await OneSignal.User.PushSubscription.optOut();
+                    } else {
+                        await OneSignal.User.PushSubscription.optIn();
+                    }
+
+                    return {
+                        supported: true,
+                        optedIn: Boolean(
+                            OneSignal.User.PushSubscription.optedIn
+                        )
+                    };
+                };
+
                 document.dispatchEvent(
                     new CustomEvent(
                         "ugju-onesignal-ready"
@@ -350,7 +377,7 @@
         <iframe
             id="manifesto-frame"
             title="ÚGJÜ RADIO — Manifesto"
-            src="manifiesto.html?inside=radio&amp;v=20260822-2"
+            src="manifiesto.html?inside=radio&amp;v=20260822-3"
             loading="eager"
         ></iframe>
     </section>
