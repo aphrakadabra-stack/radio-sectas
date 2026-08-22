@@ -976,7 +976,7 @@ h1{
     .archive-link{
         position:fixed;
 
-        top:calc(max(8px,env(safe-area-inset-top)) + 50px);
+        top:calc(max(8px,env(safe-area-inset-top)) + 25px);
         right:auto;
         bottom:auto;
         left:10px;
@@ -986,7 +986,7 @@ h1{
 
     .stay-link{
         position:fixed;
-        top:calc(max(8px,env(safe-area-inset-top)) + 25px);
+        top:calc(max(8px,env(safe-area-inset-top)) + 50px);
         right:auto;
         bottom:auto;
         left:10px;
