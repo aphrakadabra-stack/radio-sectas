@@ -6,31 +6,6 @@
     const installPanel = document.getElementById("notification-install-panel");
     if (!notify || !email || !support || !supportPanel || !installPanel) return;
 
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    if (location.hostname === "ugjusectas.github.io") window.OneSignalDeferred.push(async OneSignal => {
-        if (parent !== window) {
-            actualizarAviso();
-            return;
-        }
-        if (!window.ugjuOneSignal) {
-            await OneSignal.init({appId:"e4712649-ca34-49e6-a2b4-f2ca6c5c7460",safari_web_id:"web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",serviceWorkerPath:"/ugju-radio/OneSignalSDKWorker.js",serviceWorkerParam:{scope:"/ugju-radio/"},notifyButton:{enable:false}});
-            window.ugjuOneSignal = OneSignal;
-            document.dispatchEvent(new CustomEvent("ugju-onesignal-ready"));
-        }
-        actualizarAviso();
-        OneSignal.User.PushSubscription.addEventListener("change",actualizarAviso);
-    });
-
-    if (
-        location.hostname === "ugjusectas.github.io" &&
-        !document.querySelector('script[src*="OneSignalSDK.page.js"]')
-    ) {
-        const scriptOneSignal = document.createElement("script");
-        scriptOneSignal.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
-        scriptOneSignal.defer = true;
-        document.head.appendChild(scriptOneSignal);
-    }
-
     const argentina = document.getElementById("support-argentina");
     const paypal = document.getElementById("support-paypal");
     const supportStatus = document.getElementById("support-status");
@@ -46,6 +21,7 @@
     let localized = {};
     const pareceArgentina = (navigator.languages || [navigator.language]).some(c => /^es[-_]AR$/i.test(c)) || (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("America/Argentina/");
     const oneSignal = () => window.ugjuOneSignal || (parent !== window ? parent.ugjuOneSignal : null);
+    const notifications = () => window.ugjuNotifications || (parent !== window ? parent.ugjuNotifications : null);
     const instalada = () => navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
 
     function esperarOneSignal() {
@@ -104,13 +80,13 @@
             window.location.href = email.href;
         }
     });
-    function actualizarAviso(){notify.setAttribute("aria-pressed",String(Boolean(oneSignal()?.User.PushSubscription.optedIn)))}
+    function actualizarAviso(){notify.setAttribute("aria-pressed",String(Boolean(notifications()?.getState().optedIn || oneSignal()?.User.PushSubscription.optedIn)))}
     notify.addEventListener("click",async() => {
         if (/Instagram/i.test(navigator.userAgent)){mostrarAviso(localized.notify_open_browser || "Open this page in your browser to receive notifications.");return}
         if ((/iPad|iPhone|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) && !instalada()){installPanel.hidden=false;installClose.focus();return}
-        const sdk=await esperarOneSignal();if(!sdk){mostrarAviso(localized.notify_error || "Notifications could not be enabled. Check your browser permissions.");return}
-        if(!sdk.Notifications.isPushSupported()){mostrarAviso(localized.notify_unsupported || "This browser does not support notifications.");return}
-        try{notify.disabled=true;sdk.User.PushSubscription.optedIn?await sdk.User.PushSubscription.optOut():await sdk.User.PushSubscription.optIn();actualizarAviso()}catch{mostrarAviso(localized.notify_error || "Notifications could not be enabled. Check your browser permissions.")}finally{notify.disabled=false}
+        await esperarOneSignal();const control=notifications();if(!control){mostrarAviso(localized.notify_error || "Notifications could not be enabled. Check your browser permissions.");return}
+        if(!control.getState().supported){mostrarAviso(localized.notify_unsupported || "This browser does not support notifications.");return}
+        try{notify.disabled=true;const estado=await control.toggle();actualizarAviso();mostrarAviso(estado.optedIn?(localized.notify_success || "Notifications are now on."):(localized.notify_disabled || "Notifications are off."))}catch(error){console.error("No se pudo cambiar la suscripción de avisos.",error);mostrarAviso(localized.notify_error || "Notifications could not be enabled. Check your browser permissions.")}finally{notify.disabled=false}
     });
     support.addEventListener("click",() => {supportPanel.querySelector(".support-card").insertBefore(pareceArgentina?argentina:paypal,pareceArgentina?paypal:argentina);supportPanel.hidden=false;(pareceArgentina?argentina:paypal).focus()});
     async function copiar(){const alias="muriscia.mp";try{await navigator.clipboard.writeText(alias)}catch{const t=document.createElement("textarea");t.value=alias;t.style.position="fixed";t.style.opacity="0";document.body.append(t);t.select();document.execCommand("copy");t.remove()}supportStatus.textContent=`ALIAS COPIED: ${alias}`}
@@ -123,6 +99,7 @@
             parent.document.addEventListener("ugju-onesignal-ready",actualizarAviso);
         } catch {}
     }
+    document.addEventListener("ugju-notifications-change",actualizarAviso);
     localizar();
     actualizarAviso();
 })();

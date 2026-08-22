@@ -152,6 +152,10 @@ function obtenerControlDeAvisos() {
 
     try {
 
+        if (window.ugjuNotifications) {
+            return window.ugjuNotifications;
+        }
+
         if (
             window.parent &&
             window.parent !== window &&
@@ -338,6 +342,8 @@ async function alternarAviso() {
 
         } catch (error) {
 
+            console.error("No se pudo cambiar la suscripción de avisos.", error);
+
             mostrarAvisoCasa(textosActuales.notify_error);
 
         } finally {
@@ -382,6 +388,14 @@ async function alternarAviso() {
         if (estaSuscrito) {
             await OneSignal.User.PushSubscription.optOut();
         } else {
+            if (!OneSignal.Notifications.permission) {
+                await OneSignal.Notifications.requestPermission();
+            }
+
+            if (!OneSignal.Notifications.permission) {
+                throw new Error("Notification permission was not granted");
+            }
+
             await OneSignal.User.PushSubscription.optIn();
         }
 
@@ -394,6 +408,8 @@ async function alternarAviso() {
         );
 
     } catch (error) {
+
+        console.error("No se pudo cambiar la suscripción de avisos.", error);
 
         mostrarAvisoCasa(
             textosActuales.notify_error
