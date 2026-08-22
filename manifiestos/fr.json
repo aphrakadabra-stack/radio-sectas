@@ -10,6 +10,7 @@
   "notify_ios_title": "Notifications sur iPhone ou iPad",
   "notify_ios_install": "Partager → Sur l’écran d’accueil → ouvrir ÚGJÜ RADIO depuis l’icône → toucher de nouveau la cloche.",
   "notify_loading": "Le système de notifications se réveille encore. Réessayez dans quelques secondes.",
+  "notify_unavailable": "Les notifications ne sont pas disponibles dans ce navigateur pour le moment.",
   "notify_unsupported": "Ce navigateur ne prend pas en charge les notifications.",
   "notify_error": "Impossible d’activer les notifications. Vérifiez les autorisations de notification du navigateur.",
   "support": "SOUTENIR",

@@ -10,6 +10,7 @@
   "notify_ios_title": "Mitteilungen auf iPhone oder iPad",
   "notify_ios_install": "Teilen → Zum Home-Bildschirm → ÚGJÜ RADIO über das Symbol öffnen → erneut auf die Glocke tippen.",
   "notify_loading": "Das Benachrichtigungssystem wacht noch auf. Versuche es in einigen Sekunden erneut.",
+  "notify_unavailable": "Benachrichtigungen sind in diesem Browser derzeit nicht verfügbar.",
   "notify_unsupported": "Dieser Browser unterstützt keine Benachrichtigungen.",
   "notify_error": "Benachrichtigungen konnten nicht aktiviert werden. Prüfe die Benachrichtigungsberechtigungen des Browsers.",
   "support": "UNTERSTÜTZEN",

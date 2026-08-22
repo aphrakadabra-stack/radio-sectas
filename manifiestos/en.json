@@ -10,6 +10,7 @@
   "notify_ios_title": "Notifications on iPhone or iPad",
   "notify_ios_install": "Share → Add to Home Screen → open ÚGJÜ RADIO from the icon → tap the bell again.",
   "notify_loading": "The notification system is still waking up. Try again in a few seconds.",
+  "notify_unavailable": "Notifications are not available in this browser right now.",
   "notify_unsupported": "This browser does not support notifications.",
   "notify_error": "Notifications could not be enabled. Check your browser notification permissions.",
   "support": "SUPPORT",

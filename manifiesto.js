@@ -62,6 +62,13 @@ const esDispositivoAppleMovil =
         navigator.maxTouchPoints > 1
     );
 let textosActuales;
+const avisoCasa = document.createElement("p");
+avisoCasa.className = "house-notice";
+avisoCasa.setAttribute("role", "status");
+avisoCasa.setAttribute("aria-live", "polite");
+avisoCasa.hidden = true;
+document.body.appendChild(avisoCasa);
+let temporizadorAvisoCasa;
 
 
 const configuracionesRegionales = (
@@ -85,17 +92,16 @@ const pareceEstarEnArgentina =
     zonaHoraria === "America/Buenos_Aires";
 
 
-enlaceEmail.addEventListener("click", () => {
-
-    const direccion = String.fromCharCode(
-        117,103,106,117,115,101,99,116,97,115,
-        64,
-        103,109,97,105,108,46,99,111,109
-    );
-
-    window.location.href = `mailto:${direccion}`;
-
-});
+function mostrarAvisoCasa(mensaje) {
+    window.clearTimeout(temporizadorAvisoCasa);
+    avisoCasa.textContent = mensaje;
+    avisoCasa.hidden = false;
+    requestAnimationFrame(() => avisoCasa.classList.add("is-visible"));
+    temporizadorAvisoCasa = window.setTimeout(() => {
+        avisoCasa.classList.remove("is-visible");
+        window.setTimeout(() => { avisoCasa.hidden = true; }, 180);
+    }, 3600);
+}
 
 
 function obtenerOneSignal() {
@@ -251,7 +257,7 @@ async function alternarAviso() {
 
     if (esNavegadorInstagram) {
 
-        window.alert(
+        mostrarAvisoCasa(
             textosActuales.notify_open_browser
         );
 
@@ -274,8 +280,8 @@ async function alternarAviso() {
 
     if (!OneSignal) {
 
-        window.alert(
-            textosActuales.notify_loading
+        mostrarAvisoCasa(
+            textosActuales.notify_unavailable || textosActuales.notify_error
         );
 
         return;
@@ -284,7 +290,7 @@ async function alternarAviso() {
 
     if (!OneSignal.Notifications.isPushSupported()) {
 
-        window.alert(
+        mostrarAvisoCasa(
             textosActuales.notify_unsupported
         );
 
@@ -310,7 +316,7 @@ async function alternarAviso() {
 
         actualizarAvisame();
 
-        window.alert(
+        mostrarAvisoCasa(
             OneSignal.User.PushSubscription.optedIn
                 ? textosActuales.notify_success
                 : textosActuales.notify_disabled
@@ -318,7 +324,7 @@ async function alternarAviso() {
 
     } catch (error) {
 
-        window.alert(
+        mostrarAvisoCasa(
             textosActuales.notify_error
         );
 

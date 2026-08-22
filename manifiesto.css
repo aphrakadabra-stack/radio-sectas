@@ -461,6 +461,27 @@ h1{
     opacity:.62;
 }
 
+.house-notice{
+    position:fixed;
+    z-index:40;
+    right:max(14px,env(safe-area-inset-right));
+    bottom:max(14px,env(safe-area-inset-bottom));
+    width:max-content;
+    max-width:min(360px,calc(100vw - 28px));
+    padding:9px 11px;
+    border:1px solid currentColor;
+    background:#EA52F3;
+    color:#111;
+    font:400 .72rem/1.35 "Courier Prime","Courier New",monospace;
+    text-align:left;
+    opacity:0;
+    transform:translateY(5px);
+    transition:opacity .18s ease,transform .18s ease;
+    pointer-events:none;
+}
+
+.house-notice.is-visible{opacity:1;transform:none}
+
 
 .support-panel[hidden]{
     display:none;
@@ -556,6 +577,14 @@ h1{
 
 
 @media(max-width:600px){
+
+    .house-notice{
+        right:max(10px,env(safe-area-inset-right));
+        bottom:max(10px,env(safe-area-inset-bottom));
+        max-width:calc(100vw - 20px);
+        padding:8px 10px;
+        font-size:.66rem;
+    }
 
     .manifesto-page{
         padding:8px 4px;

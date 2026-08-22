@@ -10,6 +10,7 @@
   "notify_ios_title": "Notifiche su iPhone o iPad",
   "notify_ios_install": "Condividi → Aggiungi alla schermata Home → apri ÚGJÜ RADIO dall’icona → tocca di nuovo la campana.",
   "notify_loading": "Il sistema di avvisi si sta ancora svegliando. Riprova tra qualche secondo.",
+  "notify_unavailable": "Gli avvisi non sono al momento disponibili in questo browser.",
   "notify_unsupported": "Questo browser non supporta gli avvisi.",
   "notify_error": "Non è stato possibile attivare gli avvisi. Controlla i permessi di notifica del browser.",
   "support": "SOSTIENI",

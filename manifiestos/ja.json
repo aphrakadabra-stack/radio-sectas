@@ -10,6 +10,7 @@
   "notify_ios_title": "iPhoneまたはiPadの通知",
   "notify_ios_install": "共有 → ホーム画面に追加 → アイコンからÚGJÜ RADIOを開く → もう一度ベルを押す。",
   "notify_loading": "通知システムはまだ目覚めている途中です。数秒後にもう一度お試しください。",
+  "notify_unavailable": "現在、このブラウザでは通知を利用できません。",
   "notify_unsupported": "このブラウザは通知に対応していません。",
   "notify_error": "通知を有効にできませんでした。ブラウザの通知設定を確認してください。",
   "support": "支援",

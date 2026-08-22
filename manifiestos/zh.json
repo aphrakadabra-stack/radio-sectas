@@ -10,6 +10,7 @@
   "notify_ios_title": "iPhone 或 iPad 通知",
   "notify_ios_install": "分享 → 添加到主屏幕 → 从图标打开 ÚGJÜ RADIO → 再次点按铃铛。",
   "notify_loading": "通知系统仍在苏醒，请几秒后再试。",
+  "notify_unavailable": "此浏览器目前无法使用通知。",
   "notify_unsupported": "此浏览器不支持通知。",
   "notify_error": "无法开启通知，请检查浏览器的通知权限。",
   "support": "支持",

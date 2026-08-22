@@ -26,6 +26,14 @@
     const supportStatus = document.getElementById("support-status");
     const supportClose = document.getElementById("support-close");
     const installClose = document.getElementById("notification-install-close");
+    const notice = document.createElement("p");
+    notice.className = "house-notice";
+    notice.setAttribute("role", "status");
+    notice.setAttribute("aria-live", "polite");
+    notice.hidden = true;
+    document.body.appendChild(notice);
+    let noticeTimer;
+    let localized = {};
     const pareceArgentina = (navigator.languages || [navigator.language]).some(c => /^es[-_]AR$/i.test(c)) || (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("America/Argentina/");
     const oneSignal = () => window.ugjuOneSignal || (parent !== window ? parent.ugjuOneSignal : null);
     const instalada = () => navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
@@ -39,6 +47,7 @@
             const respuesta = await fetch(`manifiestos/${codigo}.json?v=20260807-2`);
             if (!respuesta.ok) return;
             const textos = await respuesta.json();
+            localized = textos;
             notify.setAttribute("aria-label",textos.notify_label);
             notify.title = textos.notify_label;
             support.textContent = textos.support;
@@ -52,14 +61,23 @@
         } catch {}
     }
 
-    email.addEventListener("click",() => { location.href = `mailto:${String.fromCharCode(117,103,106,117,115,101,99,116,97,115,64,103,109,97,105,108,46,99,111,109)}`; });
+    function mostrarAviso(mensaje) {
+        clearTimeout(noticeTimer);
+        notice.textContent = mensaje;
+        notice.hidden = false;
+        requestAnimationFrame(() => notice.classList.add("is-visible"));
+        noticeTimer = setTimeout(() => {
+            notice.classList.remove("is-visible");
+            setTimeout(() => { notice.hidden = true; }, 180);
+        }, 3600);
+    }
     function actualizarAviso(){notify.setAttribute("aria-pressed",String(Boolean(oneSignal()?.User.PushSubscription.optedIn)))}
     notify.addEventListener("click",async() => {
-        if (/Instagram/i.test(navigator.userAgent)){alert("Open this page in your browser to enable notifications.");return}
+        if (/Instagram/i.test(navigator.userAgent)){mostrarAviso(localized.notify_open_browser || "Open this page in your browser to receive notifications.");return}
         if ((/iPad|iPhone|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) && !instalada()){installPanel.hidden=false;installClose.focus();return}
-        const sdk=oneSignal();if(!sdk){alert("Notifications are still loading.");return}
-        if(!sdk.Notifications.isPushSupported()){alert("Notifications are not supported in this browser.");return}
-        try{notify.disabled=true;sdk.User.PushSubscription.optedIn?await sdk.User.PushSubscription.optOut():await sdk.User.PushSubscription.optIn();actualizarAviso()}catch{alert("Notifications could not be updated.")}finally{notify.disabled=false}
+        const sdk=oneSignal();if(!sdk){mostrarAviso(localized.notify_unavailable || localized.notify_error || "Notifications are not available in this browser right now.");return}
+        if(!sdk.Notifications.isPushSupported()){mostrarAviso(localized.notify_unsupported || "This browser does not support notifications.");return}
+        try{notify.disabled=true;sdk.User.PushSubscription.optedIn?await sdk.User.PushSubscription.optOut():await sdk.User.PushSubscription.optIn();actualizarAviso()}catch{mostrarAviso(localized.notify_error || "Notifications could not be enabled. Check your browser permissions.")}finally{notify.disabled=false}
     });
     support.addEventListener("click",() => {supportPanel.querySelector(".support-card").insertBefore(pareceArgentina?argentina:paypal,pareceArgentina?paypal:argentina);supportPanel.hidden=false;(pareceArgentina?argentina:paypal).focus()});
     async function copiar(){const alias="muriscia.mp";try{await navigator.clipboard.writeText(alias)}catch{const t=document.createElement("textarea");t.value=alias;t.style.position="fixed";t.style.opacity="0";document.body.append(t);t.select();document.execCommand("copy");t.remove()}supportStatus.textContent=`ALIAS COPIED: ${alias}`}

@@ -10,6 +10,7 @@
   "notify_ios_title": "Avisos en iPhone o iPad",
   "notify_ios_install": "Compartir → Agregar a pantalla de inicio → abrir ÚGJÜ RADIO desde el icono → tocar otra vez la campana.",
   "notify_loading": "El sistema de avisos todavía está despertando. Probá nuevamente en unos segundos.",
+  "notify_unavailable": "Los avisos no están disponibles en este navegador por ahora.",
   "notify_unsupported": "Este navegador no permite recibir avisos.",
   "notify_error": "No pudimos activar los avisos. Revisá los permisos de notificaciones del navegador.",
   "support": "APOYAR",
