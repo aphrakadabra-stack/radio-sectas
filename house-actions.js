@@ -21,6 +21,16 @@
         OneSignal.User.PushSubscription.addEventListener("change",actualizarAviso);
     });
 
+    if (
+        location.hostname === "ugjusectas.github.io" &&
+        !document.querySelector('script[src*="OneSignalSDK.page.js"]')
+    ) {
+        const scriptOneSignal = document.createElement("script");
+        scriptOneSignal.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
+        scriptOneSignal.defer = true;
+        document.head.appendChild(scriptOneSignal);
+    }
+
     const argentina = document.getElementById("support-argentina");
     const paypal = document.getElementById("support-paypal");
     const supportStatus = document.getElementById("support-status");
@@ -37,6 +47,21 @@
     const pareceArgentina = (navigator.languages || [navigator.language]).some(c => /^es[-_]AR$/i.test(c)) || (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("America/Argentina/");
     const oneSignal = () => window.ugjuOneSignal || (parent !== window ? parent.ugjuOneSignal : null);
     const instalada = () => navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+
+    function esperarOneSignal() {
+        const disponible = oneSignal();
+        if (disponible) return Promise.resolve(disponible);
+        return new Promise(resolve => {
+            const inicio = Date.now();
+            const intervalo = setInterval(() => {
+                const sdk = oneSignal();
+                if (sdk || Date.now() - inicio >= 10000) {
+                    clearInterval(intervalo);
+                    resolve(sdk);
+                }
+            },100);
+        });
+    }
 
     async function localizar() {
         const disponibles = ["es","en","de","fi","fr","it","ja","zh"];
@@ -83,7 +108,7 @@
     notify.addEventListener("click",async() => {
         if (/Instagram/i.test(navigator.userAgent)){mostrarAviso(localized.notify_open_browser || "Open this page in your browser to receive notifications.");return}
         if ((/iPad|iPhone|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) && !instalada()){installPanel.hidden=false;installClose.focus();return}
-        const sdk=oneSignal();if(!sdk){mostrarAviso(localized.notify_unavailable || localized.notify_error || "Notifications are not available in this browser right now.");return}
+        const sdk=await esperarOneSignal();if(!sdk){mostrarAviso(localized.notify_error || "Notifications could not be enabled. Check your browser permissions.");return}
         if(!sdk.Notifications.isPushSupported()){mostrarAviso(localized.notify_unsupported || "This browser does not support notifications.");return}
         try{notify.disabled=true;sdk.User.PushSubscription.optedIn?await sdk.User.PushSubscription.optOut():await sdk.User.PushSubscription.optIn();actualizarAviso()}catch{mostrarAviso(localized.notify_error || "Notifications could not be enabled. Check your browser permissions.")}finally{notify.disabled=false}
     });
