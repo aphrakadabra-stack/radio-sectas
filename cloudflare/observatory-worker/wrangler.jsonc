@@ -12,7 +12,7 @@
   },
   "vars": {
     "ALLOWED_ORIGIN": "https://ugjusectas.github.io",
-    "ACCOUNT_ID": "SET_WITH_YOUR_CLOUDFLARE_ACCOUNT_ID"
+    "ACCOUNT_ID": "99d533f2c015ef2900833d8786706854"
   },
   "analytics_engine_datasets": [
     {
