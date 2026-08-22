@@ -12,7 +12,11 @@
   },
   "vars": {
     "ALLOWED_ORIGIN": "https://ugjusectas.github.io",
-    "ACCOUNT_ID": "99d533f2c015ef2900833d8786706854"
+    "ACCOUNT_ID": "99d533f2c015ef2900833d8786706854",
+    "REPORT_EMAIL": "ugjusectas@gmail.com"
+  },
+  "triggers": {
+    "crons": ["0 12 1 * *"]
   },
   "analytics_engine_datasets": [
     {

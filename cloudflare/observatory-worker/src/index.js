@@ -46,6 +46,10 @@ export default {
         }
 
         return Response.json({error:"Not found"},{status:404});
+    },
+
+    async scheduled(controller,env,ctx) {
+        ctx.waitUntil(sendMonthlyReport(env,controller.scheduledTime));
     }
 };
 
@@ -184,6 +188,100 @@ async function query(env,sql) {
     }
 
     return response.json();
+}
+
+async function sendMonthlyReport(env,scheduledTime) {
+    if (!env.RESEND_API_KEY || !env.REPORT_EMAIL) {
+        throw new Error("Monthly report email is not configured");
+    }
+
+    const end = new Date(scheduledTime);
+    end.setUTCDate(1);
+    end.setUTCHours(0,0,0,0);
+    const start = new Date(Date.UTC(
+        end.getUTCFullYear(),
+        end.getUTCMonth() - 1,
+        1
+    ));
+    const range = {
+        start: sqlDate(start),
+        end: sqlDate(end)
+    };
+
+    const [events,pages,fires] = await Promise.all([
+        query(env,`
+            SELECT blob1 AS event, SUM(_sample_interval) AS total
+            FROM ugju_radio_observatory
+            WHERE timestamp >= '${range.start}'
+                AND timestamp < '${range.end}'
+            GROUP BY event ORDER BY total DESC FORMAT JSON
+        `),
+        query(env,`
+            SELECT blob3 AS page, SUM(_sample_interval) AS visits
+            FROM ugju_radio_observatory
+            WHERE timestamp >= '${range.start}'
+                AND timestamp < '${range.end}'
+                AND blob1 = 'visit'
+            GROUP BY page ORDER BY visits DESC FORMAT JSON
+        `),
+        query(env,`
+            SELECT blob2 AS fire, SUM(_sample_interval) AS opens
+            FROM ugju_radio_observatory
+            WHERE timestamp >= '${range.start}'
+                AND timestamp < '${range.end}'
+                AND blob1 = 'fire_open'
+            GROUP BY fire ORDER BY opens DESC FORMAT JSON
+        `)
+    ]);
+
+    const month = new Intl.DateTimeFormat("es-AR",{
+        month:"long",
+        year:"numeric",
+        timeZone:"America/Argentina/Buenos_Aires"
+    }).format(start);
+    const html = monthlyHtml(month,events.data || [],pages.data || [],fires.data || []);
+    const response = await fetch("https://api.resend.com/emails",{
+        method:"POST",
+        headers:{
+            "authorization":`Bearer ${env.RESEND_API_KEY}`,
+            "content-type":"application/json",
+            "idempotency-key":`ugju-observatory-${range.start}`
+        },
+        body:JSON.stringify({
+            from:"ÚGJÜ OBSERVATORIO <onboarding@resend.dev>",
+            to:[env.REPORT_EMAIL],
+            subject:`ÚGJÜ — Informe de ${month}`,
+            html
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`Monthly email returned ${response.status}`);
+    }
+}
+
+function monthlyHtml(month,events,pages,fires) {
+    const rows = (items,label,value) => items.length
+        ? items.map(item => `<tr><td>${escapeHtml(item[label] || "—")}</td><td>${Number(item[value] || 0)}</td></tr>`).join("")
+        : '<tr><td colspan="2">Sin actividad registrada</td></tr>';
+
+    return `<!doctype html><html lang="es"><body style="background:#171417;color:#eee;font:16px monospace;padding:28px">
+<main style="max-width:720px;margin:auto"><h1 style="font-weight:400">ÚGJÜ — OBSERVATORIO</h1>
+<p>Informe anónimo de ${escapeHtml(month)}. No contiene nombres, correos ni direcciones IP.</p>
+<h2>Actividad</h2><table cellpadding="8"><tbody>${rows(events,"event","total")}</tbody></table>
+<h2>Visitas por sección</h2><table cellpadding="8"><tbody>${rows(pages,"page","visits")}</tbody></table>
+<h2>Fuegos abiertos</h2><table cellpadding="8"><tbody>${rows(fires,"fire","opens")}</tbody></table>
+</main></body></html>`;
+}
+
+function sqlDate(date) {
+    return date.toISOString().slice(0,19).replace("T"," ");
+}
+
+function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g,character => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+    })[character]);
 }
 
 async function sameSecret(left,right) {
