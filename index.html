@@ -145,6 +145,39 @@
 
                 window.ugjuOneSignal = OneSignal;
 
+                window.ugjuNotifications = {
+                    getState() {
+                        return {
+                            supported:
+                                OneSignal.Notifications.isPushSupported(),
+                            optedIn: Boolean(
+                                OneSignal.User.PushSubscription.optedIn
+                            )
+                        };
+                    },
+
+                    async toggle() {
+                        if (!OneSignal.Notifications.isPushSupported()) {
+                            return this.getState();
+                        }
+
+                        if (OneSignal.User.PushSubscription.optedIn) {
+                            await OneSignal.User.PushSubscription.optOut();
+                        } else {
+                            await OneSignal.User.PushSubscription.optIn();
+                        }
+
+                        return this.getState();
+                    }
+                };
+
+                OneSignal.User.PushSubscription.addEventListener(
+                    "change",
+                    () => document.dispatchEvent(
+                        new CustomEvent("ugju-notifications-change")
+                    )
+                );
+
                 document.dispatchEvent(
                     new CustomEvent(
                         "ugju-onesignal-ready"
@@ -350,7 +383,7 @@
         <iframe
             id="manifesto-frame"
             title="ÚGJÜ RADIO — Manifesto"
-            src="manifiesto.html?inside=radio&amp;v=20260822-4"
+            src="manifiesto.html?inside=radio&amp;v=20260822-5"
             loading="eager"
         ></iframe>
     </section>

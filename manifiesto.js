@@ -148,6 +148,29 @@ function obtenerOneSignal() {
 }
 
 
+function obtenerControlDeAvisos() {
+
+    try {
+
+        if (
+            window.parent &&
+            window.parent !== window &&
+            window.parent.ugjuNotifications
+        ) {
+            return window.parent.ugjuNotifications;
+        }
+
+    } catch (error) {
+
+        /* La página independiente usa su propia instancia. */
+
+    }
+
+    return null;
+
+}
+
+
 function estaInstaladaComoAplicacion() {
 
     return (
@@ -234,13 +257,14 @@ function actualizarAvisame() {
         return;
     }
 
+    const control = obtenerControlDeAvisos();
     const OneSignal = obtenerOneSignal();
-
-    const estaSuscrito =
-        Boolean(
-            OneSignal &&
-            OneSignal.User.PushSubscription.optedIn
-        );
+    const estado = control && control.getState();
+    const estaSuscrito = Boolean(
+        estado
+            ? estado.optedIn
+            : OneSignal && OneSignal.User.PushSubscription.optedIn
+    );
 
     botonAviso.setAttribute(
         "aria-pressed",
@@ -284,6 +308,44 @@ async function alternarAviso() {
     ) {
 
         abrirInstruccionesDeInstalacion();
+
+        return;
+
+    }
+
+    const control = obtenerControlDeAvisos();
+
+    if (control) {
+
+        try {
+
+            botonAviso.disabled = true;
+            botonAviso.setAttribute("aria-busy", "true");
+
+            const resultado = await control.toggle();
+
+            if (!resultado.supported) {
+                mostrarAvisoCasa(textosActuales.notify_unsupported);
+                return;
+            }
+
+            actualizarAvisame();
+            mostrarAvisoCasa(
+                resultado.optedIn
+                    ? textosActuales.notify_success
+                    : textosActuales.notify_disabled
+            );
+
+        } catch (error) {
+
+            mostrarAvisoCasa(textosActuales.notify_error);
+
+        } finally {
+
+            botonAviso.disabled = false;
+            botonAviso.removeAttribute("aria-busy");
+
+        }
 
         return;
 
@@ -504,6 +566,11 @@ try {
 
         window.parent.document.addEventListener(
             "ugju-onesignal-ready",
+            actualizarAvisame
+        );
+
+        window.parent.document.addEventListener(
+            "ugju-notifications-change",
             actualizarAvisame
         );
 
