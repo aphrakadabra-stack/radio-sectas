@@ -13,7 +13,7 @@
             return;
         }
         if (!window.ugjuOneSignal) {
-            await OneSignal.init({appId:"e4712649-ca34-49e6-a2b4-f2ca6c5c7460",safari_web_id:"web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",serviceWorkerPath:"ugju-radio/OneSignalSDKWorker.js",serviceWorkerParam:{scope:"/ugju-radio/"},notifyButton:{enable:false}});
+            await OneSignal.init({appId:"e4712649-ca34-49e6-a2b4-f2ca6c5c7460",safari_web_id:"web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",serviceWorkerPath:"/ugju-radio/OneSignalSDKWorker.js",serviceWorkerParam:{scope:"/ugju-radio/"},notifyButton:{enable:false}});
             window.ugjuOneSignal = OneSignal;
             document.dispatchEvent(new CustomEvent("ugju-onesignal-ready"));
         }
