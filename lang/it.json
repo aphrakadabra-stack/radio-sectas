@@ -32,12 +32,12 @@
   "notify_error": "Non è stato possibile attivare gli avvisi. Controlla i permessi di notifica del browser.",
   "notify_disabled": "Avvisi disattivati. Puoi riattivarli quando vuoi.",
   "linktree_label": "Apri ÚGJÜ SECTAS su Linktree",
-  "stay": "FUOCHI",
+  "stay": "FUEGOS",
   "stay_nine_dots_title": "I NOVE PUNTI",
   "stay_nine_dots_instruction_pointer": "Un quadrato immaginario. Nove punti. Quattro linee. Attraversali senza sollevare il cursore.",
   "stay_nine_dots_instruction_touch": "Un quadrato immaginario. Nove punti. Quattro linee. Attraversali senza sollevare il dito.",
   "stay_level": "Livello",
-  "stay_back_to_radio": "Torna a ÚGJÜ RADIO", "stay_rooms_label": "Fuochi", "stay_fires_label": "FUOCHI",
+  "stay_back_to_radio": "Torna a ÚGJÜ RADIO", "stay_rooms_label": "FUEGOS", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "IL LABIRINTO", "stay_maze_instruction": "Porta l’anello all’altra estremità senza toccare il percorso.",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Fai scorrere le forme. Esci dalla finestra e così purifica l’oscurità.",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "Una partita con la morte. Tu sei il cerchio aperto, lei è il cerchio chiuso. Forma una linea di quattro per avanzare e depistarla.", "stay_connectfour_board_label": "Tabellone di forza quattro", "stay_connectfour_row": "Riga", "stay_connectfour_column": "colonna", "stay_connectfour_open_circle": "cerchio aperto", "stay_connectfour_closed_circle": "cerchio chiuso",
@@ -46,5 +46,7 @@
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Ruota ogni frammento finché la forma respira senza interruzioni.", "stay_stone_warm": "Il mantra continua.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Tocca le prospettive. L’architettura cambia con il tuo sguardo.",
   "stay_uri_purr": "Uri fa le fusa... e ti carica della sua magia", "stay_uri_instruction": "Appare, scompare. È ancora qui... Sempre", "stay_uri_field_label": "Uri, un gatto in movimento", "stay_uri_pet_label": "Accarezza Uri",
-  "stay_tower_instruction": "Salta sopra un pezzo per farlo scomparire. Lasciane solo uno al centro.", "stay_tower_blocked": "Non è più possibile alcun duello", "stay_tower_restart": "ricomincia", "stay_dissolution_return": "torna alla casa"
+  "stay_tower_instruction": "Salta sopra un pezzo per farlo scomparire. Lasciane solo uno al centro.", "stay_tower_blocked": "Non è più possibile alcun duello", "stay_tower_restart": "ricomincia", "stay_dissolution_return": "torna alla casa",
+  "stay_tetris_field_label": "Tetris. Usa le frecce per muoverti, ruotare e accelerare; premi spazio per lasciare cadere. Sullo schermo tattile, tocca per ruotare o scorri per muovere.", "stay_tetris_board_label": "Tabellone Tetris dieci per dieci", "stay_tetris_instruction_keyboard": "Ordina la caduta. Completa le linee. Usa le frecce per muoverti e ruotare.", "stay_tetris_instruction_touch": "Ordina la caduta. Completa le linee. Tocca per ruotare o scorri per muovere.", "stay_tetris_lines": "{lines} linee", "stay_tetris_game_over": "fine · {lines} linee · tocca per ricominciare", "stay_tetris_restart": "ORDINA DI NUOVO",
+  "stay_dissolution_rebirth_label": "L’ego si è dissolto. È tempo di rinascere.", "stay_dissolution_rebirth_words": ["L’ego", "si è", "dissolto.", "È", "tempo", "di", "rinascere"]
 }

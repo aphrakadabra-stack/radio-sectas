@@ -32,12 +32,12 @@
   "notify_error": "Impossible d’activer les notifications. Vérifiez les autorisations de notification du navigateur.",
   "notify_disabled": "Notifications désactivées. Vous pouvez les réactiver à tout moment.",
   "linktree_label": "Ouvrir ÚGJÜ SECTAS sur Linktree",
-  "stay": "FEUX",
+  "stay": "FUEGOS",
   "stay_nine_dots_title": "LES NEUF POINTS",
   "stay_nine_dots_instruction_pointer": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le curseur.",
   "stay_nine_dots_instruction_touch": "Un carré imaginaire. Neuf points. Quatre lignes. Traversez-les sans lever le doigt.",
   "stay_level": "Niveau",
-  "stay_back_to_radio": "Retourner à ÚGJÜ RADIO", "stay_rooms_label": "Feux", "stay_fires_label": "FEUX",
+  "stay_back_to_radio": "Retourner à ÚGJÜ RADIO", "stay_rooms_label": "FUEGOS", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "LE LABYRINTHE", "stay_maze_instruction": "Menez l’anneau à l’autre extrémité sans toucher le parcours.",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Faites glisser les formes. Sortez par la fenêtre et purifiez ainsi l’obscurité.",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "Une partie avec la mort. Vous êtes le cercle ouvert, elle est le cercle fermé. Formez une ligne de quatre pour avancer et la semer.", "stay_connectfour_board_label": "Plateau de puissance quatre", "stay_connectfour_row": "Ligne", "stay_connectfour_column": "colonne", "stay_connectfour_open_circle": "cercle ouvert", "stay_connectfour_closed_circle": "cercle fermé",
@@ -46,5 +46,7 @@
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Tournez chaque fragment jusqu’à fermer le circuit et faire revenir le mantra.", "stay_stone_warm": "Le mantra continue.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Touchez les perspectives. L’architecture change avec votre regard.",
   "stay_uri_purr": "Uri ronronne... et te charge de sa magie", "stay_uri_instruction": "Apparaît, disparaît. Toujours là... Toujours", "stay_uri_field_label": "Uri, un chat en mouvement", "stay_uri_pet_label": "Caresser Uri",
-  "stay_tower_instruction": "Sautez par-dessus une pièce pour la faire disparaître. N’en laissez qu’une au centre.", "stay_tower_blocked": "Plus aucun duel n’est possible", "stay_tower_restart": "recommencer", "stay_dissolution_return": "reviens à la maison"
+  "stay_tower_instruction": "Sautez par-dessus une pièce pour la faire disparaître. N’en laissez qu’une au centre.", "stay_tower_blocked": "Plus aucun duel n’est possible", "stay_tower_restart": "recommencer", "stay_dissolution_return": "reviens à la maison",
+  "stay_tetris_field_label": "Tetris. Utilisez les flèches pour vous déplacer, tourner et accélérer ; appuyez sur espace pour lâcher. Sur écran tactile, touchez pour tourner ou glissez pour déplacer.", "stay_tetris_board_label": "Plateau de Tetris de dix cases sur dix", "stay_tetris_instruction_keyboard": "Ordonnez la chute. Complétez des lignes. Utilisez les flèches pour vous déplacer et tourner.", "stay_tetris_instruction_touch": "Ordonnez la chute. Complétez des lignes. Touchez pour tourner ou glissez pour déplacer.", "stay_tetris_lines": "{lines} lignes", "stay_tetris_game_over": "fin · {lines} lignes · touchez pour recommencer", "stay_tetris_restart": "ORDONNER À NOUVEAU",
+  "stay_dissolution_rebirth_label": "L’ego s’est dissous. Il est temps de renaître.", "stay_dissolution_rebirth_words": ["L’ego", "s’est", "dissous.", "Il est", "temps", "de", "renaître"]
 }

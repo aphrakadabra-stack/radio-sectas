@@ -97,6 +97,7 @@
     if (parent !== window) {
         try {
             parent.document.addEventListener("ugju-onesignal-ready",actualizarAviso);
+            parent.document.addEventListener("ugju-notifications-change",actualizarAviso);
         } catch {}
     }
     document.addEventListener("ugju-notifications-change",actualizarAviso);

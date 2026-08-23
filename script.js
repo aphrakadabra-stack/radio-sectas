@@ -1788,8 +1788,7 @@ cargarIdioma(idioma)
     enlaceArchivo.textContent =
         textos.archive;
 
-    enlaceFuegos.textContent =
-        textos.stay;
+    enlaceFuegos.textContent = "FUEGOS";
 
     etiquetaSesionArchivo.textContent =
         textos.archive_playing;

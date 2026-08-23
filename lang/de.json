@@ -32,12 +32,12 @@
   "notify_error": "Benachrichtigungen konnten nicht aktiviert werden. Prüfe die Benachrichtigungsberechtigungen des Browsers.",
   "notify_disabled": "Hinweise aus. Du kannst sie jederzeit wieder einschalten.",
   "linktree_label": "ÚGJÜ SECTAS auf Linktree öffnen",
-  "stay": "FEUER",
+  "stay": "FUEGOS",
   "stay_nine_dots_title": "DIE NEUN PUNKTE",
   "stay_nine_dots_instruction_pointer": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Cursor anzuheben.",
   "stay_nine_dots_instruction_touch": "Ein imaginäres Quadrat. Neun Punkte. Vier Linien. Durchquere sie, ohne den Finger anzuheben.",
   "stay_level": "Stufe",
-  "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO", "stay_rooms_label": "Feuer", "stay_fires_label": "FEUER",
+  "stay_back_to_radio": "Zurück zu ÚGJÜ RADIO", "stay_rooms_label": "FUEGOS", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "DAS LABYRINTH", "stay_maze_instruction": "Führe den Ring zum anderen Ende, ohne den Weg zu berühren.",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Verschiebe die Formen. Geh durch das Fenster hinaus und reinige so die Dunkelheit.",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "Eine Partie mit dem Tod. Du bist der offene Kreis, sie ist der geschlossene Kreis. Bilde eine Viererlinie, um voranzukommen und sie abzulenken.", "stay_connectfour_board_label": "Vier-gewinnt-Spielfeld", "stay_connectfour_row": "Reihe", "stay_connectfour_column": "Spalte", "stay_connectfour_open_circle": "offener Kreis", "stay_connectfour_closed_circle": "geschlossener Kreis",
@@ -46,5 +46,7 @@
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Drehe jedes Fragment, bis sich der Kreis schließt und das Mantra zurückkehrt.", "stay_stone_warm": "Das Mantra geht weiter.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Berühre die Perspektiven. Die Architektur verändert sich mit deinem Blick.",
   "stay_uri_purr": "Uri schnurrt... und lädt dich mit seiner Magie auf", "stay_uri_instruction": "Erscheint, verschwindet. Ist immer noch da... Immer", "stay_uri_field_label": "Uri, eine Katze in Bewegung", "stay_uri_pet_label": "Uri streicheln",
-  "stay_tower_instruction": "Spring über eine Figur, damit sie verschwindet. Lass nur eine in der Mitte übrig.", "stay_tower_blocked": "Kein Duell ist mehr möglich", "stay_tower_restart": "neu beginnen", "stay_dissolution_return": "kehr zum Haus zurück"
+  "stay_tower_instruction": "Spring über eine Figur, damit sie verschwindet. Lass nur eine in der Mitte übrig.", "stay_tower_blocked": "Kein Duell ist mehr möglich", "stay_tower_restart": "neu beginnen", "stay_dissolution_return": "kehr zum Haus zurück",
+  "stay_tetris_field_label": "Tetris. Bewege, drehe und beschleunige mit den Pfeiltasten; mit der Leertaste lässt du den Stein fallen. Auf dem Touchscreen: tippen zum Drehen, wischen zum Bewegen.", "stay_tetris_board_label": "Tetris-Spielfeld mit zehn mal zehn Feldern", "stay_tetris_instruction_keyboard": "Ordne den Fall. Vervollständige Linien. Bewege und drehe mit den Pfeiltasten.", "stay_tetris_instruction_touch": "Ordne den Fall. Vervollständige Linien. Tippe zum Drehen oder wische zum Bewegen.", "stay_tetris_lines": "{lines} Linien", "stay_tetris_game_over": "Ende · {lines} Linien · tippe für einen Neustart", "stay_tetris_restart": "NEU ORDNEN",
+  "stay_dissolution_rebirth_label": "Das Ego hat sich aufgelöst. Es ist Zeit, neu geboren zu werden.", "stay_dissolution_rebirth_words": ["Das", "Ego", "hat sich", "aufgelöst.", "Es ist", "Zeit", "neu geboren", "zu werden"]
 }

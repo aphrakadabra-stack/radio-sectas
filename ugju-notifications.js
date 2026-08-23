@@ -11,8 +11,7 @@
             await OneSignal.init({
                 appId: "e4712649-ca34-49e6-a2b4-f2ca6c5c7460",
                 safari_web_id: "web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",
-                path: "/ugju-radio/",
-                serviceWorkerPath: "OneSignalSDKWorker.js",
+                serviceWorkerPath: "/ugju-radio/OneSignalSDKWorker.js",
                 serviceWorkerParam: { scope: "/ugju-radio/" },
                 notifyButton: { enable: false }
             });
@@ -71,11 +70,7 @@
                         }
 
                         await OneSignal.User.PushSubscription.optIn();
-                        return waitForState(current => (
-                            current.optedIn &&
-                            Boolean(current.subscriptionId) &&
-                            Boolean(current.token)
-                        ));
+                        return waitForState(current => current.optedIn);
                     }
                 }
             };

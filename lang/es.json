@@ -38,7 +38,7 @@
   "stay_nine_dots_instruction_touch": "Un cuadrado imaginario. Nueve puntos. Cuatro líneas. Atraviésalos sin levantar el dedo.",
   "stay_level": "Nivel",
   "stay_back_to_radio": "Volver a ÚGJÜ RADIO",
-  "stay_rooms_label": "Fuegos", "stay_fires_label": "FUEGOS",
+  "stay_rooms_label": "FUEGOS", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "EL JARDÍN", "stay_maze_instruction": "Lleva el aro hasta el otro extremo sin salirte del camino.",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "Desliza las formas. Sal por la ventana y así purifica la oscuridad.",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "Una partida con la muerte. Tú eres el círculo abierto, ella es el círculo cerrado. Forma una línea de cuatro para avanzar y despistarla", "stay_connectfour_board_label": "Tablero de cuatro en raya", "stay_connectfour_row": "Fila", "stay_connectfour_column": "columna", "stay_connectfour_open_circle": "círculo abierto", "stay_connectfour_closed_circle": "círculo cerrado",
@@ -47,5 +47,7 @@
   "stay_stone_title": "MANTRA", "stay_stone_instruction": "Gira cada fragmento hasta cerrar el circuito y hacer volver al mantra.", "stay_stone_warm": "El mantra continúa.",
   "stay_object_title": "OP-ART", "stay_object_instruction": "Toca las perspectivas. La arquitectura cambia cuando cambia tu mirada.",
   "stay_uri_purr": "Uri ronronea... y carga su magia en ti", "stay_uri_instruction": "Aparece, Desaparece. Sigue estando... Siempre", "stay_uri_field_label": "Uri, gato en movimiento", "stay_uri_pet_label": "Acariciar a Uri",
-  "stay_tower_instruction": "Salta sobre una pieza para hacerla desaparecer. Deja solo una en el centro.", "stay_tower_blocked": "Ya no hay ningún duelo posible", "stay_tower_restart": "comenzar de nuevo", "stay_dissolution_return": "vuelve a la casa"
+  "stay_tower_instruction": "Salta sobre una pieza para hacerla desaparecer. Deja solo una en el centro.", "stay_tower_blocked": "Ya no hay ningún duelo posible", "stay_tower_restart": "comenzar de nuevo", "stay_dissolution_return": "vuelve a la casa",
+  "stay_tetris_field_label": "Tetris. Usa las flechas para moverte, girar y acelerar; pulsa espacio para soltar. En pantalla táctil, toca para girar o desliza para mover.", "stay_tetris_board_label": "Tablero de Tetris de diez por diez casillas", "stay_tetris_instruction_keyboard": "Ordena la caída. Completa líneas. Usa las flechas para moverte y girar.", "stay_tetris_instruction_touch": "Ordena la caída. Completa líneas. Toca para girar o desliza para mover.", "stay_tetris_lines": "{lines} líneas", "stay_tetris_game_over": "fin · {lines} líneas · toca para volver", "stay_tetris_restart": "VOLVER A ORDENAR",
+  "stay_dissolution_rebirth_label": "Se ha disuelto el ego. Es tiempo de renacer.", "stay_dissolution_rebirth_words": ["Se", "ha", "disuelto", "el ego.", "Es", "tiempo", "de", "renacer"]
 }

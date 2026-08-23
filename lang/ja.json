@@ -32,12 +32,12 @@
   "notify_error": "通知を有効にできませんでした。ブラウザの通知設定を確認してください。",
   "notify_disabled": "通知をオフにしました。いつでも再びオンにできます。",
   "linktree_label": "LinktreeでÚGJÜ SECTASを開く",
-  "stay": "火",
+  "stay": "FUEGOS",
   "stay_nine_dots_title": "九つの点",
   "stay_nine_dots_instruction_pointer": "想像上の正方形。九つの点。四本の線。カーソルを離さず、すべてを通り抜けてください。",
   "stay_nine_dots_instruction_touch": "想像上の正方形。九つの点。四本の線。指を離さず、すべてを通り抜けてください。",
   "stay_level": "レベル",
-  "stay_back_to_radio": "ÚGJÜ RADIOに戻る", "stay_rooms_label": "火", "stay_fires_label": "火",
+  "stay_back_to_radio": "ÚGJÜ RADIOに戻る", "stay_rooms_label": "FUEGOS", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "迷路", "stay_maze_instruction": "道に触れずに輪を反対側まで運ぶ。",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "形を滑らせる。窓から外へ出て、そうして闇を浄化する。",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "死との対局。あなたは白抜きの円、彼女は黒く塗りつぶされた円。四つを一列に並べて先へ進み、彼女を惑わせる。", "stay_connectfour_board_label": "四目並べの盤", "stay_connectfour_row": "行", "stay_connectfour_column": "列", "stay_connectfour_open_circle": "白抜きの円", "stay_connectfour_closed_circle": "黒く塗りつぶされた円",
@@ -46,5 +46,7 @@
   "stay_stone_title": "マントラ", "stay_stone_instruction": "形が途切れず呼吸するまで、断片を回す。", "stay_stone_warm": "マントラは続く。",
   "stay_object_title": "OP-ART", "stay_object_instruction": "視点に触れる。まなざしが変わると建築も変わる。",
   "stay_uri_purr": "Uriは喉を鳴らし…その魔法をあなたに宿す", "stay_uri_instruction": "現れて、消える。それでもそこにいる……いつも", "stay_uri_field_label": "動き回る猫、Uri", "stay_uri_pet_label": "Uriを撫でる",
-  "stay_tower_instruction": "駒を飛び越えて消す。中央に一つだけ残す。", "stay_tower_blocked": "もう決闘はできない", "stay_tower_restart": "もう一度始める", "stay_dissolution_return": "家へ戻る"
+  "stay_tower_instruction": "駒を飛び越えて消す。中央に一つだけ残す。", "stay_tower_blocked": "もう決闘はできない", "stay_tower_restart": "もう一度始める", "stay_dissolution_return": "家へ戻る",
+  "stay_tetris_field_label": "テトリス。矢印キーで移動・回転・加速し、スペースキーで落下させます。タッチ画面では、タップで回転、スワイプで移動します。", "stay_tetris_board_label": "10×10マスのテトリス盤", "stay_tetris_instruction_keyboard": "落下を整え、列を完成させる。矢印キーで移動・回転します。", "stay_tetris_instruction_touch": "落下を整え、列を完成させる。タップで回転、スワイプで移動します。", "stay_tetris_lines": "{lines}列", "stay_tetris_game_over": "終了 · {lines}列 · タップしてもう一度", "stay_tetris_restart": "もう一度整える",
+  "stay_dissolution_rebirth_label": "自我は溶けた。生まれ変わる時だ。", "stay_dissolution_rebirth_words": ["自我は", "溶けた。", "生まれ", "変わる", "時だ。"]
 }

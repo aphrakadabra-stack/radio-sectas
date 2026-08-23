@@ -32,12 +32,12 @@
   "notify_error": "无法开启通知，请检查浏览器的通知权限。",
   "notify_disabled": "通知已关闭，您可以随时重新开启。",
   "linktree_label": "在Linktree上打开ÚGJÜ SECTAS",
-  "stay": "火",
+  "stay": "FUEGOS",
   "stay_nine_dots_title": "九个点",
   "stay_nine_dots_instruction_pointer": "一个想象中的正方形。九个点。四条线。不要抬起光标，穿过所有点。",
   "stay_nine_dots_instruction_touch": "一个想象中的正方形。九个点。四条线。不要抬起手指，穿过所有点。",
   "stay_level": "级别",
-  "stay_back_to_radio": "返回ÚGJÜ RADIO", "stay_rooms_label": "火", "stay_fires_label": "火",
+  "stay_back_to_radio": "返回ÚGJÜ RADIO", "stay_rooms_label": "FUEGOS", "stay_fires_label": "FUEGOS",
   "stay_maze_title": "迷宫", "stay_maze_instruction": "将圆环带到另一端，不要碰到路径。",
   "stay_klotski_title": "MUDRAS", "stay_klotski_instruction": "滑动这些形状。从窗口出去，从而净化黑暗。",
   "stay_connectfour_title": "EL SÉPTIMO SELLO", "stay_connectfour_instruction": "与死亡对弈。你是空心圆，她是实心黑圆。将四个连成一线，以便前进并迷惑她。", "stay_connectfour_board_label": "四子连线棋盘", "stay_connectfour_row": "行", "stay_connectfour_column": "列", "stay_connectfour_open_circle": "空心圆", "stay_connectfour_closed_circle": "实心黑圆",
@@ -46,5 +46,7 @@
   "stay_stone_title": "曼陀罗", "stay_stone_instruction": "旋转每个片段，直到形态不间断地呼吸。", "stay_stone_warm": "曼陀罗继续。",
   "stay_object_title": "OP-ART", "stay_object_instruction": "触碰不同视角。目光改变时，建筑也随之改变。",
   "stay_uri_purr": "Uri呼噜着……将魔力注入你体内", "stay_uri_instruction": "出现，消失。依然还在……永远", "stay_uri_field_label": "移动中的猫 Uri", "stay_uri_pet_label": "抚摸 Uri",
-  "stay_tower_instruction": "跳过一个棋子，使其消失。最后只在中心留下一个。", "stay_tower_blocked": "已经不可能再进行任何决斗", "stay_tower_restart": "重新开始", "stay_dissolution_return": "回到屋里"
+  "stay_tower_instruction": "跳过一个棋子，使其消失。最后只在中心留下一个。", "stay_tower_blocked": "已经不可能再进行任何决斗", "stay_tower_restart": "重新开始", "stay_dissolution_return": "回到屋里",
+  "stay_tetris_field_label": "俄罗斯方块。使用方向键移动、旋转和加速；按空格键直接落下。在触摸屏上，轻触旋转，滑动移动。", "stay_tetris_board_label": "十乘十格的俄罗斯方块棋盘", "stay_tetris_instruction_keyboard": "整理坠落，填满整行。使用方向键移动和旋转。", "stay_tetris_instruction_touch": "整理坠落，填满整行。轻触旋转，滑动移动。", "stay_tetris_lines": "{lines}行", "stay_tetris_game_over": "结束 · {lines}行 · 轻触重新开始", "stay_tetris_restart": "重新整理",
+  "stay_dissolution_rebirth_label": "自我已经消融。是重生的时候了。", "stay_dissolution_rebirth_words": ["自我", "已经", "消融。", "是", "重生", "的", "时候了。"]
 }
