@@ -24,8 +24,33 @@
             const getState = () => ({
                 supported: OneSignal.Notifications.isPushSupported(),
                 permission: Boolean(OneSignal.Notifications.permission),
-                optedIn: Boolean(OneSignal.User.PushSubscription.optedIn)
+                optedIn: Boolean(OneSignal.User.PushSubscription.optedIn),
+                subscriptionId: OneSignal.User.PushSubscription.id || null,
+                token: OneSignal.User.PushSubscription.token || null
             });
+
+            const waitForState = (predicate, timeout = 10000) =>
+                new Promise((resolve, reject) => {
+                    const startedAt = Date.now();
+
+                    const check = () => {
+                        const state = getState();
+
+                        if (predicate(state)) {
+                            resolve(state);
+                            return;
+                        }
+
+                        if (Date.now() - startedAt >= timeout) {
+                            reject(new Error("Push subscription state did not settle"));
+                            return;
+                        }
+
+                        window.setTimeout(check, 100);
+                    };
+
+                    check();
+                });
 
             window.ugjuNotifications = {
                 getState,
@@ -36,14 +61,23 @@
 
                     if (state.optedIn) {
                         await OneSignal.User.PushSubscription.optOut();
+                        return waitForState(current => !current.optedIn);
                     } else {
-                        // optIn es la operación atómica de OneSignal: pide el
-                        // permiso nativo cuando falta y reactiva suscripciones
-                        // que antes fueron desactivadas con optOut.
-                        await OneSignal.User.PushSubscription.optIn();
-                    }
+                        if (!state.permission) {
+                            await OneSignal.Notifications.requestPermission();
+                        }
 
-                    return getState();
+                        if (!OneSignal.Notifications.permission) {
+                            throw new Error("Notification permission was not granted");
+                        }
+
+                        await OneSignal.User.PushSubscription.optIn();
+                        return waitForState(current => (
+                            current.optedIn &&
+                            Boolean(current.subscriptionId) &&
+                            Boolean(current.token)
+                        ));
+                    }
                 }
             };
 
