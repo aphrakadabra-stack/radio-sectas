@@ -4,15 +4,14 @@
 .manifesto-notify svg{stroke-width:1.55}.radio-email svg{stroke-width:1.35}.manifesto-notify[aria-pressed="true"] svg{fill:currentColor}
 .manifesto-support{height:16px;display:inline-flex;align-items:center;padding:0;border:0;background:transparent;color:#111;font:700 clamp(.62rem,1vw,.78rem)/1 "Courier Prime","Courier New",monospace;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
 .manifesto-notify:hover,.manifesto-notify:focus-visible{opacity:.62}.radio-email:hover,.radio-email:focus-visible,.manifesto-support:hover,.manifesto-support:focus-visible{text-decoration:underline;text-underline-offset:3px}
-.support-panel,.notification-install-panel{position:absolute;inset:0;z-index:30;display:grid;place-items:center;padding:clamp(14px,4vw,34px);background:rgba(234,82,243,.96);color:#111;font-family:"Courier Prime","Courier New",monospace}
-.support-panel[hidden],.notification-install-panel[hidden]{display:none}
-.support-card,.notification-install-card{width:min(88%,430px);display:flex;flex-direction:column;align-items:stretch;gap:14px;padding:clamp(18px,4vw,34px);border:1px solid #111;background:#EA52F3;text-align:center}
-.support-card h2,.notification-install-card h2{font-size:clamp(.9rem,2.4vw,1.5rem);font-weight:700;letter-spacing:.08em;line-height:1.15;text-transform:uppercase}
-.notification-install-card{width:min(100%,470px);align-items:center}.notification-install-card p{max-width:38ch;font-size:clamp(.78rem,1.8vw,.95rem);line-height:1.45}
-.support-option,.support-close,.notification-install-close{color:#111;font-family:inherit;font-weight:700;letter-spacing:.05em;line-height:1.15;text-align:center;text-decoration:none;text-transform:uppercase;cursor:pointer}
+.support-panel{position:absolute;inset:0;z-index:30;display:grid;place-items:center;padding:clamp(14px,4vw,34px);background:rgba(234,82,243,.96);color:#111;font-family:"Courier Prime","Courier New",monospace}
+.support-panel[hidden]{display:none}
+.support-card{width:min(88%,430px);display:flex;flex-direction:column;align-items:stretch;gap:14px;padding:clamp(18px,4vw,34px);border:1px solid #111;background:#EA52F3;text-align:center}
+.support-card h2{font-size:clamp(.9rem,2.4vw,1.5rem);font-weight:700;letter-spacing:.08em;line-height:1.15;text-transform:uppercase}
+.support-option,.support-close{color:#111;font-family:inherit;font-weight:700;letter-spacing:.05em;line-height:1.15;text-align:center;text-decoration:none;text-transform:uppercase;cursor:pointer}
 .support-option{width:100%;padding:11px 10px 9px;border:1px solid #111;background:transparent;font-size:clamp(.72rem,1.5vw,.88rem)}.support-option:hover,.support-option:focus-visible{background:#111;color:#EA52F3}
 .support-status{min-height:1.2em;font-size:clamp(.68rem,1.3vw,.8rem);font-weight:700;line-height:1.2}
-.support-close,.notification-install-close{align-self:center;padding:2px 0;border:0;border-bottom:1px solid currentColor;background:transparent;font-size:clamp(.64rem,1.2vw,.76rem)}
+.support-close{align-self:center;padding:2px 0;border:0;border-bottom:1px solid currentColor;background:transparent;font-size:clamp(.64rem,1.2vw,.76rem)}
 .house-actions-fixed{position:fixed;z-index:4;left:max(14px,env(safe-area-inset-left));bottom:max(16px,env(safe-area-inset-bottom))}
 body.uri-inverted .house-actions-fixed,body.world-dissolving .house-actions-fixed{display:none}
 .house-notice{position:fixed;z-index:40;right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom));width:max-content;max-width:min(360px,calc(100vw - 28px));padding:9px 11px;border:1px solid currentColor;background:#EA52F3;color:#111;font:400 .72rem/1.35 "Courier Prime","Courier New",monospace;text-align:left;opacity:0;transform:translateY(5px);transition:opacity .18s ease,transform .18s ease;pointer-events:none}

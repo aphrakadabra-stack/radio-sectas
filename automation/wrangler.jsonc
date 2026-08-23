@@ -7,6 +7,9 @@
   "observability": {
     "enabled": true
   },
+  "vars": {
+    "ONESIGNAL_APP_ID": "8a4823f8-0d0b-405c-889a-bb6159202ec5"
+  },
   "kv_namespaces": [
     {
       "binding": "RADIO_STATE",

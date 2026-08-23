@@ -4,9 +4,6 @@ const RADIO_STATUS_URL =
 const RADIO_URL =
     "https://ugjusectas.github.io/ugju-radio/";
 
-const ONESIGNAL_APP_ID =
-    "e4712649-ca34-49e6-a2b4-f2ca6c5c7460";
-
 const STATE_KEY = "ugju-radio-state";
 
 const LIVE_CONFIRMATIONS_REQUIRED = 2;
@@ -300,6 +297,12 @@ async function readRadioStatus() {
 
 async function sendOneSignalNotification(env) {
 
+    if (!env.ONESIGNAL_APP_ID) {
+        throw new Error(
+            "Missing ONESIGNAL_APP_ID configuration"
+        );
+    }
+
     if (!env.ONESIGNAL_API_KEY) {
         throw new Error(
             "Missing ONESIGNAL_API_KEY secret"
@@ -316,7 +319,7 @@ async function sendOneSignalNotification(env) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                app_id: ONESIGNAL_APP_ID,
+                app_id: env.ONESIGNAL_APP_ID,
                 target_channel: "push",
                 included_segments: [
                     "Subscribed Users"

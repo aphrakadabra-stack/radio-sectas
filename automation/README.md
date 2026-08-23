@@ -24,11 +24,12 @@ La clave REST de OneSignal debe crearse en OneSignal y guardarse únicamente com
 El Worker de producción se llama `ugju-radio-automation` y está configurado con:
 
 1. El espacio KV `ugju-radio-state`, enlazado como `RADIO_STATE`.
-2. El secreto cifrado `ONESIGNAL_API_KEY` (nunca se guarda aquí).
-3. El secreto cifrado `MANUAL_CHECK_TOKEN`, usado para proteger la ejecución
+2. La variable `ONESIGNAL_APP_ID`, con el identificador de la app nueva y limpia.
+3. El secreto cifrado `ONESIGNAL_API_KEY` de esa misma app (nunca se guarda aquí).
+4. El secreto cifrado `MANUAL_CHECK_TOKEN`, usado para proteger la ejecución
    manual mediante `POST /check`. Enviar la cabecera
    `Authorization: Bearer <token>`.
-4. Un Cron Trigger cada minuto: `*/1 * * * *`.
+5. Un Cron Trigger cada minuto: `*/1 * * * *`.
 
 Antes de un cambio futuro, validar que el Worker conserve ambos secretos y el enlace KV. Después del despliegue, encender la radio y comprobar que, tras dos comprobaciones, llegue una sola notificación.
 
