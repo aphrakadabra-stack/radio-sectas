@@ -7,6 +7,10 @@ Worker de metadatos de ÚGJÜ, cuya fuente es Free-ShoutCast.
 - Envía una sola notificación cuando la radio pasa de dormida a habitada.
 - No vuelve a avisar mientras la misma transmisión siga activa.
 - Se rearma después de confirmar que la radio volvió a dormir.
+- OneSignal conserva las suscripciones; el sitio no mantiene una segunda base de
+  datos de dispositivos.
+- El envío apunta al segmento integrado `Subscribed Users`, por lo que no incluye
+  dispositivos que hayan usado la campanita para desuscribirse.
 - El mensaje se entrega en el idioma del suscriptor cuando OneSignal lo conoce.
 
 ## Datos que nunca deben guardarse en GitHub

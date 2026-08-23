@@ -117,37 +117,6 @@ enlaceEmail.addEventListener("click", evento => {
 });
 
 
-function obtenerOneSignal() {
-
-    if (window.ugjuOneSignal) {
-        return window.ugjuOneSignal;
-    }
-
-    try {
-
-        if (
-            window.parent &&
-            window.parent !== window &&
-            window.parent.ugjuOneSignal
-        ) {
-            return window.parent.ugjuOneSignal;
-        }
-
-    } catch (error) {
-
-        /*
-        El manifiesto también funciona como página independiente.
-        Si no comparte origen con su contenedor, usa su propia
-        instancia de OneSignal.
-        */
-
-    }
-
-    return null;
-
-}
-
-
 function obtenerControlDeAvisos() {
 
     try {
@@ -224,37 +193,6 @@ panelInstalacionAvisos.addEventListener(
 );
 
 
-function esperarOneSignal() {
-
-    const disponible = obtenerOneSignal();
-
-    if (disponible) {
-        return Promise.resolve(disponible);
-    }
-
-    return new Promise(resolve => {
-
-        const inicio = Date.now();
-
-        const intervalo = window.setInterval(() => {
-
-            const OneSignal = obtenerOneSignal();
-
-            if (
-                OneSignal ||
-                Date.now() - inicio >= 4000
-            ) {
-                window.clearInterval(intervalo);
-                resolve(OneSignal);
-            }
-
-        },100);
-
-    });
-
-}
-
-
 function actualizarAvisame() {
 
     if (!textosActuales) {
@@ -262,13 +200,8 @@ function actualizarAvisame() {
     }
 
     const control = obtenerControlDeAvisos();
-    const OneSignal = obtenerOneSignal();
     const estado = control && control.getState();
-    const estaSuscrito = Boolean(
-        estado
-            ? estado.optedIn
-            : OneSignal && OneSignal.User.PushSubscription.optedIn
-    );
+    const estaSuscrito = Boolean(estado?.optedIn);
 
     botonAviso.setAttribute(
         "aria-pressed",
@@ -318,102 +251,33 @@ async function alternarAviso() {
     }
 
     const control = obtenerControlDeAvisos();
-
-    if (control) {
-
-        try {
-
-            botonAviso.disabled = true;
-            botonAviso.setAttribute("aria-busy", "true");
-
-            const resultado = await control.toggle();
-
-            if (!resultado.supported) {
-                mostrarAvisoCasa(textosActuales.notify_unsupported);
-                return;
-            }
-
-            actualizarAvisame();
-            mostrarAvisoCasa(
-                resultado.optedIn
-                    ? textosActuales.notify_success
-                    : textosActuales.notify_disabled
-            );
-
-        } catch (error) {
-
-            console.error("No se pudo cambiar la suscripción de avisos.", error);
-
-            mostrarAvisoCasa(textosActuales.notify_error);
-
-        } finally {
-
-            botonAviso.disabled = false;
-            botonAviso.removeAttribute("aria-busy");
-
-        }
-
+    if (!control) {
+        mostrarAvisoCasa(textosActuales.notify_error);
         return;
-
-    }
-
-    const OneSignal = await esperarOneSignal();
-
-    if (!OneSignal) {
-
-        return;
-
-    }
-
-    if (!OneSignal.Notifications.isPushSupported()) {
-
-        mostrarAvisoCasa(
-            textosActuales.notify_unsupported
-        );
-
-        return;
-
     }
 
     try {
-
-        const estaSuscrito =
-            Boolean(
-                OneSignal.User.PushSubscription.optedIn
-            );
-
         botonAviso.disabled = true;
         botonAviso.setAttribute("aria-busy", "true");
-
-        if (estaSuscrito) {
-            await OneSignal.User.PushSubscription.optOut();
-        } else {
-            await OneSignal.User.PushSubscription.optIn();
+        await control.ready;
+        if (!control.getState().supported) {
+            mostrarAvisoCasa(textosActuales.notify_unsupported);
+            return;
         }
-
+        const resultado = await control.toggle();
         actualizarAvisame();
-
         mostrarAvisoCasa(
-            OneSignal.User.PushSubscription.optedIn
+            resultado.optedIn
                 ? textosActuales.notify_success
                 : textosActuales.notify_disabled
         );
-
     } catch (error) {
-
         console.error("No se pudo cambiar la suscripción de avisos.", error);
-
-        mostrarAvisoCasa(
-            textosActuales.notify_error
-        );
-
+        mostrarAvisoCasa(textosActuales.notify_error);
     } finally {
-
         botonAviso.disabled = false;
         botonAviso.removeAttribute("aria-busy");
-
     }
-
 }
 
 
@@ -548,23 +412,6 @@ document.addEventListener(
 );
 
 
-document.addEventListener(
-    "ugju-onesignal-ready",
-    () => {
-
-        const OneSignal = obtenerOneSignal();
-
-        OneSignal.User.PushSubscription.addEventListener(
-            "change",
-            actualizarAvisame
-        );
-
-        actualizarAvisame();
-
-    }
-);
-
-
 try {
 
     if (
@@ -573,7 +420,7 @@ try {
     ) {
 
         window.parent.document.addEventListener(
-            "ugju-onesignal-ready",
+            "ugju-notifications-ready",
             actualizarAvisame
         );
 
