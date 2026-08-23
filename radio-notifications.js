@@ -27,6 +27,7 @@
     let ready = false;
     let busy = false;
     let noticeTimer = 0;
+    const SUBSCRIPTION_TIMEOUT = 15000;
 
     function show(message) {
         window.clearTimeout(noticeTimer);
@@ -60,6 +61,32 @@
         );
     }
 
+    function hasCompleteSubscription() {
+        return Boolean(
+            isSubscribed() &&
+            oneSignal?.User?.PushSubscription?.id &&
+            oneSignal?.User?.PushSubscription?.token
+        );
+    }
+
+    function waitForCompleteSubscription() {
+        return new Promise((resolve, reject) => {
+            const started = Date.now();
+            const check = () => {
+                if (hasCompleteSubscription()) {
+                    resolve();
+                    return;
+                }
+                if (Date.now() - started >= SUBSCRIPTION_TIMEOUT) {
+                    reject(new Error("OneSignal did not create a complete push subscription."));
+                    return;
+                }
+                window.setTimeout(check, 200);
+            };
+            check();
+        });
+    }
+
     async function toggle() {
         if (busy) return;
         if (!available()) {
@@ -68,10 +95,6 @@
         }
         if (!config || !/^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(config.appId)) {
             show(messages.unavailable);
-            return;
-        }
-        if (Notification.permission === "denied") {
-            show(messages.blocked);
             return;
         }
         if (!ready || !oneSignal) {
@@ -86,8 +109,17 @@
                 await oneSignal.User.PushSubscription.optOut();
                 show(messages.disabled);
             } else {
+                const permissionRequest = oneSignal.Notifications.requestPermission({
+                    fallbackToSettings: true
+                });
+                await permissionRequest;
+                if (!oneSignal.Notifications.permission) {
+                    show(messages.blocked);
+                    return;
+                }
                 await oneSignal.User.PushSubscription.optIn();
-                show(isSubscribed() ? messages.enabled : messages.error);
+                await waitForCompleteSubscription();
+                show(messages.enabled);
             }
         } catch (error) {
             console.error("ÚGJÜ RADIO notification change failed.", error);
