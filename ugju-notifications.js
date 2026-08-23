@@ -11,9 +11,8 @@
             await OneSignal.init({
                 appId: "e4712649-ca34-49e6-a2b4-f2ca6c5c7460",
                 safari_web_id: "web.onesignal.auto.4b99c5db-a7c9-461a-8333-facb0838095d",
-                // OneSignal interpreta esta ruta desde la raíz del origen.
-                // Su SDK exige que no empiece con una barra.
-                serviceWorkerPath: "ugju-radio/OneSignalSDKWorker.js",
+                path: "/ugju-radio/",
+                serviceWorkerPath: "OneSignalSDKWorker.js",
                 serviceWorkerParam: { scope: "/ugju-radio/" },
                 notifyButton: { enable: false }
             });
