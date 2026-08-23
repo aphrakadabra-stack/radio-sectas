@@ -1,5 +1,8 @@
 (() => {
-    if (window.parent !== window) return;
+    // Las vistas internas comparten la única instancia de la Casa. No usamos
+    // parent !== window: algunos navegadores alojan incluso la página principal
+    // dentro de un frame y esa comprobación dejaba la campanita sin inicializar.
+    if (new URLSearchParams(location.search).get("inside") === "radio") return;
     if (location.hostname !== "ugjusectas.github.io") return;
     if (window.ugjuNotificationsInitializing) return;
 
