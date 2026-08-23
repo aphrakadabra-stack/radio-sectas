@@ -388,14 +388,6 @@ async function alternarAviso() {
         if (estaSuscrito) {
             await OneSignal.User.PushSubscription.optOut();
         } else {
-            if (!OneSignal.Notifications.permission) {
-                await OneSignal.Notifications.requestPermission();
-            }
-
-            if (!OneSignal.Notifications.permission) {
-                throw new Error("Notification permission was not granted");
-            }
-
             await OneSignal.User.PushSubscription.optIn();
         }
 

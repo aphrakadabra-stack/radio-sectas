@@ -37,14 +37,9 @@
                     if (state.optedIn) {
                         await OneSignal.User.PushSubscription.optOut();
                     } else {
-                        if (!OneSignal.Notifications.permission) {
-                            await OneSignal.Notifications.requestPermission();
-                        }
-
-                        if (!OneSignal.Notifications.permission) {
-                            throw new Error("Notification permission was not granted");
-                        }
-
+                        // optIn es la operación atómica de OneSignal: pide el
+                        // permiso nativo cuando falta y reactiva suscripciones
+                        // que antes fueron desactivadas con optOut.
                         await OneSignal.User.PushSubscription.optIn();
                     }
 
