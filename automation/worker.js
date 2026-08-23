@@ -326,9 +326,9 @@ async function sendOneSignalNotification(env) {
                 },
                 contents: {
                     en:
-                        "The house is inhabited. Come in and listen.",
+                        "ÚGJÜ RADIO is on air. Come in and listen.",
                     es:
-                        "La casa está habitada. Entrá a escuchar.",
+                        "ÚGJÜ RADIO está en el aire. Entrá a escuchar.",
                     de:
                         "Das Haus ist bewohnt. Komm herein und lausche.",
                     fi:

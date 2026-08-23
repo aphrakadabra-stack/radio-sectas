@@ -27,16 +27,6 @@ document.documentElement.lang = idioma;
 
 const enlaceEmail =
     document.getElementById("email-link");
-const botonAviso =
-    document.getElementById("notify-link");
-const panelInstalacionAvisos =
-    document.getElementById("notification-install-panel");
-const tituloInstalacionAvisos =
-    document.getElementById("notification-install-title");
-const textoInstalacionAvisos =
-    document.getElementById("notification-install-copy");
-const botonCerrarInstalacionAvisos =
-    document.getElementById("notification-install-close");
 const botonApoyo =
     document.getElementById("support-link");
 const panelApoyo =
@@ -53,22 +43,7 @@ const botonCerrarApoyo =
     document.getElementById("support-close");
 const tarjetaApoyo =
     panelApoyo.querySelector(".support-card");
-const esNavegadorInstagram =
-    /Instagram/i.test(navigator.userAgent);
-const esDispositivoAppleMovil =
-    /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
-    (
-        navigator.platform === "MacIntel" &&
-        navigator.maxTouchPoints > 1
-    );
 let textosActuales;
-const avisoCasa = document.createElement("p");
-avisoCasa.className = "house-notice";
-avisoCasa.setAttribute("role", "status");
-avisoCasa.setAttribute("aria-live", "polite");
-avisoCasa.hidden = true;
-document.body.appendChild(avisoCasa);
-let temporizadorAvisoCasa;
 
 
 const configuracionesRegionales = (
@@ -92,18 +67,6 @@ const pareceEstarEnArgentina =
     zonaHoraria === "America/Buenos_Aires";
 
 
-function mostrarAvisoCasa(mensaje) {
-    window.clearTimeout(temporizadorAvisoCasa);
-    avisoCasa.textContent = mensaje;
-    avisoCasa.hidden = false;
-    requestAnimationFrame(() => avisoCasa.classList.add("is-visible"));
-    temporizadorAvisoCasa = window.setTimeout(() => {
-        avisoCasa.classList.remove("is-visible");
-        window.setTimeout(() => { avisoCasa.hidden = true; }, 180);
-    }, 3600);
-}
-
-
 enlaceEmail.addEventListener("click", evento => {
 
     evento.preventDefault();
@@ -115,176 +78,6 @@ enlaceEmail.addEventListener("click", evento => {
     }
 
 });
-
-
-function obtenerControlDeAvisos() {
-
-    try {
-
-        if (window.ugjuNotifications) {
-            return window.ugjuNotifications;
-        }
-
-        if (
-            window.parent &&
-            window.parent !== window &&
-            window.parent.ugjuNotifications
-        ) {
-            return window.parent.ugjuNotifications;
-        }
-
-    } catch (error) {
-
-        /* La página independiente usa su propia instancia. */
-
-    }
-
-    return null;
-
-}
-
-
-function estaInstaladaComoAplicacion() {
-
-    return (
-        window.navigator.standalone === true ||
-        window.matchMedia(
-            "(display-mode: standalone)"
-        ).matches
-    );
-
-}
-
-
-function abrirInstruccionesDeInstalacion() {
-
-    panelInstalacionAvisos.hidden = false;
-
-    requestAnimationFrame(() => {
-        botonCerrarInstalacionAvisos.focus();
-    });
-
-}
-
-
-function cerrarInstruccionesDeInstalacion() {
-
-    panelInstalacionAvisos.hidden = true;
-    botonAviso.focus();
-
-}
-
-
-botonCerrarInstalacionAvisos.addEventListener(
-    "click",
-    cerrarInstruccionesDeInstalacion
-);
-
-
-panelInstalacionAvisos.addEventListener(
-    "click",
-    evento => {
-
-        if (evento.target === panelInstalacionAvisos) {
-            cerrarInstruccionesDeInstalacion();
-        }
-
-    }
-);
-
-
-function actualizarAvisame() {
-
-    if (!textosActuales) {
-        return;
-    }
-
-    const control = obtenerControlDeAvisos();
-    const estado = control && control.getState();
-    const estaSuscrito = Boolean(estado?.optedIn);
-
-    botonAviso.setAttribute(
-        "aria-pressed",
-        String(estaSuscrito)
-    );
-
-    const etiqueta =
-        estaSuscrito
-            ? textosActuales.notify_active
-            : textosActuales.notify_label;
-
-    botonAviso.setAttribute(
-        "aria-label",
-        etiqueta
-    );
-
-    botonAviso.title = etiqueta;
-
-}
-
-
-async function alternarAviso() {
-
-    if (!textosActuales) {
-        return;
-    }
-
-    if (esNavegadorInstagram) {
-
-        mostrarAvisoCasa(
-            textosActuales.notify_open_browser
-        );
-
-        return;
-
-    }
-
-    if (
-        esDispositivoAppleMovil &&
-        !estaInstaladaComoAplicacion()
-    ) {
-
-        abrirInstruccionesDeInstalacion();
-
-        return;
-
-    }
-
-    const control = obtenerControlDeAvisos();
-    if (!control) {
-        mostrarAvisoCasa(textosActuales.notify_error);
-        return;
-    }
-
-    try {
-        botonAviso.disabled = true;
-        botonAviso.setAttribute("aria-busy", "true");
-        await control.ready;
-        if (!control.getState().supported) {
-            mostrarAvisoCasa(textosActuales.notify_unsupported);
-            return;
-        }
-        const resultado = await control.toggle();
-        actualizarAvisame();
-        mostrarAvisoCasa(
-            resultado.optedIn
-                ? textosActuales.notify_success
-                : textosActuales.notify_disabled
-        );
-    } catch (error) {
-        console.error("No se pudo cambiar la suscripción de avisos.", error);
-        mostrarAvisoCasa(textosActuales.notify_error);
-    } finally {
-        botonAviso.disabled = false;
-        botonAviso.removeAttribute("aria-busy");
-    }
-}
-
-
-botonAviso.addEventListener(
-    "click",
-    alternarAviso
-);
 
 
 function abrirApoyo() {
@@ -392,15 +185,6 @@ panelApoyo.addEventListener(
 document.addEventListener(
     "keydown",
     evento => {
-
-        if (
-            evento.key === "Escape" &&
-            !panelInstalacionAvisos.hidden
-        ) {
-            cerrarInstruccionesDeInstalacion();
-            return;
-        }
-
         if (
             evento.key === "Escape" &&
             !panelApoyo.hidden
@@ -410,35 +194,6 @@ document.addEventListener(
 
     }
 );
-
-
-try {
-
-    if (
-        window.parent &&
-        window.parent !== window
-    ) {
-
-        window.parent.document.addEventListener(
-            "ugju-notifications-ready",
-            actualizarAvisame
-        );
-
-        window.parent.document.addEventListener(
-            "ugju-notifications-change",
-            actualizarAvisame
-        );
-
-    }
-
-} catch (error) {
-
-    /*
-    La página independiente no necesita escuchar
-    el documento que la abrió.
-    */
-
-}
 
 
 function cargarTextos(codigo) {
@@ -493,23 +248,6 @@ cargarTextos(idioma)
         "manifesto-project"
     ).textContent = textos.project;
 
-    botonAviso.setAttribute(
-        "aria-label",
-        textos.notify_label
-    );
-
-    botonAviso.title =
-        textos.notify_label;
-
-    tituloInstalacionAvisos.textContent =
-        textos.notify_ios_title;
-
-    textoInstalacionAvisos.textContent =
-        textos.notify_ios_install;
-
-    botonCerrarInstalacionAvisos.textContent =
-        textos.support_close;
-
     botonApoyo.textContent =
         textos.support;
 
@@ -524,9 +262,6 @@ cargarTextos(idioma)
 
     botonCerrarApoyo.textContent =
         textos.support_close;
-
-    actualizarAvisame();
-
 
     const contenido =
         document.getElementById("manifesto-content");
