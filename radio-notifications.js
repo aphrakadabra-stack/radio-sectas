@@ -141,6 +141,7 @@
             await sdk.init({
                 appId: config.appId,
                 safari_web_id: config.safariWebId,
+                path: config.path,
                 serviceWorkerPath: config.workerPath,
                 serviceWorkerParam: { scope: config.workerScope },
                 notifyButton: { enable: false },
