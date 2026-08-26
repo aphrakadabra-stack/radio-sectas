@@ -28,6 +28,10 @@
     let busy = false;
     let noticeTimer = 0;
     const SUBSCRIPTION_TIMEOUT = 15000;
+    const stateChannel =
+        "BroadcastChannel" in window
+            ? new BroadcastChannel("ugju-radio-notification-state")
+            : null;
 
     function show(message) {
         window.clearTimeout(noticeTimer);
@@ -44,13 +48,28 @@
         return Boolean(oneSignal?.User?.PushSubscription?.optedIn);
     }
 
-    function render() {
-        const active = isSubscribed();
+    function render(active = isSubscribed()) {
         button.setAttribute("aria-pressed", String(active));
         button.setAttribute("aria-label", active ? messages.active : messages.idle);
         button.title = active ? messages.active : messages.idle;
         button.toggleAttribute("aria-busy", busy);
     }
+
+    function shareState() {
+        stateChannel?.postMessage({
+            type: "subscription-state",
+            active: isSubscribed()
+        });
+    }
+
+    stateChannel?.addEventListener("message", event => {
+        if (
+            event.data?.type === "subscription-state" &&
+            typeof event.data.active === "boolean"
+        ) {
+            render(event.data.active);
+        }
+    });
 
     function available() {
         return Boolean(
@@ -127,6 +146,7 @@
         } finally {
             busy = false;
             render();
+            shareState();
         }
     }
 
@@ -149,7 +169,10 @@
             });
             oneSignal = sdk;
             ready = true;
-            sdk.User.PushSubscription.addEventListener("change", render);
+            sdk.User.PushSubscription.addEventListener("change", () => {
+                render();
+                shareState();
+            });
             sdk.Notifications.addEventListener("permissionChange", render);
             render();
         } catch (error) {
