@@ -16,9 +16,9 @@
     */
     --content-width:
         min(
-            86vw,
-            820px,
-            calc(87.7dvh - 273px)
+            82vw,
+            520px,
+            calc(86.9dvh - 170px)
         );
 
     /*
@@ -931,6 +931,15 @@ h1{
 
 
 /* TELÉFONOS */
+
+@media(min-width:701px) and (min-height:601px){
+
+    #radio{
+        padding:24px 4px 4px;
+    }
+
+}
+
 
 @media(max-width:700px){
 
