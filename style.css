@@ -11,14 +11,14 @@
 
 :root{
     /*
-    El conjunto se reduce apenas para incorporar
-    el acceso al manifiesto sin producir scroll.
+    En escritorio la portada vuelve a ocupar la altura útil:
+    las puertas quedan en los bordes, sin comprimir la radio.
     */
     --content-width:
         min(
             90vw,
             900px,
-            calc(87.7dvh - 273px)
+            calc(100dvh - 180px)
         );
 
     /*
