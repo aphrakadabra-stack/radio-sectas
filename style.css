@@ -16,9 +16,9 @@
     */
     --content-width:
         min(
-            90vw,
-            900px,
-            calc(100dvh - 180px)
+            86vw,
+            820px,
+            calc(87.7dvh - 273px)
         );
 
     /*
