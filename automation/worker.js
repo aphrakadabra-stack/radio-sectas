@@ -322,7 +322,7 @@ async function sendOneSignalNotification(env) {
                 app_id: env.ONESIGNAL_APP_ID,
                 target_channel: "push",
                 included_segments: [
-                    "Subscribed Users"
+                    "Total Subscriptions"
                 ],
                 headings: {
                     en: "ÚGJÜ RADIO"

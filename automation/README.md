@@ -9,7 +9,7 @@ Worker de metadatos de ÚGJÜ, cuya fuente es Free-ShoutCast.
 - Se rearma después de confirmar que la radio volvió a dormir.
 - OneSignal conserva las suscripciones; el sitio no mantiene una segunda base de
   datos de dispositivos.
-- El envío apunta al segmento integrado `Subscribed Users`, por lo que no incluye
+- El envío apunta al segmento integrado `Total Subscriptions`, por lo que no incluye
   dispositivos que hayan usado la campanita para desuscribirse.
 - El mensaje se entrega en el idioma del suscriptor cuando OneSignal lo conoce.
 
