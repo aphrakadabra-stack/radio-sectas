@@ -68,6 +68,18 @@ body{
 }
 
 
+.manifesto-embedded .manifesto-sheet{
+    transform-origin:center center;
+    will-change:transform;
+}
+
+
+.manifesto-embedded,
+.manifesto-embedded body{
+    touch-action:none;
+}
+
+
 .manifesto-header{
     display:grid;
     grid-template-columns:auto 1fr;

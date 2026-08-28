@@ -10,6 +10,141 @@ const idiomasDisponibles = [
 ];
 
 
+const manifiestoEmbebido =
+    new URLSearchParams(window.location.search).get("inside") === "radio" &&
+    window.parent !== window;
+
+
+if (manifiestoEmbebido) {
+
+    document.documentElement.classList.add("manifesto-embedded");
+
+    const hoja = document.querySelector(".manifesto-sheet");
+    const escalaMinima = 1;
+    const escalaMaxima = 3;
+    let escala = 1;
+    let traslacionX = 0;
+    let traslacionY = 0;
+    let gesto = null;
+
+    const limitar = (valor,minimo,maximo) =>
+        Math.min(maximo,Math.max(minimo,valor));
+
+    const distancia = (a,b) =>
+        Math.hypot(b.clientX-a.clientX,b.clientY-a.clientY);
+
+    const centro = (a,b) => ({
+        x:(a.clientX+b.clientX)/2,
+        y:(a.clientY+b.clientY)/2
+    });
+
+    function aplicarZoom() {
+        hoja.style.transform =
+            `translate3d(${traslacionX}px,${traslacionY}px,0) scale(${escala})`;
+    }
+
+    function iniciarPellizco(toques) {
+        const punto = centro(toques[0],toques[1]);
+        gesto = {
+            tipo:"pinch",
+            distancia:distancia(toques[0],toques[1]),
+            centro:punto,
+            escala,
+            x:traslacionX,
+            y:traslacionY
+        };
+    }
+
+    document.addEventListener("touchstart", evento => {
+        if (evento.touches.length >= 2) {
+            iniciarPellizco(evento.touches);
+            evento.preventDefault();
+            return;
+        }
+        if (evento.touches.length === 1 && escala > escalaMinima) {
+            gesto = {
+                tipo:"pan",
+                punto:{
+                    x:evento.touches[0].clientX,
+                    y:evento.touches[0].clientY
+                },
+                x:traslacionX,
+                y:traslacionY
+            };
+            evento.preventDefault();
+        }
+    },{passive:false});
+
+    document.addEventListener("touchmove", evento => {
+        if (!gesto) return;
+
+        if (evento.touches.length >= 2) {
+            if (gesto.tipo !== "pinch") {
+                iniciarPellizco(evento.touches);
+            }
+            const punto = centro(evento.touches[0],evento.touches[1]);
+            const proporcion =
+                distancia(evento.touches[0],evento.touches[1]) /
+                Math.max(1,gesto.distancia);
+            escala = limitar(
+                gesto.escala*proporcion,
+                escalaMinima,
+                escalaMaxima
+            );
+            traslacionX = gesto.x + punto.x - gesto.centro.x;
+            traslacionY = gesto.y + punto.y - gesto.centro.y;
+            aplicarZoom();
+            evento.preventDefault();
+            return;
+        }
+
+        if (
+            evento.touches.length === 1 &&
+            gesto.tipo === "pan" &&
+            escala > escalaMinima
+        ) {
+            traslacionX =
+                gesto.x+evento.touches[0].clientX-gesto.punto.x;
+            traslacionY =
+                gesto.y+evento.touches[0].clientY-gesto.punto.y;
+            aplicarZoom();
+            evento.preventDefault();
+        }
+    },{passive:false});
+
+    document.addEventListener("touchend", evento => {
+        if (evento.touches.length >= 2) {
+            iniciarPellizco(evento.touches);
+            return;
+        }
+        if (evento.touches.length === 1 && escala > escalaMinima) {
+            gesto = {
+                tipo:"pan",
+                punto:{
+                    x:evento.touches[0].clientX,
+                    y:evento.touches[0].clientY
+                },
+                x:traslacionX,
+                y:traslacionY
+            };
+            return;
+        }
+        gesto = null;
+        if (escala <= escalaMinima) {
+            escala = escalaMinima;
+            traslacionX = 0;
+            traslacionY = 0;
+            aplicarZoom();
+        }
+    },{passive:true});
+
+    document.addEventListener("touchcancel",() => {
+        gesto = null;
+    },{passive:true});
+
+}
+
+
 const idiomasNavegador = (
     navigator.languages || [navigator.language]
 )
