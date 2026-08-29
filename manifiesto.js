@@ -172,6 +172,12 @@ const botonArgentina =
     document.getElementById("support-argentina");
 const enlacePaypal =
     document.getElementById("support-paypal");
+const opcionInternacional =
+    document.getElementById("support-international");
+const etiquetaPaypal =
+    document.getElementById("support-paypal-label");
+const enlacePaypalEscritorio =
+    document.getElementById("support-paypal-open");
 const estadoApoyo =
     document.getElementById("support-status");
 const botonCerrarApoyo =
@@ -217,17 +223,23 @@ enlaceEmail.addEventListener("click", evento => {
 
 function abrirApoyo() {
 
+    const paypalPreferido = window.matchMedia(
+        "(max-width: 600px)"
+    ).matches
+        ? enlacePaypal
+        : enlacePaypalEscritorio;
+
     if (pareceEstarEnArgentina) {
 
         tarjetaApoyo.insertBefore(
             botonArgentina,
-            enlacePaypal
+            opcionInternacional
         );
 
     } else {
 
         tarjetaApoyo.insertBefore(
-            enlacePaypal,
+            opcionInternacional,
             botonArgentina
         );
 
@@ -239,7 +251,7 @@ function abrirApoyo() {
     (
         pareceEstarEnArgentina
             ? botonArgentina
-            : enlacePaypal
+            : paypalPreferido
     ).focus();
 
 }
@@ -393,6 +405,9 @@ cargarTextos(idioma)
         textos.support_argentina;
 
     enlacePaypal.textContent =
+        textos.support_international;
+
+    etiquetaPaypal.textContent =
         textos.support_international;
 
     botonCerrarApoyo.textContent =

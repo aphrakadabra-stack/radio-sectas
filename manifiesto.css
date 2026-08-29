@@ -491,6 +491,59 @@ h1{
 }
 
 
+.support-international{
+    width:100%;
+}
+
+
+.support-paypal-desktop{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:9px;
+}
+
+
+#support-paypal-label{
+    font-size:clamp(.72rem,1.5vw,.88rem);
+    font-weight:700;
+    letter-spacing:.05em;
+    line-height:1.15;
+    text-transform:uppercase;
+}
+
+
+.support-paypal-qr{
+    display:block;
+    width:clamp(170px,24vw,220px);
+    height:auto;
+    background:#fff;
+}
+
+
+.support-paypal-open{
+    color:#111;
+    font-size:clamp(.64rem,1.2vw,.76rem);
+    font-weight:700;
+    letter-spacing:.05em;
+    line-height:1.15;
+    text-decoration:none;
+    text-transform:uppercase;
+}
+
+
+.support-paypal-open:hover,
+.support-paypal-open:focus-visible{
+    text-decoration:underline;
+    text-underline-offset:3px;
+}
+
+
+.support-paypal-mobile{
+    display:none;
+}
+
+
 .support-status{
     min-height:1.2em;
 
@@ -626,6 +679,16 @@ h1{
         width:min(94%,390px);
         gap:11px;
         padding:18px 14px;
+    }
+
+
+    .support-paypal-desktop{
+        display:none;
+    }
+
+
+    .support-paypal-mobile{
+        display:block;
     }
 
 }
