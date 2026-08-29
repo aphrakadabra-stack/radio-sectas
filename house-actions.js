@@ -8,6 +8,9 @@
 
     const argentina = document.getElementById("support-argentina");
     const paypal = document.getElementById("support-paypal");
+    const international = document.getElementById("support-international");
+    const paypalLabel = document.getElementById("support-paypal-label");
+    const paypalDesktop = document.getElementById("support-paypal-open");
     const supportStatus = document.getElementById("support-status");
     const supportClose = document.getElementById("support-close");
     const pareceArgentina = (navigator.languages || [navigator.language]).some(codigo => /^es[-_]AR$/i.test(codigo)) || (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("America/Argentina/");
@@ -23,6 +26,7 @@
             document.getElementById("support-title").textContent = textos.support_title;
             argentina.textContent = textos.support_argentina;
             paypal.textContent = textos.support_international;
+            paypalLabel.textContent = textos.support_international;
             supportClose.textContent = textos.support_close;
         } catch {}
     }
@@ -34,8 +38,9 @@
     });
 
     support.addEventListener("click", () => {
-        const preferred = pareceArgentina ? argentina : paypal;
-        supportPanel.querySelector(".support-card").insertBefore(preferred, pareceArgentina ? paypal : argentina);
+        const paypalPreferred = window.matchMedia("(max-width: 600px)").matches ? paypal : paypalDesktop;
+        const preferred = pareceArgentina ? argentina : paypalPreferred;
+        supportPanel.querySelector(".support-card").insertBefore(pareceArgentina ? argentina : international, pareceArgentina ? international : argentina);
         supportPanel.hidden = false;
         preferred.focus();
     });
