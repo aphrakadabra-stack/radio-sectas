@@ -178,6 +178,10 @@ const etiquetaPaypal =
     document.getElementById("support-paypal-label");
 const enlacePaypalEscritorio =
     document.getElementById("support-paypal-open");
+const botonCopiarDireccion =
+    panelApoyo.querySelector(".support-copy-address");
+const botonCopiarLemon =
+    panelApoyo.querySelector(".support-copy-lemon");
 const estadoApoyo =
     document.getElementById("support-status");
 const botonCerrarApoyo =
@@ -299,6 +303,33 @@ async function copiarAlias() {
 }
 
 
+async function copiarValorApoyo(valor, etiqueta) {
+
+    try {
+
+        await navigator.clipboard.writeText(valor);
+
+    } catch (error) {
+
+        const campo = document.createElement("textarea");
+
+        campo.value = valor;
+        campo.setAttribute("readonly","");
+        campo.style.position = "fixed";
+        campo.style.opacity = "0";
+
+        document.body.appendChild(campo);
+        campo.select();
+        document.execCommand("copy");
+        campo.remove();
+
+    }
+
+    estadoApoyo.textContent = `${etiqueta}: ${valor}`;
+
+}
+
+
 botonApoyo.addEventListener(
     "click",
     abrirApoyo
@@ -314,6 +345,24 @@ botonCerrarApoyo.addEventListener(
 botonArgentina.addEventListener(
     "click",
     copiarAlias
+);
+
+
+botonCopiarDireccion.addEventListener(
+    "click",
+    () => copiarValorApoyo(
+        "TD2GYf6qXQYucGyvFJhystnMaj3cYMP21Q",
+        "USDT / TRC20 ADDRESS COPIED"
+    )
+);
+
+
+botonCopiarLemon.addEventListener(
+    "click",
+    () => copiarValorApoyo(
+        "$aphra",
+        "LEMON TAG COPIED"
+    )
 );
 
 

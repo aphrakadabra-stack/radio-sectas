@@ -11,6 +11,8 @@
     const international = document.getElementById("support-international");
     const paypalLabel = document.getElementById("support-paypal-label");
     const paypalDesktop = document.getElementById("support-paypal-open");
+    const copyAddress = supportPanel.querySelector(".support-copy-address");
+    const copyLemon = supportPanel.querySelector(".support-copy-lemon");
     const supportStatus = document.getElementById("support-status");
     const supportClose = document.getElementById("support-close");
     const pareceArgentina = (navigator.languages || [navigator.language]).some(codigo => /^es[-_]AR$/i.test(codigo)) || (Intl.DateTimeFormat().resolvedOptions().timeZone || "").startsWith("America/Argentina/");
@@ -45,12 +47,12 @@
         preferred.focus();
     });
 
-    async function copiar() {
-        const alias = "muriscia.mp";
-        try { await navigator.clipboard.writeText(alias); }
+    async function copiarValor(value, label) {
+        try { await navigator.clipboard.writeText(value); }
         catch {
             const field = document.createElement("textarea");
-            field.value = alias;
+            field.value = value;
+            field.setAttribute("readonly", "");
             field.style.position = "fixed";
             field.style.opacity = "0";
             document.body.append(field);
@@ -58,7 +60,7 @@
             document.execCommand("copy");
             field.remove();
         }
-        supportStatus.textContent = `ALIAS COPIED: ${alias}`;
+        supportStatus.textContent = `${label}: ${value}`;
     }
 
     const cerrar = () => {
@@ -66,7 +68,9 @@
         supportStatus.textContent = "";
         support.focus();
     };
-    argentina.addEventListener("click", copiar);
+    argentina.addEventListener("click", () => copiarValor("muriscia.mp", "ALIAS COPIED"));
+    copyAddress?.addEventListener("click", () => copiarValor("TD2GYf6qXQYucGyvFJhystnMaj3cYMP21Q", "USDT / TRC20 ADDRESS COPIED"));
+    copyLemon?.addEventListener("click", () => copiarValor("$aphra", "LEMON TAG COPIED"));
     supportClose.addEventListener("click", cerrar);
     supportPanel.addEventListener("click", event => { if (event.target === supportPanel) cerrar(); });
     document.addEventListener("keydown", event => { if (event.key === "Escape" && !supportPanel.hidden) cerrar(); });
