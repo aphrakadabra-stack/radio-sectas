@@ -27,8 +27,8 @@
             support.textContent = textos.support;
             document.getElementById("support-title").textContent = textos.support_title;
             argentina.textContent = textos.support_argentina;
-            paypal.textContent = textos.support_international;
-            paypalLabel.textContent = textos.support_international;
+            paypal.textContent = "OPEN PAYPAL";
+            paypalLabel.textContent = "PAYPAL";
             supportClose.textContent = textos.support_close;
         } catch {}
     }
@@ -42,7 +42,6 @@
     support.addEventListener("click", () => {
         const paypalPreferred = window.matchMedia("(max-width: 600px)").matches ? paypal : paypalDesktop;
         const preferred = pareceArgentina ? argentina : paypalPreferred;
-        supportPanel.querySelector(".support-card").insertBefore(pareceArgentina ? argentina : international, pareceArgentina ? international : argentina);
         supportPanel.hidden = false;
         preferred.focus();
     });

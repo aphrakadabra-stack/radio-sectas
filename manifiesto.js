@@ -233,22 +233,6 @@ function abrirApoyo() {
         ? enlacePaypal
         : enlacePaypalEscritorio;
 
-    if (pareceEstarEnArgentina) {
-
-        tarjetaApoyo.insertBefore(
-            botonArgentina,
-            opcionInternacional
-        );
-
-    } else {
-
-        tarjetaApoyo.insertBefore(
-            opcionInternacional,
-            botonArgentina
-        );
-
-    }
-
     panelApoyo.hidden = false;
     estadoApoyo.textContent = "";
 
@@ -453,11 +437,9 @@ cargarTextos(idioma)
     botonArgentina.textContent =
         textos.support_argentina;
 
-    enlacePaypal.textContent =
-        textos.support_international;
+    enlacePaypal.textContent = "OPEN PAYPAL";
 
-    etiquetaPaypal.textContent =
-        textos.support_international;
+    etiquetaPaypal.textContent = "PAYPAL";
 
     botonCerrarApoyo.textContent =
         textos.support_close;

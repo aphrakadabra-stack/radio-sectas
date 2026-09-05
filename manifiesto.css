@@ -576,13 +576,7 @@ h1{
 }
 
 
-.support-crypto-qr{
-    display:block;
-    width:clamp(132px,18vw,164px);
-    height:auto;
-    margin:0 auto;
-    background:#fff;
-}
+
 
 
 .support-crypto-warning{
@@ -740,9 +734,7 @@ h1{
     }
 
 
-    .support-crypto-qr{
-        display:none;
-    }
+
 
 }
 
@@ -787,4 +779,23 @@ h1{
         font-size:clamp(.42rem,1.45vh,.54rem);
     }
 
+}
+
+/* APOYAR: three equal zones, direct actions on mobile. */
+.support-card{width:min(100%,900px)}
+.support-zones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.support-zones > *{min-width:0;display:flex;flex-direction:column;gap:12px;margin:0;padding:0;border:0}
+.support-zones > * + *{border-left:1px solid #111;padding-left:18px}
+.support-zones h3{margin:0;font-size:.82rem;letter-spacing:.08em;line-height:1.2}
+.support-detail{margin:0;font-size:.75rem;line-height:1.4;overflow-wrap:anywhere}
+.support-paypal-qr{width:min(100%,170px);height:auto}
+#support-paypal-label{margin:0}
+.support-crypto-warning{font-size:.65rem;line-height:1.4}
+.support-status{overflow-wrap:anywhere}
+@media(max-width:600px){
+ .support-card{width:min(100%,390px);gap:10px;padding:16px 14px}
+ .support-zones{grid-template-columns:1fr;gap:12px}
+ .support-zones > *{gap:8px}
+ .support-zones > * + *{border-left:0;border-top:1px solid #111;padding:12px 0 0}
+ .support-panel img{display:none}
 }
