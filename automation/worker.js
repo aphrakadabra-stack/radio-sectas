@@ -333,17 +333,17 @@ async function sendOneSignalNotification(env) {
                     es:
                         "ÚGJÜ RADIO está en el aire. Entrá a escuchar.",
                     de:
-                        "Das Haus ist bewohnt. Komm herein und lausche.",
+                        "Das Haus träumt. Komm herein und lausche.",
                     fi:
-                        "Talo on asuttu. Tule sisään kuuntelemaan.",
+                        "Talo uneksii. Tule sisään kuuntelemaan.",
                     fr:
-                        "La maison est habitée. Entrez écouter.",
+                        "La maison rêve. Entrez écouter.",
                     it:
-                        "La casa è abitata. Entra ad ascoltare.",
+                        "La casa sta sognando. Entra ad ascoltare.",
                     ja:
-                        "家には誰かがいます。入って、耳を澄ませてください。",
+                        "家は夢を見ています。入って、耳を澄ませてください。",
                     "zh-Hans":
-                        "这座房子有人居住。进来听听吧。"
+                        "这座房子正在做梦。进来听听吧。"
                 },
                 url: RADIO_URL,
                 collapse_id: "ugju-radio-live"

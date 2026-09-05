@@ -8,7 +8,7 @@
 
 No tiene horarios.
 
-A veces está habitada.
+A veces está soñando.
 
 A veces duerme.
 
@@ -58,6 +58,6 @@ Perseguimos la presencia.
 
 ÚGJÜ RADIO no está programada.
 
-Está habitada.
+Está soñando.
 
 ÚGJÜ RADIO es un proyecto dentro de ÚGJÜ SECTAS.

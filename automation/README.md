@@ -4,7 +4,7 @@ Este Worker consulta cada minuto el estado explícito `online` publicado por el
 Worker de metadatos de ÚGJÜ, cuya fuente es Free-ShoutCast.
 
 - Exige dos comprobaciones positivas consecutivas antes de anunciar una transmisión.
-- Envía una sola notificación cuando la radio pasa de dormida a habitada.
+- Envía una sola notificación cuando la radio pasa de DURMIENDO a SOÑANDO.
 - No vuelve a avisar mientras la misma transmisión siga activa.
 - Se rearma después de confirmar que la radio volvió a dormir.
 - OneSignal conserva las suscripciones; el sitio no mantiene una segunda base de
