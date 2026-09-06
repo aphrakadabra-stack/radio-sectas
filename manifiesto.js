@@ -417,10 +417,6 @@ cargarTextos(idioma)
     ).textContent = textos.title;
 
     document.getElementById(
-        "manifesto-subtitle"
-    ).textContent = textos.subtitle;
-
-    document.getElementById(
         "back-link"
     ).textContent = textos.back;
 

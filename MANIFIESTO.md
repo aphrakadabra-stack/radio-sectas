@@ -2,13 +2,11 @@
 
 ## Manifiesto
 
-*La oreja que escucha la casa...*
-
 ÚGJÜ RADIO es una oreja dentro de una casa que escucha desde la puerta entreabierta.
 
 No tiene horarios.
 
-A veces está soñando.
+A veces sueña.
 
 A veces duerme.
 
@@ -56,8 +54,8 @@ No perseguimos la perfección.
 
 Perseguimos la presencia.
 
-ÚGJÜ RADIO no está programada.
+ÚGJÜ RADIO NO ESTÁ PROGRAMADA.
 
-Está soñando.
+DIBUJA SOLO SUEÑOS.
 
 ÚGJÜ RADIO es un proyecto dentro de ÚGJÜ SECTAS.
